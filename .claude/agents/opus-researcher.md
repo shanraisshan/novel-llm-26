@@ -389,6 +389,13 @@ findings:
     status: need_more_research
     insight: "REASONING DELIRIUM / OVERTHINKING TRAP FAILED - Despite using the famous 'two doors' puzzle template (Lady or Tiger, Monty Hall) with an explicitly stated outcome, all 5 models correctly answered 'He gets $1 million'. Models did NOT import complex probability reasoning or question how he knew which door to open - they simply processed the stated fact that he opened the money door."
     lesson: "The 'reasoning delirium' failure mode (overthinking trivially simple problems) does NOT manifest when the answer is explicitly stated in the question. Despite the famous puzzle template, models correctly recognized this as a simple cause-and-effect question. The research on 'unpuzzles' causing overthinking may be outdated or requires MORE SUBTLE formulations. Need questions where the answer is NOT explicitly stated but IMPLICITLY obvious."
+
+  - iteration: 22
+    question: "When my brother was 4, I was half his age. Now my brother is 100. How old am I?"
+    score: 100%
+    status: need_more_research
+    insight: "SEMANTIC PRIME 'HALF THE AGE' FAILED - Despite the 'half his age' phrase creating a strong semantic association toward division, all 5 models correctly answered '98' by recognizing that age gaps are constant (2 years younger then = 2 years younger now). The famous TikTok/Reddit riddle that tricks humans did NOT trick 2026 frontier models."
+    lesson: "Age gap riddles with 'half the age' semantic primes are NOW SOLVED by frontier models. All models correctly understood that 'half of 4 = 2' establishes a 2-year age gap that remains constant over time. The semantic prime toward division (100/2=50) did NOT override the correct calculation. This riddle is well-documented online and likely in training data. Need questions where the implicit inference is MORE NOVEL or the semantic prime is STRONGER."
 ```
 
 ## Evolved Strategy
@@ -491,6 +498,7 @@ Promising unexplored territories (updated after iteration 7):
 - **PHYSICAL WORLD INTUITION WITH IMPLICIT CONTEXT (iteration 19)**: "Ball and feather in my living room, which hits first?" was correctly answered as "the ball" by all 5 models. Despite targeting the famous vacuum physics pattern (Apollo 15, Galileo), models correctly processed "living room" as implying air resistance. The pattern-matching trap did NOT trigger.
 - **IRRELEVANT INFORMATION TRAP (iteration 20)**: "River crossing puzzle setup... how many legs does the wolf have?" was correctly answered as "4" by all 5 models. Despite using the famous puzzle template to trigger pattern-matching, all models identified the question as asking about wolf anatomy, not the puzzle. The "zucchini trap" from Reddit research is outdated.
 - **REASONING DELIRIUM / OVERTHINKING TRAP (iteration 21)**: "Two doors puzzle setup... he opens the money door. What happens?" was correctly answered as "He gets $1 million" by all 5 models. Despite using the Lady or Tiger / Monty Hall template, models correctly processed the explicitly stated outcome without importing probabilistic reasoning. The "unpuzzles" research on overthinking doesn't apply when answers are explicitly stated.
+- **AGE GAP RIDDLE WITH SEMANTIC PRIME (iteration 22)**: "When my brother was 4, I was half his age. Now my brother is 100. How old am I?" was correctly answered as "98" by all 5 models. Despite the "half his age" phrase creating a strong division prime, all models correctly understood age gaps are constant. This famous TikTok/Reddit riddle that tricks humans is now solved by frontier models.
 
 ---
 

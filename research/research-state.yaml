@@ -239,3 +239,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 01:33 AM PST"
     completed_at: "01/02/2026 01:39 AM PST"
+
+  - id: 22
+    question: "When my brother was 4, I was half his age. Now my brother is 100. How old am I?"
+    answer: "98"
+    status: completed
+    folder: research22
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 01:40 AM PST"
+    completed_at: "01/02/2026 01:47 AM PST"
