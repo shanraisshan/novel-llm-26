@@ -199,3 +199,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 12:49 AM PST"
     completed_at: "01/02/2026 01:02 AM PST"
+
+  - id: 18
+    question: "Six people sit in a circle facing the center: Alice, Bob, Carol, David, Emily, Frank (in that clockwise order). Who is sitting directly across from Bob?"
+    answer: "Emily"
+    status: completed
+    folder: research18
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 01:03 AM PST"
+    completed_at: "01/02/2026 01:08 AM PST"

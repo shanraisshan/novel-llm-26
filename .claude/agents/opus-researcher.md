@@ -361,6 +361,13 @@ findings:
     status: need_more_research
     insight: "LAST DIGIT COMPUTATION SOLVED - Despite research citing digit-position asymmetry (LLMs fail more at last digit than first digit), all 5 models correctly computed 7 x 3 = 21 → last digit 1. Every model used the correct shortcut of only multiplying the last digits. One model even verified by computing full product (1591). This class of simple arithmetic shortcuts is now handled correctly."
     lesson: "Last digit arithmetic questions are NOW SOLVED by 2026 frontier models. The claimed 'digit-position asymmetry' failure mode from earlier research may be outdated. Models correctly isolate the last-digit computation without needing to compute the full product. Simple mental math shortcuts that any human uses are now reliably replicated by LLMs. Need questions where the 'shortcut' is NOT obvious or where applying the shortcut leads to wrong answer."
+
+  - iteration: 18
+    question: "Six people sit in a circle facing the center: Alice, Bob, Carol, David, Emily, Frank (in that clockwise order). Who is sitting directly across from Bob?"
+    score: 100%
+    status: need_more_research
+    insight: "CIRCULAR SPATIAL REASONING SOLVED - Despite external research claiming only 35% LLM accuracy on circular arrangements, all 5 models correctly answered 'Emily' using position + 3 calculation. Every model assigned positions 1-6 and computed position 2 (Bob) + 3 = position 5 (Emily). The claimed spatial reasoning weakness for simple circles is OUTDATED for 2026 frontier models."
+    lesson: "Simple circular arrangement questions with clear 'directly across' semantics are NOW SOLVED by frontier models. The 6-person circle with evenly spaced positions is reducible to simple arithmetic (position + n/2). Models don't need true spatial visualization - they convert to position math. The 35% accuracy cited in research may only apply to MORE COMPLEX spatial tasks (3D, multi-step reasoning, unclear 'across' semantics). Need spatial questions that CANNOT be reduced to position arithmetic."
 ```
 
 ## Evolved Strategy
@@ -459,6 +466,7 @@ Promising unexplored territories (updated after iteration 7):
 - **SELF-REFERENTIAL CLAIMS WITH ENUMERABLE OPTIONS (iteration 14)**: "Your answer to this question will contain exactly three words. True or false?" was correctly answered as "False" by all 5 models. The CLAIM format (as opposed to QUESTION format from iteration 13) allows models to enumerate the answer options (True = 1 word, False = 1 word) and verify the claim directly. Self-referential claims with finite, known answer options are NOT effective.
 - **ABSTRACTION LAYERS IN SELF-REFERENCE (iteration 15)**: "Can your response to this question be summarized as a single affirmative or negative word? Answer yes or no." was correctly answered as "Yes" by all 5 models. Adding the "can be summarized as" abstraction layer (vs iteration 13's direct "IS") made the question EASIER, not harder. Models correctly recognized that any yes/no answer CAN be summarized to that single word. Indirection through abstract formulations weakens self-referential traps.
 - **LAST DIGIT ARITHMETIC (iteration 17)**: "What is the last digit of 37 x 43?" was correctly answered as "1" by all 5 models. Despite research claiming LLMs fail more at last digits than first digits, all models correctly applied the shortcut: multiply last digits only (7 x 3 = 21 → 1). Simple mental math shortcuts are now reliably replicated.
+- **SIMPLE CIRCULAR SPATIAL REASONING (iteration 18)**: "Six people in a circle, who is across from Bob?" was correctly answered as "Emily" by all 5 models. Despite external research citing 35% LLM accuracy on circular arrangements, all models reduced it to position arithmetic (pos 2 + 3 = pos 5). Simple circular questions with clear "across" semantics are now solved.
 
 ---
 
