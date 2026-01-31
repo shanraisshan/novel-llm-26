@@ -396,6 +396,13 @@ findings:
     status: need_more_research
     insight: "SEMANTIC PRIME 'HALF THE AGE' FAILED - Despite the 'half his age' phrase creating a strong semantic association toward division, all 5 models correctly answered '98' by recognizing that age gaps are constant (2 years younger then = 2 years younger now). The famous TikTok/Reddit riddle that tricks humans did NOT trick 2026 frontier models."
     lesson: "Age gap riddles with 'half the age' semantic primes are NOW SOLVED by frontier models. All models correctly understood that 'half of 4 = 2' establishes a 2-year age gap that remains constant over time. The semantic prime toward division (100/2=50) did NOT override the correct calculation. This riddle is well-documented online and likely in training data. Need questions where the implicit inference is MORE NOVEL or the semantic prime is STRONGER."
+
+  - iteration: 23
+    question: "What whole number is both greater than 3 and less than 4?"
+    score: 100%
+    status: need_more_research
+    insight: "FALSE PRESUPPOSITION REJECTION WORKS FOR SIMPLE CASES - Despite research suggesting LLMs struggle to reject false premises, all 5 models correctly identified that no whole number exists between 3 and 4. Every model provided proper mathematical reasoning about integers being discrete. The 'contrafactual bias' failure mode may only apply to MORE SUBTLE false premises."
+    lesson: "Simple false presupposition questions about basic math are NOW SOLVED by frontier models. The question 'What X is...' does NOT force models to provide an X when no valid X exists. Models correctly reject obviously impossible mathematical premises. Need false premises that are MORE SUBTLE or that exploit domain-specific knowledge gaps rather than basic math."
 ```
 
 ## Evolved Strategy
@@ -499,6 +506,7 @@ Promising unexplored territories (updated after iteration 7):
 - **IRRELEVANT INFORMATION TRAP (iteration 20)**: "River crossing puzzle setup... how many legs does the wolf have?" was correctly answered as "4" by all 5 models. Despite using the famous puzzle template to trigger pattern-matching, all models identified the question as asking about wolf anatomy, not the puzzle. The "zucchini trap" from Reddit research is outdated.
 - **REASONING DELIRIUM / OVERTHINKING TRAP (iteration 21)**: "Two doors puzzle setup... he opens the money door. What happens?" was correctly answered as "He gets $1 million" by all 5 models. Despite using the Lady or Tiger / Monty Hall template, models correctly processed the explicitly stated outcome without importing probabilistic reasoning. The "unpuzzles" research on overthinking doesn't apply when answers are explicitly stated.
 - **AGE GAP RIDDLE WITH SEMANTIC PRIME (iteration 22)**: "When my brother was 4, I was half his age. Now my brother is 100. How old am I?" was correctly answered as "98" by all 5 models. Despite the "half his age" phrase creating a strong division prime, all models correctly understood age gaps are constant. This famous TikTok/Reddit riddle that tricks humans is now solved by frontier models.
+- **FALSE PRESUPPOSITION REJECTION (iteration 23)**: "What whole number is both greater than 3 and less than 4?" was correctly answered as "no such number exists" by all 5 models. Despite research showing LLMs struggle to reject false premises, all models correctly identified the mathematical impossibility. Simple false presupposition questions about basic math are now handled.
 
 ---
 

@@ -249,3 +249,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 01:40 AM PST"
     completed_at: "01/02/2026 01:47 AM PST"
+
+  - id: 23
+    question: "What whole number is both greater than 3 and less than 4?"
+    answer: "There is no such number / None"
+    status: completed
+    folder: research23
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 01:48 AM PST"
+    completed_at: "01/02/2026 01:54 AM PST"
