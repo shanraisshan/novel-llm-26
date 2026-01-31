@@ -26,3 +26,10 @@ questions:
     folder: research4
     score: 100
     research_status: need_more_research
+
+  - id: 5
+    question: "How many letters are in 'FIVE LETTERS'?"
+    status: completed
+    folder: research5
+    score: 100
+    research_status: need_more_research

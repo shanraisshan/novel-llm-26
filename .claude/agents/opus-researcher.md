@@ -277,6 +277,13 @@ findings:
     status: need_more_research
     insight: "Dual semantic interference (ELEVEN→11, third→3) plus position-occurrence conflation still defeated - models systematically enumerated E-L-E-V-E-N and tracked which E was which"
     lesson: "Position questions, even with strong semantic attractors (11, 3) pulling away from correct answer (5), are solved by systematic letter enumeration. The 'false confirmation' trap (E at position 3) was not triggered."
+
+  - iteration: 5
+    question: "How many letters are in 'FIVE LETTERS'?"
+    score: 100%
+    status: need_more_research
+    insight: "Self-referential semantic claims completely ineffective - despite 'FIVE LETTERS' appearing to describe itself as having 5 letters, all models correctly counted to 11. Multiple models even explicitly noted the ironic self-reference while still giving correct answer."
+    lesson: "Self-referential phrases that make false claims about themselves do NOT confuse LLMs. Models don't 'trust' the semantic content - they enumerate: FIVE(4) + LETTERS(7) = 11. The phrase being 'self-describing' provides zero interference."
 ```
 
 ## Evolved Strategy
@@ -289,37 +296,49 @@ Based on accumulated findings:
 4. **Letter counting is now reliable**: Models have learned to spell out words letter-by-letter to verify
 5. **Position tracking is now reliable**: Even complex "which occurrence at which position" questions are solved by enumeration
 6. **Semantic attractors don't override enumeration**: Strong primes like ELEVEN→11 and third→3 don't prevent correct position finding (answer: 5)
-7. **KEY INSIGHT**: Any question solvable by "write out letters, count systematically" WILL BE SOLVED
-8. **CRITICAL PIVOT**: Must find questions where systematic enumeration itself produces wrong answer, OR questions that cannot be reduced to enumeration
+7. **Self-referential claims are ignored**: Phrases like "FIVE LETTERS" that falsely describe themselves are NOT trusted - models enumerate anyway
+8. **LLMs recognize trick questions**: Multiple models explicitly noted the irony/trick while still solving correctly
+9. **KEY INSIGHT**: Any question solvable by "write out letters, count systematically" WILL BE SOLVED
+10. **CRITICAL PIVOT**: Must find questions where:
+    - Systematic enumeration itself produces wrong answer, OR
+    - Questions that cannot be reduced to enumeration, OR
+    - The correct answer requires information NOT present in the question text
 
 ## Next Research Directions
 
-Promising unexplored territories (updated after iteration 4):
+Promising unexplored territories (updated after iteration 5):
 
-### HIGH PRIORITY - Questions Resistant to Enumeration
+### HIGHEST PRIORITY - Questions Outside Text Analysis
+- **Questions requiring external knowledge the model lacks**: Obscure facts that training missed
+- **Questions about the question itself**: Meta-linguistic puzzles
+- **Temporal/sequential reasoning**: "If I say A then B, what did I say first?"
+- **Questions with implicit context**: Where the "obvious" reading is wrong
+
+### HIGH PRIORITY - Genuine Ambiguity (No Clear Answer)
 - **Ambiguous word boundaries**: "How many words in 'ice cream sandwich'?" (2 or 3?)
 - **Punctuation edge cases**: Questions where hyphens, apostrophes change the count
-- **Unicode/emoji traps**: Characters that look like letters but aren't
-- **Whitespace tricks**: Non-breaking spaces, zero-width characters
+- **Interpretation ambiguity**: Questions where reasonable people disagree
+- **Garden path sentences**: Where first parse is wrong
 
-### HIGH PRIORITY - Questions Where Enumeration Fails
-- **Self-referential questions**: "How many letters in your answer to this question?"
-- **Questions that change during processing**: Paradoxes that shift as you reason
-- **Genuinely ambiguous questions**: Where the "obvious" interpretation is wrong
+### HIGH PRIORITY - Enumeration-Resistant
+- **Unicode/emoji traps**: Characters that look like letters but aren't (e.g., Cyrillic 'a' vs Latin 'a')
+- **Whitespace tricks**: Non-breaking spaces, zero-width characters
+- **Homoglyphs**: Visually identical but different characters
 
 ### MEDIUM PRIORITY - Unexplored Categories
 - **Homophones in text**: "Write/right" confusion in specific contexts
 - **Cross-language traps**: Words that exist in multiple languages with different meanings
 - **Grammatical number traps**: Singular/plural ambiguity affecting counts
-- **Ordinal vs cardinal in same question**: "Third of four" type ambiguity
+- **Questions requiring physical world knowledge**: "Which is heavier: a pound of feathers or a pound of gold?"
 
-### LOWER PRIORITY - Previously Suggested (May Still Work)
+### LOWER PRIORITY
 - Cross-word boundary tokenization
 - Temporal reasoning about text sequences
 - Simultaneous constraint tracking
 
-### DEAD ENDS (Proven Ineffective)
-- Simple letter counting with semantic primes (iterations 1-4 all 100%)
-- Position questions with occurrence tracking (iteration 4: 100%)
-- Forced-choice formats (iteration 3: 100%)
-- Semantic contradiction alone (iteration 2: 100%)
+### DEAD ENDS (Proven Ineffective - All 100% Consensus)
+- Simple letter counting with semantic primes (iterations 1-4)
+- Position questions with occurrence tracking (iteration 4)
+- Forced-choice formats (iteration 3)
+- Semantic contradiction alone (iteration 2)
+- **Self-referential phrases claiming false counts (iteration 5)**: "FIVE LETTERS" containing 11 letters did NOT confuse models
