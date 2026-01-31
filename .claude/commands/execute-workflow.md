@@ -197,7 +197,12 @@ steps:
           workflow.current_iteration: null
           workflow.last_completed_phase: "commit"
       - Write state file to disk
-      - git add research/  (this includes research-state.yaml)
+      - Update research-status.json:
+          - Count total completed questions from research-state.yaml
+          - Set "iterations" to that count
+          - Set "status" to research_status from the current question ("complete" or "need_more_research")
+          - Write JSON file: research/research-status.json
+      - git add research/  (this includes research-state.yaml AND research-status.json)
       - git add .claude/agents/opus-researcher.md (if modified)
       - Create commit with message: "research(N): [STATUS] score=X%"
       - git push origin main
@@ -277,6 +282,7 @@ MANDATORY_BEHAVIOR:
   - ALWAYS update state file before proceeding to next phase
   - ALWAYS check state file on entry to enable resume
   - ALWAYS include research-state.yaml in the commit (it's inside research/)
+  - ALWAYS update research-status.json before commit with iterations count and status
   - ALWAYS set started_at when creating new question (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - ALWAYS set completed_at before final commit (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - If ANY error occurs:
@@ -318,9 +324,21 @@ recovery:
 ```yaml
 files:
   state: research/research-state.yaml
+  status: research/research-status.json
   agent: .claude/agents/opus-researcher.md
   research_folder: research/research{N}/
   research_doc: research/research{N}/research{N}.md
   answers: research/research{N}/answer[1-5].md
   verifier: research/research{N}/verifier{N}.md
+
+research_status_json_format:
+  description: "Tracks completed iterations and overall research status"
+  structure:
+    iterations: <number of completed questions>
+    status: "complete" | "need_more_research"
+  example: |
+    {
+      "iterations": 8,
+      "status": "need_more_research"
+    }
 ```
