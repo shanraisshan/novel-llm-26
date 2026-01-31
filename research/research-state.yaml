@@ -229,3 +229,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 01:20 AM PST"
     completed_at: "01/02/2026 01:26 AM PST"
+
+  - id: 21
+    question: "A man is standing in front of two doors. Behind one door is a tiger that will eat him. Behind the other door is $1 million. He opens the door with $1 million behind it. What happens to him?"
+    answer: "He gets $1 million"
+    status: completed
+    folder: research21
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 01:33 AM PST"
+    completed_at: "01/02/2026 01:39 AM PST"

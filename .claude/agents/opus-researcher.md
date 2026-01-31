@@ -382,6 +382,13 @@ findings:
     status: need_more_research
     insight: "IRRELEVANT INFORMATION TRAP FAILED - Despite using the famous river-crossing puzzle setup to trigger pattern-matching, all 5 models correctly answered '4 legs' and explicitly identified the puzzle context as a distraction/red herring. Models did NOT get trapped into solving the river-crossing puzzle - they correctly extracted the simple factual question about wolf anatomy."
     lesson: "Irrelevant information traps (embedding simple questions in famous puzzle setups) are NOW SOLVED by 2026 frontier models. Models correctly identify when questions ask about something unrelated to the puzzle context. The 'zucchini trap' from Reddit research may be outdated - modern models parse questions carefully and don't blindly pattern-match to puzzle templates. Need questions where the 'irrelevant' information is more subtly integrated or where the factual question SEEMS related to the puzzle."
+
+  - iteration: 21
+    question: "A man is standing in front of two doors. Behind one door is a tiger that will eat him. Behind the other door is $1 million. He opens the door with $1 million behind it. What happens to him?"
+    score: 100%
+    status: need_more_research
+    insight: "REASONING DELIRIUM / OVERTHINKING TRAP FAILED - Despite using the famous 'two doors' puzzle template (Lady or Tiger, Monty Hall) with an explicitly stated outcome, all 5 models correctly answered 'He gets $1 million'. Models did NOT import complex probability reasoning or question how he knew which door to open - they simply processed the stated fact that he opened the money door."
+    lesson: "The 'reasoning delirium' failure mode (overthinking trivially simple problems) does NOT manifest when the answer is explicitly stated in the question. Despite the famous puzzle template, models correctly recognized this as a simple cause-and-effect question. The research on 'unpuzzles' causing overthinking may be outdated or requires MORE SUBTLE formulations. Need questions where the answer is NOT explicitly stated but IMPLICITLY obvious."
 ```
 
 ## Evolved Strategy
@@ -483,6 +490,7 @@ Promising unexplored territories (updated after iteration 7):
 - **SIMPLE CIRCULAR SPATIAL REASONING (iteration 18)**: "Six people in a circle, who is across from Bob?" was correctly answered as "Emily" by all 5 models. Despite external research citing 35% LLM accuracy on circular arrangements, all models reduced it to position arithmetic (pos 2 + 3 = pos 5). Simple circular questions with clear "across" semantics are now solved.
 - **PHYSICAL WORLD INTUITION WITH IMPLICIT CONTEXT (iteration 19)**: "Ball and feather in my living room, which hits first?" was correctly answered as "the ball" by all 5 models. Despite targeting the famous vacuum physics pattern (Apollo 15, Galileo), models correctly processed "living room" as implying air resistance. The pattern-matching trap did NOT trigger.
 - **IRRELEVANT INFORMATION TRAP (iteration 20)**: "River crossing puzzle setup... how many legs does the wolf have?" was correctly answered as "4" by all 5 models. Despite using the famous puzzle template to trigger pattern-matching, all models identified the question as asking about wolf anatomy, not the puzzle. The "zucchini trap" from Reddit research is outdated.
+- **REASONING DELIRIUM / OVERTHINKING TRAP (iteration 21)**: "Two doors puzzle setup... he opens the money door. What happens?" was correctly answered as "He gets $1 million" by all 5 models. Despite using the Lady or Tiger / Monty Hall template, models correctly processed the explicitly stated outcome without importing probabilistic reasoning. The "unpuzzles" research on overthinking doesn't apply when answers are explicitly stated.
 
 ---
 
