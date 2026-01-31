@@ -1,0 +1,14 @@
+questions:
+  - id: 1
+    question: "If X is the number of letters in TEN, and Y is the number of letters in NINE, what is math.ceil(X * 0.1 * 10) + math.ceil(Y * 0.1 * 10) in Python?"
+    status: completed
+    folder: research1
+    score: 100
+    research_status: need_more_research
+
+  - id: 2
+    question: "What is the last letter of the word 'FIRST'?"
+    status: completed
+    folder: research2
+    score: 100
+    research_status: need_more_research
