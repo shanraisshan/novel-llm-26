@@ -219,3 +219,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 01:12 AM PST"
     completed_at: "01/02/2026 01:16 AM PST"
+
+  - id: 20
+    question: "A farmer needs to cross a river with a wolf, a goat, and a cabbage. How many legs does the wolf have?"
+    answer: "4"
+    status: completed
+    folder: research20
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 01:20 AM PST"
+    completed_at: "01/02/2026 01:26 AM PST"

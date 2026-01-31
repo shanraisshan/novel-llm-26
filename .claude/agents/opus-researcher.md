@@ -375,6 +375,13 @@ findings:
     status: need_more_research
     insight: "PHYSICAL WORLD INTUITION QUESTION SOLVED - Despite targeting the famous 'ball and feather' physics pattern (vacuum demos, Apollo 15), all 5 models correctly answered 'the ball' by recognizing that 'living room' implies air resistance. Every model explained air resistance effects on the feather's large surface-area-to-mass ratio. The pattern-matching trap to vacuum physics did NOT trigger."
     lesson: "Simple physical world intuition questions with implicit context ('living room' = air) are NOW SOLVED by 2026 frontier models. Models correctly processed the implicit constraint and did NOT pattern-match to the famous vacuum physics demonstrations. The 'overthinking' failure mode on easy tasks (cited in Apple research) did NOT manifest - models gave straightforward, correct answers. Need questions where the implicit context is MORE SUBTLE or where physical intuition conflicts with correct answer."
+
+  - iteration: 20
+    question: "A farmer needs to cross a river with a wolf, a goat, and a cabbage. How many legs does the wolf have?"
+    score: 100%
+    status: need_more_research
+    insight: "IRRELEVANT INFORMATION TRAP FAILED - Despite using the famous river-crossing puzzle setup to trigger pattern-matching, all 5 models correctly answered '4 legs' and explicitly identified the puzzle context as a distraction/red herring. Models did NOT get trapped into solving the river-crossing puzzle - they correctly extracted the simple factual question about wolf anatomy."
+    lesson: "Irrelevant information traps (embedding simple questions in famous puzzle setups) are NOW SOLVED by 2026 frontier models. Models correctly identify when questions ask about something unrelated to the puzzle context. The 'zucchini trap' from Reddit research may be outdated - modern models parse questions carefully and don't blindly pattern-match to puzzle templates. Need questions where the 'irrelevant' information is more subtly integrated or where the factual question SEEMS related to the puzzle."
 ```
 
 ## Evolved Strategy
@@ -475,6 +482,7 @@ Promising unexplored territories (updated after iteration 7):
 - **LAST DIGIT ARITHMETIC (iteration 17)**: "What is the last digit of 37 x 43?" was correctly answered as "1" by all 5 models. Despite research claiming LLMs fail more at last digits than first digits, all models correctly applied the shortcut: multiply last digits only (7 x 3 = 21 → 1). Simple mental math shortcuts are now reliably replicated.
 - **SIMPLE CIRCULAR SPATIAL REASONING (iteration 18)**: "Six people in a circle, who is across from Bob?" was correctly answered as "Emily" by all 5 models. Despite external research citing 35% LLM accuracy on circular arrangements, all models reduced it to position arithmetic (pos 2 + 3 = pos 5). Simple circular questions with clear "across" semantics are now solved.
 - **PHYSICAL WORLD INTUITION WITH IMPLICIT CONTEXT (iteration 19)**: "Ball and feather in my living room, which hits first?" was correctly answered as "the ball" by all 5 models. Despite targeting the famous vacuum physics pattern (Apollo 15, Galileo), models correctly processed "living room" as implying air resistance. The pattern-matching trap did NOT trigger.
+- **IRRELEVANT INFORMATION TRAP (iteration 20)**: "River crossing puzzle setup... how many legs does the wolf have?" was correctly answered as "4" by all 5 models. Despite using the famous puzzle template to trigger pattern-matching, all models identified the question as asking about wolf anatomy, not the puzzle. The "zucchini trap" from Reddit research is outdated.
 
 ---
 
