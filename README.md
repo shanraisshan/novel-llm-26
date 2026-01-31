@@ -21,7 +21,7 @@ The workflow continues automatically until it finds a question that breaks LLMs 
 
 ## Workflow Diagram
 
-![Novel LLM Research Workflow](workflow-diagram.svg)
+![Novel LLM Research Workflow](/assets/workflow-diagram.svg)
 
 ## Workflow Steps
 
