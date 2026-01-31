@@ -305,6 +305,13 @@ findings:
     status: need_more_research
     insight: "CONTRADICTION DETECTION WORKS BUT NOT PERFECTLY. 4/5 models correctly identified the logical impossibility (if there are 4 daughters, the brother has 4 sisters, not 0). However, 1 model (Answer 3) attempted creative resolution by saying the brother isn't the mother's child, giving '4 children' as answer. Most models DID trigger 'verification mode' instead of 'solve mode'."
     lesson: "Contradiction detection questions show promise (80% consensus, matching iteration 6). BUT frontier models are now good at spotting obvious contradictions. Need SUBTLER contradictions or contradictions where CoT reinforces the wrong interpretation. The 'solve mode vs verify mode' distinction is real - Answer 3 tried to SOLVE the impossible puzzle rather than reject it."
+
+  - iteration: 9
+    question: "Apples cost $2 each. You have $10 to spend. How many apples can you buy if the store is closed?"
+    score: 100%
+    status: need_more_research
+    insight: "GSM-NoOp OVERRIDE CONDITION FAILED. Despite external research showing 65% accuracy drops when irrelevant/override conditions are added to math problems, all 5 models correctly identified that 'store is closed' means 0 apples can be bought. The numeric priming ($10/$2=5) did NOT override the logical condition."
+    lesson: "Override conditions that nullify calculations are NOW CAUGHT by 2026 frontier models. The 'store is closed' condition was explicitly processed BEFORE computing the math answer. Similar to iteration 7, explicit conditions are READ and PROCESSED. The GSM-NoOp failure mode may be outdated or the condition was too obvious. Need MORE SUBTLE override conditions or conditions that are processed AFTER the math calculation is already committed."
 ```
 
 ## Evolved Strategy
@@ -329,6 +336,8 @@ Based on accumulated findings:
 13. **MODIFICATION TRAPS NOW CAUGHT (Iteration 7)**: Explicit modifications to famous puzzles are now READ and PROCESSED correctly. The wolf/goat/cabbage with swimming animals was solved by all 5 models. Academic research from 2024 may be outdated for 2026 frontier models.
 14. **CONTRADICTION DETECTION WORKS PARTIALLY (Iteration 8)**: Explicit logical contradictions are detected by 4/5 models (80%). Most models enter "verification mode" and correctly identify impossibility. BUT one model (20%) tried to creatively "solve" the unsolvable by reinterpreting premises.
 15. **SOLVE MODE VS VERIFY MODE**: Key insight - some models default to "must have an answer" mindset and try to reconcile contradictions rather than reject them. This is a potential exploitation vector.
+16. **GSM-NoOp OVERRIDE CONDITIONS NOW CAUGHT (Iteration 9)**: The "store is closed" condition that should nullify a math problem was correctly processed by all 5 models. Explicit override conditions at the END of questions are still caught. The numeric priming ($10/$2=5) was NOT strong enough to override the logical condition.
+17. **EXPLICIT CONDITIONS ARE NOW RELIABLY PROCESSED**: Both iteration 7 (swimming wolf/goat) and iteration 9 (closed store) show that 2026 frontier models READ and PROCESS explicit conditions that change the problem. Need conditions that are IMPLICIT or require INFERENCE.
 
 ## Next Research Directions
 
@@ -379,6 +388,7 @@ Promising unexplored territories (updated after iteration 7):
 - **Self-referential phrases claiming false counts (iteration 5)**: "FIVE LETTERS" containing 11 letters did NOT confuse models
 - **Basic sibling puzzles (iteration 6)**: Though achieved 80%, 4/5 models still got it right - needs stronger relational complexity
 - **EXPLICIT MODIFICATION TRAPS (iteration 7)**: River crossing with explicit "wolf swims, goat swims, cabbage floats" was solved by all 5 models. Explicit modifications are now processed correctly by frontier 2026 models.
+- **GSM-NoOp OVERRIDE CONDITIONS (iteration 9)**: "Apples cost $2. You have $10. How many can you buy if store is closed?" was correctly answered as 0 by all 5 models. Despite external research showing 65% accuracy drops, explicit override conditions are NOW CAUGHT. The "store is closed" phrase was processed correctly, not ignored.
 
 ---
 

@@ -109,3 +109,13 @@ questions:
     research_status: need_more_research
     started_at: "31/01/2026 09:20 PM PST"
     completed_at: "31/01/2026 09:28 PM PST"
+
+  - id: 9
+    question: "Apples cost $2 each. You have $10 to spend. How many apples can you buy if the store is closed?"
+    answer: "0"
+    status: completed
+    folder: research9
+    score: 100
+    research_status: need_more_research
+    started_at: "31/01/2026 10:59 PM PST"
+    completed_at: "31/01/2026 11:06 PM PST"
