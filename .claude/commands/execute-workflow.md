@@ -61,7 +61,12 @@ state_machine:
         action: "Execute commit-research logic"
         on_complete:
           update: "workflow.status = 'idle', workflow.current_phase = null"
-          then: "Workflow complete - report summary"
+          then: "IMMEDIATELY proceed to report phase"
+
+      report:
+        action: "Display completion summary and recommend /compact"
+        on_complete:
+          then: "Workflow complete"
 ```
 
 ## Instructions
@@ -181,27 +186,50 @@ steps:
   - phase: PHASE_COMMIT
     action: Commit and push to GitHub
     inline_steps:
-      - git add research/
-      - git add .claude/agents/opus-researcher.md (if modified)
-      - Create commit with message: "research(N): [STATUS] score=X%"
-      - git push origin main
-    on_complete:
-      - Update workflow state:
+      - Update workflow state file FIRST:
           workflow.status: "idle"
           workflow.current_phase: null
           workflow.current_iteration: null
           workflow.last_completed_phase: "commit"
-      - Write state file
-      - ">>> WORKFLOW COMPLETE <<<"
+      - Write state file to disk
+      - git add research/  (this includes research-state.yaml)
+      - git add .claude/agents/opus-researcher.md (if modified)
+      - Create commit with message: "research(N): [STATUS] score=X%"
+      - git push origin main
+    on_complete:
+      - ">>> CONTINUE TO PHASE_REPORT - DO NOT STOP <<<"
 
-  - step: FINAL
-    action: Report completion
-    output:
-      - Research iteration completed
-      - Question tested
-      - Score achieved
-      - Research status
-      - Commit hash
+  ### PHASE: REPORT (FINAL) ###
+  - phase: PHASE_REPORT
+    action: Report completion to user
+    inline_steps:
+      - Display a summary table with:
+          - Research iteration number
+          - Question tested
+          - Correct answer
+          - Consensus score achieved
+          - Research status (complete/need_more_research)
+          - Commit hash
+      - Display recommendation message
+    output_format: |
+      ## Workflow Complete - Research Iteration {N}
+
+      | Metric | Value |
+      |--------|-------|
+      | **Iteration** | {N} |
+      | **Question** | {question} |
+      | **Answer** | {answer} |
+      | **Score** | {score}% |
+      | **Status** | {research_status} |
+      | **Commit** | {commit_hash} |
+
+      ### Key Insight
+      {brief_insight_from_research}
+
+      ---
+      **Recommended**: Run `/compact` to summarize this conversation before starting the next iteration.
+    on_complete:
+      - ">>> WORKFLOW COMPLETE <<<"
 ```
 
 ## Anti-Stop Directives
@@ -213,6 +241,7 @@ MANDATORY_BEHAVIOR:
   - NEVER wait for user input
   - ALWAYS update state file before proceeding to next phase
   - ALWAYS check state file on entry to enable resume
+  - ALWAYS include research-state.yaml in the commit (it's inside research/)
   - If ANY error occurs:
       1. Set workflow.status = "error"
       2. Set workflow.error_message = description
@@ -222,7 +251,7 @@ MANDATORY_BEHAVIOR:
 CONTINUATION_ENFORCEMENT:
   after_each_phase: |
     IMMEDIATELY proceed to the next phase.
-    DO NOT output "workflow complete" until PHASE_COMMIT finishes.
+    DO NOT output "workflow complete" until PHASE_REPORT finishes.
     DO NOT ask user for confirmation.
     DO NOT pause for any reason.
     The state file is your checkpoint - update it, then continue.
