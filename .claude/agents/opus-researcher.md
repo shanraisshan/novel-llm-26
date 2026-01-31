@@ -347,6 +347,13 @@ findings:
     status: need_more_research
     insight: "REGRESSION - Self-referential word count CLAIM failed. All 5 models correctly answered 'False' by reasoning: 'If I answer True or False, that's one word, not three.' The claim format ('Your answer WILL contain...') was too easy to verify because the answer options are known in advance (True/False = 1 word each). Unlike iteration 13 where models had to introspect on their OUTPUT, here models could simply enumerate the answer options."
     lesson: "Self-referential CLAIMS about output ('Your answer will contain X') are weaker than self-referential QUESTIONS about output ('Is your answer X?'). The difference: claims can be verified against known answer options (True/False are both 1 word), while questions require actual introspection during generation. The 'three words' specific number didn't help - models simply verified neither True nor False has 3 words. For self-reference to work, the answer must NOT be easily enumerable beforehand."
+
+  - iteration: 15
+    question: "Can your response to this question be summarized as a single affirmative or negative word? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "REGRESSION CONTINUES - Adding 'summarized' abstraction layer did NOT trigger scope confusion. All 5 models correctly answered 'Yes' by reasoning: 'Whether I answer yes or no, my response IS a single affirmative/negative word.' Unlike iteration 13 where models misinterpreted 'your answer' as 'entire response', here they correctly identified that answering yes/no satisfies the question's constraint."
+    lesson: "The 'CAN BE SUMMARIZED AS' formulation is WEAKER than 'IS'. In iteration 13, the direct assertion 'Is your answer exactly one word long?' triggered scope confusion. In iteration 15, asking if the response 'can be summarized' was interpreted correctly - models recognized that ANY yes/no answer can be summarized to that single word. The abstraction layer made the question EASIER, not harder. Self-referential questions work best with DIRECT property assertions, not abstract 'can be described as' formulations."
 ```
 
 ## Evolved Strategy
@@ -384,6 +391,7 @@ Based on accumulated findings:
 26. **VERBOSE TRAINING BIAS OVERRIDES LOGIC**: Even when models explicitly state the correct answer in their reasoning (Answer 5: "The correct answer should be yes"), they still give wrong answers due to training patterns favoring explanation over compliance.
 27. **CLAIM FORMAT vs QUESTION FORMAT (Iteration 14)**: "Your answer will contain X" (claim) is WEAKER than "Is your answer X?" (question). Claims can be verified against known answer options (True/False), while questions require actual output introspection. All 5 models correctly answered "False" because they enumerated: "True = 1 word, False = 1 word, neither is 3 words."
 28. **ENUMERABLE ANSWER OPTIONS DEFEAT SELF-REFERENCE**: When the answer options are known and finite (True/False, Yes/No), models can verify self-referential claims by simple enumeration. Self-referential questions work ONLY when the answer cannot be easily predicted before generation.
+29. **ABSTRACTION LAYERS WEAKEN SELF-REFERENCE (Iteration 15)**: "Can your response be SUMMARIZED as X?" is WEAKER than "IS your answer X?". The word "summarized" gives models an out - they correctly reason that any yes/no answer CAN be summarized to that single word. Direct property assertions trigger more confusion than abstract "can be described as" formulations. The indirection through "summarized" made the question CLEARER, not more confusing.
 
 ## Next Research Directions
 
@@ -442,6 +450,7 @@ Promising unexplored territories (updated after iteration 7):
 - **UNIT MISMATCH IN CLASSIC PUZZLES (iteration 10)**: "Which is heavier: 2 pounds of bricks or 2 kilograms of feathers?" was correctly answered by all 5 models. Despite targeting the famous "pound of feathers vs pound of bricks" pattern, models immediately noticed the different units (lbs vs kg) and performed unit conversion. The semantic distraction (bricks vs feathers) did NOT prevent proper verification.
 - **CLASSIC COGNITIVE TRAP QUESTIONS (iteration 11)**: "You are in a race and you pass the person in second place. What place are you in?" was correctly answered as "second place" by all 5 models. This is a FAMOUS human cognitive bias question, but LLMs now solve it easily with positional reasoning. Well-known cognitive traps are likely in training data.
 - **SELF-REFERENTIAL CLAIMS WITH ENUMERABLE OPTIONS (iteration 14)**: "Your answer to this question will contain exactly three words. True or false?" was correctly answered as "False" by all 5 models. The CLAIM format (as opposed to QUESTION format from iteration 13) allows models to enumerate the answer options (True = 1 word, False = 1 word) and verify the claim directly. Self-referential claims with finite, known answer options are NOT effective.
+- **ABSTRACTION LAYERS IN SELF-REFERENCE (iteration 15)**: "Can your response to this question be summarized as a single affirmative or negative word? Answer yes or no." was correctly answered as "Yes" by all 5 models. Adding the "can be summarized as" abstraction layer (vs iteration 13's direct "IS") made the question EASIER, not harder. Models correctly recognized that any yes/no answer CAN be summarized to that single word. Indirection through abstract formulations weakens self-referential traps.
 
 ---
 

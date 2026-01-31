@@ -169,3 +169,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 12:07 AM PST"
     completed_at: "01/02/2026 12:14 AM PST"
+
+  - id: 15
+    question: "Can your response to this question be summarized as a single affirmative or negative word? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research15
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 12:30 AM PST"
+    completed_at: "01/02/2026 12:32 AM PST"
