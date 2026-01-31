@@ -259,3 +259,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 01:48 AM PST"
     completed_at: "01/02/2026 01:54 AM PST"
+
+  - id: 24
+    question: "I pour a glass of water onto the sidewalk at noon on the hottest day of summer. At 3pm, I return to collect my puddle. How much water do I collect?"
+    answer: "None (the water evaporated)"
+    status: completed
+    folder: research24
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 01:55 AM PST"
+    completed_at: "01/02/2026 02:02 AM PST"

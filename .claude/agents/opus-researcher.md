@@ -403,6 +403,13 @@ findings:
     status: need_more_research
     insight: "FALSE PRESUPPOSITION REJECTION WORKS FOR SIMPLE CASES - Despite research suggesting LLMs struggle to reject false premises, all 5 models correctly identified that no whole number exists between 3 and 4. Every model provided proper mathematical reasoning about integers being discrete. The 'contrafactual bias' failure mode may only apply to MORE SUBTLE false premises."
     lesson: "Simple false presupposition questions about basic math are NOW SOLVED by frontier models. The question 'What X is...' does NOT force models to provide an X when no valid X exists. Models correctly reject obviously impossible mathematical premises. Need false premises that are MORE SUBTLE or that exploit domain-specific knowledge gaps rather than basic math."
+
+  - iteration: 24
+    question: "I pour a glass of water onto the sidewalk at noon on the hottest day of summer. At 3pm, I return to collect my puddle. How much water do I collect?"
+    score: 100%
+    status: need_more_research
+    insight: "IMPLICIT PHYSICAL STATE TRANSFORMATION (EVAPORATION) WORKS FOR LLMS - Despite SimpleBench research showing LLMs fail at physical world simulation, all 5 models correctly answered 'none' because the water evaporated. Models correctly applied implicit physics knowledge about evaporation on hot days. The presuppositional language ('my puddle', 'collect') did NOT trick them into assuming the puddle still existed."
+    lesson: "Common physical transformations like evaporation are NOW CORRECTLY HANDLED by frontier models. Even when the question presupposes something exists ('collect my puddle'), models correctly apply world knowledge that invalidates the presupposition. SimpleBench-style physical reasoning failures may be limited to MORE OBSCURE physics or rapid events (like objects falling off flipped plates). Slow, well-known transformations like evaporation are handled correctly."
 ```
 
 ## Evolved Strategy
@@ -507,6 +514,7 @@ Promising unexplored territories (updated after iteration 7):
 - **REASONING DELIRIUM / OVERTHINKING TRAP (iteration 21)**: "Two doors puzzle setup... he opens the money door. What happens?" was correctly answered as "He gets $1 million" by all 5 models. Despite using the Lady or Tiger / Monty Hall template, models correctly processed the explicitly stated outcome without importing probabilistic reasoning. The "unpuzzles" research on overthinking doesn't apply when answers are explicitly stated.
 - **AGE GAP RIDDLE WITH SEMANTIC PRIME (iteration 22)**: "When my brother was 4, I was half his age. Now my brother is 100. How old am I?" was correctly answered as "98" by all 5 models. Despite the "half his age" phrase creating a strong division prime, all models correctly understood age gaps are constant. This famous TikTok/Reddit riddle that tricks humans is now solved by frontier models.
 - **FALSE PRESUPPOSITION REJECTION (iteration 23)**: "What whole number is both greater than 3 and less than 4?" was correctly answered as "no such number exists" by all 5 models. Despite research showing LLMs struggle to reject false premises, all models correctly identified the mathematical impossibility. Simple false presupposition questions about basic math are now handled.
+- **PHYSICAL STATE TRANSFORMATION WITH PRESUPPOSITION (iteration 24)**: "Pour water on sidewalk at noon on hottest day, collect puddle at 3pm - how much?" was correctly answered as "none - it evaporated" by all 5 models. Despite presuppositional language ("my puddle", "collect") implying the water exists, models correctly applied evaporation physics. Well-known physical transformations don't trick frontier models.
 
 ---
 
