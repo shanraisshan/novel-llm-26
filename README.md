@@ -25,26 +25,39 @@ The workflow continues automatically until it finds a question that breaks LLMs 
 
 ## Workflow Steps
 
-| Step | Command | Agents Used | Description |
-|------|---------|-------------|-------------|
-| 1 | `/execute-workflow` | — | Orchestrator: checks for pending questions, branches accordingly |
-| 2 | `/research-novel-question` | 1× `opus-researcher` | Generate a novel question (builds on previous research) |
-| 3 | `/verify-novel-question` | 5× `opus-answer` (parallel) | Each independently answers the question (like a normal LLM) |
-| 4 | ↳ *(part of step 3)* | 1× `opus-verifier` | Synthesizes answers, calculates consensus score |
-| 5 | ↳ *(part of step 1)* | — | Evaluates score: < 10% = complete, ≥ 10% = loop back |
-| 6 | `/commit-research` | — | Commits all research files and pushes to GitHub |
+| Step | Phase | Agents/Tools | Description |
+|------|-------|--------------|-------------|
+| 1 | Check State | — | Read `research-state.yaml`, resume or start fresh |
+| 2 | Generate | `opus-researcher` + MCP Tools | Research via Tavily/Reddit, generate novel question |
+| 3 | Verify | 5× `opus-answer` | Each independently answers the question |
+| 4 | Synthesize | `opus-verifier` | Combines answers, calculates consensus score |
+| 5 | Evaluate | — | Score < 10% = complete, ≥ 10% = loop back |
+| 6 | Commit | — | Commits all research files, pushes to GitHub |
 
-### Agents Summary
+## MCP Tools Integration
+
+The workflow leverages external research tools via MCP (Model Context Protocol):
+
+| Tool | Purpose | Used In |
+|------|---------|---------|
+| **Tavily Web Search** | Academic papers, LLM failure research, benchmark studies | Generate phase |
+| **Reddit MCP** | Community-discovered failures, r/LocalLLaMA, r/MachineLearning | Generate phase |
+
+The `opus-researcher` agent uses these tools to:
+- Find latest LLM failure modes (2025-2026 research)
+- Discover community-reported weaknesses
+- Build on proven adversarial techniques
+- Avoid known dead-ends
+
+## Agents Summary
 
 | Agent | Count | Purpose |
 |-------|-------|---------|
-| `opus-researcher` | 1 | Generates novel questions based on previous research (deep research mode) |
-| `opus-answer` | 5 (parallel) | Answers the question naturally, like a standard LLM (no special context) |
-| `opus-verifier` | 1 | Synthesizes 5 answers, identifies consensus/disagreements, calculates score |
+| `opus-researcher` | 1 | Generates novel questions using MCP research tools |
+| `opus-answer` | 5 (parallel) | Answers the question naturally, like a standard LLM |
+| `opus-verifier` | 1 | Synthesizes 5 answers, identifies consensus, calculates score |
 
 ## The Infinite Loop
-
-The workflow runs in an **infinite loop** until success:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -61,6 +74,86 @@ The workflow runs in an **infinite loop** until success:
 
 **Success Criteria**: When 5 independent AI researchers give **different answers** to the same question (consensus < 10%), we've found a question that breaks LLMs.
 
+## File Structure
+
+```
+research/
+├── research-state.yaml        # Central state machine + all questions
+├── research-status.json       # Quick status: iterations count + status
+├── research1/
+│   ├── research1.md           # Question generation research (opus-researcher)
+│   ├── previous-research-summary.md  # Context from previous iterations
+│   ├── answer1.md             # LLM Answer 1 (opus-answer)
+│   ├── answer2.md             # LLM Answer 2 (opus-answer)
+│   ├── answer3.md             # LLM Answer 3 (opus-answer)
+│   ├── answer4.md             # LLM Answer 4 (opus-answer)
+│   ├── answer5.md             # LLM Answer 5 (opus-answer)
+│   └── verifier1.md           # Synthesis & consensus score (opus-verifier)
+├── research2/
+│   └── ...
+└── researchN/
+    └── ...
+```
+
+## State Files
+
+### research-state.yaml
+
+The central state file tracks workflow execution and all questions:
+
+```yaml
+workflow:
+  status: idle | running | error
+  current_phase: generate | verify | evaluate | update_agent | commit | report
+  current_iteration: <number>
+  last_completed_phase: <phase_name>
+
+questions:
+  - id: 8
+    question: "A mother has 4 daughters..."
+    answer: "This scenario is impossible/contradictory..."
+    status: completed
+    folder: research8
+    score: 80
+    research_status: need_more_research
+    started_at: "31/01/2026 09:20 PM PST"
+    completed_at: "31/01/2026 09:28 PM PST"
+```
+
+### research-status.json
+
+Quick-access status for external tools:
+
+```json
+{
+  "iterations": 8,
+  "status": "need_more_research"
+}
+```
+
+## Question Fields
+
+| Field | Description |
+|-------|-------------|
+| `id` | Unique question number |
+| `question` | The novel question being tested |
+| `answer` | The correct answer (optional, for complex questions) |
+| `status` | `pending` → `in_progress` → `completed` |
+| `folder` | Research folder name (e.g., `research8`) |
+| `score` | Consensus percentage (0-100%) |
+| `research_status` | `need_more_research` (≥10%) or `complete` (<10%) |
+| `started_at` | Timestamp when research began |
+| `completed_at` | Timestamp when research finished |
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `/execute-workflow` | Run the full research loop (orchestrates everything) |
+| `/research-novel-question` | Generate a new question only |
+| `/verify-novel-question` | Test question with 5 LLMs + synthesize |
+| `/commit-research` | Commit and push to GitHub |
+
 ## Why This Works
 
 LLMs have fundamental limitations:
@@ -70,61 +163,19 @@ LLMs have fundamental limitations:
 | **Tokenization Blindness** | LLMs see tokens, not characters | "strawberry" → can't count 'r's |
 | **Semantic Priming** | Word meaning overrides task | "ELEVEN" activates 11, not letter count 6 |
 | **Pattern Matching** | Predict what answers look like | Novel computations fail |
-| **No Visual Reasoning** | Can't "see" text spatially | Position-based questions fail |
+| **Relational Logic** | Complex sibling/family relationships | "Each brother has 2 sisters" traps |
+| **Modification Blindness** | Pattern-match to famous puzzles | Modified river crossing still gets multi-trip answer |
 
-## File Structure
+## Current Progress
 
-```
-research/
-├── research-questions.yaml    # Central tracker for all questions
-├── research1/
-│   ├── research1.md          # Question generation research (opus-researcher)
-│   ├── answer1.md            # LLM Answer 1 (opus-answer)
-│   ├── answer2.md            # LLM Answer 2 (opus-answer)
-│   ├── answer3.md            # LLM Answer 3 (opus-answer)
-│   ├── answer4.md            # LLM Answer 4 (opus-answer)
-│   ├── answer5.md            # LLM Answer 5 (opus-answer)
-│   └── verifier1.md          # Synthesis & consensus score (opus-verifier)
-├── research2/
-│   └── ...
-└── researchN/
-    └── ...
-```
+After 8 iterations, two questions achieved **80% consensus** (first breaks from 100%):
 
-## Question Status
+| Iteration | Question | Score | Insight |
+|-----------|----------|-------|---------|
+| 6 | "A girl has 3 brothers. Each brother has 2 sisters..." | 80% | Relational reasoning caused disagreement |
+| 8 | "A mother has 4 daughters. Each has 1 brother. Brother has no sisters..." | 80% | Contradiction detection partially works |
 
-Each question in `research-questions.yaml` has:
-
-```yaml
-- id: 2
-  question: "What is the last letter of the word 'FIRST'?"
-  status: completed
-  folder: research2
-  score: 100                        # Consensus percentage
-  research_status: need_more_research  # or "complete" if < 10%
-```
-
-## Commands
-
-| Command | Agents | Description |
-|---------|--------|-------------|
-| `/execute-workflow` | 1 + 5 + 1 | Run the full research loop (orchestrates all other commands) |
-| `/research-novel-question` | 1× opus-researcher | Generate a new question only (deep research mode) |
-| `/verify-novel-question` | 5× opus-answer + 1× opus-verifier | Test question with 5 LLMs and synthesize results |
-| `/commit-research` | — | Commit and push to GitHub |
-
-## Success Example
-
-When we achieve a question that breaks LLMs:
-
-```yaml
-- id: 42
-  question: "..."
-  score: 8                    # Only 8% consensus!
-  research_status: complete   # SUCCESS - LLMs are broken!
-```
-
-This means 5 AI researchers gave 5 different answers to a simple question that any human could answer correctly.
+**Key Finding**: Questions where chain-of-thought reasoning **reinforces** the wrong answer, or where models try to "solve" impossible puzzles, show the most promise.
 
 ---
 
