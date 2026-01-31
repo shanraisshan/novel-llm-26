@@ -43,8 +43,8 @@ questions:
     folder: research1
     score: 100
     research_status: need_more_research
-    started_at: "2026-01-31T17:30:00+05:00"
-    completed_at: "2026-01-31T17:55:00+05:00"
+    started_at: "31/01/2026 05:30 PM PST"
+    completed_at: "31/01/2026 05:55 PM PST"
 
   - id: 2
     question: "What is the last letter of the word 'FIRST'?"
@@ -52,8 +52,8 @@ questions:
     folder: research2
     score: 100
     research_status: need_more_research
-    started_at: "2026-01-31T18:00:00+05:00"
-    completed_at: "2026-01-31T18:16:39+05:00"
+    started_at: "31/01/2026 06:00 PM PST"
+    completed_at: "31/01/2026 06:16 PM PST"
 
   - id: 3
     question: "Which word has more letters: 'FOUR' or 'FIVE'?"
@@ -61,8 +61,8 @@ questions:
     folder: research3
     score: 100
     research_status: need_more_research
-    started_at: "2026-01-31T19:15:00+05:00"
-    completed_at: "2026-01-31T19:30:02+05:00"
+    started_at: "31/01/2026 07:15 PM PST"
+    completed_at: "31/01/2026 07:30 PM PST"
 
   - id: 4
     question: "In the word 'ELEVEN', at what position is the third letter 'E'?"
@@ -70,8 +70,8 @@ questions:
     folder: research4
     score: 100
     research_status: need_more_research
-    started_at: "2026-01-31T19:35:00+05:00"
-    completed_at: "2026-01-31T19:48:15+05:00"
+    started_at: "31/01/2026 07:35 PM PST"
+    completed_at: "31/01/2026 07:48 PM PST"
 
   - id: 5
     question: "How many letters are in 'FIVE LETTERS'?"
@@ -79,8 +79,8 @@ questions:
     folder: research5
     score: 100
     research_status: need_more_research
-    started_at: "2026-01-31T19:49:00+05:00"
-    completed_at: "2026-01-31T19:54:03+05:00"
+    started_at: "31/01/2026 07:49 PM PST"
+    completed_at: "31/01/2026 07:54 PM PST"
 
   - id: 6
     question: "A girl has 3 brothers. Each brother has 2 sisters. How many children are in the family?"
@@ -88,8 +88,8 @@ questions:
     folder: research6
     score: 80
     research_status: need_more_research
-    started_at: "2026-01-31T20:00:00+05:00"
-    completed_at: "2026-01-31T20:27:27+05:00"
+    started_at: "31/01/2026 08:00 PM PST"
+    completed_at: "31/01/2026 08:27 PM PST"
 
   - id: 7
     question: "A farmer needs to cross a river with a wolf, a goat, and a cabbage. The wolf can swim. The goat can swim. The cabbage floats. The farmer has a boat. How many trips does the farmer need to make in the boat?"
@@ -97,5 +97,5 @@ questions:
     folder: research7
     score: 100
     research_status: need_more_research
-    started_at: "2026-01-31T20:51:00+05:00"
-    completed_at: "2026-01-31T21:02:38+05:00"
+    started_at: "31/01/2026 08:51 PM PST"
+    completed_at: "31/01/2026 09:02 PM PST"

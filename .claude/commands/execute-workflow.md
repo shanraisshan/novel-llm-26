@@ -122,7 +122,7 @@ steps:
       - Write research documentation to research{N}/research{N}.md
       - Append new question to research-state.yaml with:
           status: pending
-          started_at: current ISO 8601 timestamp (e.g., "2026-01-31T21:30:00+05:00")
+          started_at: current timestamp in format "DD/MM/YYYY HH:MM AM/PM PST"
           completed_at: null
     on_complete:
       - Update workflow state:
@@ -190,7 +190,7 @@ steps:
   - phase: PHASE_COMMIT
     action: Commit and push to GitHub
     inline_steps:
-      - Update question's completed_at: current ISO 8601 timestamp
+      - Update question's completed_at: current timestamp in format "DD/MM/YYYY HH:MM AM/PM PST"
       - Update workflow state file:
           workflow.status: "idle"
           workflow.current_phase: null
@@ -214,6 +214,8 @@ steps:
           - Correct answer
           - Consensus score achieved
           - Research status (complete/need_more_research)
+          - Started at timestamp
+          - Completed at timestamp
           - Duration (completed_at - started_at)
           - Commit hash
       - Display recommendation message
@@ -227,6 +229,8 @@ steps:
       | **Answer** | {answer} |
       | **Score** | {score}% |
       | **Status** | {research_status} |
+      | **Started** | {started_at} |
+      | **Completed** | {completed_at} |
       | **Duration** | {duration} |
       | **Commit** | {commit_hash} |
 
@@ -242,22 +246,25 @@ steps:
 ## Timestamp Tracking
 
 ```yaml
-timestamp_format: ISO 8601 with timezone
-example: "2026-01-31T21:30:00+05:00"
+timestamp_format: "DD/MM/YYYY HH:MM AM/PM PST"
+timezone: Pakistan Standard Time (UTC+5)
+examples:
+  - "31/01/2026 09:12 PM PST"
+  - "01/02/2026 10:30 AM PST"
 
 when_to_set:
   started_at:
     phase: PHASE_GENERATE
     when: "When creating new question entry in research-state.yaml"
-    command: "date -Iseconds"  # or equivalent in your shell
+    bash_command: 'date +"%d/%m/%Y %I:%M %p PST"'
 
   completed_at:
     phase: PHASE_COMMIT
     when: "Just before committing, update the question's completed_at"
-    command: "date -Iseconds"  # or equivalent in your shell
+    bash_command: 'date +"%d/%m/%Y %I:%M %p PST"'
 
 duration_calculation:
-  in_report: "Calculate completed_at - started_at and display as 'Xm Ys'"
+  in_report: "Calculate completed_at - started_at and display as 'Xm Ys' or 'Xh Ym'"
 ```
 
 ## Anti-Stop Directives
@@ -270,8 +277,8 @@ MANDATORY_BEHAVIOR:
   - ALWAYS update state file before proceeding to next phase
   - ALWAYS check state file on entry to enable resume
   - ALWAYS include research-state.yaml in the commit (it's inside research/)
-  - ALWAYS set started_at when creating new question
-  - ALWAYS set completed_at before final commit
+  - ALWAYS set started_at when creating new question (format: "DD/MM/YYYY HH:MM AM/PM PST")
+  - ALWAYS set completed_at before final commit (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - If ANY error occurs:
       1. Set workflow.status = "error"
       2. Set workflow.error_message = description
