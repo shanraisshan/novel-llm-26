@@ -1,6 +1,6 @@
 # Commit Research Command
 
-This command commits all research files to GitHub after a research workflow completes.
+This command commits all research files to GitHub and pushes to origin after a research workflow completes.
 
 ## Instructions
 
@@ -46,11 +46,17 @@ steps:
       - "research(5): [complete] score=8%"
 
   - step: 5
+    action: Push to origin
+    command: git push origin main
+    purpose: Push committed changes to remote repository
+
+  - step: 6
     action: Report commit status
     output:
       - commit hash
       - files committed
       - research status
+      - push status
 ```
 
 ## Key Behavior
@@ -60,7 +66,7 @@ rules:
   - only_commit_research_folder: true
   - include_score_in_commit_message: true
   - include_research_status_in_commit_message: true
-  - do_not_push_automatically: true  # User can push manually if desired
+  - push_to_origin_after_commit: true
   - use_conventional_commit_format: true
 ```
 
