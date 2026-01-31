@@ -6,7 +6,7 @@
     },
     "tavily-web-search": {
       "type": "http",
-      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=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"
+      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=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"
     }
   }
 }
