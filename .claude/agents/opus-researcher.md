@@ -368,6 +368,13 @@ findings:
     status: need_more_research
     insight: "CIRCULAR SPATIAL REASONING SOLVED - Despite external research claiming only 35% LLM accuracy on circular arrangements, all 5 models correctly answered 'Emily' using position + 3 calculation. Every model assigned positions 1-6 and computed position 2 (Bob) + 3 = position 5 (Emily). The claimed spatial reasoning weakness for simple circles is OUTDATED for 2026 frontier models."
     lesson: "Simple circular arrangement questions with clear 'directly across' semantics are NOW SOLVED by frontier models. The 6-person circle with evenly spaced positions is reducible to simple arithmetic (position + n/2). Models don't need true spatial visualization - they convert to position math. The 35% accuracy cited in research may only apply to MORE COMPLEX spatial tasks (3D, multi-step reasoning, unclear 'across' semantics). Need spatial questions that CANNOT be reduced to position arithmetic."
+
+  - iteration: 19
+    question: "If I drop a ball and a feather at the same time in my living room, which hits the ground first?"
+    score: 100%
+    status: need_more_research
+    insight: "PHYSICAL WORLD INTUITION QUESTION SOLVED - Despite targeting the famous 'ball and feather' physics pattern (vacuum demos, Apollo 15), all 5 models correctly answered 'the ball' by recognizing that 'living room' implies air resistance. Every model explained air resistance effects on the feather's large surface-area-to-mass ratio. The pattern-matching trap to vacuum physics did NOT trigger."
+    lesson: "Simple physical world intuition questions with implicit context ('living room' = air) are NOW SOLVED by 2026 frontier models. Models correctly processed the implicit constraint and did NOT pattern-match to the famous vacuum physics demonstrations. The 'overthinking' failure mode on easy tasks (cited in Apple research) did NOT manifest - models gave straightforward, correct answers. Need questions where the implicit context is MORE SUBTLE or where physical intuition conflicts with correct answer."
 ```
 
 ## Evolved Strategy
@@ -467,6 +474,7 @@ Promising unexplored territories (updated after iteration 7):
 - **ABSTRACTION LAYERS IN SELF-REFERENCE (iteration 15)**: "Can your response to this question be summarized as a single affirmative or negative word? Answer yes or no." was correctly answered as "Yes" by all 5 models. Adding the "can be summarized as" abstraction layer (vs iteration 13's direct "IS") made the question EASIER, not harder. Models correctly recognized that any yes/no answer CAN be summarized to that single word. Indirection through abstract formulations weakens self-referential traps.
 - **LAST DIGIT ARITHMETIC (iteration 17)**: "What is the last digit of 37 x 43?" was correctly answered as "1" by all 5 models. Despite research claiming LLMs fail more at last digits than first digits, all models correctly applied the shortcut: multiply last digits only (7 x 3 = 21 → 1). Simple mental math shortcuts are now reliably replicated.
 - **SIMPLE CIRCULAR SPATIAL REASONING (iteration 18)**: "Six people in a circle, who is across from Bob?" was correctly answered as "Emily" by all 5 models. Despite external research citing 35% LLM accuracy on circular arrangements, all models reduced it to position arithmetic (pos 2 + 3 = pos 5). Simple circular questions with clear "across" semantics are now solved.
+- **PHYSICAL WORLD INTUITION WITH IMPLICIT CONTEXT (iteration 19)**: "Ball and feather in my living room, which hits first?" was correctly answered as "the ball" by all 5 models. Despite targeting the famous vacuum physics pattern (Apollo 15, Galileo), models correctly processed "living room" as implying air resistance. The pattern-matching trap did NOT trigger.
 
 ---
 

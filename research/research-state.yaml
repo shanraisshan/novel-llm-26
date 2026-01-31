@@ -209,3 +209,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 01:03 AM PST"
     completed_at: "01/02/2026 01:08 AM PST"
+
+  - id: 19
+    question: "If I drop a ball and a feather at the same time in my living room, which hits the ground first?"
+    answer: "The ball"
+    status: completed
+    folder: research19
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 01:12 AM PST"
+    completed_at: "01/02/2026 01:16 AM PST"
