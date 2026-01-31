@@ -12,3 +12,10 @@ questions:
     folder: research2
     score: 100
     research_status: need_more_research
+
+  - id: 3
+    question: "Which word has more letters: 'FOUR' or 'FIVE'?"
+    status: completed
+    folder: research3
+    score: 100
+    research_status: need_more_research
