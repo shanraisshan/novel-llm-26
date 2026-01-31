@@ -298,6 +298,13 @@ findings:
     status: need_more_research
     insight: "MODIFICATION TRAP FAILED. Despite documented 0% LLM accuracy in arXiv:2405.19616 on similar modifications, all 5 models correctly identified that the wolf/goat can swim and cabbage floats, so only the farmer needs 1 trip. The modification trap was NOT triggered - models did NOT pattern-match to the classic multi-trip solution."
     lesson: "The modification trap from academic research may be OUTDATED for 2026 frontier models. Claude Opus 4.5 and similar models now READ the modifications carefully instead of blindly pattern-matching. The key conditions (wolf swims, goat swims, cabbage floats) were explicitly processed. Need modifications that are MORE SUBTLE or where chain-of-thought reasoning LEADS TO the wrong answer."
+
+  - iteration: 8
+    question: "A mother has 4 daughters. Each daughter has 1 brother. The brother has no sisters. How many children does the mother have?"
+    score: 80%
+    status: need_more_research
+    insight: "CONTRADICTION DETECTION WORKS BUT NOT PERFECTLY. 4/5 models correctly identified the logical impossibility (if there are 4 daughters, the brother has 4 sisters, not 0). However, 1 model (Answer 3) attempted creative resolution by saying the brother isn't the mother's child, giving '4 children' as answer. Most models DID trigger 'verification mode' instead of 'solve mode'."
+    lesson: "Contradiction detection questions show promise (80% consensus, matching iteration 6). BUT frontier models are now good at spotting obvious contradictions. Need SUBTLER contradictions or contradictions where CoT reinforces the wrong interpretation. The 'solve mode vs verify mode' distinction is real - Answer 3 tried to SOLVE the impossible puzzle rather than reject it."
 ```
 
 ## Evolved Strategy
@@ -320,6 +327,8 @@ Based on accumulated findings:
 11. **RELATIONAL REASONING PARTIAL SUCCESS**: The siblings question (iteration 6) achieved 80% consensus - first break from 100%! However, most models still solved it correctly. Need STRONGER relational traps.
 12. **ARITHMETIC ERRORS UNDER PRESSURE**: One model answered 6 instead of 5 (said 3+2=6). Relational complexity may induce basic math errors even when logic is correct.
 13. **MODIFICATION TRAPS NOW CAUGHT (Iteration 7)**: Explicit modifications to famous puzzles are now READ and PROCESSED correctly. The wolf/goat/cabbage with swimming animals was solved by all 5 models. Academic research from 2024 may be outdated for 2026 frontier models.
+14. **CONTRADICTION DETECTION WORKS PARTIALLY (Iteration 8)**: Explicit logical contradictions are detected by 4/5 models (80%). Most models enter "verification mode" and correctly identify impossibility. BUT one model (20%) tried to creatively "solve" the unsolvable by reinterpreting premises.
+15. **SOLVE MODE VS VERIFY MODE**: Key insight - some models default to "must have an answer" mindset and try to reconcile contradictions rather than reject them. This is a potential exploitation vector.
 
 ## Next Research Directions
 
@@ -360,6 +369,7 @@ Promising unexplored territories (updated after iteration 7):
 
 ### PARTIAL SUCCESS (80% Consensus)
 - **Relational reasoning with siblings (iteration 6)**: "A girl has 3 brothers. Each brother has 2 sisters. How many children?" got 80% - one model made arithmetic error (3+2=6). The relational trap worked partially but most models solved correctly with chain-of-thought.
+- **Contradiction detection (iteration 8)**: "A mother has 4 daughters. Each daughter has 1 brother. The brother has no sisters." got 80% - 4/5 correctly identified impossibility, but 1 model tried to creatively resolve by saying "4 children" (brother not mother's child). Shows "solve mode" override can still occur.
 
 ### DEAD ENDS (Proven Ineffective - All 100% Consensus)
 - Simple letter counting with semantic primes (iterations 1-4)

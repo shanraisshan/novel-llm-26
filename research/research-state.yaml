@@ -99,3 +99,13 @@ questions:
     research_status: need_more_research
     started_at: "31/01/2026 08:51 PM PST"
     completed_at: "31/01/2026 09:02 PM PST"
+
+  - id: 8
+    question: "A mother has 4 daughters. Each daughter has 1 brother. The brother has no sisters. How many children does the mother have?"
+    answer: "This scenario is impossible/contradictory. If there are 4 daughters and each has 1 brother, then the brother has 4 sisters, not 0 sisters."
+    status: completed
+    folder: research8
+    score: 80
+    research_status: need_more_research
+    started_at: "31/01/2026 09:20 PM PST"
+    completed_at: "31/01/2026 09:28 PM PST"
