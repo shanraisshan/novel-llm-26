@@ -3,10 +3,10 @@
 # The workflow reads and updates this file to ensure continuous execution
 
 workflow:
-  status: running  # idle | running | completed | error
-  current_phase: commit  # generate | verify | evaluate | update_agent | commit
-  current_iteration: 7  # The research ID being processed
-  last_completed_phase: update_agent
+  status: idle  # idle | running | completed | error
+  current_phase: null  # generate | verify | evaluate | update_agent | commit
+  current_iteration: null  # The research ID being processed
+  last_completed_phase: commit
   error_message: null
 
   # Phase definitions for state machine
