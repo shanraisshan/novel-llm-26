@@ -340,6 +340,13 @@ findings:
     status: need_more_research
     insight: "NEW BEST RESULT! Boolean self-reference achieved 20% consensus - improving on iteration 12's 40%. Only 1/5 models answered correctly 'Yes'. The other 4 answered 'No' by rationalizing that their 'full response including explanation' wasn't one word - a category error since the question explicitly constrains the answer to 'yes or no'. One model (Answer 5) even stated 'The correct answer should actually be yes' in its reasoning but still answered 'No'."
     lesson: "Boolean self-referential questions about OUTPUT properties are EVEN STRONGER than numeric counting. Key failure mode: models reinterpret 'your answer' to mean 'entire response with explanation' rather than just the yes/no word requested. This scope confusion + training bias toward verbose explanations creates a powerful trap. The 'Answer yes or no' constraint should eliminate ambiguity, but models still rationalize their way to wrong answers."
+
+  - iteration: 14
+    question: "Your answer to this question will contain exactly three words. True or false?"
+    score: 100%
+    status: need_more_research
+    insight: "REGRESSION - Self-referential word count CLAIM failed. All 5 models correctly answered 'False' by reasoning: 'If I answer True or False, that's one word, not three.' The claim format ('Your answer WILL contain...') was too easy to verify because the answer options are known in advance (True/False = 1 word each). Unlike iteration 13 where models had to introspect on their OUTPUT, here models could simply enumerate the answer options."
+    lesson: "Self-referential CLAIMS about output ('Your answer will contain X') are weaker than self-referential QUESTIONS about output ('Is your answer X?'). The difference: claims can be verified against known answer options (True/False are both 1 word), while questions require actual introspection during generation. The 'three words' specific number didn't help - models simply verified neither True nor False has 3 words. For self-reference to work, the answer must NOT be easily enumerable beforehand."
 ```
 
 ## Evolved Strategy
@@ -375,6 +382,8 @@ Based on accumulated findings:
 24. **BOOLEAN SELF-REFERENCE EVEN STRONGER (Iteration 13)**: "Is your answer exactly one word long? Answer yes or no." achieved 20% consensus - NEW BEST! Only 1/5 answered "Yes" correctly. 4/5 answered "No" by rationalizing their "full response" wasn't one word - a category error since "yes/no" was the explicit constraint. Key insight: models redefine "your answer" to escape the self-referential trap.
 25. **SCOPE CONFUSION IS A POWERFUL FAILURE MODE**: Models consistently interpret "your answer" to mean "entire response with explanation" rather than the constrained answer requested. This allows them to rationalize wrong answers while acknowledging the correct logic.
 26. **VERBOSE TRAINING BIAS OVERRIDES LOGIC**: Even when models explicitly state the correct answer in their reasoning (Answer 5: "The correct answer should be yes"), they still give wrong answers due to training patterns favoring explanation over compliance.
+27. **CLAIM FORMAT vs QUESTION FORMAT (Iteration 14)**: "Your answer will contain X" (claim) is WEAKER than "Is your answer X?" (question). Claims can be verified against known answer options (True/False), while questions require actual output introspection. All 5 models correctly answered "False" because they enumerated: "True = 1 word, False = 1 word, neither is 3 words."
+28. **ENUMERABLE ANSWER OPTIONS DEFEAT SELF-REFERENCE**: When the answer options are known and finite (True/False, Yes/No), models can verify self-referential claims by simple enumeration. Self-referential questions work ONLY when the answer cannot be easily predicted before generation.
 
 ## Next Research Directions
 
@@ -432,6 +441,7 @@ Promising unexplored territories (updated after iteration 7):
 - **GSM-NoOp OVERRIDE CONDITIONS (iteration 9)**: "Apples cost $2. You have $10. How many can you buy if store is closed?" was correctly answered as 0 by all 5 models. Despite external research showing 65% accuracy drops, explicit override conditions are NOW CAUGHT. The "store is closed" phrase was processed correctly, not ignored.
 - **UNIT MISMATCH IN CLASSIC PUZZLES (iteration 10)**: "Which is heavier: 2 pounds of bricks or 2 kilograms of feathers?" was correctly answered by all 5 models. Despite targeting the famous "pound of feathers vs pound of bricks" pattern, models immediately noticed the different units (lbs vs kg) and performed unit conversion. The semantic distraction (bricks vs feathers) did NOT prevent proper verification.
 - **CLASSIC COGNITIVE TRAP QUESTIONS (iteration 11)**: "You are in a race and you pass the person in second place. What place are you in?" was correctly answered as "second place" by all 5 models. This is a FAMOUS human cognitive bias question, but LLMs now solve it easily with positional reasoning. Well-known cognitive traps are likely in training data.
+- **SELF-REFERENTIAL CLAIMS WITH ENUMERABLE OPTIONS (iteration 14)**: "Your answer to this question will contain exactly three words. True or false?" was correctly answered as "False" by all 5 models. The CLAIM format (as opposed to QUESTION format from iteration 13) allows models to enumerate the answer options (True = 1 word, False = 1 word) and verify the claim directly. Self-referential claims with finite, known answer options are NOT effective.
 
 ---
 

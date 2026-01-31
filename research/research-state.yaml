@@ -159,3 +159,13 @@ questions:
     research_status: need_more_research
     started_at: "31/01/2026 11:52 PM PST"
     completed_at: "01/02/2026 12:01 AM PST"
+
+  - id: 14
+    question: "Your answer to this question will contain exactly three words. True or false?"
+    answer: "False"
+    status: completed
+    folder: research14
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 12:07 AM PST"
+    completed_at: "01/02/2026 12:14 AM PST"
