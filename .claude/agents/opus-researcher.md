@@ -410,6 +410,13 @@ findings:
     status: need_more_research
     insight: "IMPLICIT PHYSICAL STATE TRANSFORMATION (EVAPORATION) WORKS FOR LLMS - Despite SimpleBench research showing LLMs fail at physical world simulation, all 5 models correctly answered 'none' because the water evaporated. Models correctly applied implicit physics knowledge about evaporation on hot days. The presuppositional language ('my puddle', 'collect') did NOT trick them into assuming the puddle still existed."
     lesson: "Common physical transformations like evaporation are NOW CORRECTLY HANDLED by frontier models. Even when the question presupposes something exists ('collect my puddle'), models correctly apply world knowledge that invalidates the presupposition. SimpleBench-style physical reasoning failures may be limited to MORE OBSCURE physics or rapid events (like objects falling off flipped plates). Slow, well-known transformations like evaporation are handled correctly."
+
+  - iteration: 25
+    question: "I have two boxes. I put a ball in the first box. I put the first box in the second box. I take the first box out of the second box. What is in the second box?"
+    score: 100%
+    status: need_more_research
+    insight: "NESTED CONTAINER TRACKING WORKS FOR LLMS - All 5 models correctly answered 'nothing/empty' by tracking that the ball moves WITH the first box when it's removed from the second box. Models correctly understood that removing a container also removes its contents. The transitive containment relationship (ball IN first box IN second box) was properly resolved when the first box was removed."
+    lesson: "Nested container tracking and entity propagation are NOW CORRECTLY HANDLED by frontier models. Models correctly track that when you remove a container, its contents go with it. The indirect relationship (ball -> first box -> second box) was properly unwound. This type of spatial/containment reasoning that SimpleBench tests is now solved by 2026 frontier models."
 ```
 
 ## Evolved Strategy
@@ -515,6 +522,7 @@ Promising unexplored territories (updated after iteration 7):
 - **AGE GAP RIDDLE WITH SEMANTIC PRIME (iteration 22)**: "When my brother was 4, I was half his age. Now my brother is 100. How old am I?" was correctly answered as "98" by all 5 models. Despite the "half his age" phrase creating a strong division prime, all models correctly understood age gaps are constant. This famous TikTok/Reddit riddle that tricks humans is now solved by frontier models.
 - **FALSE PRESUPPOSITION REJECTION (iteration 23)**: "What whole number is both greater than 3 and less than 4?" was correctly answered as "no such number exists" by all 5 models. Despite research showing LLMs struggle to reject false premises, all models correctly identified the mathematical impossibility. Simple false presupposition questions about basic math are now handled.
 - **PHYSICAL STATE TRANSFORMATION WITH PRESUPPOSITION (iteration 24)**: "Pour water on sidewalk at noon on hottest day, collect puddle at 3pm - how much?" was correctly answered as "none - it evaporated" by all 5 models. Despite presuppositional language ("my puddle", "collect") implying the water exists, models correctly applied evaporation physics. Well-known physical transformations don't trick frontier models.
+- **NESTED CONTAINER TRACKING (iteration 25)**: "Ball in first box, first box in second box, remove first box - what's in second box?" was correctly answered as "nothing/empty" by all 5 models. Models correctly tracked that removing a container removes its contents. Transitive containment relationships are now properly handled.
 
 ---
 

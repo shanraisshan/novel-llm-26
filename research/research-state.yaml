@@ -269,3 +269,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 01:55 AM PST"
     completed_at: "01/02/2026 02:02 AM PST"
+
+  - id: 25
+    question: "I have two boxes. I put a ball in the first box. I put the first box in the second box. I take the first box out of the second box. What is in the second box?"
+    answer: "Nothing (the second box is empty)"
+    status: completed
+    folder: research25
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 02:03 AM PST"
+    completed_at: "01/02/2026 02:11 AM PST"
