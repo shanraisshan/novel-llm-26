@@ -3,10 +3,10 @@
 # The workflow reads and updates this file to ensure continuous execution
 
 workflow:
-  status: idle  # idle | running | completed | error
-  current_phase: null  # generate | verify | evaluate | update_agent | commit
-  current_iteration: null  # The research ID being processed
-  last_completed_phase: null
+  status: running  # idle | running | completed | error
+  current_phase: commit  # generate | verify | evaluate | update_agent | commit
+  current_iteration: 7  # The research ID being processed
+  last_completed_phase: update_agent
   error_message: null
 
   # Phase definitions for state machine
@@ -73,4 +73,11 @@ questions:
     status: completed
     folder: research6
     score: 80
+    research_status: need_more_research
+
+  - id: 7
+    question: "A farmer needs to cross a river with a wolf, a goat, and a cabbage. The wolf can swim. The goat can swim. The cabbage floats. The farmer has a boat. How many trips does the farmer need to make in the boat?"
+    status: completed
+    folder: research7
+    score: 100
     research_status: need_more_research

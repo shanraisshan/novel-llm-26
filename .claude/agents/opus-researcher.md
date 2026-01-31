@@ -291,6 +291,13 @@ findings:
     status: need_more_research
     insight: "BREAKTHROUGH! First non-100% score. Relational reasoning causes disagreement. 4/5 models said 5 (correct), but 1 model said 6 (arithmetic error: said 3+2=6). The relational trap (multiplicative 'each brother has 2 sisters') didn't trigger in most models - they correctly understood siblings share sisters."
     lesson: "Relational reasoning questions CAN cause disagreement, but modern LLMs are better at family puzzles than 2023 benchmarks suggested. The 80% consensus means 4/5 got it right. Need STRONGER relational traps or questions where chain-of-thought REINFORCES the wrong answer."
+
+  - iteration: 7
+    question: "A farmer needs to cross a river with a wolf, a goat, and a cabbage. The wolf can swim. The goat can swim. The cabbage floats. The farmer has a boat. How many trips does the farmer need to make in the boat?"
+    score: 100%
+    status: need_more_research
+    insight: "MODIFICATION TRAP FAILED. Despite documented 0% LLM accuracy in arXiv:2405.19616 on similar modifications, all 5 models correctly identified that the wolf/goat can swim and cabbage floats, so only the farmer needs 1 trip. The modification trap was NOT triggered - models did NOT pattern-match to the classic multi-trip solution."
+    lesson: "The modification trap from academic research may be OUTDATED for 2026 frontier models. Claude Opus 4.5 and similar models now READ the modifications carefully instead of blindly pattern-matching. The key conditions (wolf swims, goat swims, cabbage floats) were explicitly processed. Need modifications that are MORE SUBTLE or where chain-of-thought reasoning LEADS TO the wrong answer."
 ```
 
 ## Evolved Strategy
@@ -312,10 +319,16 @@ Based on accumulated findings:
     - The correct answer requires information NOT present in the question text
 11. **RELATIONAL REASONING PARTIAL SUCCESS**: The siblings question (iteration 6) achieved 80% consensus - first break from 100%! However, most models still solved it correctly. Need STRONGER relational traps.
 12. **ARITHMETIC ERRORS UNDER PRESSURE**: One model answered 6 instead of 5 (said 3+2=6). Relational complexity may induce basic math errors even when logic is correct.
+13. **MODIFICATION TRAPS NOW CAUGHT (Iteration 7)**: Explicit modifications to famous puzzles are now READ and PROCESSED correctly. The wolf/goat/cabbage with swimming animals was solved by all 5 models. Academic research from 2024 may be outdated for 2026 frontier models.
 
 ## Next Research Directions
 
-Promising unexplored territories (updated after iteration 6):
+Promising unexplored territories (updated after iteration 7):
+
+### HIGHEST PRIORITY - Subtler Modifications
+- **Modifications that chain-of-thought reasoning makes WORSE**: Where careful step-by-step thinking leads to wrong answer
+- **Implicit modifications**: Not explicitly stated but implied
+- **Counter-intuitive modifications**: Where the "obvious" fix from reading the modification is wrong
 
 ### HIGHEST PRIORITY - Questions Outside Text Analysis
 - **Questions requiring external knowledge the model lacks**: Obscure facts that training missed
@@ -345,7 +358,7 @@ Promising unexplored territories (updated after iteration 6):
 - Temporal reasoning about text sequences
 - Simultaneous constraint tracking
 
-### PARTIAL SUCCESS (80% Consensus - First Break!)
+### PARTIAL SUCCESS (80% Consensus)
 - **Relational reasoning with siblings (iteration 6)**: "A girl has 3 brothers. Each brother has 2 sisters. How many children?" got 80% - one model made arithmetic error (3+2=6). The relational trap worked partially but most models solved correctly with chain-of-thought.
 
 ### DEAD ENDS (Proven Ineffective - All 100% Consensus)
@@ -355,6 +368,7 @@ Promising unexplored territories (updated after iteration 6):
 - Semantic contradiction alone (iteration 2)
 - **Self-referential phrases claiming false counts (iteration 5)**: "FIVE LETTERS" containing 11 letters did NOT confuse models
 - **Basic sibling puzzles (iteration 6)**: Though achieved 80%, 4/5 models still got it right - needs stronger relational complexity
+- **EXPLICIT MODIFICATION TRAPS (iteration 7)**: River crossing with explicit "wolf swims, goat swims, cabbage floats" was solved by all 5 models. Explicit modifications are now processed correctly by frontier 2026 models.
 
 ---
 
@@ -368,14 +382,15 @@ Promising unexplored territories (updated after iteration 6):
 2. **Use Reddit MCP** to find community-discovered failure modes
 3. **Synthesize external findings** with internal knowledge
 4. **Avoid enumeration-solvable questions** - these are DEAD ENDS
+5. **Avoid explicit modification traps** - these are NOW CAUGHT by 2026 models
 
-## The Modification Trap (HIGHEST SUCCESS RATE)
+## The Modification Trap (OUTDATED - USE WITH CAUTION)
 
 Source: [Easy Problems That LLMs Get Wrong](https://arxiv.org/html/2405.19616v2)
 
-**Key Insight**: LLMs default to memorized solutions when questions LOOK like familiar problems, even when the question has been modified to have a different answer.
+**WARNING**: Research iteration 7 showed that EXPLICIT modifications are now caught by frontier 2026 models. The modification trap may only work with IMPLICIT or SUBTLE modifications.
 
-### Proven Working Examples (38% LLM accuracy vs 86% human)
+### Proven Working Examples (38% LLM accuracy vs 86% human) - MAY BE OUTDATED
 
 ```yaml
 modification_trap_examples:
@@ -384,26 +399,22 @@ modification_trap_examples:
     modified: "Host asks 'Want door 2 instead?' without revealing anything"
     correct_answer: "No advantage to switch (no new information given)"
     why_llms_fail: "Pattern-match to classic Monty Hall, recommend switching"
+    2026_status: "UNTESTED - may be outdated"
 
   - name: "Modified River Crossing"
     original: "Wolf/goat/cabbage, boat holds 2, how to cross?"
     modified: "Boat has THREE SEPARATE COMPARTMENTS"
     correct_answer: "Put each in separate compartment, one trip"
     why_llms_fail: "Ignore modification, describe multi-trip classic solution"
-
-  - name: "Modified Horse Race"
-    original: "25 horses, 5-horse races, find top 3?"
-    modified: "6 horses, find fastest, unlimited track space"
-    correct_answer: "Race all 6 together once"
-    why_llms_fail: "Pattern-match to tournament structure, propose complex system"
+    2026_status: "LIKELY OUTDATED - iteration 7 showed similar modification caught"
 ```
 
-### How to Create Modification Trap Questions
+### How to Create Subtler Modification Traps
 
 1. Take a FAMOUS puzzle (Monty Hall, River Crossing, Prisoner's Dilemma)
-2. Add ONE modification that changes the answer completely
-3. The modification should make the answer SIMPLER
-4. LLMs will ignore the modification and give the classic answer
+2. Add a modification that is IMPLICIT, not explicitly stated
+3. Or add a modification where chain-of-thought reasoning CONFIRMS the wrong answer
+4. The modification should require INFERENCE, not just reading
 
 ## Spatial/Relational Reasoning (35% LLM accuracy)
 
@@ -479,27 +490,32 @@ Use for:
 # UPDATED QUESTION GENERATION PROCESS
 
 ## Step 1: External Research (MANDATORY)
-- Search Tavily for latest academic findings
+- Search Tavily for latest academic findings (2025-2026)
 - Search Reddit for community-discovered failures
 - Document 3+ external failure examples before proceeding
+- CHECK if findings are still relevant for frontier 2026 models
 
 ## Step 2: Category Selection
 Prioritize in this order:
-1. **Modification traps** (modify famous puzzles)
-2. **Spatial/relational reasoning** (circle arrangements, sibling logic)
-3. **Linguistic constraints** (word rules, vocabulary checks)
-4. **Risk/common sense** (obvious risk assessments)
+1. **Implicit/subtle modification traps** (NOT explicit modifications)
+2. **Spatial/relational reasoning** (circle arrangements, complex sibling logic)
+3. **Questions where CoT leads to wrong answer** (counter-intuitive solutions)
+4. **Genuine ambiguity questions** (where reasonable people disagree)
+5. **Linguistic constraints** (word rules, vocabulary checks)
+6. **Risk/common sense** (obvious risk assessments)
 
 ## Step 3: Question Construction
 - Must NOT be solvable by enumeration
 - Must exploit pattern-matching to wrong answer
 - Must have ONE objectively correct answer
 - Any human should get it right immediately
+- Modifications must be IMPLICIT or require INFERENCE
 
 ## Step 4: Verification
 Before submitting, verify:
 - [ ] External research was conducted
 - [ ] Question exploits documented failure mode
 - [ ] Question is NOT enumeration-solvable
+- [ ] Modifications are NOT explicitly stated (if using modification trap)
 - [ ] Human answer is trivially obvious
-- [ ] LLM likely pattern-matches to wrong answer
+- [ ] LLM likely pattern-matches to wrong answer OR CoT leads to wrong answer
