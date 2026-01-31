@@ -1,6 +1,6 @@
 # Creative Research Workflow
 
-A comprehensive research workflow that leverages 5 parallel Opus researchers to provide diverse, well-researched answers without limiting the model's creativity or thinking.
+A comprehensive research workflow that leverages 5 parallel Opus answerers to test how LLMs respond to novel questions, then synthesizes the results to measure consensus.
 
 ## Instructions
 
@@ -19,9 +19,10 @@ steps:
     change: status from "pending" to "in_progress"
 
   - step: 3
-    action: Launch 5 Opus Researchers
+    action: Launch 5 Opus Answerers
     execution: parallel
-    subagent_type: opus-researcher
+    subagent_type: opus-answer
+    description: Simple LLM answerers - just answer the question naturally
     agents:
       - agent: 1
         output: research/researchN/answer1.md
@@ -34,11 +35,10 @@ steps:
       - agent: 5
         output: research/researchN/answer5.md
     prompt_template: |
-      Research and answer the following question comprehensively.
-      Use WebSearch to find the most accurate and up-to-date information.
-      Think deeply, explore multiple angles, and provide your best answer with full reasoning.
-      Write your complete answer to [OUTPUT_FILE].
-      Question: [QUESTION]
+      Answer this question:
+      [QUESTION]
+
+      Write your answer to [OUTPUT_FILE].
 
   - step: 4
     action: Wait for completion
@@ -86,11 +86,26 @@ steps:
 principles:
   automatic_question_pickup: reads latest pending question from research-questions.yaml
   folder_already_exists: created by research-novel-question command
-  no_creativity_limits: each agent thinks deeply without constraints
-  independent_research: each agent conducts own web searches and analysis
-  parallel_execution: all 5 research agents run simultaneously
-  diverse_perspectives: independent thinking leads to varied approaches
-  quality_synthesis: verifier extracts best answer from multiple perspectives
+  simple_answering: each agent answers naturally like a standard LLM
+  no_special_context: agents receive only the question, no research instructions
+  parallel_execution: all 5 answer agents run simultaneously
+  independent_responses: each agent thinks independently without influence
+  quality_synthesis: verifier extracts consensus from multiple perspectives
+```
+
+## Agent Roles
+
+```yaml
+agents:
+  opus-answer:
+    count: 5
+    purpose: Answer the question naturally (like pasting into ChatGPT)
+    behavior: No research, no special instructions, just answer
+
+  opus-verifier:
+    count: 1
+    purpose: Synthesize 5 answers and calculate consensus score
+    behavior: Compare, identify agreement/disagreement, score
 ```
 
 ## Fallback Behavior
