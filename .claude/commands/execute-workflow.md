@@ -13,6 +13,7 @@ CRITICAL_RULES:
   - NEVER stop until workflow.status becomes "idle" after commit
   - After EACH phase, update the state file BEFORE proceeding
   - This ensures recovery if interrupted
+  - Track started_at and completed_at timestamps for each question
 ```
 
 ## State Machine
@@ -119,7 +120,10 @@ steps:
       - Create previous-research-summary.md in that folder
       - Launch opus-researcher agent to generate question
       - Write research documentation to research{N}/research{N}.md
-      - Append new question to research-state.yaml with status: pending
+      - Append new question to research-state.yaml with:
+          status: pending
+          started_at: current ISO 8601 timestamp (e.g., "2026-01-31T21:30:00+05:00")
+          completed_at: null
     on_complete:
       - Update workflow state:
           workflow.current_phase: "verify"
@@ -186,7 +190,8 @@ steps:
   - phase: PHASE_COMMIT
     action: Commit and push to GitHub
     inline_steps:
-      - Update workflow state file FIRST:
+      - Update question's completed_at: current ISO 8601 timestamp
+      - Update workflow state file:
           workflow.status: "idle"
           workflow.current_phase: null
           workflow.current_iteration: null
@@ -209,6 +214,7 @@ steps:
           - Correct answer
           - Consensus score achieved
           - Research status (complete/need_more_research)
+          - Duration (completed_at - started_at)
           - Commit hash
       - Display recommendation message
     output_format: |
@@ -221,6 +227,7 @@ steps:
       | **Answer** | {answer} |
       | **Score** | {score}% |
       | **Status** | {research_status} |
+      | **Duration** | {duration} |
       | **Commit** | {commit_hash} |
 
       ### Key Insight
@@ -230,6 +237,27 @@ steps:
       **Recommended**: Run `/compact` to summarize this conversation before starting the next iteration.
     on_complete:
       - ">>> WORKFLOW COMPLETE <<<"
+```
+
+## Timestamp Tracking
+
+```yaml
+timestamp_format: ISO 8601 with timezone
+example: "2026-01-31T21:30:00+05:00"
+
+when_to_set:
+  started_at:
+    phase: PHASE_GENERATE
+    when: "When creating new question entry in research-state.yaml"
+    command: "date -Iseconds"  # or equivalent in your shell
+
+  completed_at:
+    phase: PHASE_COMMIT
+    when: "Just before committing, update the question's completed_at"
+    command: "date -Iseconds"  # or equivalent in your shell
+
+duration_calculation:
+  in_report: "Calculate completed_at - started_at and display as 'Xm Ys'"
 ```
 
 ## Anti-Stop Directives
@@ -242,6 +270,8 @@ MANDATORY_BEHAVIOR:
   - ALWAYS update state file before proceeding to next phase
   - ALWAYS check state file on entry to enable resume
   - ALWAYS include research-state.yaml in the commit (it's inside research/)
+  - ALWAYS set started_at when creating new question
+  - ALWAYS set completed_at before final commit
   - If ANY error occurs:
       1. Set workflow.status = "error"
       2. Set workflow.error_message = description

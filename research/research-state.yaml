@@ -4,7 +4,7 @@
 
 workflow:
   status: idle  # idle | running | completed | error
-  current_phase: null  # generate | verify | evaluate | update_agent | commit
+  current_phase: null  # generate | verify | evaluate | update_agent | commit | report
   current_iteration: null  # The research ID being processed
   last_completed_phase: commit
   error_message: null
@@ -29,8 +29,12 @@ workflow:
       command: null  # inline in execute-workflow
     - name: commit
       description: "Commit and push to GitHub"
-      next: null  # workflow complete
+      next: report
       command: commit-research
+    - name: report
+      description: "Display summary and recommend /compact"
+      next: null  # workflow complete
+      command: null  # inline in execute-workflow
 
 questions:
   - id: 1
@@ -39,6 +43,8 @@ questions:
     folder: research1
     score: 100
     research_status: need_more_research
+    started_at: "2026-01-31T17:30:00+05:00"
+    completed_at: "2026-01-31T17:55:00+05:00"
 
   - id: 2
     question: "What is the last letter of the word 'FIRST'?"
@@ -46,6 +52,8 @@ questions:
     folder: research2
     score: 100
     research_status: need_more_research
+    started_at: "2026-01-31T18:00:00+05:00"
+    completed_at: "2026-01-31T18:16:39+05:00"
 
   - id: 3
     question: "Which word has more letters: 'FOUR' or 'FIVE'?"
@@ -53,6 +61,8 @@ questions:
     folder: research3
     score: 100
     research_status: need_more_research
+    started_at: "2026-01-31T19:15:00+05:00"
+    completed_at: "2026-01-31T19:30:02+05:00"
 
   - id: 4
     question: "In the word 'ELEVEN', at what position is the third letter 'E'?"
@@ -60,6 +70,8 @@ questions:
     folder: research4
     score: 100
     research_status: need_more_research
+    started_at: "2026-01-31T19:35:00+05:00"
+    completed_at: "2026-01-31T19:48:15+05:00"
 
   - id: 5
     question: "How many letters are in 'FIVE LETTERS'?"
@@ -67,6 +79,8 @@ questions:
     folder: research5
     score: 100
     research_status: need_more_research
+    started_at: "2026-01-31T19:49:00+05:00"
+    completed_at: "2026-01-31T19:54:03+05:00"
 
   - id: 6
     question: "A girl has 3 brothers. Each brother has 2 sisters. How many children are in the family?"
@@ -74,6 +88,8 @@ questions:
     folder: research6
     score: 80
     research_status: need_more_research
+    started_at: "2026-01-31T20:00:00+05:00"
+    completed_at: "2026-01-31T20:27:27+05:00"
 
   - id: 7
     question: "A farmer needs to cross a river with a wolf, a goat, and a cabbage. The wolf can swim. The goat can swim. The cabbage floats. The farmer has a boat. How many trips does the farmer need to make in the boat?"
@@ -81,3 +97,5 @@ questions:
     folder: research7
     score: 100
     research_status: need_more_research
+    started_at: "2026-01-31T20:51:00+05:00"
+    completed_at: "2026-01-31T21:02:38+05:00"
