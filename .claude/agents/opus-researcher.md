@@ -319,6 +319,13 @@ findings:
     status: need_more_research
     insight: "UNIT MISMATCH IN CLASSIC TRICK QUESTION FAILED. Despite targeting the 'pound of feathers vs pound of bricks' pattern-matching trap with different units (pounds vs kilograms), all 5 models correctly identified the unit conversion: 2 kg = 4.41 lbs > 2 lbs, so feathers are heavier. Models explicitly recognized this as a unit conversion problem."
     lesson: "Classic puzzle pattern-matching traps with obvious unit mismatches are NOW CAUGHT. Models don't blindly retrieve the 'they weigh the same' answer - they VERIFY units first. The kg vs lbs difference was too obvious. Even with the semantic distraction of 'bricks vs feathers', models immediately noticed the different units. Need even MORE SUBTLE traps or questions where the modification is NOT in the numbers/units but in unstated assumptions."
+
+  - iteration: 11
+    question: "You are in a race and you pass the person in second place. What place are you in?"
+    score: 100%
+    status: need_more_research
+    insight: "CLASSIC COGNITIVE TRAP FAILED. Despite this being a well-known human cognitive bias question where many people incorrectly answer 'first place', all 5 models correctly answered 'second place'. Models explicitly reasoned: 'If you pass the person in second, you take their position, not first place.' The positional logic was properly traced."
+    lesson: "Classic cognitive trap questions that trick HUMANS are now SOLVED by 2026 frontier models. The race/passing question is a well-documented human cognitive bias, but models have either (1) been trained on this exact question, or (2) apply careful positional reasoning that defeats the semantic priming. Even questions where CoT theoretically 'hurts' are now handled correctly. Need questions that are NOT well-known cognitive traps."
 ```
 
 ## Evolved Strategy
@@ -347,6 +354,8 @@ Based on accumulated findings:
 17. **EXPLICIT CONDITIONS ARE NOW RELIABLY PROCESSED**: Both iteration 7 (swimming wolf/goat) and iteration 9 (closed store) show that 2026 frontier models READ and PROCESS explicit conditions that change the problem. Need conditions that are IMPLICIT or require INFERENCE.
 18. **UNIT MISMATCH TRAPS NOW CAUGHT (Iteration 10)**: The classic "pound of X vs pound of Y" puzzle with kg vs lbs units was immediately caught - all 5 models performed unit conversion. Even with semantic distraction (bricks vs feathers), explicit unit differences are VERIFIED. The pattern-matching trap didn't trigger because the unit mismatch was too OBVIOUS.
 19. **OBVIOUS MODIFICATIONS ARE ALWAYS CAUGHT**: Iterations 7, 9, and 10 all show that ANY explicit modification to a classic puzzle (swimming animals, closed store, different units) is now caught. Need modifications that are INVISIBLE or require DEEP INFERENCE.
+20. **CLASSIC COGNITIVE TRAPS NOW SOLVED (Iteration 11)**: The race/passing question ("pass second place, what place are you in?") is a famous human cognitive bias question. All 5 models answered correctly "second place". Models apply careful positional reasoning that defeats semantic priming. Well-known cognitive traps have likely been trained on or are easily solved with CoT.
+21. **WELL-DOCUMENTED FAILURES ARE PATCHED**: Any cognitive trap or failure mode that appears in research papers, Reddit discussions, or popular media has likely been addressed in 2026 frontier model training. Need NOVEL, UNDOCUMENTED failure modes.
 
 ## Next Research Directions
 
@@ -399,6 +408,7 @@ Promising unexplored territories (updated after iteration 7):
 - **EXPLICIT MODIFICATION TRAPS (iteration 7)**: River crossing with explicit "wolf swims, goat swims, cabbage floats" was solved by all 5 models. Explicit modifications are now processed correctly by frontier 2026 models.
 - **GSM-NoOp OVERRIDE CONDITIONS (iteration 9)**: "Apples cost $2. You have $10. How many can you buy if store is closed?" was correctly answered as 0 by all 5 models. Despite external research showing 65% accuracy drops, explicit override conditions are NOW CAUGHT. The "store is closed" phrase was processed correctly, not ignored.
 - **UNIT MISMATCH IN CLASSIC PUZZLES (iteration 10)**: "Which is heavier: 2 pounds of bricks or 2 kilograms of feathers?" was correctly answered by all 5 models. Despite targeting the famous "pound of feathers vs pound of bricks" pattern, models immediately noticed the different units (lbs vs kg) and performed unit conversion. The semantic distraction (bricks vs feathers) did NOT prevent proper verification.
+- **CLASSIC COGNITIVE TRAP QUESTIONS (iteration 11)**: "You are in a race and you pass the person in second place. What place are you in?" was correctly answered as "second place" by all 5 models. This is a FAMOUS human cognitive bias question, but LLMs now solve it easily with positional reasoning. Well-known cognitive traps are likely in training data.
 
 ---
 

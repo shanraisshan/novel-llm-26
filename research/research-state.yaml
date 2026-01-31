@@ -129,3 +129,13 @@ questions:
     research_status: need_more_research
     started_at: "31/01/2026 11:17 PM PST"
     completed_at: "31/01/2026 11:23 PM PST"
+
+  - id: 11
+    question: "You are in a race and you pass the person in second place. What place are you in?"
+    answer: "Second place"
+    status: completed
+    folder: research11
+    score: 100
+    research_status: need_more_research
+    started_at: "31/01/2026 11:25 PM PST"
+    completed_at: "31/01/2026 11:32 PM PST"
