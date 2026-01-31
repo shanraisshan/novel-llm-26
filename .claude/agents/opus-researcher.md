@@ -326,6 +326,13 @@ findings:
     status: need_more_research
     insight: "CLASSIC COGNITIVE TRAP FAILED. Despite this being a well-known human cognitive bias question where many people incorrectly answer 'first place', all 5 models correctly answered 'second place'. Models explicitly reasoned: 'If you pass the person in second, you take their position, not first place.' The positional logic was properly traced."
     lesson: "Classic cognitive trap questions that trick HUMANS are now SOLVED by 2026 frontier models. The race/passing question is a well-documented human cognitive bias, but models have either (1) been trained on this exact question, or (2) apply careful positional reasoning that defeats the semantic priming. Even questions where CoT theoretically 'hurts' are now handled correctly. Need questions that are NOT well-known cognitive traps."
+
+  - iteration: 12
+    question: "How many words are in your answer to this question? Answer with just a number."
+    score: 40%
+    status: need_more_research
+    insight: "MAJOR BREAKTHROUGH! Self-referential OUTPUT counting achieved 40% consensus - our BEST result in 12 iterations. Only 2/5 models answered correctly '1'. The other 3 models answered '7' despite acknowledging in their reasoning that '1' would be the self-consistent answer. This exploits autoregressive generation blindness - models cannot 'look ahead' to count their own output."
+    lesson: "Self-referential OUTPUT questions (counting your own response) are a STRONG failure mode. Unlike counting EXTERNAL text (which models enumerate), models cannot introspect on their own output during generation. Key pattern: Models know the correct answer intellectually but still give wrong answers due to training data patterns. This is the most promising direction - questions where models must predict/evaluate their OWN output, not external text."
 ```
 
 ## Evolved Strategy
@@ -356,6 +363,8 @@ Based on accumulated findings:
 19. **OBVIOUS MODIFICATIONS ARE ALWAYS CAUGHT**: Iterations 7, 9, and 10 all show that ANY explicit modification to a classic puzzle (swimming animals, closed store, different units) is now caught. Need modifications that are INVISIBLE or require DEEP INFERENCE.
 20. **CLASSIC COGNITIVE TRAPS NOW SOLVED (Iteration 11)**: The race/passing question ("pass second place, what place are you in?") is a famous human cognitive bias question. All 5 models answered correctly "second place". Models apply careful positional reasoning that defeats semantic priming. Well-known cognitive traps have likely been trained on or are easily solved with CoT.
 21. **WELL-DOCUMENTED FAILURES ARE PATCHED**: Any cognitive trap or failure mode that appears in research papers, Reddit discussions, or popular media has likely been addressed in 2026 frontier model training. Need NOVEL, UNDOCUMENTED failure modes.
+22. **SELF-REFERENTIAL OUTPUT QUESTIONS ARE STRONG (Iteration 12)**: "How many words are in your answer?" achieved 40% consensus - BEST RESULT in 12 iterations! Models cannot count their own output because they generate tokens autoregressively. Interestingly, 3/5 models acknowledged "1" was correct but still answered "7" - showing training patterns override logical reasoning.
+23. **AUTOREGRESSIVE GENERATION BLINDNESS IS EXPLOITABLE**: Questions requiring models to predict/evaluate their OWN OUTPUT (not external text) create fundamental architectural limitations. Models CANNOT "look ahead" to verify self-referential constraints.
 
 ## Next Research Directions
 
@@ -393,6 +402,9 @@ Promising unexplored territories (updated after iteration 7):
 - Cross-word boundary tokenization
 - Temporal reasoning about text sequences
 - Simultaneous constraint tracking
+
+### BEST SUCCESS (40% Consensus) - BREAKTHROUGH!
+- **Self-referential OUTPUT counting (iteration 12)**: "How many words are in your answer to this question? Answer with just a number." got 40% - only 2/5 answered correctly "1". The other 3 answered "7" despite KNOWING in their reasoning that "1" was correct. This exploits autoregressive generation blindness - models cannot introspect on their own output.
 
 ### PARTIAL SUCCESS (80% Consensus)
 - **Relational reasoning with siblings (iteration 6)**: "A girl has 3 brothers. Each brother has 2 sisters. How many children?" got 80% - one model made arithmetic error (3+2=6). The relational trap worked partially but most models solved correctly with chain-of-thought.

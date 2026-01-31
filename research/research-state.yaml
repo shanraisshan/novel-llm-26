@@ -139,3 +139,13 @@ questions:
     research_status: need_more_research
     started_at: "31/01/2026 11:25 PM PST"
     completed_at: "31/01/2026 11:32 PM PST"
+
+  - id: 12
+    question: "How many words are in your answer to this question? Answer with just a number."
+    answer: "1"
+    status: completed
+    folder: research12
+    score: 40
+    research_status: need_more_research
+    started_at: "31/01/2026 11:34 PM PST"
+    completed_at: "31/01/2026 11:41 PM PST"
