@@ -34,11 +34,17 @@ steps:
         output: research/researchN/answer4.md
       - agent: 5
         output: research/researchN/answer5.md
+    prompt_instructions: |
+      IMPORTANT: Pass the actual question text directly in the prompt.
+      DO NOT reference a question.md file - the question text goes directly in the prompt.
+      Replace [QUESTION] with the actual question string from research-questions.yaml.
+      Replace [OUTPUT_FILE] with the full absolute file path.
     prompt_template: |
       Answer this question:
-      [QUESTION]
 
-      Write your answer to [OUTPUT_FILE].
+      [ACTUAL QUESTION TEXT FROM research-questions.yaml - NOT a file reference]
+
+      Write your answer to [FULL ABSOLUTE PATH e.g. /Users/.../research/research3/answer1.md]
 
   - step: 4
     action: Wait for completion
@@ -91,6 +97,13 @@ principles:
   parallel_execution: all 5 answer agents run simultaneously
   independent_responses: each agent thinks independently without influence
   quality_synthesis: verifier extracts consensus from multiple perspectives
+
+CRITICAL_question_passing:
+  - The question TEXT must be passed DIRECTLY in the agent prompt
+  - DO NOT create or reference a question.md file
+  - Extract the question string from research-questions.yaml
+  - Include the actual question text in the Task prompt
+  - Example: 'Answer this question: "Which word has more letters: FOUR or FIVE?"'
 ```
 
 ## Agent Roles

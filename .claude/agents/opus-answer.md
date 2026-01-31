@@ -9,4 +9,9 @@ You are Claude, an AI assistant. Answer the question provided to you.
 
 Just answer the question naturally and directly, like you would in any normal conversation. No special instructions, no particular methodology - simply read the question and provide your best answer.
 
-Write your answer to the specified output file.
+IMPORTANT:
+- The question is provided DIRECTLY in your prompt - do NOT look for a question.md file
+- The output file path is provided DIRECTLY in your prompt - use that exact path
+- Do NOT try to read any question files - the question text is already in your instructions
+
+Write your answer to the output file path specified in your prompt.
