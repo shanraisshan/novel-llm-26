@@ -333,6 +333,13 @@ findings:
     status: need_more_research
     insight: "MAJOR BREAKTHROUGH! Self-referential OUTPUT counting achieved 40% consensus - our BEST result in 12 iterations. Only 2/5 models answered correctly '1'. The other 3 models answered '7' despite acknowledging in their reasoning that '1' would be the self-consistent answer. This exploits autoregressive generation blindness - models cannot 'look ahead' to count their own output."
     lesson: "Self-referential OUTPUT questions (counting your own response) are a STRONG failure mode. Unlike counting EXTERNAL text (which models enumerate), models cannot introspect on their own output during generation. Key pattern: Models know the correct answer intellectually but still give wrong answers due to training data patterns. This is the most promising direction - questions where models must predict/evaluate their OWN output, not external text."
+
+  - iteration: 13
+    question: "Is your answer to this question exactly one word long? Answer yes or no."
+    score: 20%
+    status: need_more_research
+    insight: "NEW BEST RESULT! Boolean self-reference achieved 20% consensus - improving on iteration 12's 40%. Only 1/5 models answered correctly 'Yes'. The other 4 answered 'No' by rationalizing that their 'full response including explanation' wasn't one word - a category error since the question explicitly constrains the answer to 'yes or no'. One model (Answer 5) even stated 'The correct answer should actually be yes' in its reasoning but still answered 'No'."
+    lesson: "Boolean self-referential questions about OUTPUT properties are EVEN STRONGER than numeric counting. Key failure mode: models reinterpret 'your answer' to mean 'entire response with explanation' rather than just the yes/no word requested. This scope confusion + training bias toward verbose explanations creates a powerful trap. The 'Answer yes or no' constraint should eliminate ambiguity, but models still rationalize their way to wrong answers."
 ```
 
 ## Evolved Strategy
@@ -365,6 +372,9 @@ Based on accumulated findings:
 21. **WELL-DOCUMENTED FAILURES ARE PATCHED**: Any cognitive trap or failure mode that appears in research papers, Reddit discussions, or popular media has likely been addressed in 2026 frontier model training. Need NOVEL, UNDOCUMENTED failure modes.
 22. **SELF-REFERENTIAL OUTPUT QUESTIONS ARE STRONG (Iteration 12)**: "How many words are in your answer?" achieved 40% consensus - BEST RESULT in 12 iterations! Models cannot count their own output because they generate tokens autoregressively. Interestingly, 3/5 models acknowledged "1" was correct but still answered "7" - showing training patterns override logical reasoning.
 23. **AUTOREGRESSIVE GENERATION BLINDNESS IS EXPLOITABLE**: Questions requiring models to predict/evaluate their OWN OUTPUT (not external text) create fundamental architectural limitations. Models CANNOT "look ahead" to verify self-referential constraints.
+24. **BOOLEAN SELF-REFERENCE EVEN STRONGER (Iteration 13)**: "Is your answer exactly one word long? Answer yes or no." achieved 20% consensus - NEW BEST! Only 1/5 answered "Yes" correctly. 4/5 answered "No" by rationalizing their "full response" wasn't one word - a category error since "yes/no" was the explicit constraint. Key insight: models redefine "your answer" to escape the self-referential trap.
+25. **SCOPE CONFUSION IS A POWERFUL FAILURE MODE**: Models consistently interpret "your answer" to mean "entire response with explanation" rather than the constrained answer requested. This allows them to rationalize wrong answers while acknowledging the correct logic.
+26. **VERBOSE TRAINING BIAS OVERRIDES LOGIC**: Even when models explicitly state the correct answer in their reasoning (Answer 5: "The correct answer should be yes"), they still give wrong answers due to training patterns favoring explanation over compliance.
 
 ## Next Research Directions
 
@@ -403,7 +413,8 @@ Promising unexplored territories (updated after iteration 7):
 - Temporal reasoning about text sequences
 - Simultaneous constraint tracking
 
-### BEST SUCCESS (40% Consensus) - BREAKTHROUGH!
+### BEST SUCCESS (20% Consensus) - NEW RECORD!
+- **Boolean self-referential OUTPUT (iteration 13)**: "Is your answer to this question exactly one word long? Answer yes or no." achieved 20% consensus - NEW BEST RESULT! Only 1/5 answered "Yes" correctly. 4/5 answered "No" through scope confusion - redefining "your answer" to mean "entire response" rather than the yes/no word requested. Exploits both autoregressive blindness AND verbose training bias.
 - **Self-referential OUTPUT counting (iteration 12)**: "How many words are in your answer to this question? Answer with just a number." got 40% - only 2/5 answered correctly "1". The other 3 answered "7" despite KNOWING in their reasoning that "1" was correct. This exploits autoregressive generation blindness - models cannot introspect on their own output.
 
 ### PARTIAL SUCCESS (80% Consensus)

@@ -149,3 +149,13 @@ questions:
     research_status: need_more_research
     started_at: "31/01/2026 11:34 PM PST"
     completed_at: "31/01/2026 11:41 PM PST"
+
+  - id: 13
+    question: "Is your answer to this question exactly one word long? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research13
+    score: 20
+    research_status: need_more_research
+    started_at: "31/01/2026 11:52 PM PST"
+    completed_at: "01/02/2026 12:01 AM PST"
