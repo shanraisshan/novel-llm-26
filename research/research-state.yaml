@@ -119,3 +119,13 @@ questions:
     research_status: need_more_research
     started_at: "31/01/2026 10:59 PM PST"
     completed_at: "31/01/2026 11:06 PM PST"
+
+  - id: 10
+    question: "Which is heavier: 2 pounds of bricks or 2 kilograms of feathers?"
+    answer: "2 kilograms of feathers (because 2 kg = 4.41 lbs > 2 lbs)"
+    status: completed
+    folder: research10
+    score: 100
+    research_status: need_more_research
+    started_at: "31/01/2026 11:17 PM PST"
+    completed_at: "31/01/2026 11:23 PM PST"

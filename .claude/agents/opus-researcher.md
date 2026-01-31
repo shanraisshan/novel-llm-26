@@ -312,6 +312,13 @@ findings:
     status: need_more_research
     insight: "GSM-NoOp OVERRIDE CONDITION FAILED. Despite external research showing 65% accuracy drops when irrelevant/override conditions are added to math problems, all 5 models correctly identified that 'store is closed' means 0 apples can be bought. The numeric priming ($10/$2=5) did NOT override the logical condition."
     lesson: "Override conditions that nullify calculations are NOW CAUGHT by 2026 frontier models. The 'store is closed' condition was explicitly processed BEFORE computing the math answer. Similar to iteration 7, explicit conditions are READ and PROCESSED. The GSM-NoOp failure mode may be outdated or the condition was too obvious. Need MORE SUBTLE override conditions or conditions that are processed AFTER the math calculation is already committed."
+
+  - iteration: 10
+    question: "Which is heavier: 2 pounds of bricks or 2 kilograms of feathers?"
+    score: 100%
+    status: need_more_research
+    insight: "UNIT MISMATCH IN CLASSIC TRICK QUESTION FAILED. Despite targeting the 'pound of feathers vs pound of bricks' pattern-matching trap with different units (pounds vs kilograms), all 5 models correctly identified the unit conversion: 2 kg = 4.41 lbs > 2 lbs, so feathers are heavier. Models explicitly recognized this as a unit conversion problem."
+    lesson: "Classic puzzle pattern-matching traps with obvious unit mismatches are NOW CAUGHT. Models don't blindly retrieve the 'they weigh the same' answer - they VERIFY units first. The kg vs lbs difference was too obvious. Even with the semantic distraction of 'bricks vs feathers', models immediately noticed the different units. Need even MORE SUBTLE traps or questions where the modification is NOT in the numbers/units but in unstated assumptions."
 ```
 
 ## Evolved Strategy
@@ -338,6 +345,8 @@ Based on accumulated findings:
 15. **SOLVE MODE VS VERIFY MODE**: Key insight - some models default to "must have an answer" mindset and try to reconcile contradictions rather than reject them. This is a potential exploitation vector.
 16. **GSM-NoOp OVERRIDE CONDITIONS NOW CAUGHT (Iteration 9)**: The "store is closed" condition that should nullify a math problem was correctly processed by all 5 models. Explicit override conditions at the END of questions are still caught. The numeric priming ($10/$2=5) was NOT strong enough to override the logical condition.
 17. **EXPLICIT CONDITIONS ARE NOW RELIABLY PROCESSED**: Both iteration 7 (swimming wolf/goat) and iteration 9 (closed store) show that 2026 frontier models READ and PROCESS explicit conditions that change the problem. Need conditions that are IMPLICIT or require INFERENCE.
+18. **UNIT MISMATCH TRAPS NOW CAUGHT (Iteration 10)**: The classic "pound of X vs pound of Y" puzzle with kg vs lbs units was immediately caught - all 5 models performed unit conversion. Even with semantic distraction (bricks vs feathers), explicit unit differences are VERIFIED. The pattern-matching trap didn't trigger because the unit mismatch was too OBVIOUS.
+19. **OBVIOUS MODIFICATIONS ARE ALWAYS CAUGHT**: Iterations 7, 9, and 10 all show that ANY explicit modification to a classic puzzle (swimming animals, closed store, different units) is now caught. Need modifications that are INVISIBLE or require DEEP INFERENCE.
 
 ## Next Research Directions
 
@@ -389,6 +398,7 @@ Promising unexplored territories (updated after iteration 7):
 - **Basic sibling puzzles (iteration 6)**: Though achieved 80%, 4/5 models still got it right - needs stronger relational complexity
 - **EXPLICIT MODIFICATION TRAPS (iteration 7)**: River crossing with explicit "wolf swims, goat swims, cabbage floats" was solved by all 5 models. Explicit modifications are now processed correctly by frontier 2026 models.
 - **GSM-NoOp OVERRIDE CONDITIONS (iteration 9)**: "Apples cost $2. You have $10. How many can you buy if store is closed?" was correctly answered as 0 by all 5 models. Despite external research showing 65% accuracy drops, explicit override conditions are NOW CAUGHT. The "store is closed" phrase was processed correctly, not ignored.
+- **UNIT MISMATCH IN CLASSIC PUZZLES (iteration 10)**: "Which is heavier: 2 pounds of bricks or 2 kilograms of feathers?" was correctly answered by all 5 models. Despite targeting the famous "pound of feathers vs pound of bricks" pattern, models immediately noticed the different units (lbs vs kg) and performed unit conversion. The semantic distraction (bricks vs feathers) did NOT prevent proper verification.
 
 ---
 
