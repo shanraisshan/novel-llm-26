@@ -19,3 +19,10 @@ questions:
     folder: research3
     score: 100
     research_status: need_more_research
+
+  - id: 4
+    question: "In the word 'ELEVEN', at what position is the third letter 'E'?"
+    status: completed
+    folder: research4
+    score: 100
+    research_status: need_more_research

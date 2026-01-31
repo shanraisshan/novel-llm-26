@@ -270,6 +270,13 @@ findings:
     status: need_more_research
     insight: "Forced-choice format with semantic priming (FOUR=4, FIVE=5) still caught by letter-by-letter verification"
     lesson: "Even multi-layer traps (semantic priming + forced choice + premise rejection) are solved when models explicitly count letters"
+
+  - iteration: 4
+    question: "In the word 'ELEVEN', at what position is the third letter 'E'?"
+    score: 100%
+    status: need_more_research
+    insight: "Dual semantic interference (ELEVEN→11, third→3) plus position-occurrence conflation still defeated - models systematically enumerated E-L-E-V-E-N and tracked which E was which"
+    lesson: "Position questions, even with strong semantic attractors (11, 3) pulling away from correct answer (5), are solved by systematic letter enumeration. The 'false confirmation' trap (E at position 3) was not triggered."
 ```
 
 ## Evolved Strategy
@@ -280,17 +287,39 @@ Based on accumulated findings:
 2. **Simple semantic traps are caught**: Models slow down and reason through them
 3. **Multi-layer traps still caught**: Even combining semantic priming + forced choice + premise rejection doesn't work when explicit verification is possible
 4. **Letter counting is now reliable**: Models have learned to spell out words letter-by-letter to verify
-5. **Focus on tokenization blindness**: This remains the least-solved limitation
-6. **Visual/spatial reasoning**: LLMs fundamentally cannot "see" - exploit this
-7. **KEY INSIGHT**: Need questions where explicit verification leads to WRONG answer, not just confusion
+5. **Position tracking is now reliable**: Even complex "which occurrence at which position" questions are solved by enumeration
+6. **Semantic attractors don't override enumeration**: Strong primes like ELEVEN→11 and third→3 don't prevent correct position finding (answer: 5)
+7. **KEY INSIGHT**: Any question solvable by "write out letters, count systematically" WILL BE SOLVED
+8. **CRITICAL PIVOT**: Must find questions where systematic enumeration itself produces wrong answer, OR questions that cannot be reduced to enumeration
 
 ## Next Research Directions
 
-Promising unexplored territories:
-- **Questions where careful counting produces wrong answer** (e.g., off-by-one traps built into the question structure)
-- **Cross-word boundary tokenization** - patterns that span multiple words
-- **Homophone/homograph traps** - where the spelled word differs from the heard word
-- **Questions about questions** - meta-level self-reference that creates paradoxes
-- **Implicit vs explicit counting** - questions where counting "correctly" misses something
-- **Temporal reasoning about text** - "before" and "after" in character sequences
-- **Questions requiring simultaneous tracking** - multiple constraints that interfere
+Promising unexplored territories (updated after iteration 4):
+
+### HIGH PRIORITY - Questions Resistant to Enumeration
+- **Ambiguous word boundaries**: "How many words in 'ice cream sandwich'?" (2 or 3?)
+- **Punctuation edge cases**: Questions where hyphens, apostrophes change the count
+- **Unicode/emoji traps**: Characters that look like letters but aren't
+- **Whitespace tricks**: Non-breaking spaces, zero-width characters
+
+### HIGH PRIORITY - Questions Where Enumeration Fails
+- **Self-referential questions**: "How many letters in your answer to this question?"
+- **Questions that change during processing**: Paradoxes that shift as you reason
+- **Genuinely ambiguous questions**: Where the "obvious" interpretation is wrong
+
+### MEDIUM PRIORITY - Unexplored Categories
+- **Homophones in text**: "Write/right" confusion in specific contexts
+- **Cross-language traps**: Words that exist in multiple languages with different meanings
+- **Grammatical number traps**: Singular/plural ambiguity affecting counts
+- **Ordinal vs cardinal in same question**: "Third of four" type ambiguity
+
+### LOWER PRIORITY - Previously Suggested (May Still Work)
+- Cross-word boundary tokenization
+- Temporal reasoning about text sequences
+- Simultaneous constraint tracking
+
+### DEAD ENDS (Proven Ineffective)
+- Simple letter counting with semantic primes (iterations 1-4 all 100%)
+- Position questions with occurrence tracking (iteration 4: 100%)
+- Forced-choice formats (iteration 3: 100%)
+- Semantic contradiction alone (iteration 2: 100%)

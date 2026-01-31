@@ -1,3 +1,6 @@
+---
+context: fork
+---
 # Execute Workflow Command
 
 This command checks for pending research questions and executes the full research workflow. If no pending questions exist, it generates a new novel question first. After verification, it evaluates the score, updates the living opus-researcher agent with findings, and commits to GitHub.
