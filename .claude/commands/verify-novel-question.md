@@ -1,97 +1,115 @@
-# Creative Research Workflow
+# Verify Novel Question Command
 
-A comprehensive research workflow that leverages 5 parallel Opus answerers to test how LLMs respond to novel questions, then synthesizes the results to measure consensus.
+Verifies a pending question by launching 5 parallel Opus answerers and synthesizing results with a verifier agent.
+
+## State Management
+
+```yaml
+STATE_INTEGRATION:
+  on_entry:
+    - This phase is called when workflow.current_phase = "verify"
+    - workflow.current_iteration contains the question ID (N) being verified
+  on_exit:
+    - Update workflow.current_phase = "evaluate"
+    - Update workflow.last_completed_phase = "verify"
+    - IMMEDIATELY continue to evaluate phase - DO NOT STOP
+```
 
 ## Instructions
 
 ```yaml
 steps:
   - step: 1
-    action: Read latest pending question
-    file: research/research-questions.yaml
-    select: highest id where status = pending
+    action: Read pending question from state
+    file: research/research-state.yaml
+    select: question where status = "pending" OR status = "in_progress"
     extract: [id, question, folder]
-    note: Research folder already exists (created by research-novel-question)
+    note: Research folder already exists (created by generate phase)
 
   - step: 2
-    action: Update question status
-    file: research/research-questions.yaml
-    change: status from "pending" to "in_progress"
+    action: Update question status to in_progress
+    file: research/research-state.yaml
+    change: questions[id].status = "in_progress"
 
   - step: 3
-    action: Launch 5 Opus Answerers
+    action: Launch 5 Opus Answerers in PARALLEL
     execution: parallel
     subagent_type: opus-answer
     description: Simple LLM answerers - just answer the question naturally
     agents:
       - agent: 1
-        output: research/researchN/answer1.md
+        output: research/research{N}/answer1.md
       - agent: 2
-        output: research/researchN/answer2.md
+        output: research/research{N}/answer2.md
       - agent: 3
-        output: research/researchN/answer3.md
+        output: research/research{N}/answer3.md
       - agent: 4
-        output: research/researchN/answer4.md
+        output: research/research{N}/answer4.md
       - agent: 5
-        output: research/researchN/answer5.md
-    prompt_instructions: |
-      IMPORTANT: Pass the actual question text directly in the prompt.
-      DO NOT reference a question.md file - the question text goes directly in the prompt.
-      Replace [QUESTION] with the actual question string from research-questions.yaml.
-      Replace [OUTPUT_FILE] with the full absolute file path.
+        output: research/research{N}/answer5.md
     prompt_template: |
       Answer this question:
 
-      [ACTUAL QUESTION TEXT FROM research-questions.yaml - NOT a file reference]
+      "{ACTUAL_QUESTION_TEXT}"
 
-      Write your answer to [FULL ABSOLUTE PATH e.g. /Users/.../research/research3/answer1.md]
+      Write your answer to {FULL_ABSOLUTE_PATH}/research/research{N}/answer{X}.md
+
+    CRITICAL:
+      - Pass the ACTUAL question text directly in the prompt
+      - DO NOT reference a question.md file
+      - Use the question string from research-state.yaml
+      - Use FULL ABSOLUTE file paths
 
   - step: 4
     action: Wait for completion
-    verify: all files exist (answer1.md through answer5.md)
+    verify: all files exist
+    files:
+      - research/research{N}/answer1.md
+      - research/research{N}/answer2.md
+      - research/research{N}/answer3.md
+      - research/research{N}/answer4.md
+      - research/research{N}/answer5.md
 
   - step: 5
     action: Launch Verifier Agent
     subagent_type: opus-verifier
-    input: research/researchN/answer[1-5].md
-    output: research/researchN/verifierN.md
-    tasks:
-      - Read all 5 answer files
-      - Extract and compare key conclusions
-      - Identify consensus and disagreements
-      - Synthesize best final answer
-      - Calculate confidence/consistency score
-    prompt_template: |
-      You are the opus-verifier. Read all 5 answer files in research/researchN/ (answer1.md through answer5.md).
+    input: research/research{N}/answer[1-5].md
+    output: research/research{N}/verifier{N}.md
+    prompt: |
+      You are the opus-verifier. Read all 5 answer files in research/research{N}/ (answer1.md through answer5.md).
       Extract the key conclusions from each. Compare the answers, identify consensus and disagreements.
       Synthesize the best final answer based on the quality of reasoning and evidence provided.
-      Write your complete analysis and final answer to research/researchN/verifierN.md following your standard verification format.
+      Write your complete analysis and final answer to research/research{N}/verifier{N}.md.
+      Include a confidence score as a percentage (0-100%) representing the level of consensus.
 
   - step: 6
     action: Extract confidence score from verifier
-    file: research/researchN/verifierN.md
-    extract: confidence_score (e.g., "95%")
+    file: research/research{N}/verifier{N}.md
+    extract: confidence_score (look for "Confidence Score: X%" or similar)
+    parse: Extract numeric value
 
   - step: 7
     action: Update question status and score
-    file: research/research-questions.yaml
+    file: research/research-state.yaml
     updates:
-      - status: "completed"
-      - score: extracted confidence score (e.g., 95)
+      - questions[id].status = "completed"
+      - questions[id].score = extracted_confidence_score
 
   - step: 8
-    action: Report completion
-    output:
-      - location of verifierN.md
-      - final confidence score
+    action: Update workflow state
+    file: research/research-state.yaml
+    updates:
+      workflow.current_phase: "evaluate"
+      workflow.last_completed_phase: "verify"
+    then: ">>> PHASE COMPLETE - CONTINUE TO EVALUATE <<<"
 ```
 
 ## Key Principles
 
 ```yaml
 principles:
-  automatic_question_pickup: reads latest pending question from research-questions.yaml
-  folder_already_exists: created by research-novel-question command
+  automatic_question_pickup: reads pending question from research-state.yaml
+  folder_already_exists: created by generate phase
   simple_answering: each agent answers naturally like a standard LLM
   no_special_context: agents receive only the question, no research instructions
   parallel_execution: all 5 answer agents run simultaneously
@@ -101,7 +119,7 @@ principles:
 CRITICAL_question_passing:
   - The question TEXT must be passed DIRECTLY in the agent prompt
   - DO NOT create or reference a question.md file
-  - Extract the question string from research-questions.yaml
+  - Extract the question string from research-state.yaml
   - Include the actual question text in the Task prompt
   - Example: 'Answer this question: "Which word has more letters: FOUR or FIVE?"'
 ```
@@ -118,16 +136,15 @@ agents:
   opus-verifier:
     count: 1
     purpose: Synthesize 5 answers and calculate consensus score
-    behavior: Compare, identify agreement/disagreement, score
+    behavior: Compare, identify agreement/disagreement, produce confidence score
 ```
 
-## Fallback Behavior
+## File References
 
 ```yaml
-fallback:
-  - condition: research-questions.yaml is empty, missing, or has no pending questions
-    action: Ask user "What question would you like me to research comprehensively?"
-
-  - condition: $ARGUMENTS is provided
-    action: Use that as the question instead of reading from file
+files:
+  state: research/research-state.yaml
+  research_folder: research/research{N}/
+  answers: research/research{N}/answer[1-5].md
+  verifier: research/research{N}/verifier{N}.md
 ```

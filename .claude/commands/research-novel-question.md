@@ -1,14 +1,18 @@
 # Research Novel Question Command
 
-A simplified workflow that launches the opus-researcher agent to generate novel LLM-breaking questions. All research knowledge and instructions are contained in the opus-researcher agent itself.
+Generates a novel LLM-breaking question using the opus-researcher agent. All research knowledge is contained in the opus-researcher agent itself.
 
-## CRITICAL: Part of Continuous Workflow
+## State Management
 
 ```yaml
-IMPORTANT:
-  - This command is typically called from execute-workflow
-  - After this command completes, the caller MUST continue to the next step
-  - DO NOT stop after returning - proceed to verify-novel-question
+STATE_INTEGRATION:
+  on_entry:
+    - This phase is called when workflow.current_phase = "generate"
+    - workflow.current_iteration contains the next question ID (N)
+  on_exit:
+    - Update workflow.current_phase = "verify"
+    - Update workflow.last_completed_phase = "generate"
+    - IMMEDIATELY continue to verify phase - DO NOT STOP
 ```
 
 ## Instructions
@@ -16,28 +20,28 @@ IMPORTANT:
 ```yaml
 steps:
   - step: 1
-    action: Read research-questions.yaml to find last completed question
-    file: research/research-questions.yaml
-    find: highest id where status = "completed"
+    action: Read state and find last completed question
+    file: research/research-state.yaml
+    find: highest id in questions where status = "completed"
     extract: [id, folder, score, research_status]
     output: last_completed_id
 
   - step: 2
     action: Determine next question ID
-    file: research/research-questions.yaml
-    calculate: max(id) + 1
+    file: research/research-state.yaml
+    calculate: max(questions.id) + 1
     output: next_id (N)
 
   - step: 3
     action: Create research folder
-    path: research/researchN/  # N = next question ID
+    path: research/research{N}/
 
   - step: 4
     action: Read and summarize previous research
     condition: only if step 1 found a completed question
     file: research/research{last_completed_id}/research{last_completed_id}.md
-    task: Create a concise summary of key insights, what was tried, and lessons learned
-    output_file: research/researchN/previous-research-summary.md
+    task: Create a concise summary of key insights
+    output_file: research/research{N}/previous-research-summary.md
     format: |
       # Previous Research Summary (Research {last_completed_id})
 
@@ -70,7 +74,7 @@ steps:
 
       ## PREVIOUS RESEARCH CONTEXT
 
-      Read the previous research summary at: research/researchN/previous-research-summary.md
+      Read the previous research summary at: research/research{N}/previous-research-summary.md
       (if it exists - this is research iteration N)
 
       BUILD ON TOP of previous research:
@@ -94,42 +98,50 @@ steps:
 
   - step: 6
     action: Write research documentation
-    file: research/researchN/researchN.md  # e.g., research3/research3.md
+    file: research/research{N}/research{N}.md
     content: Full research documentation from step 5
 
   - step: 7
-    action: Append new question to YAML
-    file: research/research-questions.yaml
+    action: Append new question to state file
+    file: research/research-state.yaml
+    append_to: questions
     format:
       id: N
       question: generated_question
       status: pending
-      folder: researchN
+      folder: research{N}
       score: null
       research_status: null
 
   - step: 8
-    action: Return generated question
-    output: generated_question
+    action: Update workflow state
+    file: research/research-state.yaml
+    updates:
+      workflow.current_phase: "verify"
+      workflow.last_completed_phase: "generate"
+    then: ">>> PHASE COMPLETE - CONTINUE TO VERIFY <<<"
 ```
 
 ## Key Behavior
 
 ```yaml
 rules:
-  - all_research_knowledge_in_opus_researcher: true
-  - create_summary_of_previous_research: true
-  - build_on_previous_iterations: true
-  - opus_researcher_reads_summary_first: true
-  - document_all_research: true
+  all_research_knowledge_in_opus_researcher: true
+  create_summary_of_previous_research: true
+  build_on_previous_iterations: true
+  opus_researcher_reads_summary_first: true
+  document_all_research: true
+  update_state_on_completion: true
+  never_stop_after_completion: true
 ```
 
-## Workflow Philosophy
+## File References
 
-This command is intentionally simple - it's just a workflow launcher. All the intelligence about:
-- LLM limitations
-- Question categories
-- Design requirements
-- Accumulated findings
-
-...lives in the opus-researcher agent, which evolves over time with new findings.
+```yaml
+files:
+  state: research/research-state.yaml
+  agent: .claude/agents/opus-researcher.md
+  research_folder: research/research{N}/
+  research_doc: research/research{N}/research{N}.md
+  previous_summary: research/research{N}/previous-research-summary.md
+```
