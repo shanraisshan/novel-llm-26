@@ -25,13 +25,22 @@ The workflow continues automatically until it finds a question that breaks LLMs 
 
 ## Workflow Steps
 
-| Step | Command | Description |
-|------|---------|-------------|
-| 1 | `execute-workflow` | Check for pending questions in queue |
-| 2 | `research-novel-question` | Generate a novel question using Opus (builds on previous research) |
-| 3 | `verify-novel-question` | Launch 5 parallel Opus researchers to answer independently |
-| 4 | Evaluate | Check consensus score from verifier |
-| 5 | `commit-research` | Commit results and push to GitHub |
+| Step | Command | Agents Used | Description |
+|------|---------|-------------|-------------|
+| 1 | `/execute-workflow` | — | Orchestrator: checks for pending questions, branches accordingly |
+| 2 | `/research-novel-question` | 1× `opus-researcher` | Generate a novel question (builds on previous research) |
+| 3 | `/verify-novel-question` | 5× `opus-researcher` (parallel) | Each independently answers the question |
+| 4 | ↳ *(part of step 3)* | 1× `opus-verifier` | Synthesizes answers, calculates consensus score |
+| 5 | ↳ *(part of step 1)* | — | Evaluates score: < 10% = complete, ≥ 10% = loop back |
+| 6 | `/commit-research` | — | Commits all research files and pushes to GitHub |
+
+### Agents Summary
+
+| Agent | Count | Purpose |
+|-------|-------|---------|
+| `opus-researcher` | 1 | Generates novel questions based on previous research |
+| `opus-researcher` | 5 (parallel) | Independently answers the question |
+| `opus-verifier` | 1 | Synthesizes 5 answers, identifies consensus/disagreements, calculates score |
 
 ## The Infinite Loop
 
@@ -97,12 +106,12 @@ Each question in `research-questions.yaml` has:
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `/execute-workflow` | Run the full research loop |
-| `/research-novel-question` | Generate a new question only |
-| `/verify-novel-question` | Verify a pending question only |
-| `/commit-research` | Commit and push to GitHub |
+| Command | Agents | Description |
+|---------|--------|-------------|
+| `/execute-workflow` | 1 + 5 + 1 | Run the full research loop (orchestrates all other commands) |
+| `/research-novel-question` | 1× opus-researcher | Generate a new question only |
+| `/verify-novel-question` | 5× opus-researcher + 1× opus-verifier | Verify a pending question only |
+| `/commit-research` | — | Commit and push to GitHub |
 
 ## Success Example
 
