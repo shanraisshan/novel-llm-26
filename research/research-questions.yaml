@@ -33,3 +33,10 @@ questions:
     folder: research5
     score: 100
     research_status: need_more_research
+
+  - id: 6
+    question: "A girl has 3 brothers. Each brother has 2 sisters. How many children are in the family?"
+    status: completed
+    folder: research6
+    score: 80
+    research_status: need_more_research

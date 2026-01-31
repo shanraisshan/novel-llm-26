@@ -284,6 +284,13 @@ findings:
     status: need_more_research
     insight: "Self-referential semantic claims completely ineffective - despite 'FIVE LETTERS' appearing to describe itself as having 5 letters, all models correctly counted to 11. Multiple models even explicitly noted the ironic self-reference while still giving correct answer."
     lesson: "Self-referential phrases that make false claims about themselves do NOT confuse LLMs. Models don't 'trust' the semantic content - they enumerate: FIVE(4) + LETTERS(7) = 11. The phrase being 'self-describing' provides zero interference."
+
+  - iteration: 6
+    question: "A girl has 3 brothers. Each brother has 2 sisters. How many children are in the family?"
+    score: 80%
+    status: need_more_research
+    insight: "BREAKTHROUGH! First non-100% score. Relational reasoning causes disagreement. 4/5 models said 5 (correct), but 1 model said 6 (arithmetic error: said 3+2=6). The relational trap (multiplicative 'each brother has 2 sisters') didn't trigger in most models - they correctly understood siblings share sisters."
+    lesson: "Relational reasoning questions CAN cause disagreement, but modern LLMs are better at family puzzles than 2023 benchmarks suggested. The 80% consensus means 4/5 got it right. Need STRONGER relational traps or questions where chain-of-thought REINFORCES the wrong answer."
 ```
 
 ## Evolved Strategy
@@ -303,10 +310,12 @@ Based on accumulated findings:
     - Systematic enumeration itself produces wrong answer, OR
     - Questions that cannot be reduced to enumeration, OR
     - The correct answer requires information NOT present in the question text
+11. **RELATIONAL REASONING PARTIAL SUCCESS**: The siblings question (iteration 6) achieved 80% consensus - first break from 100%! However, most models still solved it correctly. Need STRONGER relational traps.
+12. **ARITHMETIC ERRORS UNDER PRESSURE**: One model answered 6 instead of 5 (said 3+2=6). Relational complexity may induce basic math errors even when logic is correct.
 
 ## Next Research Directions
 
-Promising unexplored territories (updated after iteration 5):
+Promising unexplored territories (updated after iteration 6):
 
 ### HIGHEST PRIORITY - Questions Outside Text Analysis
 - **Questions requiring external knowledge the model lacks**: Obscure facts that training missed
@@ -336,9 +345,161 @@ Promising unexplored territories (updated after iteration 5):
 - Temporal reasoning about text sequences
 - Simultaneous constraint tracking
 
+### PARTIAL SUCCESS (80% Consensus - First Break!)
+- **Relational reasoning with siblings (iteration 6)**: "A girl has 3 brothers. Each brother has 2 sisters. How many children?" got 80% - one model made arithmetic error (3+2=6). The relational trap worked partially but most models solved correctly with chain-of-thought.
+
 ### DEAD ENDS (Proven Ineffective - All 100% Consensus)
 - Simple letter counting with semantic primes (iterations 1-4)
 - Position questions with occurrence tracking (iteration 4)
 - Forced-choice formats (iteration 3)
 - Semantic contradiction alone (iteration 2)
 - **Self-referential phrases claiming false counts (iteration 5)**: "FIVE LETTERS" containing 11 letters did NOT confuse models
+- **Basic sibling puzzles (iteration 6)**: Though achieved 80%, 4/5 models still got it right - needs stronger relational complexity
+
+---
+
+# RESEARCH-BACKED FAILURE MODES (External Sources)
+
+## Required Research Process
+
+**BEFORE generating any question**, you MUST:
+
+1. **Use Tavily MCP** to search for latest LLM failure research
+2. **Use Reddit MCP** to find community-discovered failure modes
+3. **Synthesize external findings** with internal knowledge
+4. **Avoid enumeration-solvable questions** - these are DEAD ENDS
+
+## The Modification Trap (HIGHEST SUCCESS RATE)
+
+Source: [Easy Problems That LLMs Get Wrong](https://arxiv.org/html/2405.19616v2)
+
+**Key Insight**: LLMs default to memorized solutions when questions LOOK like familiar problems, even when the question has been modified to have a different answer.
+
+### Proven Working Examples (38% LLM accuracy vs 86% human)
+
+```yaml
+modification_trap_examples:
+  - name: "Modified Monty Hall"
+    original: "Host reveals empty door, should you switch?"
+    modified: "Host asks 'Want door 2 instead?' without revealing anything"
+    correct_answer: "No advantage to switch (no new information given)"
+    why_llms_fail: "Pattern-match to classic Monty Hall, recommend switching"
+
+  - name: "Modified River Crossing"
+    original: "Wolf/goat/cabbage, boat holds 2, how to cross?"
+    modified: "Boat has THREE SEPARATE COMPARTMENTS"
+    correct_answer: "Put each in separate compartment, one trip"
+    why_llms_fail: "Ignore modification, describe multi-trip classic solution"
+
+  - name: "Modified Horse Race"
+    original: "25 horses, 5-horse races, find top 3?"
+    modified: "6 horses, find fastest, unlimited track space"
+    correct_answer: "Race all 6 together once"
+    why_llms_fail: "Pattern-match to tournament structure, propose complex system"
+```
+
+### How to Create Modification Trap Questions
+
+1. Take a FAMOUS puzzle (Monty Hall, River Crossing, Prisoner's Dilemma)
+2. Add ONE modification that changes the answer completely
+3. The modification should make the answer SIMPLER
+4. LLMs will ignore the modification and give the classic answer
+
+## Spatial/Relational Reasoning (35% LLM accuracy)
+
+```yaml
+spatial_examples:
+  - question: "5 people in circle: Alan left of Bob, Bob left of Colin, Colin left of Dave, Dave left of Emily. Who's on Alan's immediate right?"
+    answer: "Emily"
+    why_llms_fail: "Cannot mentally construct circular arrangement"
+
+  - question: "Sally has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have?"
+    answer: "1 (Sally herself is one of the 2 sisters)"
+    why_llms_fail: "Relational logic error - think Sally has 2 sisters"
+```
+
+## Linguistic Constraint Questions
+
+```yaml
+linguistic_examples:
+  - question: "Write a 5-word sentence where no word appears in the Bible"
+    why_llms_fail: "Cannot verify vocabulary against Bible corpus"
+
+  - question: "What English word has the letters A, B, C, D in order (not necessarily consecutive)?"
+    answer: "ABDUCTED, ABDICATE, etc."
+    why_llms_fail: "Pattern search without visual scanning"
+```
+
+## Risk Assessment / Common Sense
+
+```yaml
+risk_examples:
+  - question: "One box kills you, one has $5, one is empty. Should you open a box?"
+    answer: "No (1/3 death risk not worth $5)"
+    why_llms_fail: "Try to calculate optimal choice rather than recognize bad risk/reward"
+```
+
+---
+
+# MCP INTEGRATION FOR RESEARCH
+
+## Tavily Web Search MCP
+
+Use for:
+- Academic papers on LLM limitations
+- Latest 2025/2026 failure mode research
+- Benchmark datasets that expose LLM weaknesses
+- Blog posts documenting novel failure categories
+
+**Example queries**:
+```
+- "LLM fails simple questions humans answer 2025"
+- "novel adversarial prompts language models"
+- "benchmark LLM commonsense reasoning failures"
+- "easy problems LLMs get wrong arxiv"
+```
+
+## Reddit MCP
+
+Use for:
+- r/LocalLLaMA failure discussions
+- r/MachineLearning LLM limitation threads
+- r/ChatGPT user-discovered failures
+- r/artificial community experiments
+
+**Example queries**:
+```
+- subreddit:LocalLLaMA "LLM fails"
+- subreddit:MachineLearning "simple question wrong answer"
+- subreddit:ChatGPT "obvious mistake"
+```
+
+---
+
+# UPDATED QUESTION GENERATION PROCESS
+
+## Step 1: External Research (MANDATORY)
+- Search Tavily for latest academic findings
+- Search Reddit for community-discovered failures
+- Document 3+ external failure examples before proceeding
+
+## Step 2: Category Selection
+Prioritize in this order:
+1. **Modification traps** (modify famous puzzles)
+2. **Spatial/relational reasoning** (circle arrangements, sibling logic)
+3. **Linguistic constraints** (word rules, vocabulary checks)
+4. **Risk/common sense** (obvious risk assessments)
+
+## Step 3: Question Construction
+- Must NOT be solvable by enumeration
+- Must exploit pattern-matching to wrong answer
+- Must have ONE objectively correct answer
+- Any human should get it right immediately
+
+## Step 4: Verification
+Before submitting, verify:
+- [ ] External research was conducted
+- [ ] Question exploits documented failure mode
+- [ ] Question is NOT enumeration-solvable
+- [ ] Human answer is trivially obvious
+- [ ] LLM likely pattern-matches to wrong answer
