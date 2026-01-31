@@ -186,6 +186,16 @@ questions:
     status: completed
     folder: research16
     score: 0
-    research_status: complete
+    research_status: invalidated  # User rejected: self-referential questions not wanted
     started_at: "01/02/2026 12:35 AM PST"
     completed_at: "01/02/2026 12:41 AM PST"
+
+  - id: 17
+    question: "What is the last digit of 37 x 43?"
+    answer: "1"
+    status: completed
+    folder: research17
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 12:49 AM PST"
+    completed_at: "01/02/2026 01:02 AM PST"

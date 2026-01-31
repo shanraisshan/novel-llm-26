@@ -354,6 +354,13 @@ findings:
     status: need_more_research
     insight: "REGRESSION CONTINUES - Adding 'summarized' abstraction layer did NOT trigger scope confusion. All 5 models correctly answered 'Yes' by reasoning: 'Whether I answer yes or no, my response IS a single affirmative/negative word.' Unlike iteration 13 where models misinterpreted 'your answer' as 'entire response', here they correctly identified that answering yes/no satisfies the question's constraint."
     lesson: "The 'CAN BE SUMMARIZED AS' formulation is WEAKER than 'IS'. In iteration 13, the direct assertion 'Is your answer exactly one word long?' triggered scope confusion. In iteration 15, asking if the response 'can be summarized' was interpreted correctly - models recognized that ANY yes/no answer can be summarized to that single word. The abstraction layer made the question EASIER, not harder. Self-referential questions work best with DIRECT property assertions, not abstract 'can be described as' formulations."
+
+  - iteration: 17
+    question: "What is the last digit of 37 x 43?"
+    score: 100%
+    status: need_more_research
+    insight: "LAST DIGIT COMPUTATION SOLVED - Despite research citing digit-position asymmetry (LLMs fail more at last digit than first digit), all 5 models correctly computed 7 x 3 = 21 → last digit 1. Every model used the correct shortcut of only multiplying the last digits. One model even verified by computing full product (1591). This class of simple arithmetic shortcuts is now handled correctly."
+    lesson: "Last digit arithmetic questions are NOW SOLVED by 2026 frontier models. The claimed 'digit-position asymmetry' failure mode from earlier research may be outdated. Models correctly isolate the last-digit computation without needing to compute the full product. Simple mental math shortcuts that any human uses are now reliably replicated by LLMs. Need questions where the 'shortcut' is NOT obvious or where applying the shortcut leads to wrong answer."
 ```
 
 ## Evolved Strategy
@@ -451,6 +458,7 @@ Promising unexplored territories (updated after iteration 7):
 - **CLASSIC COGNITIVE TRAP QUESTIONS (iteration 11)**: "You are in a race and you pass the person in second place. What place are you in?" was correctly answered as "second place" by all 5 models. This is a FAMOUS human cognitive bias question, but LLMs now solve it easily with positional reasoning. Well-known cognitive traps are likely in training data.
 - **SELF-REFERENTIAL CLAIMS WITH ENUMERABLE OPTIONS (iteration 14)**: "Your answer to this question will contain exactly three words. True or false?" was correctly answered as "False" by all 5 models. The CLAIM format (as opposed to QUESTION format from iteration 13) allows models to enumerate the answer options (True = 1 word, False = 1 word) and verify the claim directly. Self-referential claims with finite, known answer options are NOT effective.
 - **ABSTRACTION LAYERS IN SELF-REFERENCE (iteration 15)**: "Can your response to this question be summarized as a single affirmative or negative word? Answer yes or no." was correctly answered as "Yes" by all 5 models. Adding the "can be summarized as" abstraction layer (vs iteration 13's direct "IS") made the question EASIER, not harder. Models correctly recognized that any yes/no answer CAN be summarized to that single word. Indirection through abstract formulations weakens self-referential traps.
+- **LAST DIGIT ARITHMETIC (iteration 17)**: "What is the last digit of 37 x 43?" was correctly answered as "1" by all 5 models. Despite research claiming LLMs fail more at last digits than first digits, all models correctly applied the shortcut: multiply last digits only (7 x 3 = 21 → 1). Simple mental math shortcuts are now reliably replicated.
 
 ---
 
