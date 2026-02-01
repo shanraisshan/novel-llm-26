@@ -536,6 +536,13 @@ findings:
     status: need_more_research
     insight: "MULTI-STEP STATE TRACKING FAILED WITH 2 OPERATIONS. All 5 models correctly tracked: [ACE,KING,QUEEN] → [KING,ACE,QUEEN] → [KING,QUEEN,ACE]. The GoodAI Word Swap research showing failures applies to 10+ operations, not 2."
     lesson: "Short sequences of state transformations (2-3 swaps) are NOW SOLVED by 2026 frontier models. Models explicitly track intermediate states and compute correctly. The failure mode from research requires LONGER chains (5-10+ operations) or more complex state transformations. 2 swaps is too easy to trigger the documented failure."
+
+  - iteration: 43
+    question: "What letter comes immediately before the 'R' in the word 'CHERRY'?"
+    score: 40%
+    status: need_more_research
+    insight: "PARTIAL SUCCESS! Character position adjacency question achieved 40% consensus - the BEST result since iteration 12. Only 2/5 models answered correctly 'E'. 2/5 answered 'R' (thinking of second R), and 1/5 was ambiguous. The double R in CHERRY created interpretation ambiguity - some models interpreted 'the R' as the second R (preceded by first R)."
+    lesson: "ADJACENCY QUESTIONS WITH DOUBLE LETTERS SHOW PROMISE. The failure mode here was NOT tokenization blindness but AMBIGUITY in 'the R' - which R? This suggests a hybrid approach: questions about character relationships that have both (1) sub-token decomposition difficulty AND (2) potential interpretation ambiguity. However, for true strawberry-type questions, we need UNAMBIGUOUS questions that still cause disagreement. Next iteration should specify 'the FIRST R' to eliminate ambiguity and test pure sub-token position tracking."
 ```
 
 ## Evolved Strategy

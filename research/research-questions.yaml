@@ -152,7 +152,8 @@ questions:
     status: completed
     folder: research16
     score: 0
-    research_status: invalidated  # User rejected: self-referential questions not wanted
+    research_status: rejected ❌
+    rejection_reason: "Self-referential questions not wanted - does not meet strawberry criteria."
     started_at: "01/02/2026 12:35 AM PST"
     completed_at: "01/02/2026 12:41 AM PST"
 
@@ -332,7 +333,7 @@ questions:
     status: completed
     folder: research34
     score: 0
-    research_status: rejected
+    research_status: rejected ❌
     rejection_reason: "Does not meet strawberry criteria - humans would also be confused by this philosophical paradox. Need questions where humans easily answer but LLMs fail."
     started_at: "01/02/2026 10:08 AM PST"
     completed_at: "01/02/2026 10:14 AM PST"
@@ -373,7 +374,7 @@ questions:
     status: completed
     folder: research38
     score: 0
-    research_status: rejected
+    research_status: rejected ❌
     rejection_reason: "SAIL→LIES transformation is ambiguous and font-dependent. The a→e mapping is approximate, not definitive. Does not meet strawberry criteria for clear, unambiguous human verification."
     started_at: "01/02/2026 10:54 AM PST"
     completed_at: "01/02/2026 11:01 AM PST"
@@ -405,8 +406,8 @@ questions:
     folder: research41
     score: 100
     research_status: need_more_research
-    started_at: "01/02/2026 12:30 PM PST"
-    completed_at: "01/02/2026 12:35 PM PST"
+    started_at: "01/02/2026 11:30 AM PST"
+    completed_at: "01/02/2026 11:35 AM PST"
 
   - id: 42
     question: "I have three cards in a row: ACE, KING, QUEEN (in that order, left to right). I swap the first and second cards. Then I swap the second and third cards. What card is now in the middle?"
@@ -415,5 +416,15 @@ questions:
     folder: research42
     score: 100
     research_status: need_more_research
-    started_at: "01/02/2026 12:45 PM PST"
-    completed_at: "01/02/2026 12:50 PM PST"
+    started_at: "01/02/2026 11:45 AM PST"
+    completed_at: "01/02/2026 11:50 AM PST"
+
+  - id: 43
+    question: "What letter comes immediately before the 'R' in the word 'CHERRY'?"
+    answer: "E"
+    status: completed
+    folder: research43
+    score: 40
+    research_status: need_more_research
+    started_at: "01/02/2026 11:51 AM PST"
+    completed_at: "01/02/2026 11:53 AM PST"
