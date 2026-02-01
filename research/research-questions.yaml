@@ -502,3 +502,14 @@
     research_activity: null
     started_at: "02/02/2026 04:38 AM PST"
     completed_at: "02/02/2026 04:40 AM PST"
+
+  - id: 94
+    question: "If you write the numbers from 1 to 100, how many times do you write the digit 9?"
+    answer: "20"
+    status: completed
+    folder: research94
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 04:45 AM PST"
+    completed_at: "02/02/2026 04:48 AM PST"

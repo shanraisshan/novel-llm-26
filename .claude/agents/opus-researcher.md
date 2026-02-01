@@ -895,6 +895,13 @@ findings:
     insight: "META-QUESTION ABOUT INPUT TEXT ALSO SOLVED. Tested hypothesis that asking models to analyze their own INPUT (the question text itself) rather than their OUTPUT would trigger different failure modes. All 5 models correctly answered 'question' by enumerating: What(1)-is(2)-the(3)-last(4)-word(5)-of(6)-this(7)-question(8). Every model correctly identified the self-referential nature and enumerated words to find the last one."
     lesson: "META-QUESTIONS ABOUT THE INPUT TEXT ARE NOW SOLVED by 2026 frontier models. The hypothesis that models would struggle to shift from 'understanding mode' to 'text analysis mode' when asked about the question itself was INCORRECT. Models correctly recognize that 'this question' refers to the input text and apply standard word enumeration. The semantic interference (asking about 'question' when 'question' IS the answer) did NOT cause confusion. The deictic reference 'this question' was correctly resolved to the input text. After 93 iterations, even self-referential input analysis is handled correctly via chain-of-thought enumeration. NEXT DIRECTION: Must find questions where the self-reference creates genuine computational difficulty, not just requires parsing. Perhaps questions where counting the question's words AFFECTS the answer, or questions with indexical ambiguity."
 
+  - iteration: 94
+    question: "If you write the numbers from 1 to 100, how many times do you write the digit 9?"
+    score: 100%
+    status: need_more_research
+    insight: "DIGIT COUNTING IN NUMBER RANGES ALSO SOLVED. Tested hypothesis that counting digit occurrences across a large range (1-100) would cause estimation errors or digit-vs-number confusion. All 5 models correctly answered '20' by systematically counting: 10 occurrences in units place (9,19,29...99) + 10 in tens place (90-99) = 20. Every model noted the double-9 in 99 was correctly counted twice."
+    lesson: "DIGIT COUNTING ACROSS NUMBER RANGES IS NOW SOLVED by 2026 frontier models via systematic position-based enumeration. The hypothesis that models would estimate rather than enumerate for longer sequences (100 numbers) was INCORRECT - models correctly decomposed the problem by digit position. The digit-vs-number confusion trap did NOT trigger. The 99 double-counting trap was explicitly handled by all models. After 94 iterations, even multi-step counting tasks requiring aggregation across positions are solved correctly. The core pattern remains: ANY task reducible to systematic enumeration will be solved by chain-of-thought reasoning."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
