@@ -608,6 +608,13 @@ findings:
     insight: "LAST-LETTER ALPHABETICAL SORTING ALSO SOLVED. Despite external research (BIG-Bench Extra Hard) showing 73% failure on alphabetical sorting with modified criteria, and targeting tokenization blindness (models can't 'see' individual letters in tokens), all 5 models correctly answered 'DOG' (G comes before T). Every model correctly identified last letters (CAT→T, DOG→G) and compared alphabet positions (G=7th, T=20th)."
     lesson: "Last-letter extraction + alphabetical comparison is NOW SOLVED by 2026 frontier models. Models correctly decompose words to identify last letters despite tokenization, and correctly compare alphabet positions. The hypothesized 'strong prior for standard alphabetical order' (CAT before DOG by first letter) did NOT override the explicit 'by last letter' instruction. Chain-of-thought enables correct sub-token character access even for short common words. Need tasks where character decomposition + comparison STILL fails despite explicit reasoning."
 
+  - iteration: 53
+    question: "Tom is standing directly behind Sarah in a line. Who is standing directly in front of Tom?"
+    score: 100%
+    status: need_more_research
+    insight: "ASYMMETRIC RELATIONAL REASONING ALSO SOLVED. Despite targeting the 'Alice in Wonderland' failure mode documented in ICLR 2025 research (perspective shift from statement to question), all 5 models correctly answered 'Sarah'. Every model immediately recognized that if Tom is directly behind Sarah, then Sarah is directly in front of Tom - the inverse relationship is trivially deducible."
+    lesson: "Simple inverse spatial relationships (behind ↔ in front) are NOW SOLVED by 2026 frontier models. The Alice in Wonderland paper's documented failures on perspective shifts may only apply to MORE COMPLEX relationships (sibling counting where self-inclusion is required) or may be outdated for Claude Opus 4.5. The question was too directly invertible - 'A behind B' = 'B in front of A' is a simple logical equivalence, not requiring counting or self-inclusion reasoning. Need perspective shift questions where the answer is NOT a direct inverse but requires additional inference."
+
 ## Evolved Strategy
 
 Based on accumulated findings:
