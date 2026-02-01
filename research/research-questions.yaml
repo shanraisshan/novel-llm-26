@@ -282,3 +282,14 @@
     research_activity: null
     started_at: "02/02/2026 01:52 AM PST"
     completed_at: "02/02/2026 01:59 AM PST"
+
+  - id: 74
+    question: "If I say 'one', 'won', and 'sun' out loud, how many different sounds do I make?"
+    answer: "2"
+    status: completed
+    folder: research74
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 02:00 AM PST"
+    completed_at: "02/02/2026 02:07 AM PST"
