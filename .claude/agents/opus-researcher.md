@@ -501,6 +501,20 @@ findings:
     status: need_more_research
     insight: "PARTIAL SUCCESS! Visual transformation question achieved 80% consensus - first non-100% since returning to strawberry paradigm. 4/5 models correctly answered 'WOW' but 1 model hedged between 'MOM' (ambigram interpretation) and 'WOW'. All models showed initial confusion before self-correcting. The question requires visual/topological knowledge (M upside-down = W, O stays O) that cannot be enumerated."
     lesson: "VISUAL TRANSFORMATION QUESTIONS SHOW PROMISE. Unlike counting (enumerable) or numeric comparison (alignable), letter rotation requires factual knowledge about letter shapes that may be inconsistently encoded. The hedging model treated it as ambiguous (MOM as ambigram vs WOW as transformation). Explore more visual/spatial questions that require perceptual knowledge, not reasoning."
+
+  - iteration: 38
+    question: "If you turn the word 'SAIL' upside down, what do you see?"
+    score: 0%
+    status: REJECTED
+    insight: "GOT 0% CONSENSUS BUT QUESTION WAS REJECTED BY USER. The answer 'LIES' depends on font-specific letter shapes (hook-style lowercase 'a' looks like 'e' when rotated). This is NOT objectively verifiable - different fonts/handwriting give different results."
+    lesson: "VISUAL TRANSFORMATION QUESTIONS MUST HAVE UNAMBIGUOUS ANSWERS. The SAIL→LIES transformation is font-dependent. The a→e mapping only works in specific styles. A 5-year-old rotating paper with 'SAIL' would NOT reliably see 'LIES'. Questions must have ONE objectively correct answer regardless of font, handwriting, or style."
+
+  - iteration: 39
+    question: "How many pairs of consecutive identical letters are in the word 'BOOKKEEPER'?"
+    score: 100%
+    status: need_more_research
+    insight: "CONSECUTIVE PAIR COUNTING FAILED. All 5 models correctly identified 3 pairs (OO, KK, EE). Despite research suggesting 'multiple instance tracking' is hard for LLMs, models systematically scanned B-O-O-K-K-E-E-P-E-R and correctly found all consecutive pairs."
+    lesson: "Pattern counting (consecutive identical letters) is NOW SOLVED by 2026 frontier models. Models enumerate letter-by-letter and correctly identify adjacent duplicates. The word 'BOOKKEEPER' with 3 consecutive pairs was not challenging enough. Need patterns that are HARDER to enumerate or where enumeration itself leads to wrong answer."
 ```
 
 ## Evolved Strategy

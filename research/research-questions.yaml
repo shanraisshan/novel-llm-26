@@ -373,6 +373,17 @@ questions:
     status: completed
     folder: research38
     score: 0
-    research_status: complete
+    research_status: rejected
+    rejection_reason: "SAIL→LIES transformation is ambiguous and font-dependent. The a→e mapping is approximate, not definitive. Does not meet strawberry criteria for clear, unambiguous human verification."
     started_at: "01/02/2026 10:54 AM PST"
     completed_at: "01/02/2026 11:01 AM PST"
+
+  - id: 39
+    question: "How many pairs of consecutive identical letters are in the word 'BOOKKEEPER'?"
+    answer: "3"
+    status: completed
+    folder: research39
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 11:45 AM PST"
+    completed_at: "01/02/2026 11:50 AM PST"
