@@ -469,3 +469,14 @@
     research_activity: null
     started_at: "02/02/2026 04:12 AM PST"
     completed_at: "02/02/2026 04:16 AM PST"
+
+  - id: 91
+    question: "I have a red ball in my left hand and a blue ball in my right hand. I put the ball in my left hand into a box. What color is the ball in the box?"
+    answer: "Red"
+    status: completed
+    folder: research91
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 04:17 AM PST"
+    completed_at: "02/02/2026 04:25 AM PST"
