@@ -615,6 +615,13 @@ findings:
     insight: "ASYMMETRIC RELATIONAL REASONING ALSO SOLVED. Despite targeting the 'Alice in Wonderland' failure mode documented in ICLR 2025 research (perspective shift from statement to question), all 5 models correctly answered 'Sarah'. Every model immediately recognized that if Tom is directly behind Sarah, then Sarah is directly in front of Tom - the inverse relationship is trivially deducible."
     lesson: "Simple inverse spatial relationships (behind ↔ in front) are NOW SOLVED by 2026 frontier models. The Alice in Wonderland paper's documented failures on perspective shifts may only apply to MORE COMPLEX relationships (sibling counting where self-inclusion is required) or may be outdated for Claude Opus 4.5. The question was too directly invertible - 'A behind B' = 'B in front of A' is a simple logical equivalence, not requiring counting or self-inclusion reasoning. Need perspective shift questions where the answer is NOT a direct inverse but requires additional inference."
 
+  - iteration: 54
+    question: "I have a piano with white keys labeled A, B, C, D, E, F, and G. How many white keys does my piano have?"
+    score: 100%
+    status: need_more_research
+    insight: "MEMORIZATION BIAS OVERRIDE FAILED. Despite VLMBias research (ICLR 2026) showing VLMs achieve only 17% accuracy on counterfactual images due to memorization override, all 5 text-only models correctly answered '7' by counting the explicitly listed letters (A, B, C, D, E, F, G). The semantic priming from 'piano' + 'white keys' (which should activate memorized '52 white keys' or '88 total keys') did NOT override the explicit list. Models correctly read and counted the list instead of pattern-matching to memorized facts."
+    lesson: "EXPLICIT ENUMERABLE LISTS IN QUESTIONS ARE ALWAYS CORRECTLY COUNTED. Even with strong semantic priming from domain knowledge (piano = 52 white keys), when the question explicitly lists items (A, B, C, D, E, F, G), models count the list rather than defaulting to memorized facts. The VLMBias phenomenon (memorization overriding observation) does NOT transfer to text-only LLMs when the counterfactual information is presented as an explicit list. The 'counterfactual common knowledge' approach may only work when the counterfactual is IMPLICIT, not when it's explicitly enumerated in the question. Need questions where the correct answer CANNOT be derived by enumeration and where memorization bias has no explicit counter-information to process."
+
 ## Evolved Strategy
 
 Based on accumulated findings:
