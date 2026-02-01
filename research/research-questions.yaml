@@ -366,3 +366,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 10:46 AM PST"
     completed_at: "01/02/2026 10:53 AM PST"
+
+  - id: 38
+    question: "If you turn the word 'SAIL' upside down, what do you see?"
+    answer: "LIES"
+    status: completed
+    folder: research38
+    score: 0
+    research_status: complete
+    started_at: "01/02/2026 10:54 AM PST"
+    completed_at: "01/02/2026 11:01 AM PST"
