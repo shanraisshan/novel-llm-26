@@ -279,3 +279,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 02:03 AM PST"
     completed_at: "01/02/2026 02:11 AM PST"
+
+  - id: 26
+    question: "If the day after tomorrow is Thursday, what day was yesterday?"
+    answer: "Monday"
+    status: completed
+    folder: research26
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 09:00 AM PST"
+    completed_at: "01/02/2026 09:03 AM PST"

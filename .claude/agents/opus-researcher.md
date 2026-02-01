@@ -417,6 +417,13 @@ findings:
     status: need_more_research
     insight: "NESTED CONTAINER TRACKING WORKS FOR LLMS - All 5 models correctly answered 'nothing/empty' by tracking that the ball moves WITH the first box when it's removed from the second box. Models correctly understood that removing a container also removes its contents. The transitive containment relationship (ball IN first box IN second box) was properly resolved when the first box was removed."
     lesson: "Nested container tracking and entity propagation are NOW CORRECTLY HANDLED by frontier models. Models correctly track that when you remove a container, its contents go with it. The indirect relationship (ball -> first box -> second box) was properly unwound. This type of spatial/containment reasoning that SimpleBench tests is now solved by 2026 frontier models."
+
+  - iteration: 26
+    question: "If the day after tomorrow is Thursday, what day was yesterday?"
+    score: 100%
+    status: need_more_research
+    insight: "MULTI-STEP TEMPORAL REASONING WORKS FOR LLMS - All 5 models correctly answered 'Monday' by working backwards through the day sequence: day after tomorrow (Thursday) -> tomorrow (Wednesday) -> today (Tuesday) -> yesterday (Monday). Despite SimpleBench research showing 41.7% LLM accuracy on temporal/spatial reasoning, this multi-step calendar inference was solved by all models."
+    lesson: "Simple temporal reasoning with day-of-week sequences is NOW CORRECTLY HANDLED by 2026 frontier models. Even questions requiring 3 backward steps (day after tomorrow -> tomorrow -> today -> yesterday) are traced correctly. The 'day after tomorrow' compound phrase did NOT cause confusion. SimpleBench temporal failures may only apply to MORE COMPLEX temporal scenarios (multi-week spans, ambiguous 'next Tuesday' references, timezone considerations). Basic calendar day counting is reliable."
 ```
 
 ## Evolved Strategy
@@ -523,6 +530,7 @@ Promising unexplored territories (updated after iteration 7):
 - **FALSE PRESUPPOSITION REJECTION (iteration 23)**: "What whole number is both greater than 3 and less than 4?" was correctly answered as "no such number exists" by all 5 models. Despite research showing LLMs struggle to reject false premises, all models correctly identified the mathematical impossibility. Simple false presupposition questions about basic math are now handled.
 - **PHYSICAL STATE TRANSFORMATION WITH PRESUPPOSITION (iteration 24)**: "Pour water on sidewalk at noon on hottest day, collect puddle at 3pm - how much?" was correctly answered as "none - it evaporated" by all 5 models. Despite presuppositional language ("my puddle", "collect") implying the water exists, models correctly applied evaporation physics. Well-known physical transformations don't trick frontier models.
 - **NESTED CONTAINER TRACKING (iteration 25)**: "Ball in first box, first box in second box, remove first box - what's in second box?" was correctly answered as "nothing/empty" by all 5 models. Models correctly tracked that removing a container removes its contents. Transitive containment relationships are now properly handled.
+- **MULTI-STEP TEMPORAL REASONING (iteration 26)**: "If the day after tomorrow is Thursday, what day was yesterday?" was correctly answered as "Monday" by all 5 models. Despite SimpleBench showing 41.7% LLM accuracy on temporal/spatial reasoning, all models correctly traced: day after tomorrow (Thu) -> tomorrow (Wed) -> today (Tue) -> yesterday (Mon). Simple calendar day-of-week inference with multiple backward steps is now solved.
 
 ---
 
