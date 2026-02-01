@@ -356,3 +356,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 10:39 AM PST"
     completed_at: "01/02/2026 10:45 AM PST"
+
+  - id: 37
+    question: "If you turn the word 'MOM' upside down, what do you see?"
+    answer: "WOW"
+    status: completed
+    folder: research37
+    score: 80
+    research_status: need_more_research
+    started_at: "01/02/2026 10:46 AM PST"
+    completed_at: "01/02/2026 10:53 AM PST"

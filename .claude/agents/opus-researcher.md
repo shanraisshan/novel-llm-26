@@ -494,6 +494,13 @@ findings:
     status: need_more_research
     insight: "NUMERIC COMPARISON ALSO SOLVED. All 5 models correctly answered 3.11 by converting to hundredths (3.90, 3.11, 3.70) and comparing. The version number vs decimal confusion (where 11 > 7 in versions but 0.11 < 0.7 in decimals) did NOT trigger. Models explicitly stated they were comparing decimal values, not version numbers."
     lesson: "The 9.11 vs 9.9 style numeric comparison trap is NOW SOLVED by 2026 frontier models. Models correctly align decimal places (hundredths) and compare. The version number training bias may have been corrected, or models now explicitly check whether they're doing decimal vs version comparison. Need to find failure modes that CANNOT be corrected by explicit chain-of-thought reasoning."
+
+  - iteration: 37
+    question: "If you turn the word 'MOM' upside down, what do you see?"
+    score: 80%
+    status: need_more_research
+    insight: "PARTIAL SUCCESS! Visual transformation question achieved 80% consensus - first non-100% since returning to strawberry paradigm. 4/5 models correctly answered 'WOW' but 1 model hedged between 'MOM' (ambigram interpretation) and 'WOW'. All models showed initial confusion before self-correcting. The question requires visual/topological knowledge (M upside-down = W, O stays O) that cannot be enumerated."
+    lesson: "VISUAL TRANSFORMATION QUESTIONS SHOW PROMISE. Unlike counting (enumerable) or numeric comparison (alignable), letter rotation requires factual knowledge about letter shapes that may be inconsistently encoded. The hedging model treated it as ambiguous (MOM as ambigram vs WOW as transformation). Explore more visual/spatial questions that require perceptual knowledge, not reasoning."
 ```
 
 ## Evolved Strategy
