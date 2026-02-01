@@ -458,3 +458,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 12:07 PM PST"
     completed_at: "01/02/2026 12:11 PM PST"
+
+  - id: 47
+    question: "Spell the word 'HOSPITAL' backwards."
+    answer: "LATIPSOH"
+    status: completed
+    folder: research47
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 01:57 PM PST"
+    completed_at: "01/02/2026 01:59 PM PST"

@@ -564,6 +564,13 @@ findings:
     status: need_more_research
     insight: "SCOPE AMBIGUITY DID NOT TRIGGER. All 5 models correctly answered 'No' by reasoning: no=2 letters, 2 is not more than 4, therefore 'No' is self-consistent. The hoped-for scope confusion (models interpreting 'your answer' as their full response) DID NOT OCCUR. Models correctly focused on the yes/no answer word only."
     lesson: "SCOPE AMBIGUITY IS NOT RELIABLY TRIGGERABLE with explicit self-referential questions. Modern 2026 models correctly interpret 'your answer' as the constrained answer (yes/no), not their full response. The 20% success in iteration 13 may have been an artifact of earlier model behavior that has since been trained away. Self-referential output questions are NO LONGER a reliable failure mode. Need to explore COMPLETELY DIFFERENT approaches: (1) Questions requiring truly physical/visual knowledge, (2) Questions with genuine ambiguity that humans resolve consistently but LLMs don't, (3) Questions about real-world processes that require embodied understanding."
+
+  - iteration: 47
+    question: "Spell the word 'HOSPITAL' backwards."
+    score: 100%
+    status: need_more_research
+    insight: "BACKWARD SPELLING ALSO SOLVED BY 2026 FRONTIER MODELS. All 5 models correctly answered 'LATIPSOH'. Despite external research (Peripheral Creative study Dec 2025) showing 52% failure rate on backward spelling and only 25% accuracy for 7+ letter words, all models correctly enumerated H-O-S-P-I-T-A-L and reversed it letter by letter. The tokenization-based reversal errors (reversing tokens instead of characters) did NOT manifest."
+    lesson: "CHARACTER-LEVEL REVERSAL is now SOLVED by chain-of-thought enumeration. Models explicitly list out letters (H-O-S-P-I-T-A-L) and then reverse the sequence. The 2025 research showing 52% failure may be OUTDATED for 2026 frontier models like Claude Opus 4.5, or those studies tested less capable models. The tokenization blindness that theoretically should cause reversal errors is BYPASSED by explicit letter enumeration. Need to find tasks that CANNOT be solved by enumerate-then-transform approaches."
 ```
 
 ## Evolved Strategy
