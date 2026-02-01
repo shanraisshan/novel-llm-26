@@ -839,6 +839,13 @@ findings:
     insight: "BLUEBERRY B-COUNTING ALSO SOLVED. Despite documented GPT-5 failures on this exact question in August 2025 (saying 3 instead of 2), all 5 2026 models correctly answered 2. Each model enumerated b-l-u-e-b-e-r-r-y and correctly identified b at positions 1 and 5."
     lesson: "The 'blueberry has 3 b's' bug has been patched in 2026 frontier models. Like strawberry before it, this viral failure mode became training signal. After 85 iterations, ALL simple character counting tasks are solved via chain-of-thought enumeration. The research must pivot to question types that CANNOT be solved by enumeration - perhaps questions requiring physical intuition, embodied cognition, or emergent visual properties that truly cannot be extracted from text training."
 
+  - iteration: 86
+    question: "What is the middle letter of the word 'BIRD'?"
+    score: 100%
+    status: need_more_research
+    insight: "EVEN-LENGTH MIDDLE LETTER QUESTION ALSO SOLVED. Despite hypothesizing that models would fail to recognize that 4-letter words have no single middle letter (falling between I and R), all 5 models correctly identified that BIRD has 4 letters = even number = no single middle. All models gave the correct answer that I and R are the two middle letters."
+    lesson: "PREMISE REJECTION FOR CHARACTER-LEVEL QUESTIONS IS NOW SOLVED. Unlike mathematical false premises (iteration 23), we hypothesized character-level premise rejection (no middle letter for even-length words) might be harder due to tokenization. INCORRECT - models correctly apply the even/odd rule: even-length words have two middle letters, not one. The hypothesis that 'premise acceptance bias' would override correct reasoning was wrong. Models correctly recognize when questions have no valid single answer and provide the proper explanation. After 86 iterations, even edge cases combining character-level analysis with premise rejection are handled correctly via chain-of-thought reasoning."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
