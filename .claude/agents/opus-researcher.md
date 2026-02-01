@@ -678,6 +678,13 @@ findings:
     insight: "IRREGULAR PLURAL RECOGNITION ALSO SOLVED. All 5 models correctly answered 'plural', immediately recognizing TEETH as the irregular plural form of TOOTH. Every model explained the vowel mutation pattern (tooth→teeth like foot→feet, goose→geese). The hypothesized failure modes (tokenization hiding grammatical number, morphological blindness) did NOT manifest."
     lesson: "GRAMMATICAL NUMBER RECOGNITION FOR IRREGULAR PLURALS IS NOW SOLVED by 2026 frontier models. Models have robust morphological knowledge of common irregular plurals in English. The tooth/teeth relationship is well-represented in training data. Simple grammatical questions about singular/plural are not challenging. Need questions that test MORE OBSCURE linguistic knowledge or where the grammatical property is less obvious (e.g., mass nouns, collective nouns, Latin/Greek plurals like 'data', 'criteria', 'phenomena')."
 
+  - iteration: 63
+    question: "Does the word 'MISSISSIPPI' have an odd or even number of the letter 'S'?"
+    score: 100%
+    status: need_more_research
+    insight: "TWO-STAGE REASONING (COUNTING + PARITY) ALSO SOLVED. Despite targeting the Zero-Error Horizon parity weakness documented in arXiv:2601.15714v1 (showing GPT-5.2 fails binary parity at 5 characters), all 5 models correctly answered 'Even' by: (1) enumerating M-I-S-S-I-S-S-I-P-P-I, (2) counting 4 S's at positions 3,4,6,7, (3) correctly determining 4 is even. The hypothesized compounding errors (miscounting + parity confusion) did NOT manifest."
+    lesson: "PARITY DETERMINATION ON NATURAL LANGUAGE COUNTS IS NOW SOLVED by 2026 frontier models. The ZEH paper's parity failures on binary strings (like '11000') do NOT transfer to natural language questions about letter counts. The two-stage task (count letters, then determine odd/even) is handled correctly via chain-of-thought enumeration followed by simple division check (4/2=2, no remainder). The 'MISSISSIPPI' word with complex SS-SS pattern was not challenging enough - models correctly grouped and counted despite tokenization. Need questions where: (1) The parity is embedded more subtly, (2) The counting itself is ambiguous, (3) The enumeration method leads to wrong count, or (4) Completely different failure modes beyond counting/parity."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
