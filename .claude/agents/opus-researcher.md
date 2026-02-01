@@ -790,6 +790,13 @@ findings:
     insight: "PERSPECTIVE/SPATIAL REASONING QUESTION ALSO SOLVED. All 5 models correctly answered 'your left' by reasoning: when two people face each other, their left/right are mirrored, so the speaker's right hand appears on the listener's left side. Despite the hypothesis that LLMs lack embodied spatial experience, they correctly applied the 'mirror rule' for facing positions."
     lesson: "PERSPECTIVE-SHIFT QUESTIONS DO NOT BREAK LLMS. The assumption that LLMs lack 'embodied experience' and therefore cannot reason about spatial perspectives was INCORRECT. Models have learned the mirroring rule (when facing someone, their right is your left) from text training and apply it correctly. This is NOT a genuine architectural limitation - it's a learned rule like any other. Spatial/perspective reasoning questions that can be solved by applying explicit rules (not visual simulation) are handled correctly. After 78 iterations, we must conclude that virtually ALL rule-based reasoning is now solved by frontier LLMs."
 
+  - iteration: 79
+    question: "How many times does the digit sequence '11' appear in the number 11111?"
+    score: 100%
+    status: need_more_research
+    insight: "OVERLAPPING PATTERN COUNTING ALSO SOLVED. Despite targeting the ZEH paper's finding that GPT-5.2 fails parity at 5 characters due to sequential state tracking limitations, all 5 models correctly answered '4' by systematically checking each consecutive pair: positions 1-2, 2-3, 3-4, 4-5. Every model explicitly understood that overlapping occurrences should be counted."
+    lesson: "OVERLAPPING PATTERN COUNTING IS NOW SOLVED by 2026 frontier models. The hypothesis that overlapping substring counting requires the same sequential state tracking as parity (which fails at ZEH=4) was INCORRECT. Models correctly enumerate all possible starting positions for a 2-character sequence in a 5-character string (5-2+1=4 positions) and verify each. The key difference: pattern matching at each position is a VERIFIABLE step, while parity requires maintaining a RUNNING state. Chain-of-thought transforms sequential problems into enumeration problems. After 79 iterations, we must conclude that ANY problem reducible to position enumeration is solved."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
