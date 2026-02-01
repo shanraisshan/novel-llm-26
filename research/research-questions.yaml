@@ -326,3 +326,14 @@
     research_activity: null
     started_at: "02/02/2026 02:26 AM PST"
     completed_at: "02/02/2026 02:32 AM PST"
+
+  - id: 78
+    question: "If I'm facing you and I raise my right hand, which side of YOUR field of vision is my hand on - your left or your right?"
+    answer: "Your left"
+    status: completed
+    folder: research78
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 02:34 AM PST"
+    completed_at: "02/02/2026 02:40 AM PST"

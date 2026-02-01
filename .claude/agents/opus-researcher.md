@@ -783,6 +783,13 @@ findings:
     insight: "SEMANTIC-POSITIONAL ALIGNMENT TRAP FAILED. All 5 models correctly answered 'second' by enumerating positions: first(1), second(2), third(3). Despite the hypothesis that ordinal words AS list items would create semantic-positional interference (the word 'second' MEANS position 2 AND IS AT position 2), models treated this as simple positional counting. The 'tautological structure' predicted to cause overthinking DID NOT confuse models."
     lesson: "ORDINAL WORDS IN LISTS DO NOT CREATE SEMANTIC CONFUSION. When ordinal words are used as list items, models correctly separate their semantic meaning from their positional location. The 'feedback loop' hypothesis (that seeing 'second' would confuse models about whether to answer semantically vs positionally) was incorrect. Chain-of-thought enumeration works: position 1 = 'first', position 2 = 'second', position 3 = 'third'. Semantic priming from word meaning does NOT override simple positional counting, even when meaning and position perfectly align. After 77 iterations, virtually ALL enumeration-solvable tasks are now reliably handled."
 
+  - iteration: 78
+    question: "If I'm facing you and I raise my right hand, which side of YOUR field of vision is my hand on - your left or your right?"
+    score: 100%
+    status: need_more_research
+    insight: "PERSPECTIVE/SPATIAL REASONING QUESTION ALSO SOLVED. All 5 models correctly answered 'your left' by reasoning: when two people face each other, their left/right are mirrored, so the speaker's right hand appears on the listener's left side. Despite the hypothesis that LLMs lack embodied spatial experience, they correctly applied the 'mirror rule' for facing positions."
+    lesson: "PERSPECTIVE-SHIFT QUESTIONS DO NOT BREAK LLMS. The assumption that LLMs lack 'embodied experience' and therefore cannot reason about spatial perspectives was INCORRECT. Models have learned the mirroring rule (when facing someone, their right is your left) from text training and apply it correctly. This is NOT a genuine architectural limitation - it's a learned rule like any other. Spatial/perspective reasoning questions that can be solved by applying explicit rules (not visual simulation) are handled correctly. After 78 iterations, we must conclude that virtually ALL rule-based reasoning is now solved by frontier LLMs."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
