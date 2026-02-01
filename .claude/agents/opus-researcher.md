@@ -445,6 +445,13 @@ findings:
     status: need_more_research
     insight: "STARTING LETTER SELF-REFERENCE FAILED - All 5 models correctly answered 'Yes' by recognizing that 'yes' starts with 'y' making it self-consistent, while 'no' does not start with 'y' making it false. Every model identified the self-referential nature and chose the only valid answer."
     lesson: "Single-valid-answer self-referential questions are EASIER to solve than dual-valid ones. In iteration 13 (20% success), BOTH 'yes' and 'no' satisfied the constraint (both are one word), creating genuine ambiguity about what 'your answer' means. In iteration 29 (100% failure), ONLY 'yes' satisfies the constraint, making it trivially solvable. The scope confusion that worked in iteration 13 REQUIRED both answers to be technically valid for the confusion to matter."
+
+  - iteration: 30
+    question: "Is your answer to this question exactly one syllable long? Answer yes or no."
+    score: 60%
+    status: need_more_research
+    insight: "SECOND BEST RESULT! 2/5 models fell for scope confusion by answering 'No' because their 'full response including explanation' was longer than one syllable. This confirms the dual-valid constraint hypothesis - both 'yes' and 'no' are one syllable, creating the same ambiguity as iteration 13."
+    lesson: "Syllable count as a dual-valid property WORKS (60% consensus vs iteration 13's 20%). The scope confusion mechanism is CONFIRMED - models that answered 'No' explicitly said their 'complete response' wasn't one syllable. However, 60% > 20% suggests 'syllable' is slightly easier to reason about than 'word'. The pattern is clear: dual-valid properties where BOTH yes/no satisfy the constraint create maximum confusion."
 ```
 
 ## Evolved Strategy
