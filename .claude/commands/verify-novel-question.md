@@ -21,14 +21,14 @@ STATE_INTEGRATION:
 steps:
   - step: 1
     action: Read pending question from state
-    file: research/research-state.yaml
+    file: research/research-questions.yaml
     select: question where status = "pending" OR status = "in_progress"
     extract: [id, question, folder]
     note: Research folder already exists (created by generate phase)
 
   - step: 2
     action: Update question status to in_progress
-    file: research/research-state.yaml
+    file: research/research-questions.yaml
     change: questions[id].status = "in_progress"
 
   - step: 3
@@ -57,7 +57,7 @@ steps:
     CRITICAL:
       - Pass the ACTUAL question text directly in the prompt
       - DO NOT reference a question.md file
-      - Use the question string from research-state.yaml
+      - Use the question string from research-questions.yaml
       - Use FULL ABSOLUTE file paths
 
   - step: 4
@@ -90,14 +90,14 @@ steps:
 
   - step: 7
     action: Update question status and score
-    file: research/research-state.yaml
+    file: research/research-questions.yaml
     updates:
       - questions[id].status = "completed"
       - questions[id].score = extracted_confidence_score
 
   - step: 8
     action: Update workflow state
-    file: research/research-state.yaml
+    file: research/research-workflow-state.yaml
     updates:
       workflow.current_phase: "evaluate"
       workflow.last_completed_phase: "verify"
@@ -108,7 +108,7 @@ steps:
 
 ```yaml
 principles:
-  automatic_question_pickup: reads pending question from research-state.yaml
+  automatic_question_pickup: reads pending question from research-questions.yaml
   folder_already_exists: created by generate phase
   simple_answering: each agent answers naturally like a standard LLM
   no_special_context: agents receive only the question, no research instructions
@@ -119,7 +119,7 @@ principles:
 CRITICAL_question_passing:
   - The question TEXT must be passed DIRECTLY in the agent prompt
   - DO NOT create or reference a question.md file
-  - Extract the question string from research-state.yaml
+  - Extract the question string from research-questions.yaml
   - Include the actual question text in the Task prompt
   - Example: 'Answer this question: "Which word has more letters: FOUR or FIVE?"'
 ```
@@ -143,7 +143,8 @@ agents:
 
 ```yaml
 files:
-  state: research/research-state.yaml
+  workflow_state: research/research-workflow-state.yaml
+  questions: research/research-questions.yaml
   research_folder: research/research{N}/
   answers: research/research{N}/answer[1-5].md
   verifier: research/research{N}/verifier{N}.md

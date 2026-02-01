@@ -30,7 +30,8 @@ steps:
     action: Stage research files
     command: git add research/
     includes:
-      - research/research-state.yaml
+      - research/research-workflow-state.yaml
+      - research/research-questions.yaml
       - research/research{N}/ (new research folders)
       - research/research{N}/research{N}.md (research documentation)
       - research/research{N}/answer1-5.md (researcher answers)
@@ -43,7 +44,9 @@ steps:
 
   - step: 4
     action: Read latest completed question for commit message
-    file: research/research-state.yaml
+    files:
+      - research/research-workflow-state.yaml
+      - research/research-questions.yaml
     extract:
       - id: workflow.current_iteration (or latest completed question id)
       - score: questions[id].score
@@ -73,7 +76,7 @@ steps:
 
   - step: 7
     action: Update workflow state to idle
-    file: research/research-state.yaml
+    file: research/research-workflow-state.yaml
     updates:
       workflow.status: "idle"
       workflow.current_phase: null
@@ -123,7 +126,8 @@ format:
 
 ```yaml
 files:
-  state: research/research-state.yaml
+  workflow_state: research/research-workflow-state.yaml
+  questions: research/research-questions.yaml
   agent: .claude/agents/opus-researcher.md
   research_folder: research/research{N}/
 ```

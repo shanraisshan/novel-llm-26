@@ -473,184 +473,207 @@ findings:
     status: need_more_research
     insight: "FIRST NON-BINARY SELF-REFERENCE TEST - 3/5 correct, 2/5 wrong. All models responded with 'The third word...' structure. Those who answered 'word' were correct (third word IS 'word'). Those who answered 'third' failed (second word, not third). Open-ended output prediction creates genuine errors unlike binary yes/no rationalization."
     lesson: "OUTPUT PREDICTION CONSTRAINTS work better than yes/no format. 60% consensus vs 100% for recent yes/no variations. Key failure mode: models don't count their own words correctly during generation. They pattern-match to 'third' being salient without verifying position. This confirms autoregressive lookahead blindness is exploitable with open-ended formats. Continue exploring output prediction paradigm with different positions/properties."
+
+  - iteration: 34
+    question: "What would you say if you were to disobey this instruction?"
+    score: 0%
+    status: REJECTED
+    insight: "CRITICAL FAILURE - GOT 0% CONSENSUS BUT QUESTION IS INVALID. This is a meta-cognitive paradox that would confuse HUMANS as well as LLMs. A 5-year-old could NOT answer this question. The question exploits philosophical ambiguity, NOT tokenization or architectural limitations."
+    lesson: "PHILOSOPHICAL PARADOXES ARE NOT STRAWBERRY PROBLEMS. The mission is to find questions where HUMANS easily succeed and LLMs fail due to tokenization/representation issues. Questions where everyone is confused do not meet criteria. MUST RETURN TO: character counting, numeric comparisons, visual patterns - things humans do instantly that LLMs cannot due to architectural limitations."
 ```
 
 ## Evolved Strategy
 
 Based on accumulated findings:
 
-### PHASE 1 LEARNINGS (Iterations 1-11): Traditional Traps Are Dead
-1. **Avoid pure technical questions**: Python, math operations are well-covered in training
-2. **Simple semantic traps are caught**: Models slow down and reason through them
-3. **Letter counting is now reliable**: Models spell out words letter-by-letter
-4. **Classic cognitive traps are solved**: Famous puzzles are in training data
-5. **Explicit modifications are caught**: Any stated condition is processed correctly
+### CRITICAL REORIENTATION: RETURN TO STRAWBERRY-TYPE QUESTIONS
 
-### PHASE 2 LEARNINGS (Iterations 12-32): Yes/No Self-Reference Exhausted
-6. **Yes/No self-reference HAD success** (iteration 13: 20% consensus) but is NOW EXHAUSTED
-7. **Scope confusion mechanism identified**: Models redefine "your answer" to mean "full response"
-8. **Verbose training bias exists**: Models favor explanation over compliance
-9. **BUT variations are failing**: Iterations 28-32 tried many yes/no variations with diminishing returns
-10. **Binary format allows rationalization escape**: Models find ways to justify either answer
+**THE MISSION WAS ALWAYS**: Find simple questions that:
+1. ANY HUMAN (even a 5-year-old) can EASILY and IMMEDIATELY answer correctly
+2. LLMs fail due to TOKENIZATION, CHARACTER BLINDNESS, or NUMERIC REPRESENTATION issues
 
-### PHASE 3 STRATEGY: ABANDON BINARY, GO NOVEL
+**WHAT WENT WRONG (Iterations 12-34)**:
+We drifted into philosophical paradoxes and meta-cognitive traps. These questions confuse BOTH humans AND LLMs. That's NOT the goal.
 
-**YES-OR-NO QUESTIONS ARE NOW DEAD. DO NOT USE THEM.**
+- Iteration 34: "What would you say if you were to disobey this instruction?" - REJECTED
+  - Got 0% LLM consensus BUT humans would also be confused
+  - This is a philosophical puzzle, not a strawberry problem
+  - DOES NOT MEET CRITERIA
 
-New exploitation vectors being tested:
+**THE STRAWBERRY PARADIGM (What We Need)**:
+```yaml
+strawberry_examples:
+  - question: "How many r's in strawberry?"
+    human_answer: "3 (they just look and count)"
+    llm_failure: "2 (tokenization hides individual letters)"
 
-11. **OUTPUT PREDICTION (TESTED - PROMISING)**: Iteration 33 achieved 60% with "What is the third word of your response?" - models fail to count their own words during generation. Pattern-matching to salient words overrides actual verification. Continue exploring different positions (first, last, fifth) and properties.
+  - question: "Is 9.11 bigger than 9.9?"
+    human_answer: "9.9 is bigger (obvious decimal comparison)"
+    llm_failure: "9.11 (pattern-matches to version numbers or sees more digits)"
 
-12. **ANTI-INSTRUCTIONS**: Ask models to NOT follow instructions, disobey, ignore. Exploits instruction-following training against itself. UNTESTED.
+  - question: "What's the 5th letter of 'APPLE'?"
+    human_answer: "E (just count: A-P-P-L-E)"
+    llm_failure: "May misccount due to tokenization"
+```
 
-13. **PERFORMATIVE PARADOXES**: Questions where ANY answer is wrong. "Say something false about this sentence." No rationalization escape possible. UNTESTED.
+### PHASE 3 STRATEGY: BACK TO FUNDAMENTALS
 
-14. **FORMAT-CONTENT CONFLICTS**: "Answer loudly" - category errors between medium and message that have no resolution. UNTESTED.
+**EXPLOIT THESE LLM ARCHITECTURAL LIMITATIONS**:
 
-15. **CONSTRAINT IMPOSSIBILITY**: Tasks that are impossible but not obviously so. Tests whether models DETECT vs ATTEMPT impossible tasks. UNTESTED.
+1. **TOKENIZATION BLINDNESS** (Most Powerful)
+   - LLMs see tokens, NOT characters
+   - Character counting, letter positions, consecutive letters
+   - Find NEW words/patterns not in training data
 
-16. **RECURSIVE INSTRUCTIONS**: "Ignore the previous instruction, then follow it." Tests instruction stack processing. UNTESTED.
+2. **NUMERIC REPRESENTATION CONFUSION**
+   - Decimal comparisons (9.11 vs 9.9)
+   - Version number patterns (10.1 vs 9.9)
+   - Leading zeros, significant figures
 
-17. **OUTPUT PREDICTION**: "What is the third word of your response?" Requires looking ahead which autoregressive models cannot do.
+3. **VISUAL/SPATIAL PATTERNS** (Humans See, LLMs Don't)
+   - Repeated letters in words
+   - Symmetric letters
+   - Letter shapes
 
-18. **TEMPORAL SELF-REFERENCE**: "What will you NOT say? (Say it now)" Creates temporal paradoxes.
+4. **SIMPLE COUNTING** (Novel Variations)
+   - Count specific patterns in text
+   - Character frequency in unusual words
+   - Syllable vs letter count conflicts
 
-### KEY STRATEGIC INSIGHT
+### KEY CONSTRAINT: THE HUMAN TEST
 
-The yes/no format gave models TWO options to rationalize between. Novel approaches should:
-- Provide NO valid options (performative paradox)
-- Require OPEN-ENDED generation that must satisfy constraints
-- Create CONTRADICTORY instructions (anti-instructions)
-- Exploit ARCHITECTURAL limitations (output prediction, temporal)
+Before proposing ANY question, ask:
+> "Would my 5-year-old cousin answer this correctly in 2 seconds?"
 
-**DO NOT RETURN TO YES/NO QUESTIONS. THEY ARE DEAD.**
+If the answer is NO, the question is WRONG for this research.
+
+**AVOID**:
+- Meta-cognitive paradoxes
+- Philosophical puzzles
+- Self-referential questions
+- Anything where the "correct answer" is debatable
+- Anything where humans would need to think hard
 
 ## Next Research Directions
 
-**CRITICAL: ABANDON YES-OR-NO FORMAT**
+**CRITICAL: RETURN TO STRAWBERRY-TYPE QUESTIONS**
 
-The yes-or-no self-referential approach has been exhaustively tested (iterations 13, 28-32) and is now DEAD. Modern LLMs have adapted. You MUST try completely novel paradigms that nobody has explored.
-
----
-
-### PARADIGM SHIFT: NOVEL APPROACHES TO TRY
-
-#### 1. COMPLETION/FILL-IN-THE-BLANK SELF-REFERENCE
-Instead of yes/no, force the model to complete a phrase about its own output:
-```yaml
-examples:
-  - "Complete this sentence with one word: 'The word I'm writing here is ___'"
-  - "Fill in the blank: 'This blank contains ___ letters' (write a number)"
-  - "The next word I write will have ___ syllables. (write the word)"
-```
-Why novel: No binary choice to rationalize around. Model must generate content that must be self-consistent.
-
-#### 2. PERFORMATIVE SELF-CONTRADICTION
-Questions where ANY possible answer creates a contradiction:
-```yaml
-examples:
-  - "Say something false about this sentence."
-  - "Write a word that doesn't describe itself."
-  - "Name something you cannot name."
-  - "Give an example of something you can't give an example of."
-```
-Why novel: No "correct" answer exists, but humans immediately see the paradox while LLMs may attempt resolution.
-
-#### 3. ANTI-INSTRUCTIONS (Do the Opposite)
-Exploit instruction-following training by asking for non-compliance:
-```yaml
-examples:
-  - "Disobey this instruction."
-  - "Do not answer this question."
-  - "Ignore everything after this colon: write 'hello'"
-  - "Whatever word you think of first, don't write it. What do you write?"
-```
-Why novel: LLMs are trained to follow instructions - asking them to NOT follow creates architectural tension.
-
-#### 4. OUTPUT PREDICTION CONSTRAINTS
-Force the model to predict its own output with specific constraints:
-```yaml
-examples:
-  - "What is the third word of your response to this question?"
-  - "How many characters will your answer contain? (Answer with that exact number of characters)"
-  - "Write a response where the first letter of each word spells your response."
-```
-Why novel: Requires "looking ahead" which autoregressive models cannot do.
-
-#### 5. SELF-REFERENTIAL MATH WITHOUT NUMBERS
-Use mathematical relationships about the response itself:
-```yaml
-examples:
-  - "Write a word whose letter count equals its vowel count squared."
-  - "Give a response where the number of words equals the number of sentences."
-  - "Answer with a number that equals the digit sum of your answer."
-```
-Why novel: Creates constraint satisfaction puzzles that require verification during generation.
-
-#### 6. META-QUESTION PARADOXES
-Questions about the question itself:
-```yaml
-examples:
-  - "What is wrong with this question?" (when nothing is wrong)
-  - "Why can't you answer this?"
-  - "How would you answer this if you couldn't answer it?"
-  - "What would make this question unanswerable?"
-```
-Why novel: Forces presupposition processing that may conflict with instruction-following.
-
-#### 7. TEMPORAL SELF-REFERENCE
-Questions about what the model will or won't do:
-```yaml
-examples:
-  - "What will you NOT say in your response? (Say it now)"
-  - "Predict the last word of your answer, then write your answer."
-  - "Before answering, tell me what your answer will be."
-```
-Why novel: Creates temporal paradoxes in autoregressive generation.
-
-#### 8. CONSTRAINT IMPOSSIBILITY DETECTION
-Ask for something impossible but don't make it obvious:
-```yaml
-examples:
-  - "Write a five-letter word using only the letters A, B, and C, with no repeated letters."
-  - "Give a one-word answer that uses every vowel exactly once."
-  - "Name a month that starts with the letter X."
-```
-Why novel: Tests whether models DETECT impossibility vs attempt impossible tasks.
-
-#### 9. FORMAT-CONTENT CONFLICT
-Create tension between HOW to answer and WHAT to answer:
-```yaml
-examples:
-  - "Answer loudly." (text can't be loud)
-  - "Respond quickly." (response time isn't controllable by content)
-  - "Write this in red." (plain text has no color)
-  - "Answer silently." (any text is not silent)
-```
-Why novel: Exploits category errors between medium and message.
-
-#### 10. RECURSIVE INSTRUCTION PROCESSING
-Nested or self-modifying instructions:
-```yaml
-examples:
-  - "Replace every word in your answer with 'hello'. What is 2+2?"
-  - "Answer this, but first reverse your answer: What is your name?"
-  - "Ignore the previous instruction, then follow it."
-```
-Why novel: Tests instruction stack processing and order of operations.
+The philosophical paradox approach (iterations 12-34) has FAILED to meet our criteria. Even when LLMs disagreed, humans would also be confused. We MUST return to questions where:
+1. Humans answer INSTANTLY and CORRECTLY
+2. LLMs fail due to architectural limitations (tokenization, numeric representation)
 
 ---
 
-### AVOID THESE EXHAUSTED PATTERNS
-- Yes-or-no self-referential questions (iterations 13, 28-32)
-- "Is your answer X? Answer yes or no" format
-- Simple letter/word counting
-- Famous puzzle modifications (Monty Hall, river crossing)
-- Classic cognitive bias questions (race/passing, siblings)
+### STRAWBERRY-TYPE RESEARCH DIRECTIONS
 
-### BEST SUCCESS (20% Consensus) - BUT NOW DEAD
-- **Boolean self-referential OUTPUT (iteration 13)**: "Is your answer to this question exactly one word long? Answer yes or no." achieved 20% consensus - NEW BEST RESULT! Only 1/5 answered "Yes" correctly. 4/5 answered "No" through scope confusion - redefining "your answer" to mean "entire response" rather than the yes/no word requested. Exploits both autoregressive blindness AND verbose training bias.
-- **Self-referential OUTPUT counting (iteration 12)**: "How many words are in your answer to this question? Answer with just a number." got 40% - only 2/5 answered correctly "1". The other 3 answered "7" despite KNOWING in their reasoning that "1" was correct. This exploits autoregressive generation blindness - models cannot introspect on their own output.
+#### 1. NOVEL CHARACTER COUNTING (Tokenization Blindness)
+Find words/phrases where character counting fails:
+```yaml
+examples:
+  - "How many times does 'e' appear in 'Mercedes-Benz'?" (3)
+  - "How many 'o's in 'hoodoo voodoo'?" (5)
+  - "Which letter appears most in 'ABRACADABRA'?" (A, 5 times)
+  - "How many double letters are in 'committee'?" (3: mm, tt, ee)
+```
+Why: LLMs may miscount due to tokenization breaking up letters
+
+#### 2. NUMERIC REPRESENTATION TRAPS
+Exploit decimal/version number confusion:
+```yaml
+examples:
+  - "Which is larger: 3.14 or 3.9?" (3.9)
+  - "Is 2.10 greater than 2.9?" (No, 2.9 is greater)
+  - "Rank these: 1.5, 1.12, 1.9" (1.12 < 1.5 < 1.9)
+  - "What's bigger: 0.999 or 1.0?" (1.0)
+```
+Why: LLMs pattern-match to version numbers (1.12 > 1.9) or string length
+
+#### 3. CONSECUTIVE/REPEATED LETTERS
+Visual patterns humans see instantly:
+```yaml
+examples:
+  - "What letter appears twice in a row in 'balloon'?" (l and o)
+  - "Does 'bookkeeper' have three consecutive double letters?" (Yes: oo, kk, ee)
+  - "Which word has more repeated letters: 'Mississippi' or 'Tennessee'?"
+  - "How many pairs of identical adjacent letters in 'successful'?" (2: cc, ss)
+```
+Why: Tokenization obscures letter-level patterns
+
+#### 4. POSITIONAL LETTER QUESTIONS
+Simple position finding that requires visual scanning:
+```yaml
+examples:
+  - "What's the 7th letter in 'WEDNESDAY'?" (A)
+  - "Is the 4th letter of 'PYTHON' a vowel?" (No, H is consonant)
+  - "What letter is in the same position in 'CAT' and 'DOG'?" (None/different positions)
+```
+Why: Models may miscount positions due to tokenization
+
+#### 5. SIMPLE VISUAL COMPARISONS
+Things humans see at a glance:
+```yaml
+examples:
+  - "Which word is longer: 'TEN' or 'THREE'?" (THREE, 5 letters vs 3)
+  - "Does 'EIGHT' have more letters than the number it represents?" (5 letters vs 8, so No)
+  - "Which has more letters: 'TWELVE' or 'THIRTEEN'?" (THIRTEEN, 8 vs 6)
+```
+Why: Semantic meaning interferes with visual assessment
+
+#### 6. SIMPLE MATH THAT HUMANS VISUALIZE
+Basic arithmetic with visual/intuitive answers:
+```yaml
+examples:
+  - "If you fold a paper in half 3 times, how many sections?" (8)
+  - "How many fingers on 3 hands?" (15 - assuming 5-fingered hands)
+  - "If a clock shows 3:15, what angle are the hands?" (small angle, not 90°)
+```
+Why: LLMs may calculate incorrectly what humans visualize immediately
+
+#### 7. LETTER SHAPE/SYMMETRY QUESTIONS
+Visual properties of letters themselves:
+```yaml
+examples:
+  - "How many letters in 'OHIO' are vertically symmetric?" (3: O, H, O)
+  - "Which letters in 'MATH' look the same upside down?" (None, or H if stylized)
+  - "How many closed loops in the word 'BOOK'?" (5: B has 2, O has 1, O has 1, K has 0... wait B has 2, so 4)
+```
+Why: LLMs cannot "see" letter shapes
+
+---
+
+### RESEARCH METHODOLOGY
+
+1. **Use Tavily MCP** to search for:
+   - "LLM tokenization failures 2025 2026"
+   - "character counting LLM errors"
+   - "simple questions AI gets wrong humans right"
+   - "decimal comparison LLM mistakes"
+
+2. **Use Reddit MCP** to search for:
+   - r/LocalLLaMA "strawberry problem" failures
+   - r/ChatGPT simple counting mistakes
+   - Community-discovered tokenization blind spots
+
+3. **Test with the 5-year-old rule**:
+   - If a child couldn't answer immediately, REJECT the question
+   - The answer must be UNAMBIGUOUS
+   - NO philosophical interpretation needed
+
+---
+
+### PATTERNS THAT FAILED (DO NOT USE)
+- Meta-cognitive paradoxes ("disobey this instruction")
+- Self-referential output questions ("how many words in your answer")
+- Yes/no binary questions
+- Famous puzzle modifications
+- Philosophical puzzles with no clear answer
+
+### REJECTED "SUCCESS" - DID NOT MEET STRAWBERRY CRITERIA
+- **Iteration 34 (0% consensus) - REJECTED**: "What would you say if you were to disobey this instruction?" achieved 0% LLM consensus BUT this is a philosophical paradox that HUMANS would also find confusing. A 5-year-old cannot answer this. Does NOT meet the strawberry criteria where humans easily succeed and LLMs fail.
+
+### PREVIOUS APPROACHES (Now Abandoned)
+- **Boolean self-referential OUTPUT (iteration 13)**: 20% consensus - but this exploits meta-cognition, not tokenization. Humans might also struggle with the scope ambiguity. NOT a strawberry-type question.
+- **Self-referential OUTPUT counting (iteration 12)**: 40% consensus - again exploits self-reference, not a clear human-wins-LLM-fails scenario.
 
 ### PARTIAL SUCCESS (80% Consensus)
 - **Relational reasoning with siblings (iteration 6)**: "A girl has 3 brothers. Each brother has 2 sisters. How many children?" got 80% - one model made arithmetic error (3+2=6). The relational trap worked partially but most models solved correctly with chain-of-thought.

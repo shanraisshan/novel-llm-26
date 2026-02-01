@@ -1,0 +1,37 @@
+# Research Workflow State
+# This file tracks workflow execution state only
+# Questions are stored separately in research-questions.yaml
+
+workflow:
+  status: idle  # idle | running | completed | error
+  current_phase: null  # generate | verify | evaluate | update_agent | commit | report
+  current_iteration: null  # The research ID being processed
+  last_completed_phase: commit
+  error_message: null
+
+  # Phase definitions for state machine
+  phases:
+    - name: generate
+      description: "Generate novel question via opus-researcher"
+      next: verify
+      command: research-novel-question
+    - name: verify
+      description: "Run 5 parallel answerers + verifier"
+      next: evaluate
+      command: verify-novel-question
+    - name: evaluate
+      description: "Check score and determine research_status"
+      next: update_agent
+      command: null  # inline in execute-workflow
+    - name: update_agent
+      description: "Update opus-researcher.md with findings"
+      next: commit
+      command: null  # inline in execute-workflow
+    - name: commit
+      description: "Commit and push to GitHub"
+      next: report
+      command: commit-research
+    - name: report
+      description: "Display summary and recommend /compact"
+      next: null  # workflow complete
+      command: null  # inline in execute-workflow

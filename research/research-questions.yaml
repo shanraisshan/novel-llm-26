@@ -1,40 +1,6 @@
-# Research State Management
-# This file tracks both questions and workflow execution state
-# The workflow reads and updates this file to ensure continuous execution
-
-workflow:
-  status: idle  # idle | running | completed | error
-  current_phase: null  # generate | verify | evaluate | update_agent | commit | report
-  current_iteration: null  # The research ID being processed
-  last_completed_phase: commit
-  error_message: null
-
-  # Phase definitions for state machine
-  phases:
-    - name: generate
-      description: "Generate novel question via opus-researcher"
-      next: verify
-      command: research-novel-question
-    - name: verify
-      description: "Run 5 parallel answerers + verifier"
-      next: evaluate
-      command: verify-novel-question
-    - name: evaluate
-      description: "Check score and determine research_status"
-      next: update_agent
-      command: null  # inline in execute-workflow
-    - name: update_agent
-      description: "Update opus-researcher.md with findings"
-      next: commit
-      command: null  # inline in execute-workflow
-    - name: commit
-      description: "Commit and push to GitHub"
-      next: report
-      command: commit-research
-    - name: report
-      description: "Display summary and recommend /compact"
-      next: null  # workflow complete
-      command: null  # inline in execute-workflow
+# Research Questions Database
+# This file tracks all questions tested in the research workflow
+# Workflow state is stored separately in research-workflow-state.yaml
 
 questions:
   - id: 1
@@ -366,6 +332,7 @@ questions:
     status: completed
     folder: research34
     score: 0
-    research_status: complete
+    research_status: rejected
+    rejection_reason: "Does not meet strawberry criteria - humans would also be confused by this philosophical paradox. Need questions where humans easily answer but LLMs fail."
     started_at: "01/02/2026 10:08 AM PST"
     completed_at: "01/02/2026 10:14 AM PST"

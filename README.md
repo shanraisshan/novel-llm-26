@@ -27,7 +27,7 @@ The workflow continues automatically until it finds a question that breaks LLMs 
 
 | Step | Phase | Agents/Tools | Description |
 |------|-------|--------------|-------------|
-| 1 | Check State | — | Read `research-state.yaml`, resume or start fresh |
+| 1 | Check State | — | Read `research-workflow-state.yaml` + `research-questions.yaml`, resume or start fresh |
 | 2 | Generate | `opus-researcher` + MCP Tools | Research via Tavily/Reddit, generate novel question |
 | 3 | Verify | 5× `opus-answer` | Each independently answers the question |
 | 4 | Synthesize | `opus-verifier` | Combines answers, calculates consensus score |
@@ -78,17 +78,18 @@ The `opus-researcher` agent uses these tools to:
 
 ```
 research/
-├── research-state.yaml        # Central state machine + all questions
-├── research-status.json       # Quick status: iterations count + status
+├── research-workflow-state.yaml  # Workflow execution state
+├── research-questions.yaml       # All questions database
+├── research-status.json          # Quick status: iterations count + status
 ├── research1/
-│   ├── research1.md           # Question generation research (opus-researcher)
+│   ├── research1.md              # Question generation research (opus-researcher)
 │   ├── previous-research-summary.md  # Context from previous iterations
-│   ├── answer1.md             # LLM Answer 1 (opus-answer)
-│   ├── answer2.md             # LLM Answer 2 (opus-answer)
-│   ├── answer3.md             # LLM Answer 3 (opus-answer)
-│   ├── answer4.md             # LLM Answer 4 (opus-answer)
-│   ├── answer5.md             # LLM Answer 5 (opus-answer)
-│   └── verifier1.md           # Synthesis & consensus score (opus-verifier)
+│   ├── answer1.md                # LLM Answer 1 (opus-answer)
+│   ├── answer2.md                # LLM Answer 2 (opus-answer)
+│   ├── answer3.md                # LLM Answer 3 (opus-answer)
+│   ├── answer4.md                # LLM Answer 4 (opus-answer)
+│   ├── answer5.md                # LLM Answer 5 (opus-answer)
+│   └── verifier1.md              # Synthesis & consensus score (opus-verifier)
 ├── research2/
 │   └── ...
 └── researchN/
@@ -97,9 +98,9 @@ research/
 
 ## State Files
 
-### research-state.yaml
+### research-workflow-state.yaml
 
-The central state file tracks workflow execution and all questions:
+Tracks workflow execution state:
 
 ```yaml
 workflow:
@@ -107,7 +108,13 @@ workflow:
   current_phase: generate | verify | evaluate | update_agent | commit | report
   current_iteration: <number>
   last_completed_phase: <phase_name>
+```
 
+### research-questions.yaml
+
+Stores all questions tested:
+
+```yaml
 questions:
   - id: 8
     question: "A mother has 4 daughters..."

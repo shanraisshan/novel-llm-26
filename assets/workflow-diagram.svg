@@ -35,7 +35,7 @@
   <!-- Step 1: Check State -->
   <rect x="300" y="180" width="300" height="60" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
   <text x="450" y="205" text-anchor="middle" fill="#6366f1" font-size="12" font-weight="bold">STEP 1: Check State</text>
-  <text x="450" y="225" text-anchor="middle" fill="white" font-size="13">Read research-state.yaml</text>
+  <text x="450" y="225" text-anchor="middle" fill="white" font-size="13">Read workflow-state + questions</text>
 
   <!-- Decision Diamond -->
   <polygon points="450,260 530,310 450,360 370,310" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
@@ -151,8 +151,8 @@
   <!-- State files callout -->
   <rect x="620" y="180" width="250" height="100" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" stroke-dasharray="4"/>
   <text x="745" y="200" text-anchor="middle" fill="#64748b" font-size="10" font-weight="bold">STATE FILES</text>
-  <text x="745" y="220" text-anchor="middle" fill="#94a3b8" font-size="9">research-state.yaml</text>
-  <text x="745" y="235" text-anchor="middle" fill="#64748b" font-size="8">workflow + questions</text>
-  <text x="745" y="255" text-anchor="middle" fill="#94a3b8" font-size="9">research-status.json</text>
-  <text x="745" y="270" text-anchor="middle" fill="#64748b" font-size="8">iterations + status</text>
+  <text x="745" y="220" text-anchor="middle" fill="#94a3b8" font-size="9">research-workflow-state.yaml</text>
+  <text x="745" y="235" text-anchor="middle" fill="#64748b" font-size="8">workflow execution</text>
+  <text x="745" y="255" text-anchor="middle" fill="#94a3b8" font-size="9">research-questions.yaml</text>
+  <text x="745" y="270" text-anchor="middle" fill="#64748b" font-size="8">questions database</text>
 </svg>

@@ -21,14 +21,14 @@ STATE_INTEGRATION:
 steps:
   - step: 1
     action: Read state and find last completed question
-    file: research/research-state.yaml
+    file: research/research-questions.yaml
     find: highest id in questions where status = "completed"
     extract: [id, folder, score, research_status]
     output: last_completed_id
 
   - step: 2
     action: Determine next question ID
-    file: research/research-state.yaml
+    file: research/research-questions.yaml
     calculate: max(questions.id) + 1
     output: next_id (N)
 
@@ -102,8 +102,8 @@ steps:
     content: Full research documentation from step 5
 
   - step: 7
-    action: Append new question to state file
-    file: research/research-state.yaml
+    action: Append new question to questions file
+    file: research/research-questions.yaml
     append_to: questions
     format:
       id: N
@@ -115,7 +115,7 @@ steps:
 
   - step: 8
     action: Update workflow state
-    file: research/research-state.yaml
+    file: research/research-workflow-state.yaml
     updates:
       workflow.current_phase: "verify"
       workflow.last_completed_phase: "generate"
@@ -139,7 +139,8 @@ rules:
 
 ```yaml
 files:
-  state: research/research-state.yaml
+  workflow_state: research/research-workflow-state.yaml
+  questions: research/research-questions.yaml
   agent: .claude/agents/opus-researcher.md
   research_folder: research/research{N}/
   research_doc: research/research{N}/research{N}.md

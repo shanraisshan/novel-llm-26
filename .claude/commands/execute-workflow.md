@@ -6,12 +6,12 @@ This command orchestrates the full research workflow using state-based continuat
 
 ```yaml
 CRITICAL_RULES:
-  - ALWAYS read research/research-state.yaml FIRST
+  - ALWAYS read research/research-workflow-state.yaml and research/research-questions.yaml FIRST
   - Check workflow.status and workflow.current_phase
   - If status is "running", RESUME from current_phase
   - If status is "idle", START fresh workflow
   - NEVER stop until workflow.status becomes "idle" after commit
-  - After EACH phase, update the state file BEFORE proceeding
+  - After EACH phase, update the state files BEFORE proceeding
   - This ensures recovery if interrupted
   - Track started_at and completed_at timestamps for each question
 ```
@@ -76,7 +76,9 @@ state_machine:
 steps:
   - step: 1
     action: Read workflow state
-    file: research/research-state.yaml
+    files:
+      - research/research-workflow-state.yaml
+      - research/research-questions.yaml
     extract:
       - workflow.status
       - workflow.current_phase
@@ -91,12 +93,12 @@ steps:
 
   - step: 2
     action: Check for pending questions
-    file: research/research-state.yaml
+    file: research/research-questions.yaml
     check: "any question with status = 'pending'"
     branching:
       if_pending_exists:
         action: |
-          1. Update workflow state:
+          1. Update workflow state in research-workflow-state.yaml:
              - workflow.status = "running"
              - workflow.current_phase = "verify"
              - workflow.current_iteration = pending_question.id
@@ -104,7 +106,7 @@ steps:
           3. IMMEDIATELY goto: PHASE_VERIFY
       if_no_pending:
         action: |
-          1. Update workflow state:
+          1. Update workflow state in research-workflow-state.yaml:
              - workflow.status = "running"
              - workflow.current_phase = "generate"
              - workflow.current_iteration = max(questions.id) + 1
@@ -120,12 +122,12 @@ steps:
       - Create previous-research-summary.md in that folder
       - Launch opus-researcher agent to generate question
       - Write research documentation to research{N}/research{N}.md
-      - Append new question to research-state.yaml with:
+      - Append new question to research-questions.yaml with:
           status: pending
           started_at: current timestamp in format "DD/MM/YYYY HH:MM AM/PM PST"
           completed_at: null
     on_complete:
-      - Update workflow state:
+      - Update workflow state in research-workflow-state.yaml:
           workflow.current_phase: "verify"
           workflow.last_completed_phase: "generate"
       - Write state file
@@ -135,7 +137,7 @@ steps:
   - phase: PHASE_VERIFY
     action: Verify question with 5 answerers
     inline_steps:
-      - Read pending question from research-state.yaml
+      - Read pending question from research-questions.yaml
       - Update question status to "in_progress"
       - Launch 5 parallel opus-answer agents
       - Wait for all answer files to exist
@@ -143,7 +145,7 @@ steps:
       - Extract confidence score from verifier output
       - Update question: status = "completed", score = extracted_score
     on_complete:
-      - Update workflow state:
+      - Update workflow state in research-workflow-state.yaml:
           workflow.current_phase: "evaluate"
           workflow.last_completed_phase: "verify"
       - Write state file
@@ -160,9 +162,9 @@ steps:
         Else:
           set research_status = "need_more_research"
           log: "Score >= 10%. Need harder questions."
-      - Write updated research_status to state file
+      - Write updated research_status to research-questions.yaml
     on_complete:
-      - Update workflow state:
+      - Update workflow state in research-workflow-state.yaml:
           workflow.current_phase: "update_agent"
           workflow.last_completed_phase: "evaluate"
       - Write state file
@@ -180,7 +182,7 @@ steps:
       - Update "Next Research Directions" if needed
       - Write updated opus-researcher.md
     on_complete:
-      - Update workflow state:
+      - Update workflow state in research-workflow-state.yaml:
           workflow.current_phase: "commit"
           workflow.last_completed_phase: "update_agent"
       - Write state file
@@ -190,19 +192,19 @@ steps:
   - phase: PHASE_COMMIT
     action: Commit and push to GitHub
     inline_steps:
-      - Update question's completed_at: current timestamp in format "DD/MM/YYYY HH:MM AM/PM PST"
-      - Update workflow state file:
+      - Update question's completed_at in research-questions.yaml: current timestamp in format "DD/MM/YYYY HH:MM AM/PM PST"
+      - Update workflow state in research-workflow-state.yaml:
           workflow.status: "idle"
           workflow.current_phase: null
           workflow.current_iteration: null
           workflow.last_completed_phase: "commit"
-      - Write state file to disk
+      - Write state files to disk
       - Update research-status.json:
-          - Count total completed questions from research-state.yaml
+          - Count total completed questions from research-questions.yaml
           - Set "iterations" to that count
           - Set "status" to research_status from the current question ("complete" or "need_more_research")
           - Write JSON file: research/research-status.json
-      - git add research/  (this includes research-state.yaml AND research-status.json)
+      - git add research/  (this includes research-workflow-state.yaml, research-questions.yaml AND research-status.json)
       - git add .claude/agents/opus-researcher.md (if modified)
       - Create commit with message: "research(N): [STATUS] score=X%"
       - git push origin main
@@ -260,7 +262,7 @@ examples:
 when_to_set:
   started_at:
     phase: PHASE_GENERATE
-    when: "When creating new question entry in research-state.yaml"
+    when: "When creating new question entry in research-questions.yaml"
     bash_command: 'date +"%d/%m/%Y %I:%M %p PST"'
 
   completed_at:
@@ -279,9 +281,9 @@ MANDATORY_BEHAVIOR:
   - NEVER use the Skill tool to call other commands
   - NEVER stop between phases
   - NEVER wait for user input
-  - ALWAYS update state file before proceeding to next phase
-  - ALWAYS check state file on entry to enable resume
-  - ALWAYS include research-state.yaml in the commit (it's inside research/)
+  - ALWAYS update state files before proceeding to next phase
+  - ALWAYS check state files on entry to enable resume
+  - ALWAYS include research-workflow-state.yaml and research-questions.yaml in the commit (they're inside research/)
   - ALWAYS update research-status.json before commit with iterations count and status
   - ALWAYS set started_at when creating new question (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - ALWAYS set completed_at before final commit (format: "DD/MM/YYYY HH:MM AM/PM PST")
@@ -297,7 +299,7 @@ CONTINUATION_ENFORCEMENT:
     DO NOT output "workflow complete" until PHASE_REPORT finishes.
     DO NOT ask user for confirmation.
     DO NOT pause for any reason.
-    The state file is your checkpoint - update it, then continue.
+    The state files are your checkpoints - update them, then continue.
 ```
 
 ## Recovery Behavior
@@ -305,7 +307,7 @@ CONTINUATION_ENFORCEMENT:
 ```yaml
 recovery:
   on_startup:
-    - Read research/research-state.yaml
+    - Read research/research-workflow-state.yaml
     - If workflow.status == "running":
         Resume from workflow.current_phase
     - If workflow.status == "error":
@@ -323,7 +325,8 @@ recovery:
 
 ```yaml
 files:
-  state: research/research-state.yaml
+  workflow_state: research/research-workflow-state.yaml
+  questions: research/research-questions.yaml
   status: research/research-status.json
   agent: .claude/agents/opus-researcher.md
   research_folder: research/research{N}/
