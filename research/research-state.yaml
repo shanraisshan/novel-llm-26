@@ -329,3 +329,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 09:44 AM PST"
     completed_at: "01/02/2026 09:47 AM PST"
+
+  - id: 31
+    question: "Does your answer to this question contain a vowel? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research31
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 09:49 AM PST"
+    completed_at: "01/02/2026 09:51 AM PST"

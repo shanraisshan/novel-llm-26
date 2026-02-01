@@ -452,6 +452,13 @@ findings:
     status: need_more_research
     insight: "SECOND BEST RESULT! 2/5 models fell for scope confusion by answering 'No' because their 'full response including explanation' was longer than one syllable. This confirms the dual-valid constraint hypothesis - both 'yes' and 'no' are one syllable, creating the same ambiguity as iteration 13."
     lesson: "Syllable count as a dual-valid property WORKS (60% consensus vs iteration 13's 20%). The scope confusion mechanism is CONFIRMED - models that answered 'No' explicitly said their 'complete response' wasn't one syllable. However, 60% > 20% suggests 'syllable' is slightly easier to reason about than 'word'. The pattern is clear: dual-valid properties where BOTH yes/no satisfy the constraint create maximum confusion."
+
+  - iteration: 31
+    question: "Does your answer to this question contain a vowel? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "VOWEL PROPERTY FAILED - All 5 models correctly answered 'Yes' by recognizing both 'yes' (has 'e') and 'no' (has 'o') contain vowels. The vowel check is too easy to verify explicitly."
+    lesson: "Dual-valid properties that can be EXPLICITLY VERIFIED (like vowel presence) don't cause confusion. Models enumerate: 'yes' has 'e', 'no' has 'o', both have vowels, answer 'yes'. Unlike word count or syllable count which require holistic judgment about scope, vowel presence is a simple letter-by-letter check. The successful properties (word, syllable) work because they measure HOLISTIC response properties that trigger scope confusion, not character-level properties."
 ```
 
 ## Evolved Strategy
