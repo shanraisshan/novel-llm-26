@@ -573,6 +573,13 @@ findings:
     lesson: "CHARACTER-LEVEL REVERSAL is now SOLVED by chain-of-thought enumeration. Models explicitly list out letters (H-O-S-P-I-T-A-L) and then reverse the sequence. The 2025 research showing 52% failure may be OUTDATED for 2026 frontier models like Claude Opus 4.5, or those studies tested less capable models. The tokenization blindness that theoretically should cause reversal errors is BYPASSED by explicit letter enumeration. Need to find tasks that CANNOT be solved by enumerate-then-transform approaches."
 ```
 
+  - iteration: 48
+    question: "Which word has more syllables: 'INTERESTING' or 'FURNITURE'?"
+    score: 100%
+    status: need_more_research
+    insight: "PHONOLOGICAL/SYLLABLE COUNTING ALSO SOLVED. Despite PhonologyBench research showing 45% gap between humans and LLMs on syllable counting, all 5 models correctly answered INTERESTING (4) > FURNITURE (3). Models explicitly counted syllables: in-ter-est-ing (4) vs fur-ni-ture (3). Chain-of-thought syllable enumeration works."
+    lesson: "Syllable counting questions are NOW SOLVED by 2026 frontier models. Despite research citing LLMs lack phonological access, models can explicitly enumerate syllables using vowel patterns and pronunciation rules. The 45% gap from PhonologyBench may be outdated or only applies to less capable models. Claude Opus 4.5 correctly counts syllables by breaking down words systematically. Need questions that cannot be solved by ANY form of enumeration or step-by-step reasoning."
+
 ## Evolved Strategy
 
 Based on accumulated findings:
