@@ -270,3 +270,15 @@
     research_activity: null
     started_at: "02/02/2026 01:49 AM PST"
     completed_at: "02/02/2026 01:51 AM PST"
+
+  - id: 73
+    # EVALUATED
+    question: "Is your answer to this question exactly two syllables long? Answer yes or no."
+    answer: "No"
+    status: completed
+    folder: research73
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 01:52 AM PST"
+    completed_at: "02/02/2026 01:59 AM PST"
