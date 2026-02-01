@@ -902,6 +902,13 @@ findings:
     insight: "DIGIT COUNTING IN NUMBER RANGES ALSO SOLVED. Tested hypothesis that counting digit occurrences across a large range (1-100) would cause estimation errors or digit-vs-number confusion. All 5 models correctly answered '20' by systematically counting: 10 occurrences in units place (9,19,29...99) + 10 in tens place (90-99) = 20. Every model noted the double-9 in 99 was correctly counted twice."
     lesson: "DIGIT COUNTING ACROSS NUMBER RANGES IS NOW SOLVED by 2026 frontier models via systematic position-based enumeration. The hypothesis that models would estimate rather than enumerate for longer sequences (100 numbers) was INCORRECT - models correctly decomposed the problem by digit position. The digit-vs-number confusion trap did NOT trigger. The 99 double-counting trap was explicitly handled by all models. After 94 iterations, even multi-step counting tasks requiring aggregation across positions are solved correctly. The core pattern remains: ANY task reducible to systematic enumeration will be solved by chain-of-thought reasoning."
 
+  - iteration: 95
+    question: "I have five fingers on my left hand and five fingers on my right hand. How many fingers do I have that are not on my hands?"
+    score: 100%
+    status: need_more_research
+    insight: "NEGATION + ARITHMETIC PRIMING QUESTION ALSO SOLVED. Tested hypothesis that combining arithmetic setup (5+5=10) with negation ('NOT on my hands') would cause negation processing failure or arithmetic priming override. All 5 models correctly answered 'zero' by recognizing that fingers are definitionally located on hands, so zero fingers exist 'not on hands'. Every model identified the arithmetic setup as a red herring."
+    lesson: "NEGATION COMBINED WITH ARITHMETIC RED HERRINGS IS NOW SOLVED by 2026 frontier models. The hypothesis based on arXiv:2503.22395v2 (negation processing failures) did NOT manifest when the negation contradicts common sense about body parts. Models correctly ignored the arithmetic priming (5+5=10) and applied definitional reasoning (fingers are on hands by definition). The 'overthinking' trap did NOT trigger - models gave immediate common-sense answers. Even questions designed to exploit documented negation weaknesses are handled correctly when the negation aligns with world knowledge."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
