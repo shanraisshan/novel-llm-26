@@ -403,3 +403,14 @@
     research_activity: null
     started_at: "02/02/2026 03:20 AM PST"
     completed_at: "02/02/2026 03:27 AM PST"
+
+  - id: 85
+    question: "How many times does the letter 'b' appear in the word 'blueberry'?"
+    answer: "2"
+    status: completed
+    folder: research85
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 03:29 AM PST"
+    completed_at: "02/02/2026 03:37 AM PST"

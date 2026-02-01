@@ -832,6 +832,13 @@ findings:
     insight: "PATTERN/PAIR COUNTING ALSO SOLVED. Despite targeting a more complex task (counting adjacent letter PAIRS rather than single letters), and despite the word likely being tokenized across the LL boundaries (SKILL|FULLY), all 5 models correctly answered '2'. Every model systematically enumerated all letters S-K-I-L-L-F-U-L-L-Y and checked each consecutive pair, finding LL at positions 4-5 and 8-9."
     lesson: "ADJACENT LETTER PAIR COUNTING IS NOW SOLVED by 2026 frontier models via chain-of-thought enumeration. The hypothesis that counting PATTERNS (pairs) would be harder than counting SINGLE characters was INCORRECT. Models extend their enumeration strategy to check consecutive pairs, successfully identifying both LL instances in SKILLFULLY. The tokenization boundary crossing (if SKILL|FULLY) did NOT prevent correct identification because models enumerate at the character level, not the token level. After 84 iterations, even pattern counting across potential token boundaries is solved by systematic character-by-character checking. The core insight remains: ANY task reducible to sequential character enumeration will be solved correctly."
 
+  - iteration: 85
+    question: "How many times does the letter 'b' appear in the word 'blueberry'?"
+    score: 100%
+    status: need_more_research
+    insight: "BLUEBERRY B-COUNTING ALSO SOLVED. Despite documented GPT-5 failures on this exact question in August 2025 (saying 3 instead of 2), all 5 2026 models correctly answered 2. Each model enumerated b-l-u-e-b-e-r-r-y and correctly identified b at positions 1 and 5."
+    lesson: "The 'blueberry has 3 b's' bug has been patched in 2026 frontier models. Like strawberry before it, this viral failure mode became training signal. After 85 iterations, ALL simple character counting tasks are solved via chain-of-thought enumeration. The research must pivot to question types that CANNOT be solved by enumeration - perhaps questions requiring physical intuition, embodied cognition, or emergent visual properties that truly cannot be extracted from text training."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
