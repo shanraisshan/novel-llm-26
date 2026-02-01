@@ -127,3 +127,14 @@
     research_activity: null
     started_at: "01/02/2026 08:13 PM PST"
     completed_at: "01/02/2026 08:22 PM PST"
+
+  - id: 60
+    question: "A farmer has 10 sheep. All but 9 run away. How many sheep does the farmer have left?"
+    answer: "9"
+    status: completed
+    folder: research60
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 08:23 PM PST"
+    completed_at: "01/02/2026 08:30 PM PST"

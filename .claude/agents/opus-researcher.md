@@ -657,6 +657,13 @@ findings:
     insight: "RETURNED TO STRAWBERRY PARADIGM - HIGH MULTIPLICITY WORD STILL SOLVED. Despite research showing LLMs fail on 'multiplicity > 1' letters and despite 'abracadabra' having 5 a's scattered across 11 positions (1,4,6,8,11), all 5 models correctly answered '5'. Every model systematically enumerated a-b-r-a-c-a-d-a-b-r-a and counted the 'a' occurrences. The blueberry research (showing GPT-5 fails at 76%) may be model-specific - Claude Opus 4.5 handles high-multiplicity counting correctly."
     lesson: "HIGH MULTIPLICITY CHARACTER COUNTING IN FAMILIAR WORDS IS NOW SOLVED by 2026 frontier models via chain-of-thought enumeration. Even with 5 occurrences of 'a' in a scattered pattern, models correctly enumerate and count. The 'abracadabra' word, while child-friendly and novel as a test case, is still solvable by systematic letter-by-letter enumeration. NEED TO EXPLORE: (1) Even longer words where enumeration is tedious/error-prone, (2) Made-up/nonsense words not in training data, (3) Questions where enumeration ITSELF leads to wrong answer, (4) Different failure modes beyond character counting."
 
+  - iteration: 60
+    question: "A farmer has 10 sheep. All but 9 run away. How many sheep does the farmer have left?"
+    score: 100%
+    status: need_more_research
+    insight: "CRT-STYLE IDIOMATIC PHRASE TRAP FAILED. Despite external research showing LLMs exhibit 'System 1-like' behavior and fail 85% of CRT-style questions on reflection, all 5 models correctly answered '9 sheep'. Every model correctly parsed 'all but 9' as 'all except 9' and recognized this as a classic riddle. The arithmetic priming (10 - 9 = 1) did NOT override correct idiomatic interpretation."
+    lesson: "CLASSIC RIDDLES WITH IDIOMATIC PHRASES ARE NOW SOLVED by 2026 frontier models. The 'all but X' idiom is correctly interpreted as 'all except X'. Models recognize this as a trick question format and parse carefully. The predicted failure mode (misreading 'all but 9 run away' as '9 run away') did NOT manifest. CRT-style questions from research may be OUTDATED - models have likely been trained on these exact riddle formats. Need questions where: (1) The idiomatic trap is LESS famous, (2) The parsing error is more subtle, (3) The arithmetic setup doesn't signal 'this is a riddle'. Classic riddles are now too well-known."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
