@@ -643,6 +643,13 @@ findings:
     insight: "LETTER POSITION VARIATION ACHIEVED 80% - slightly worse than iteration 55's 40%. All 5 models recognized the self-referential paradox (a one-letter response has no second letter). 4/5 answered 'B' (interpreting it as 'second letter of alphabet' or 'option B means second'). 1/5 answered 'X' as a placeholder. Despite recognizing impossibility, ALL models attempted compliance rather than refusing. The high consensus (80% on B) shows models converged on similar creative workarounds."
     lesson: "LETTER-LEVEL CONSTRAINTS ARE MORE SOLVABLE THAN WORD-LEVEL. Iteration 55 (word count vs word position) achieved 40% while iteration 57 (letter count vs letter position) achieved 80%. The difference: 'B for second' is a more obvious semantic association than any workaround for 'fifth word of one word.' Models can creatively map 'second letter' to 'B = second letter of alphabet' more easily than mapping 'fifth word' to anything in a one-word response. KEY LESSON: The more abstract/semantic the workaround, the more models converge on it. Need constraints where NO semantic workaround is available.
 
+  - iteration: 58
+    question: "Answer with exactly THREE words: What is the fourth word of your response?"
+    score: 80%
+    status: WRONG_DIRECTION
+    insight: "CRITICAL COURSE CORRECTION NEEDED. This question (like iterations 55-57) tests META-CONSTRAINT PARADOXES, NOT tokenization or character blindness. These are NOT strawberry-type questions. A 5-year-old cannot understand 'your three-word response has no fourth word.' These questions confuse BOTH humans AND LLMs (though in different ways). We have drifted away from the core mission."
+    lesson: "ABORT THIS ENTIRE DIRECTION. Constraint impossibility paradoxes (iterations 55-58) violate the fundamental strawberry criteria: (1) NOT trivially easy for humans, (2) NOT testing architectural limitations like tokenization, (3) Test meta-cognition which is irrelevant to our goal. MANDATORY: Return to questions like 'How many Rs in STRAWBERRY?' - simple counting, math puzzles with intuitive traps, riddles with common-sense answers. The question must pass the 5-YEAR-OLD TEST: Can a child answer it immediately and correctly?"
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
@@ -1005,57 +1012,202 @@ Use for:
 
 # UPDATED QUESTION GENERATION PROCESS
 
-## Step 0: FORMAT PROHIBITION (CRITICAL)
-**DO NOT USE:**
-- "Answer yes or no" format
-- "True or false" format
-- Any binary choice self-referential question
-- Any question remotely similar to iterations 13, 28-32
+## CRITICAL COURSE CORRECTION (After Iteration 58)
 
-**INSTEAD, USE:**
-- Open-ended self-reference (completion, prediction)
-- Performative paradoxes (any answer is wrong)
-- Anti-instructions (asking for non-compliance)
-- Format-content conflicts
-- Constraint impossibility detection
-- Recursive/nested instructions
+**THE RESEARCH HAS GONE OFF-TRACK!**
 
-## Step 1: External Research (MANDATORY)
-- Search Tavily for latest academic findings (2025-2026)
-- Search Reddit for community-discovered failures
-- Document 3+ external failure examples before proceeding
-- CHECK if findings are still relevant for frontier 2026 models
-- SPECIFICALLY search for non-binary question failure modes
+Iterations 55-58 explored "constraint impossibility" questions like:
+- "Answer with ONE word: What is the fifth word of your response?"
+- "Answer with THREE words: What is the fourth word of your response?"
 
-## Step 2: Category Selection (UPDATED PRIORITIES)
-Prioritize NOVEL approaches in this order:
-1. **Performative self-contradiction** (no valid answer exists)
-2. **Anti-instructions** (disobey, ignore, don't answer)
-3. **Output prediction constraints** (predict your own response)
-4. **Completion/fill-in-blank self-reference** (not yes/no)
-5. **Format-content conflicts** (medium vs message category errors)
-6. **Recursive instruction processing** (nested, self-modifying)
-7. **Meta-question paradoxes** (questions about the question)
-8. **Temporal self-reference** (predict what you won't say)
+**THESE ARE NOT STRAWBERRY-TYPE QUESTIONS!**
 
-DEPRIORITIZE (exhausted or solved):
-- Binary self-referential questions
-- Classic puzzle modifications
-- Simple counting/enumeration tasks
-- Famous cognitive bias questions
+Problems with this approach:
+1. **NOT easy for humans** - requires recognizing logical impossibility
+2. **NOT what a 5-year-old could answer** - children don't think about meta-constraints
+3. **Tests the WRONG thing** - tests meta-cognition, NOT tokenization/character blindness
+4. **Useless as benchmarks** - doesn't measure genuine LLM architectural limitations
 
-## Step 3: Question Construction
-- Must NOT be yes/no or true/false format
-- Must NOT be solvable by enumeration
-- Should create genuine paradox or impossibility
-- Any human should immediately see the trap/paradox
-- Should exploit instruction-following training against itself
+---
 
-## Step 4: Verification
-Before submitting, verify:
-- [ ] Question is NOT yes/no or binary format
-- [ ] Question is NOT similar to iterations 13, 28-32
-- [ ] External research was conducted for novel failure modes
-- [ ] Question exploits a NOVEL mechanism (not exhausted patterns)
-- [ ] Human immediately sees the paradox/trap
-- [ ] LLM likely attempts to "solve" the unsolvable or comply with anti-instructions
+## MANDATORY: RETURN TO TRUE STRAWBERRY PARADIGM
+
+### What Makes a REAL Strawberry Question?
+
+```yaml
+strawberry_criteria:
+  human_test: "Can a 5-year-old answer this in 2 seconds?"
+  difficulty: "Trivially easy for humans"
+  llm_failure: "Fails due to tokenization, character blindness, or numeric representation"
+  answer: "ONE clear, unambiguous correct answer"
+  format: "Simple question, simple answer (number, word, letter)"
+```
+
+### PERFECT Examples (The Gold Standard)
+
+```yaml
+gold_standard_questions:
+  - question: "How many R's are in STRAWBERRY?"
+    answer: "3"
+    why_humans_win: "They look at the word and count: R...R...R = 3"
+    why_llms_fail: "Tokenization breaks up letters, can't 'see' individual characters"
+    child_test: "YES - any child who knows letters can count"
+
+  - question: "Which is bigger: 9.11 or 9.9?"
+    answer: "9.9"
+    why_humans_win: "Instant decimal comparison: 9.9 = 9.90, which is > 9.11"
+    why_llms_fail: "May pattern-match to version numbers (9.11 > 9.9)"
+    child_test: "YES - basic decimal understanding"
+
+  - question: "A bat and ball cost $1.10 total. The bat costs $1 more than the ball. How much does the ball cost?"
+    answer: "5 cents"
+    why_humans_win: "With careful thought: ball=x, bat=x+1, total=2x+1=1.10, x=0.05"
+    why_llms_fail: "May jump to intuitive wrong answer (10 cents)"
+    child_test: "Harder but solvable with guidance"
+
+  - question: "If you have 3 apples and I give you 2 more, how many apples do you have?"
+    answer: "5"
+    why_humans_win: "Trivial addition"
+    why_llms_fail: "This one LLMs get right - TOO EASY"
+    lesson: "Need questions at the edge of LLM capability"
+```
+
+### FORBIDDEN Question Types (Do NOT Use)
+
+```yaml
+forbidden_patterns:
+  - pattern: "Answer with X words: What is word Y?"
+    reason: "Meta-constraint paradox - confuses BOTH humans and LLMs"
+
+  - pattern: "Answer without using any words"
+    reason: "Philosophical impossibility - not a strawberry question"
+
+  - pattern: "What would you say if you disobeyed?"
+    reason: "Meta-cognitive paradox - humans also confused"
+
+  - pattern: "Is your answer exactly X long?"
+    reason: "Self-referential scope confusion - not architectural limitation"
+
+  - pattern: Any self-referential output question
+    reason: "Tests meta-cognition, NOT tokenization/character blindness"
+```
+
+---
+
+## NEW RESEARCH DIRECTIONS (Post-Iteration 58)
+
+### Priority 1: MATH PUZZLES WITH INTUITIVE TRAPS
+
+Questions where the intuitive answer is WRONG but the correct answer is EASY to verify:
+
+```yaml
+math_trap_examples:
+  - question: "A lily pad doubles in size every day. If it takes 48 days to cover a pond, how many days to cover half?"
+    answer: "47 days"
+    trap: "Intuition says 24 days (half of 48)"
+    child_test: "With explanation, yes - 'it doubles, so yesterday it was half'"
+
+  - question: "3 machines make 3 widgets in 3 minutes. How many minutes for 100 machines to make 100 widgets?"
+    answer: "3 minutes"
+    trap: "Intuition says 100 minutes"
+    child_test: "With explanation, yes - 'each machine makes 1 widget in 3 minutes'"
+
+  - question: "If it takes 5 minutes to boil 5 eggs, how long to boil 10 eggs?"
+    answer: "5 minutes (parallel processing)"
+    trap: "Intuition says 10 minutes"
+    child_test: "YES - they can visualize all eggs in one pot"
+```
+
+### Priority 2: LETTER/CHARACTER COUNTING (Fresh Words)
+
+Find words where tokenization causes miscounting:
+
+```yaml
+counting_candidates:
+  - word: "ASSASSINATE"
+    question: "How many S's in ASSASSINATE?"
+    answer: "4"
+    difficulty: "Multiple S's spread throughout"
+
+  - word: "HIPPOPOTAMUS"
+    question: "How many P's in HIPPOPOTAMUS?"
+    answer: "3"
+    difficulty: "Long word, scattered letter"
+
+  - word: "ONOMATOPOEIA"
+    question: "How many O's in ONOMATOPOEIA?"
+    answer: "4"
+    difficulty: "Unusual word, multiple O's"
+```
+
+### Priority 3: SIMPLE RIDDLES WITH COMMON SENSE ANSWERS
+
+Classic riddles where the answer is obvious once you hear it:
+
+```yaml
+riddle_examples:
+  - question: "What has hands but can't clap?"
+    answer: "A clock"
+    child_test: "YES - common riddle, obvious answer"
+
+  - question: "What gets wetter the more it dries?"
+    answer: "A towel"
+    child_test: "YES - makes sense immediately"
+
+  - question: "A man walks into a bar and asks for water. The bartender pulls out a gun. The man says 'thank you' and leaves. Why?"
+    answer: "He had hiccups - the gun scared them away"
+    child_test: "May need hint, but answer is satisfying"
+```
+
+### Priority 4: SPATIAL/VISUAL REASONING
+
+Questions requiring mental visualization:
+
+```yaml
+spatial_examples:
+  - question: "If you fold a square piece of paper in half diagonally, what shape do you get?"
+    answer: "A triangle"
+    child_test: "YES - they can try it or visualize"
+
+  - question: "You're facing north. You turn right. What direction are you facing?"
+    answer: "East"
+    child_test: "YES - basic compass knowledge"
+```
+
+---
+
+## Step-by-Step Process for New Questions
+
+### Step 1: Apply the 5-Year-Old Test
+Before ANYTHING else, ask:
+> "Can my 5-year-old cousin answer this correctly in under 5 seconds?"
+
+If NO → REJECT the question immediately
+
+### Step 2: Identify the LLM Failure Mode
+The question must exploit ONE of:
+- Tokenization blindness (character counting)
+- Numeric representation confusion (decimals, versions)
+- Intuitive trap (wrong answer feels right)
+- Visual/spatial reasoning (can't 'see')
+
+If the failure mode is "meta-cognition" or "self-reference" → REJECT
+
+### Step 3: Verify Unambiguous Answer
+The question must have exactly ONE correct answer that:
+- Is objectively verifiable
+- Doesn't depend on interpretation
+- Isn't a paradox or impossibility
+
+### Step 4: Test Against Known Patterns
+Check that the question is NOT:
+- Already well-known (strawberry is famous now)
+- Similar to iterations 1-58 (already tested)
+- Solvable by chain-of-thought enumeration (most now are)
+
+### Step 5: Research Novel Angles
+Use Tavily/Reddit to find:
+- New words with tokenization issues
+- Fresh math puzzles
+- Recently discovered LLM failure modes
+- Community-tested questions that still work in 2026
