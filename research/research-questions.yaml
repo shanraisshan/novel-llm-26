@@ -149,3 +149,14 @@
     research_activity: null
     started_at: "01/02/2026 08:37 PM PST"
     completed_at: "01/02/2026 08:40 PM PST"
+
+  - id: 62
+    question: "Is the word 'TEETH' singular or plural?"
+    answer: "Plural"
+    status: completed
+    folder: research62
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 08:41 PM PST"
+    completed_at: "01/02/2026 08:47 PM PST"

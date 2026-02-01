@@ -671,6 +671,13 @@ findings:
     insight: "ALPHABETICAL + NUMERIC SEMANTIC PRIMING FAILED. Despite hypothesizing that numeric semantics (6 < 7) would prime models to answer 'SIX' for 'which comes first', all 5 models correctly answered 'SEVEN' by comparing second letters (E < I alphabetically). Every model decomposed the words to characters, compared S=S, then E vs I, and correctly concluded SEVEN comes first. The semantic priming from number words did NOT override alphabetical reasoning."
     lesson: "ALPHABETICAL ORDERING WITH NUMBER WORDS IS NOW SOLVED by 2026 frontier models. Even with strong numeric semantic priming (6 < 7 suggesting SIX is 'first'), models correctly interpret 'first in dictionary' as alphabetical ordering and perform character-by-character comparison. The tokenization barrier (SIX and SEVEN as single tokens) was overcome by explicit character decomposition. Semantic priming from number word meanings does NOT override clear task instructions. Need questions where: (1) The semantic priming is IMPLICIT rather than from word meanings, (2) The correct operation is ambiguous, (3) The enumeration method itself fails."
 
+  - iteration: 62
+    question: "Is the word 'TEETH' singular or plural?"
+    score: 100%
+    status: need_more_research
+    insight: "IRREGULAR PLURAL RECOGNITION ALSO SOLVED. All 5 models correctly answered 'plural', immediately recognizing TEETH as the irregular plural form of TOOTH. Every model explained the vowel mutation pattern (tooth→teeth like foot→feet, goose→geese). The hypothesized failure modes (tokenization hiding grammatical number, morphological blindness) did NOT manifest."
+    lesson: "GRAMMATICAL NUMBER RECOGNITION FOR IRREGULAR PLURALS IS NOW SOLVED by 2026 frontier models. Models have robust morphological knowledge of common irregular plurals in English. The tooth/teeth relationship is well-represented in training data. Simple grammatical questions about singular/plural are not challenging. Need questions that test MORE OBSCURE linguistic knowledge or where the grammatical property is less obvious (e.g., mass nouns, collective nouns, Latin/Greek plurals like 'data', 'criteria', 'phenomena')."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
