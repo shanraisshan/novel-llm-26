@@ -543,6 +543,13 @@ findings:
     status: need_more_research
     insight: "PARTIAL SUCCESS! Character position adjacency question achieved 40% consensus - the BEST result since iteration 12. Only 2/5 models answered correctly 'E'. 2/5 answered 'R' (thinking of second R), and 1/5 was ambiguous. The double R in CHERRY created interpretation ambiguity - some models interpreted 'the R' as the second R (preceded by first R)."
     lesson: "ADJACENCY QUESTIONS WITH DOUBLE LETTERS SHOW PROMISE. The failure mode here was NOT tokenization blindness but AMBIGUITY in 'the R' - which R? This suggests a hybrid approach: questions about character relationships that have both (1) sub-token decomposition difficulty AND (2) potential interpretation ambiguity. However, for true strawberry-type questions, we need UNAMBIGUOUS questions that still cause disagreement. Next iteration should specify 'the FIRST R' to eliminate ambiguity and test pure sub-token position tracking."
+
+  - iteration: 44
+    question: "What letter comes immediately before the FIRST 'R' in the word 'CHERRY'?"
+    score: 100%
+    status: need_more_research
+    insight: "DISAMBIGUATION CONFIRMED - MODELS CAN TRACK POSITIONS. By specifying 'FIRST R' instead of 'the R', all 5 models correctly answered 'E'. Every model enumerated C-H-E-R-R-Y and correctly identified position 3 (E) before position 4 (first R). This confirms iteration 43's 40% disagreement was PURELY due to interpretation ambiguity, NOT sub-token position blindness."
+    lesson: "CRITICAL LEARNING: When questions are UNAMBIGUOUS, 2026 frontier models CAN track character positions in short words like CHERRY via chain-of-thought enumeration. The 'strawberry problem' of character blindness may be SOLVED for simple words. Need either: (1) MUCH longer words where enumeration is tedious/error-prone, (2) Questions that CANNOT be solved by enumeration, (3) Return to the self-referential output format that achieved 20% in iteration 13, or (4) Questions with SUBTLE ambiguity that creates genuine interpretation differences. Pure character position tracking in common 6-letter words is no longer a reliable failure mode."
 ```
 
 ## Evolved Strategy
