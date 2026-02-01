@@ -1,158 +1,314 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1050" font-family="system-ui, -apple-system, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" font-family="'SF Pro Display', system-ui, -apple-system, sans-serif">
   <defs>
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#6366f1"/>
-    </marker>
-    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
-    </marker>
-    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
-    </marker>
-    <marker id="arrowhead-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
-    </marker>
-    <linearGradient id="mcpGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.3" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+    <!-- Animated gradient for the infinite loop path -->
+    <linearGradient id="loopGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444">
+        <animate attributeName="stop-color" values="#ef4444;#f97316;#fbbf24;#ef4444" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%" style="stop-color:#f97316">
+        <animate attributeName="stop-color" values="#f97316;#fbbf24;#ef4444;#f97316" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#fbbf24">
+        <animate attributeName="stop-color" values="#fbbf24;#ef4444;#f97316;#fbbf24" dur="3s" repeatCount="indefinite"/>
+      </stop>
     </linearGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="strongGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Pulse animation filter -->
+    <filter id="pulse" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur">
+        <animate attributeName="stdDeviation" values="3;6;3" dur="2s" repeatCount="indefinite"/>
+      </feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow markers -->
+    <marker id="arrow" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L12,4 L0,8 L3,4 Z" fill="#6366f1"/>
+    </marker>
+    <marker id="arrow-success" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L12,4 L0,8 L3,4 Z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-loop" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L12,4 L0,8 L3,4 Z" fill="url(#loopGradient)"/>
+    </marker>
+
+    <!-- Background pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- Gradient backgrounds -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="50%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+
+    <linearGradient id="mcpGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.4"/>
+    </linearGradient>
+
+    <radialGradient id="infinityGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0"/>
+    </radialGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="900" height="1050" fill="#0f172a"/>
+  <!-- Background layers -->
+  <rect width="1000" height="1100" fill="url(#bgGradient)"/>
+  <rect width="1000" height="1100" fill="url(#grid)" opacity="0.3"/>
 
-  <!-- Title -->
-  <text x="450" y="45" text-anchor="middle" fill="white" font-size="24" font-weight="bold">Novel LLM Research Workflow</text>
-  <text x="450" y="70" text-anchor="middle" fill="#94a3b8" font-size="14">Infinite loop until consensus &lt; 10% | MCP-Enhanced Research</text>
+  <!-- Decorative circles in background -->
+  <circle cx="100" cy="200" r="150" fill="#6366f1" opacity="0.03"/>
+  <circle cx="900" cy="800" r="200" fill="#22c55e" opacity="0.03"/>
+  <circle cx="500" cy="550" r="300" fill="#8b5cf6" opacity="0.02"/>
 
-  <!-- User Start -->
-  <rect x="350" y="95" width="200" height="50" rx="25" fill="#22c55e"/>
-  <text x="450" y="127" text-anchor="middle" fill="white" font-size="14" font-weight="bold">/execute-workflow</text>
+  <!-- Title section -->
+  <text x="500" y="55" text-anchor="middle" fill="white" font-size="32" font-weight="700" letter-spacing="-0.5">
+    Novel LLM Research Workflow
+  </text>
+  <text x="500" y="85" text-anchor="middle" fill="#94a3b8" font-size="15" font-weight="300">
+    Infinite loop until consensus &lt; 10% • MCP-Enhanced Research
+  </text>
 
-  <!-- Arrow from Start -->
-  <line x1="450" y1="145" x2="450" y2="175" stroke="#6366f1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Infinite Loop Panel on the left -->
+  <g transform="translate(50, 340)">
+    <!-- Panel background -->
+    <rect x="0" y="0" width="140" height="280" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="2" opacity="0.9"/>
+    <rect x="0" y="0" width="140" height="35" rx="12" fill="#ef4444" opacity="0.2"/>
 
-  <!-- Step 1: Check State -->
-  <rect x="300" y="180" width="300" height="60" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
-  <text x="450" y="205" text-anchor="middle" fill="#6366f1" font-size="12" font-weight="bold">STEP 1: Check State</text>
-  <text x="450" y="225" text-anchor="middle" fill="white" font-size="13">Read workflow-state + questions</text>
+    <!-- Title with infinity symbol -->
+    <text x="70" y="15" text-anchor="middle" fill="url(#loopGradient)" font-size="20" font-weight="900" filter="url(#glow)">∞</text>
+    <text x="70" y="30" text-anchor="middle" fill="#fca5a5" font-size="9" font-weight="600">INFINITE LOOP</text>
 
-  <!-- Decision Diamond -->
-  <polygon points="450,260 530,310 450,360 370,310" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
-  <text x="450" y="305" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="bold">Pending?</text>
-  <text x="450" y="320" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="bold">exists?</text>
+    <!-- Score >= 10% section -->
+    <rect x="15" y="50" width="110" height="45" rx="6" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="1"/>
+    <text x="70" y="68" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="700">Score ≥ 10%</text>
+    <text x="70" y="82" text-anchor="middle" fill="#94a3b8" font-size="8">LLMs agreed</text>
 
-  <!-- No branch - to Generate Question -->
-  <line x1="370" y1="310" x2="200" y2="310" stroke="#ef4444" stroke-width="2"/>
-  <line x1="200" y1="310" x2="200" y2="395" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowhead-red)"/>
-  <text x="285" y="300" fill="#ef4444" font-size="11">No</text>
+    <!-- Arrow down -->
+    <path d="M70,95 L70,110" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow-loop)"/>
 
-  <!-- Yes branch - to Verify -->
-  <line x1="530" y1="310" x2="700" y2="310" stroke="#22c55e" stroke-width="2"/>
-  <line x1="700" y1="310" x2="700" y2="535" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowhead-green)"/>
-  <text x="600" y="300" fill="#22c55e" font-size="11">Yes</text>
+    <!-- Loop back box -->
+    <rect x="15" y="115" width="110" height="55" rx="6" fill="#ef4444" opacity="0.15" stroke="#ef4444" stroke-width="1"/>
+    <text x="70" y="135" text-anchor="middle" fill="#fca5a5" font-size="9" font-weight="600">🔄 TRY AGAIN</text>
+    <text x="70" y="150" text-anchor="middle" fill="#94a3b8" font-size="8">Generate harder</text>
+    <text x="70" y="162" text-anchor="middle" fill="#94a3b8" font-size="8">question</text>
 
-  <!-- Step 2: Generate Question with MCP (left side) -->
-  <rect x="50" y="400" width="300" height="140" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
-  <text x="200" y="425" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="bold">STEP 2: Generate Question</text>
-  <text x="200" y="447" text-anchor="middle" fill="white" font-size="12">Research + Generate via MCP</text>
+    <!-- Curved loop arrow back up -->
+    <path d="M125,140 Q145,140 145,75 Q145,50 125,50"
+          stroke="url(#loopGradient)" stroke-width="2" fill="none"
+          stroke-dasharray="4,2" marker-end="url(#arrow-loop)">
+      <animate attributeName="stroke-dashoffset" values="0;-12" dur="0.8s" repeatCount="indefinite"/>
+    </path>
 
-  <!-- Agent box -->
-  <rect x="100" y="457" width="200" height="24" rx="4" fill="#8b5cf6" opacity="0.3"/>
-  <text x="200" y="474" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="bold">1x opus-researcher</text>
+    <!-- Divider -->
+    <line x1="20" y1="185" x2="120" y2="185" stroke="#475569" stroke-width="1" stroke-dasharray="3,3"/>
 
-  <!-- MCP Tools box -->
-  <rect x="75" y="490" width="250" height="42" rx="4" fill="url(#mcpGradient)" stroke="#f97316" stroke-width="1"/>
-  <text x="200" y="506" text-anchor="middle" fill="#f97316" font-size="10" font-weight="bold">MCP TOOLS</text>
-  <text x="200" y="522" text-anchor="middle" fill="#fdba74" font-size="9">Tavily Web Search | Reddit MCP</text>
+    <!-- Score < 10% section -->
+    <rect x="15" y="195" width="110" height="45" rx="6" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="1"/>
+    <text x="70" y="213" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="700">Score &lt; 10%</text>
+    <text x="70" y="227" text-anchor="middle" fill="#94a3b8" font-size="8">LLMs disagreed!</text>
+
+    <!-- Arrow to success -->
+    <path d="M70,240 L70,250" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-success)"/>
+
+    <!-- Exit/Success indicator -->
+    <rect x="25" y="255" width="90" height="20" rx="10" fill="#166534"/>
+    <text x="70" y="269" text-anchor="middle" fill="#bbf7d0" font-size="9" font-weight="600">🎉 EXIT</text>
+  </g>
+
+  <!-- Start button -->
+  <g filter="url(#glow)">
+    <rect x="380" y="115" width="240" height="55" rx="27" fill="#22c55e"/>
+    <text x="500" y="150" text-anchor="middle" fill="white" font-size="16" font-weight="600">/execute-workflow</text>
+  </g>
+
+  <!-- Flow path from start -->
+  <path d="M500,170 L500,210" stroke="#6366f1" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- STEP 1: Check State -->
+  <g>
+    <rect x="320" y="220" width="360" height="75" rx="12" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+    <rect x="320" y="220" width="360" height="30" rx="12" fill="#6366f1" opacity="0.2"/>
+    <text x="340" y="243" fill="#818cf8" font-size="11" font-weight="700">STEP 1</text>
+    <text x="500" y="243" text-anchor="middle" fill="white" font-size="14" font-weight="600">Check Workflow State</text>
+    <text x="500" y="275" text-anchor="middle" fill="#94a3b8" font-size="13">Read workflow-state.yaml + questions database</text>
+  </g>
+
+  <!-- Decision: Pending question? -->
+  <g transform="translate(500, 370)">
+    <polygon points="0,-55 90,0 0,55 -90,0" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="0" y="-10" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="600">Pending</text>
+    <text x="0" y="10" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="600">Question?</text>
+  </g>
+
+  <!-- Arrow from Step 1 to Decision -->
+  <path d="M500,295 L500,315" stroke="#6366f1" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- NO branch - curved path to Generate -->
+  <path d="M410,370 Q300,370 300,440" stroke="url(#loopGradient)" stroke-width="3" fill="none" marker-end="url(#arrow-loop)" stroke-dasharray="8,4">
+    <animate attributeName="stroke-dashoffset" values="0;-24" dur="1s" repeatCount="indefinite"/>
+  </path>
+  <text x="340" y="395" fill="#fbbf24" font-size="12" font-weight="500">NO</text>
+
+  <!-- YES branch - to Verify -->
+  <path d="M590,370 Q750,370 750,540" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrow-success)"/>
+  <text x="670" y="395" fill="#22c55e" font-size="12" font-weight="500">YES</text>
+
+  <!-- STEP 2: Generate Question -->
+  <g>
+    <rect x="170" y="450" width="360" height="160" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+    <rect x="170" y="450" width="360" height="30" rx="12" fill="#8b5cf6" opacity="0.2"/>
+    <text x="190" y="473" fill="#a78bfa" font-size="11" font-weight="700">STEP 2</text>
+    <text x="350" y="473" text-anchor="middle" fill="white" font-size="14" font-weight="600">Generate Novel Question</text>
+
+    <text x="350" y="505" text-anchor="middle" fill="#94a3b8" font-size="12">Deep research + creative generation</text>
+
+    <!-- Agent badge -->
+    <rect x="260" y="515" width="180" height="28" rx="6" fill="#8b5cf6" opacity="0.3"/>
+    <text x="350" y="535" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="600">🔬 1× opus-researcher</text>
+
+    <!-- MCP Tools section -->
+    <rect x="195" y="555" width="310" height="45" rx="8" fill="url(#mcpGradient)" stroke="#f97316" stroke-width="1.5"/>
+    <text x="350" y="573" text-anchor="middle" fill="#f97316" font-size="11" font-weight="700">⚡ MCP TOOLS</text>
+    <text x="350" y="590" text-anchor="middle" fill="#fdba74" font-size="11">Tavily Web Search • Reddit API • Real-time Data</text>
+  </g>
 
   <!-- Arrow from Generate to Verify -->
-  <line x1="350" y1="470" x2="420" y2="470" stroke="#6366f1" stroke-width="2"/>
-  <line x1="420" y1="470" x2="420" y2="540" stroke="#6366f1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M530,530 Q590,530 590,545" stroke="#6366f1" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
 
-  <!-- Step 3: Verify Question -->
-  <rect x="300" y="545" width="300" height="120" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
-  <text x="450" y="570" text-anchor="middle" fill="#6366f1" font-size="12" font-weight="bold">STEP 3: Verify Question</text>
-  <text x="450" y="592" text-anchor="middle" fill="white" font-size="12">Launch 5 parallel LLM answerers</text>
-  <rect x="350" y="600" width="200" height="24" rx="4" fill="#3b82f6" opacity="0.3"/>
-  <text x="450" y="617" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="bold">5x opus-answer (parallel)</text>
-  <text x="450" y="638" text-anchor="middle" fill="#94a3b8" font-size="11">Synthesize with verifier</text>
-  <rect x="365" y="643" width="170" height="18" rx="4" fill="#22c55e" opacity="0.3"/>
-  <text x="450" y="656" text-anchor="middle" fill="#86efac" font-size="10" font-weight="bold">1x opus-verifier</text>
+  <!-- STEP 3: Verify Question -->
+  <g>
+    <rect x="570" y="550" width="360" height="170" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <rect x="570" y="550" width="360" height="30" rx="12" fill="#3b82f6" opacity="0.2"/>
+    <text x="590" y="573" fill="#60a5fa" font-size="11" font-weight="700">STEP 3</text>
+    <text x="750" y="573" text-anchor="middle" fill="white" font-size="14" font-weight="600">Verify Question Novelty</text>
 
-  <!-- Arrow to Step 4 -->
-  <line x1="450" y1="665" x2="450" y2="695" stroke="#6366f1" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <text x="750" y="605" text-anchor="middle" fill="#94a3b8" font-size="12">Can standard LLMs answer this?</text>
 
-  <!-- Step 4: Evaluate Score -->
-  <rect x="300" y="700" width="300" height="60" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
-  <text x="450" y="725" text-anchor="middle" fill="#6366f1" font-size="12" font-weight="bold">STEP 4: Evaluate</text>
-  <text x="450" y="745" text-anchor="middle" fill="white" font-size="14">Calculate consensus score</text>
+    <!-- Parallel answerers -->
+    <rect x="610" y="620" width="280" height="32" rx="6" fill="#3b82f6" opacity="0.3"/>
+    <text x="750" y="642" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="600">🤖 5× opus-answer (parallel)</text>
 
-  <!-- Score Decision Diamond -->
-  <polygon points="450,780 540,830 450,880 360,830" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
-  <text x="450" y="825" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="bold">Score</text>
-  <text x="450" y="840" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="bold">&lt; 10%?</text>
+    <!-- Verifier -->
+    <rect x="660" y="662" width="180" height="28" rx="6" fill="#22c55e" opacity="0.3"/>
+    <text x="750" y="682" text-anchor="middle" fill="#86efac" font-size="12" font-weight="600">✓ 1× opus-verifier</text>
 
-  <!-- No branch - Loop back -->
-  <line x1="360" y1="830" x2="100" y2="830" stroke="#ef4444" stroke-width="2"/>
-  <line x1="100" y1="830" x2="100" y2="180" stroke="#ef4444" stroke-width="2"/>
-  <line x1="100" y1="180" x2="295" y2="180" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowhead-red)"/>
-  <text x="220" y="820" fill="#ef4444" font-size="11">No (need harder questions)</text>
+    <text x="750" y="708" text-anchor="middle" fill="#64748b" font-size="11">Synthesize responses → consensus score</text>
+  </g>
 
-  <!-- Loop indicator -->
-  <rect x="60" y="500" width="30" height="30" rx="15" fill="#ef4444"/>
-  <text x="75" y="520" text-anchor="middle" fill="white" font-size="16" font-weight="bold">&#8734;</text>
+  <!-- Arrow to Evaluate -->
+  <path d="M750,720 L750,760" stroke="#6366f1" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
 
-  <!-- Yes branch - to Commit -->
-  <line x1="540" y1="830" x2="700" y2="830" stroke="#22c55e" stroke-width="2"/>
-  <text x="610" y="820" fill="#22c55e" font-size="11">Yes</text>
+  <!-- STEP 4: Evaluate -->
+  <g>
+    <rect x="570" y="770" width="360" height="70" rx="12" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+    <rect x="570" y="770" width="360" height="28" rx="12" fill="#6366f1" opacity="0.2"/>
+    <text x="590" y="791" fill="#818cf8" font-size="11" font-weight="700">STEP 4</text>
+    <text x="750" y="791" text-anchor="middle" fill="white" font-size="14" font-weight="600">Evaluate Consensus Score</text>
+    <text x="750" y="820" text-anchor="middle" fill="#94a3b8" font-size="13">Calculate % agreement among answerers</text>
+  </g>
 
-  <!-- Step 5: Commit -->
-  <rect x="600" y="805" width="200" height="50" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
-  <text x="700" y="825" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="bold">STEP 5: Commit</text>
-  <text x="700" y="843" text-anchor="middle" fill="white" font-size="12">Push to GitHub</text>
+  <!-- Final Decision Diamond -->
+  <g transform="translate(500, 920)">
+    <polygon points="0,-55 90,0 0,55 -90,0" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="0" y="-10" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="600">Score</text>
+    <text x="0" y="10" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="600">&lt; 10%?</text>
+  </g>
+
+  <!-- Arrow from Evaluate to Decision -->
+  <path d="M750,840 L750,870 Q750,900 620,900 L590,920" stroke="#6366f1" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- THE INFINITE LOOP - NO branch with animated dashes -->
+  <path d="M410,920 L180,920 L180,295 Q180,220 320,220"
+        stroke="url(#loopGradient)" stroke-width="4" fill="none"
+        marker-end="url(#arrow-loop)"
+        stroke-dasharray="12,6"
+        filter="url(#glow)">
+    <animate attributeName="stroke-dashoffset" values="0;-36" dur="1.5s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Loop label -->
+  <text x="295" y="905" fill="#fca5a5" font-size="11" font-weight="500">NO — loop back</text>
+
+  <!-- YES branch - to Commit -->
+  <path d="M590,920 Q680,920 750,950" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrow-success)"/>
+  <text x="640" y="905" fill="#22c55e" font-size="12" font-weight="500">YES</text>
+
+  <!-- STEP 5: Commit -->
+  <g filter="url(#glow)">
+    <rect x="660" y="955" width="200" height="55" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="760" y="978" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="700">STEP 5</text>
+    <text x="760" y="998" text-anchor="middle" fill="white" font-size="13" font-weight="600">Commit to GitHub</text>
+  </g>
 
   <!-- Arrow to Success -->
-  <line x1="700" y1="855" x2="700" y2="895" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  <path d="M760,1010 L760,1030" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrow-success)"/>
 
-  <!-- Success -->
-  <rect x="550" y="900" width="300" height="70" rx="8" fill="#166534" stroke="#22c55e" stroke-width="2"/>
-  <text x="700" y="925" text-anchor="middle" fill="white" font-size="14" font-weight="bold">SUCCESS!</text>
-  <text x="700" y="947" text-anchor="middle" fill="#bbf7d0" font-size="12">Found a question that breaks LLMs</text>
-  <text x="700" y="963" text-anchor="middle" fill="#bbf7d0" font-size="11">research_status: complete</text>
+  <!-- Success Box -->
+  <g filter="url(#glow)">
+    <rect x="600" y="1035" width="320" height="55" rx="12" fill="#166534" stroke="#22c55e" stroke-width="2"/>
+    <text x="760" y="1060" text-anchor="middle" fill="white" font-size="16" font-weight="700">🎉 SUCCESS!</text>
+    <text x="760" y="1080" text-anchor="middle" fill="#bbf7d0" font-size="12">Found a question that breaks LLMs!</text>
+  </g>
 
-  <!-- Legend -->
-  <rect x="50" y="890" width="240" height="150" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-  <text x="170" y="912" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold">AGENTS &amp; TOOLS</text>
+  <!-- State Files Panel -->
+  <g>
+    <rect x="700" y="220" width="260" height="105" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1" stroke-dasharray="6,3"/>
+    <text x="830" y="245" text-anchor="middle" fill="#64748b" font-size="11" font-weight="700">📁 STATE FILES</text>
 
-  <!-- Agent legend items -->
-  <rect x="65" y="922" width="90" height="16" rx="3" fill="#8b5cf6" opacity="0.4"/>
-  <text x="115" y="934" fill="#c4b5fd" font-size="9">opus-researcher</text>
-  <text x="220" y="934" fill="#94a3b8" font-size="9">Deep research</text>
+    <text x="720" y="270" fill="#94a3b8" font-size="10">research-workflow-state.yaml</text>
+    <text x="720" y="285" fill="#64748b" font-size="9">→ workflow execution state</text>
 
-  <rect x="65" y="944" width="90" height="16" rx="3" fill="#3b82f6" opacity="0.4"/>
-  <text x="115" y="956" fill="#93c5fd" font-size="9">opus-answer</text>
-  <text x="220" y="956" fill="#94a3b8" font-size="9">Simple LLM</text>
+    <text x="720" y="305" fill="#94a3b8" font-size="10">research-questions.yaml</text>
+    <text x="720" y="320" fill="#64748b" font-size="9">→ questions database</text>
+  </g>
 
-  <rect x="65" y="966" width="90" height="16" rx="3" fill="#22c55e" opacity="0.4"/>
-  <text x="115" y="978" fill="#86efac" font-size="9">opus-verifier</text>
-  <text x="220" y="978" fill="#94a3b8" font-size="9">Synthesize</text>
+  <!-- Legend Panel -->
+  <g>
+    <rect x="50" y="910" width="280" height="170" rx="12" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="190" y="938" text-anchor="middle" fill="white" font-size="13" font-weight="600">Agent Types</text>
 
-  <!-- MCP legend item -->
-  <rect x="65" y="988" width="90" height="16" rx="3" fill="url(#mcpGradient)" stroke="#f97316" stroke-width="0.5"/>
-  <text x="115" y="1000" fill="#f97316" font-size="9">MCP Tools</text>
-  <text x="220" y="1000" fill="#94a3b8" font-size="9">Web + Reddit</text>
+    <!-- opus-researcher -->
+    <rect x="70" y="955" width="120" height="22" rx="5" fill="#8b5cf6" opacity="0.4"/>
+    <text x="130" y="971" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="500">opus-researcher</text>
+    <text x="260" y="971" text-anchor="middle" fill="#94a3b8" font-size="10">Deep analysis</text>
 
-  <!-- Infinity symbol -->
-  <circle cx="80" cy="1025" r="8" fill="#ef4444"/>
-  <text x="80" y="1029" text-anchor="middle" fill="white" font-size="10" font-weight="bold">&#8734;</text>
-  <text x="170" y="1029" fill="#94a3b8" font-size="9">Infinite loop</text>
+    <!-- opus-answer -->
+    <rect x="70" y="985" width="120" height="22" rx="5" fill="#3b82f6" opacity="0.4"/>
+    <text x="130" y="1001" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="500">opus-answer</text>
+    <text x="260" y="1001" text-anchor="middle" fill="#94a3b8" font-size="10">Standard LLM</text>
 
-  <!-- State files callout -->
-  <rect x="620" y="180" width="250" height="100" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" stroke-dasharray="4"/>
-  <text x="745" y="200" text-anchor="middle" fill="#64748b" font-size="10" font-weight="bold">STATE FILES</text>
-  <text x="745" y="220" text-anchor="middle" fill="#94a3b8" font-size="9">research-workflow-state.yaml</text>
-  <text x="745" y="235" text-anchor="middle" fill="#64748b" font-size="8">workflow execution</text>
-  <text x="745" y="255" text-anchor="middle" fill="#94a3b8" font-size="9">research-questions.yaml</text>
-  <text x="745" y="270" text-anchor="middle" fill="#64748b" font-size="8">questions database</text>
+    <!-- opus-verifier -->
+    <rect x="70" y="1015" width="120" height="22" rx="5" fill="#22c55e" opacity="0.4"/>
+    <text x="130" y="1031" text-anchor="middle" fill="#86efac" font-size="10" font-weight="500">opus-verifier</text>
+    <text x="260" y="1031" text-anchor="middle" fill="#94a3b8" font-size="10">Synthesize</text>
+
+    <!-- MCP Tools -->
+    <rect x="70" y="1045" width="120" height="22" rx="5" fill="url(#mcpGradient)" stroke="#f97316" stroke-width="0.5"/>
+    <text x="130" y="1061" text-anchor="middle" fill="#f97316" font-size="10" font-weight="500">MCP Tools</text>
+    <text x="260" y="1061" text-anchor="middle" fill="#94a3b8" font-size="10">External APIs</text>
+  </g>
 </svg>

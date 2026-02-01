@@ -63,23 +63,6 @@ The `opus-researcher` agent uses these MCP tools:
 | `opus-answer` | 5 (parallel) | Each writes answer to designated `answer[1-5].md` file |
 | `opus-verifier` | 1 | Reads all 5 answer files, identifies consensus, calculates score |
 
-## The Infinite Loop
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                                 │
-│   Score >= 10%  →  "need_more_research"  →  Generate harder    │
-│        ↑                                         question       │
-│        │                                            │           │
-│        └────────────────────────────────────────────┘           │
-│                                                                 │
-│   Score < 10%   →  "complete"  →  SUCCESS! LLMs are broken!    │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-**Success Criteria**: When 5 independent AI researchers give **different answers** to the same question (consensus < 10%), we've found a question that breaks LLMs.
-
 ## State Files
 
 ### research-workflow-state.yaml
