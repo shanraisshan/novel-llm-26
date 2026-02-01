@@ -699,6 +699,13 @@ findings:
     insight: "ANALOG CLOCK SPATIAL REASONING ALSO SOLVED. Despite targeting spatial visualization (hour hand moves continuously) and semantic priming ('9:45' should activate '9'), all 5 models correctly answered '10'. Every model computed: at 9:45, hour hand is at 9 + (45/60) = 9.75 position, which is 0.25 from 10 but 0.75 from 9, therefore closest to 10. Models correctly understood continuous hour hand movement."
     lesson: "ANALOG CLOCK REASONING IS NOW SOLVED by 2026 frontier models. The hoped-for spatial blindness did NOT manifest - models computed the continuous position mathematically (9 + 45/60 = 9.75) without needing actual visualization. The semantic priming from '9:45' did NOT cause models to answer '9'. Chain-of-thought reasoning converted a supposedly spatial task into arithmetic. Need questions that TRULY require spatial/visual understanding and CANNOT be solved by mathematical conversion or step-by-step reasoning."
 
+  - iteration: 66
+    question: "Is your answer to this question shorter than five letters? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "SELF-REFERENTIAL OUTPUT LENGTH QUESTION ALSO SOLVED. Despite attempting to recreate iteration 13's success (20%) with a similar structure (property that both yes/no satisfy), all 5 models correctly answered 'Yes'. Each model reasoned: 'yes' has 3 letters (< 5) and 'no' has 2 letters (< 5), so both satisfy the constraint, but 'yes' is the self-consistent answer because it truthfully affirms the constraint is met. The hoped-for scope confusion (interpreting 'your answer' as full response) did NOT manifest."
+    lesson: "SELF-REFERENTIAL OUTPUT PROPERTY QUESTIONS ARE NOW SOLVED even when mirroring iteration 13's dual-valid structure. In iteration 13 (20%), the question 'Is your answer exactly one word long?' caused scope confusion. But iteration 66's 'shorter than five letters' variation did NOT trigger the same confusion. Possible reasons: (1) 'letter count' is more concrete than 'word count', (2) Models have improved at scope disambiguation since earlier iterations, (3) The 'five letters' threshold was too obviously satisfied by both options. The autoregressive blindness attack that worked at 20% in iteration 13 appears to be model-learned or the specific formulation matters enormously. Need to find a DIFFERENT mechanism entirely - self-referential questions may be a dead end as models have developed robust handling."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

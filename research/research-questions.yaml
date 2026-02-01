@@ -193,3 +193,14 @@
     research_activity: null
     started_at: "01/02/2026 11:02 PM PST"
     completed_at: "01/02/2026 11:05 PM PST"
+
+  - id: 66
+    question: "Is your answer to this question shorter than five letters? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research66
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 11:11 PM PST"
+    completed_at: "01/02/2026 11:13 PM PST"
