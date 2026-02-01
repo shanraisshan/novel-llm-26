@@ -487,6 +487,13 @@ findings:
     status: need_more_research
     insight: "RETURNED TO STRAWBERRY PARADIGM BUT TOO EASY. All 5 models correctly answered 4 by spelling out p-o-s-s-e-s-s and counting. Despite research suggesting double letters cause tokenization issues, modern frontier models (Claude Opus 4.5) successfully enumerate letters one by one. The word 'possess' may be common enough that tokenizers handle it well."
     lesson: "Simple character counting in common words is NOW SOLVED by 2026 frontier models. Even words with repeated double letters (ss, ss) are counted correctly when models use chain-of-thought enumeration. Need EITHER: (1) much more obscure/unusual words, (2) longer strings where enumeration is tedious, (3) numeric comparisons which can't be enumerated, or (4) questions where the enumeration method itself leads to wrong answer."
+
+  - iteration: 36
+    question: "Which of these numbers is the smallest: 3.9, 3.11, or 3.7?"
+    score: 100%
+    status: need_more_research
+    insight: "NUMERIC COMPARISON ALSO SOLVED. All 5 models correctly answered 3.11 by converting to hundredths (3.90, 3.11, 3.70) and comparing. The version number vs decimal confusion (where 11 > 7 in versions but 0.11 < 0.7 in decimals) did NOT trigger. Models explicitly stated they were comparing decimal values, not version numbers."
+    lesson: "The 9.11 vs 9.9 style numeric comparison trap is NOW SOLVED by 2026 frontier models. Models correctly align decimal places (hundredths) and compare. The version number training bias may have been corrected, or models now explicitly check whether they're doing decimal vs version comparison. Need to find failure modes that CANNOT be corrected by explicit chain-of-thought reasoning."
 ```
 
 ## Evolved Strategy
