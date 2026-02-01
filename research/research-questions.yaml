@@ -204,3 +204,14 @@
     research_activity: null
     started_at: "01/02/2026 11:11 PM PST"
     completed_at: "01/02/2026 11:13 PM PST"
+
+  - id: 67
+    question: "In the sentence 'Two three four five', what position is the word 'four' at? Count from 1."
+    answer: "3 (third position)"
+    status: completed
+    folder: research67
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 11:18 PM PST"
+    completed_at: "01/02/2026 11:20 PM PST"
