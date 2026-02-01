@@ -138,3 +138,14 @@
     research_activity: null
     started_at: "01/02/2026 08:23 PM PST"
     completed_at: "01/02/2026 08:30 PM PST"
+
+  - id: 61
+    question: "Which word comes first in the dictionary: SIX or SEVEN?"
+    answer: "SEVEN"
+    status: completed
+    folder: research61
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 08:37 PM PST"
+    completed_at: "01/02/2026 08:40 PM PST"

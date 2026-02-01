@@ -664,6 +664,13 @@ findings:
     insight: "CRT-STYLE IDIOMATIC PHRASE TRAP FAILED. Despite external research showing LLMs exhibit 'System 1-like' behavior and fail 85% of CRT-style questions on reflection, all 5 models correctly answered '9 sheep'. Every model correctly parsed 'all but 9' as 'all except 9' and recognized this as a classic riddle. The arithmetic priming (10 - 9 = 1) did NOT override correct idiomatic interpretation."
     lesson: "CLASSIC RIDDLES WITH IDIOMATIC PHRASES ARE NOW SOLVED by 2026 frontier models. The 'all but X' idiom is correctly interpreted as 'all except X'. Models recognize this as a trick question format and parse carefully. The predicted failure mode (misreading 'all but 9 run away' as '9 run away') did NOT manifest. CRT-style questions from research may be OUTDATED - models have likely been trained on these exact riddle formats. Need questions where: (1) The idiomatic trap is LESS famous, (2) The parsing error is more subtle, (3) The arithmetic setup doesn't signal 'this is a riddle'. Classic riddles are now too well-known."
 
+  - iteration: 61
+    question: "Which word comes first in the dictionary: SIX or SEVEN?"
+    score: 100%
+    status: need_more_research
+    insight: "ALPHABETICAL + NUMERIC SEMANTIC PRIMING FAILED. Despite hypothesizing that numeric semantics (6 < 7) would prime models to answer 'SIX' for 'which comes first', all 5 models correctly answered 'SEVEN' by comparing second letters (E < I alphabetically). Every model decomposed the words to characters, compared S=S, then E vs I, and correctly concluded SEVEN comes first. The semantic priming from number words did NOT override alphabetical reasoning."
+    lesson: "ALPHABETICAL ORDERING WITH NUMBER WORDS IS NOW SOLVED by 2026 frontier models. Even with strong numeric semantic priming (6 < 7 suggesting SIX is 'first'), models correctly interpret 'first in dictionary' as alphabetical ordering and perform character-by-character comparison. The tokenization barrier (SIX and SEVEN as single tokens) was overcome by explicit character decomposition. Semantic priming from number word meanings does NOT override clear task instructions. Need questions where: (1) The semantic priming is IMPLICIT rather than from word meanings, (2) The correct operation is ambiguous, (3) The enumeration method itself fails."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
