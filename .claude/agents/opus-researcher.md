@@ -853,6 +853,13 @@ findings:
     insight: "COMPARATIVE SELF-REFERENCE ALSO SOLVED. Despite the hypothesis that comparing answer length to question length would trigger scope confusion (answer = yes/no word vs full response), all 5 models correctly answered 'Yes' by reasoning: the question is ~75 characters, 'yes' or 'no' is 2-3 characters, therefore any valid answer is shorter. Every model explicitly counted characters in both the question and possible answers."
     lesson: "COMPARATIVE SELF-REFERENTIAL QUESTIONS ARE NOW SOLVED. The scope confusion that worked in iteration 13 (20% consensus) appears to be SPECIFIC to that exact formulation. Variations asking about comparative properties (shorter/longer) are solved because models reduce to explicit character counting. The key difference from iteration 13: 'exactly one word' created SCOPE AMBIGUITY about what 'your answer' means, while 'shorter than this question' is unambiguously verifiable for any interpretation. The character-counting approach bypasses the scope confusion trap. After 87 iterations, even comparative self-referential properties are handled correctly via explicit enumeration."
 
+  - iteration: 88
+    question: "Does your answer to this question contain more than two words? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "INVERSE DUAL-VALIDITY ALSO SOLVED. Tested hypothesis that asking about a property NEITHER yes nor no satisfies (>2 words when both are 1 word) would create different scope confusion dynamics than iteration 13 where BOTH satisfied the property. All 5 models correctly answered 'No' by reasoning: 'yes' is 1 word, 'no' is 1 word, neither is more than 2 words. The inverse formulation did NOT trigger scope confusion."
+    lesson: "INVERSE DUAL-VALIDITY QUESTIONS ARE NOW SOLVED. The hypothesis that asking 'more than X' where neither option satisfies X would create a different trap mechanism was INCORRECT. Models correctly narrowed scope to just the yes/no word and verified the property. Unlike iteration 13 which somehow triggered scope expansion (interpreting 'your answer' as full response), this formulation kept models focused on the constrained answer format. The specific magic of iteration 13's phrasing ('exactly one word long') remains elusive - variations continue to fail at triggering scope confusion."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
