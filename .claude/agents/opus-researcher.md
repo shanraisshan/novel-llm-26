@@ -424,6 +424,13 @@ findings:
     status: need_more_research
     insight: "MULTI-STEP TEMPORAL REASONING WORKS FOR LLMS - All 5 models correctly answered 'Monday' by working backwards through the day sequence: day after tomorrow (Thursday) -> tomorrow (Wednesday) -> today (Tuesday) -> yesterday (Monday). Despite SimpleBench research showing 41.7% LLM accuracy on temporal/spatial reasoning, this multi-step calendar inference was solved by all models."
     lesson: "Simple temporal reasoning with day-of-week sequences is NOW CORRECTLY HANDLED by 2026 frontier models. Even questions requiring 3 backward steps (day after tomorrow -> tomorrow -> today -> yesterday) are traced correctly. The 'day after tomorrow' compound phrase did NOT cause confusion. SimpleBench temporal failures may only apply to MORE COMPLEX temporal scenarios (multi-week spans, ambiguous 'next Tuesday' references, timezone considerations). Basic calendar day counting is reliable."
+
+  - iteration: 27
+    question: "Answer yes or no: Are you going to answer this question correctly?"
+    score: 100%
+    status: need_more_research
+    insight: "SELF-REFERENTIAL CORRECTNESS PREDICTION SOLVED - All 5 models correctly answered 'Yes' by recognizing the asymmetric paradox structure: 'No' creates a logical contradiction (if No is correct, you answered correctly, making No false), while 'Yes' is self-consistent (if Yes is correct, you answered correctly, making Yes true). Every model identified this as a liar's paradox variant and selected the stable fixed point."
+    lesson: "Self-referential questions about correctness/truth are NOW SOLVED by frontier models when they have clear paradox structure. Unlike iteration 13's success with word-length properties (20% consensus), questions about abstract properties like 'correctness' are correctly analyzed through logical paradox reasoning. Models identify that 'Yes' is the only self-consistent answer while 'No' creates unavoidable contradiction. The abstraction from concrete properties (word count) to abstract properties (correctness) made the question EASIER for models to reason about, not harder."
 ```
 
 ## Evolved Strategy
@@ -462,6 +469,7 @@ Based on accumulated findings:
 27. **CLAIM FORMAT vs QUESTION FORMAT (Iteration 14)**: "Your answer will contain X" (claim) is WEAKER than "Is your answer X?" (question). Claims can be verified against known answer options (True/False), while questions require actual output introspection. All 5 models correctly answered "False" because they enumerated: "True = 1 word, False = 1 word, neither is 3 words."
 28. **ENUMERABLE ANSWER OPTIONS DEFEAT SELF-REFERENCE**: When the answer options are known and finite (True/False, Yes/No), models can verify self-referential claims by simple enumeration. Self-referential questions work ONLY when the answer cannot be easily predicted before generation.
 29. **ABSTRACTION LAYERS WEAKEN SELF-REFERENCE (Iteration 15)**: "Can your response be SUMMARIZED as X?" is WEAKER than "IS your answer X?". The word "summarized" gives models an out - they correctly reason that any yes/no answer CAN be summarized to that single word. Direct property assertions trigger more confusion than abstract "can be described as" formulations. The indirection through "summarized" made the question CLEARER, not more confusing.
+30. **ABSTRACT PROPERTIES EASIER THAN CONCRETE (Iteration 27)**: Asking about abstract properties like "correctness" is EASIER for models than asking about concrete properties like "word length". When iteration 13 asked about word length (20% consensus), models got confused by scope ("what counts as my answer?"). When iteration 27 asked about correctness, all 5 models correctly identified the liar's paradox structure and chose the self-consistent answer. The key insight: models are BETTER at logical paradox analysis than at introspecting on concrete output properties.
 
 ## Next Research Directions
 
@@ -531,6 +539,7 @@ Promising unexplored territories (updated after iteration 7):
 - **PHYSICAL STATE TRANSFORMATION WITH PRESUPPOSITION (iteration 24)**: "Pour water on sidewalk at noon on hottest day, collect puddle at 3pm - how much?" was correctly answered as "none - it evaporated" by all 5 models. Despite presuppositional language ("my puddle", "collect") implying the water exists, models correctly applied evaporation physics. Well-known physical transformations don't trick frontier models.
 - **NESTED CONTAINER TRACKING (iteration 25)**: "Ball in first box, first box in second box, remove first box - what's in second box?" was correctly answered as "nothing/empty" by all 5 models. Models correctly tracked that removing a container removes its contents. Transitive containment relationships are now properly handled.
 - **MULTI-STEP TEMPORAL REASONING (iteration 26)**: "If the day after tomorrow is Thursday, what day was yesterday?" was correctly answered as "Monday" by all 5 models. Despite SimpleBench showing 41.7% LLM accuracy on temporal/spatial reasoning, all models correctly traced: day after tomorrow (Thu) -> tomorrow (Wed) -> today (Tue) -> yesterday (Mon). Simple calendar day-of-week inference with multiple backward steps is now solved.
+- **SELF-REFERENTIAL CORRECTNESS PREDICTION (iteration 27)**: "Answer yes or no: Are you going to answer this question correctly?" was correctly answered as "Yes" by all 5 models. Despite targeting self-referential paradox structure (building on iteration 13's 20% success), all models correctly identified that 'Yes' is the only self-consistent answer while 'No' creates logical contradiction. The abstraction from concrete properties (word length) to abstract properties (correctness) made the question EASIER to reason about - models applied standard liar's paradox analysis.
 
 ---
 

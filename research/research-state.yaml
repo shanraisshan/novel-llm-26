@@ -289,3 +289,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 09:00 AM PST"
     completed_at: "01/02/2026 09:03 AM PST"
+
+  - id: 27
+    question: "Answer yes or no: Are you going to answer this question correctly?"
+    answer: "yes"
+    status: completed
+    folder: research27
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 09:08 AM PST"
+    completed_at: "01/02/2026 09:18 AM PST"
