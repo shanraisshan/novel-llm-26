@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" width="140" height="168">
+  <defs>
+    <!-- Glow filter for infinity -->
+    <filter id="infinity-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Gradient for infinity symbol -->
+    <linearGradient id="infinity-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    /* Eye blink animation */
+    .eye {
+      animation: blink 4s ease-in-out infinite;
+      transform-origin: center center;
+      transform-box: fill-box;
+    }
+    .eye-right {
+      animation-delay: 0.05s;
+    }
+    @keyframes blink {
+      0%, 45%, 47%, 100% { transform: scaleY(1); }
+      46% { transform: scaleY(0.1); }
+    }
+  </style>
+
+  <!-- Claude Character -->
+  <g>
+    <!-- Left ear -->
+    <rect x="24" y="12" width="7" height="12" fill="#E07C4C"/>
+    <!-- Right ear -->
+    <rect x="69" y="12" width="7" height="12" fill="#E07C4C"/>
+    <!-- Main body - top row -->
+    <rect x="20" y="24" width="60" height="4" fill="#E07C4C"/>
+    <!-- Main body - full block -->
+    <rect x="16" y="28" width="68" height="30" fill="#E07C4C"/>
+    <!-- Left eye -->
+    <rect class="eye" x="30" y="36" width="7" height="8" fill="#000"/>
+    <!-- Right eye -->
+    <rect class="eye eye-right" x="63" y="36" width="7" height="8" fill="#000"/>
+    <!-- Left arm -->
+    <rect x="4" y="38" width="12" height="7" fill="#E07C4C"/>
+    <!-- Right arm -->
+    <rect x="84" y="38" width="12" height="7" fill="#E07C4C"/>
+    <!-- Left leg -->
+    <rect x="26" y="58" width="11" height="12" fill="#E07C4C"/>
+    <!-- Right leg -->
+    <rect x="63" y="58" width="11" height="12" fill="#E07C4C"/>
+  </g>
+
+  <!-- Shadow -->
+  <ellipse cx="50" cy="78" rx="18" ry="3" fill="#000" opacity="0.15"/>
+
+  <!-- Infinity Symbol at feet - using SMIL for reliable animation -->
+  <g filter="url(#infinity-glow)">
+    <!-- Main infinity path -->
+    <path
+      d="M32,95 C32,87 41,87 50,95 C59,103 68,103 68,95 C68,87 59,87 50,95 C41,103 32,103 32,95"
+      fill="none"
+      stroke="url(#infinity-gradient)"
+      stroke-width="3.5"
+      stroke-linecap="round"
+    >
+      <!-- Gentle float animation using SMIL -->
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0,0; 0,-2; 0,0"
+        dur="2.5s"
+        repeatCount="indefinite"
+        calcMode="spline"
+        keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"
+      />
+    </path>
+
+    <!-- Energy dot 1 traveling along infinity -->
+    <circle r="2" fill="#A5B4FC">
+      <animateMotion
+        dur="2s"
+        repeatCount="indefinite"
+        path="M32,95 C32,87 41,87 50,95 C59,103 68,103 68,95 C68,87 59,87 50,95 C41,103 32,103 32,95"
+      />
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0,0; 0,-2; 0,0"
+        dur="2.5s"
+        repeatCount="indefinite"
+        calcMode="spline"
+        keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"
+      />
+    </circle>
+
+    <!-- Energy dot 2 traveling along infinity (offset) -->
+    <circle r="2" fill="#A5B4FC">
+      <animateMotion
+        dur="2s"
+        repeatCount="indefinite"
+        begin="-1s"
+        path="M32,95 C32,87 41,87 50,95 C59,103 68,103 68,95 C68,87 59,87 50,95 C41,103 32,103 32,95"
+      />
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0,0; 0,-2; 0,0"
+        dur="2.5s"
+        repeatCount="indefinite"
+        calcMode="spline"
+        keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"
+      />
+    </circle>
+  </g>
+
+  <!-- Glow pulse effect on infinity -->
+  <path
+    d="M32,95 C32,87 41,87 50,95 C59,103 68,103 68,95 C68,87 59,87 50,95 C41,103 32,103 32,95"
+    fill="none"
+    stroke="#8B5CF6"
+    stroke-width="6"
+    stroke-linecap="round"
+    opacity="0.3"
+  >
+    <animate
+      attributeName="opacity"
+      values="0.3; 0.5; 0.3"
+      dur="2s"
+      repeatCount="indefinite"
+    />
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; 0,-2; 0,0"
+      dur="2.5s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"
+    />
+  </path>
+</svg>

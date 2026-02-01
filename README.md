@@ -1,6 +1,10 @@
 # Novel LLM-Breaking Questions Research
 
-An automated research workflow that generates questions designed to **break modern LLMs**. The goal is to find simple, generic questions that any human can easily answer, but cause AI models to disagree.
+An automated infinite loop research workflow that generates questions designed to **break modern LLMs**. The goal is to find simple, generic questions that any human can easily answer, but cause AI models to disagree.
+
+<p align="center">
+  <img src="!/claude-infinity.svg" alt="Claude Code infinity" width="120" height="100">
+</p>
 
 ## The Goal
 
