@@ -237,3 +237,14 @@
     research_activity: null
     started_at: "01/02/2026 11:30 PM PST"
     completed_at: "01/02/2026 11:39 PM PST"
+
+  - id: 70
+    question: "Does your answer to this question contain exactly one vowel? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research70
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 01:29 AM PST"
+    completed_at: "02/02/2026 01:35 AM PST"

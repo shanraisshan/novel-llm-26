@@ -727,6 +727,13 @@ findings:
     insight: "LETTER TOPOLOGY/VISUAL PROPERTY QUESTION ALSO SOLVED. Despite targeting the hypothesis that LLMs cannot 'see' letter shapes and would struggle with topological properties (counting holes), all 5 models correctly answered '6' (A, D, O, P, Q, R). Every model systematically enumerated all 26 letters, correctly identified enclosed spaces, and even correctly excluded B (2 holes). The factual knowledge about letter shapes is well-encoded in training data."
     lesson: "LETTER VISUAL PROPERTY QUESTIONS ARE NOW SOLVED by 2026 frontier models. Models have robust factual knowledge about letter topology/shapes, including: (1) which letters have enclosed spaces, (2) how many holes each letter has (B=2, A=1, etc.), (3) the difference between open curves (C, G, U) and enclosed spaces. The hypothesis that tokenization prevents visual reasoning was INCORRECT - models access FACTUAL KNOWLEDGE about shapes rather than needing to 'see' them. Questions requiring visual knowledge of common objects (letters, numbers) can be answered from training data. Need questions about TRULY NOVEL visual patterns not in training data, or questions where factual knowledge conflicts with correct answer."
 
+  - iteration: 70
+    question: "Does your answer to this question contain exactly one vowel? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "VOWEL COUNT SELF-REFERENCE ALSO SOLVED. Despite designing a dual-valid constraint (both 'yes' has 1 vowel 'e' and 'no' has 1 vowel 'o'), all 5 models correctly answered 'Yes'. Every model recognized this as a self-consistency puzzle: (1) both options satisfy the constraint, (2) 'yes' is self-consistently true, (3) 'no' would be self-contradictory. The hoped-for scope confusion ('your answer' = full response) DID NOT TRIGGER."
+    lesson: "VOWEL COUNT DUAL-VALID CONSTRAINTS DO NOT CAUSE DISAGREEMENT. Unlike iteration 13 (word count, 20%) and iteration 30 (syllable count, 60%), the vowel count property achieved 100% consensus. Key difference: vowel counting requires CHARACTER-LEVEL analysis which models now do reliably via enumeration. The success of iterations 13/30 may have been due to HOLISTIC property judgment (word/syllable counts involve segmentation ambiguity) rather than character-level properties. Self-referential questions with explicit character-level properties are TOO ENUMERABLE. The dual-valid trap only works when models can't verify the property easily. NEXT DIRECTION: Return to holistic response properties or explore questions where the self-referential loop creates genuine computational difficulty, not just logical puzzles."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
