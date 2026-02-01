@@ -226,3 +226,14 @@
     research_activity: null
     started_at: "01/02/2026 11:26 PM PST"
     completed_at: "01/02/2026 11:29 PM PST"
+
+  - id: 69
+    question: "How many capital letters in the English alphabet have exactly one enclosed space (hole)?"
+    answer: "6"
+    status: completed
+    folder: research69
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 11:30 PM PST"
+    completed_at: "01/02/2026 11:39 PM PST"

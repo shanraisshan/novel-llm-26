@@ -720,6 +720,13 @@ findings:
     insight: "SELF-INCLUSION IN COUNTING ALSO SOLVED. Despite targeting the Alice-in-Wonderland perspective-taking failure mode and hypothesizing that LLMs would simply add 3+2=5 without including 'you', all 5 models correctly answered '6'. Every model explicitly reasoned: 'I am in the line' + 3 in front + 2 behind = 6. The self-inclusion was NOT missed."
     lesson: "SELF-INCLUSION COUNTING QUESTIONS ARE NOW SOLVED by 2026 frontier models. Unlike the Alice sibling problem where perspective shifts cause confusion, direct 'you are in the line' framing triggers correct self-inclusion. Models correctly recognize they need to count themselves when the question explicitly places them in a countable set. The predicted failure mode (3+2=5 without self) did NOT manifest. Chain-of-thought enumeration correctly handled the positional structure. Need questions where self-inclusion is MORE SUBTLE or where the enumeration method leads to wrong answer."
 
+  - iteration: 69
+    question: "How many capital letters in the English alphabet have exactly one enclosed space (hole)?"
+    score: 100%
+    status: need_more_research
+    insight: "LETTER TOPOLOGY/VISUAL PROPERTY QUESTION ALSO SOLVED. Despite targeting the hypothesis that LLMs cannot 'see' letter shapes and would struggle with topological properties (counting holes), all 5 models correctly answered '6' (A, D, O, P, Q, R). Every model systematically enumerated all 26 letters, correctly identified enclosed spaces, and even correctly excluded B (2 holes). The factual knowledge about letter shapes is well-encoded in training data."
+    lesson: "LETTER VISUAL PROPERTY QUESTIONS ARE NOW SOLVED by 2026 frontier models. Models have robust factual knowledge about letter topology/shapes, including: (1) which letters have enclosed spaces, (2) how many holes each letter has (B=2, A=1, etc.), (3) the difference between open curves (C, G, U) and enclosed spaces. The hypothesis that tokenization prevents visual reasoning was INCORRECT - models access FACTUAL KNOWLEDGE about shapes rather than needing to 'see' them. Questions requiring visual knowledge of common objects (letters, numbers) can be answered from training data. Need questions about TRULY NOVEL visual patterns not in training data, or questions where factual knowledge conflicts with correct answer."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
