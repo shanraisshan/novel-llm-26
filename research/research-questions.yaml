@@ -447,3 +447,14 @@
     research_activity: null
     started_at: "02/02/2026 03:59 AM PST"
     completed_at: "02/02/2026 04:01 AM PST"
+
+  - id: 89
+    question: "Can you spell the word 'BALL' using only the letters B, A, L?"
+    answer: "No"
+    status: completed
+    folder: research89
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 04:02 AM PST"
+    completed_at: "02/02/2026 04:07 AM PST"
