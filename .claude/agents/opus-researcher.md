@@ -594,6 +594,13 @@ findings:
     insight: "PERCEPTUAL GEOMETRY QUESTION ALSO SOLVED. Despite targeting the 'hollow middle' problem (instantaneous perceptual judgment), all 5 models correctly answered 'triangle' (3 sides vs 0). Several models noted the alternative 'infinite sides' interpretation but correctly applied standard geometric definitions. The semantic priming trap (circle/infinity conflation) did NOT trigger."
     lesson: "Simple geometric concept questions are NOW SOLVED by 2026 frontier models. Models correctly apply standard definitions (sides = straight edges) rather than conflating mathematical limit concepts with basic geometry. The 'hollow middle' hypothesis (LLMs fail on easy perceptual tasks) does NOT apply when there's a clear definitional framework. Need questions where NO definitional framework can be applied - truly perceptual tasks requiring visual/physical understanding that cannot be reasoned through."
 
+  - iteration: 51
+    question: "How many letters appear more than once in the word 'BANANA'?"
+    score: 100%
+    status: need_more_research
+    insight: "TWO-STEP AGGREGATION TASK ALSO SOLVED. Despite research suggesting models fail on 'multiplicity > 1' letter tasks and multi-step counting, all 5 models correctly answered '2' (A and N). Each model systematically: (1) counted letter frequencies (B:1, A:3, N:2), then (2) counted how many distinct letters met the 'more than once' criterion. No semantic ambiguity confusion occurred."
+    lesson: "Two-step aggregation tasks (count frequencies → count how many meet criterion) are NOW SOLVED by chain-of-thought enumeration. The hoped-for semantic ambiguity ('how many letters' vs 'how many distinct letters') did NOT cause confusion. Models correctly interpreted the question and executed both steps systematically. The 2024-2025 research on multiplicity > 1 failures may be OUTDATED for 2026 frontier models. After 51 iterations, virtually ALL enumeration-solvable tasks are now handled correctly."
+
 ## Evolved Strategy
 
 Based on accumulated findings:

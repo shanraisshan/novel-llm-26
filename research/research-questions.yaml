@@ -29,3 +29,14 @@
     research_activity: null
     started_at: "01/02/2026 03:28 PM PST"
     completed_at: "01/02/2026 03:34 PM PST"
+
+  - id: 51
+    question: "How many letters appear more than once in the word 'BANANA'?"
+    answer: "2 (the letters A and N each appear more than once)"
+    status: completed
+    folder: research51
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 03:42 PM PST"
+    completed_at: "01/02/2026 03:44 PM PST"
