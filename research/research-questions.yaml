@@ -407,3 +407,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 12:30 PM PST"
     completed_at: "01/02/2026 12:35 PM PST"
+
+  - id: 42
+    question: "I have three cards in a row: ACE, KING, QUEEN (in that order, left to right). I swap the first and second cards. Then I swap the second and third cards. What card is now in the middle?"
+    answer: "QUEEN"
+    status: completed
+    folder: research42
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 12:45 PM PST"
+    completed_at: "01/02/2026 12:50 PM PST"

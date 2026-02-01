@@ -529,6 +529,13 @@ findings:
     status: need_more_research
     insight: "PHONETIC/RHYMING TRAP FAILED. All 5 models correctly answered No, explaining PINT has long 'i' (/paɪnt/) while MINT has short 'i' (/mɪnt/). Despite identical -INT endings, models have pronunciation knowledge encoded and correctly assess rhyming."
     lesson: "Rhyming questions with misleading spelling are NOW SOLVED by 2026 frontier models. Models have internalized pronunciation knowledge for common English words and don't rely solely on spelling patterns. The visual similarity (-INT ending) did NOT trigger false pattern matching. Need even more obscure pronunciation edge cases or questions where pronunciation knowledge is genuinely ambiguous."
+
+  - iteration: 42
+    question: "I have three cards: ACE, KING, QUEEN. I swap first and second. Then swap second and third. What's in the middle?"
+    score: 100%
+    status: need_more_research
+    insight: "MULTI-STEP STATE TRACKING FAILED WITH 2 OPERATIONS. All 5 models correctly tracked: [ACE,KING,QUEEN] → [KING,ACE,QUEEN] → [KING,QUEEN,ACE]. The GoodAI Word Swap research showing failures applies to 10+ operations, not 2."
+    lesson: "Short sequences of state transformations (2-3 swaps) are NOW SOLVED by 2026 frontier models. Models explicitly track intermediate states and compute correctly. The failure mode from research requires LONGER chains (5-10+ operations) or more complex state transformations. 2 swaps is too easy to trigger the documented failure."
 ```
 
 ## Evolved Strategy
