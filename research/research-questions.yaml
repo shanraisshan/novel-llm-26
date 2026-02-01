@@ -293,3 +293,14 @@
     research_activity: null
     started_at: "02/02/2026 02:00 AM PST"
     completed_at: "02/02/2026 02:07 AM PST"
+
+  - id: 75
+    question: "If you tilt a glass of water 45 degrees, does the water surface stay parallel to the bottom of the glass or parallel to the ground?"
+    answer: "Parallel to the ground"
+    status: completed
+    folder: research75
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 02:09 AM PST"
+    completed_at: "02/02/2026 02:16 AM PST"

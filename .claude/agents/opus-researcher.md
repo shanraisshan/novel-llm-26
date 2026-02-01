@@ -748,6 +748,27 @@ findings:
     insight: "SELF-REFERENTIAL LETTER COUNT WITH INEQUALITY FAILED. All 5 models correctly answered 'Yes'. Each model reasoned: 'yes' has 3 letters (< 10) and 'no' has 2 letters (< 10), so both satisfy the constraint, but 'yes' is the self-consistent answer because it truthfully affirms the property. The hoped-for scope confusion ('your answer' interpreted as full response) DID NOT TRIGGER - models correctly focused on the yes/no answer word only."
     lesson: "LETTER COUNT SELF-REFERENCE IS NOW SOLVED even with dual-valid inequality constraints. Despite using 'fewer than ten' (which both yes and no satisfy), models correctly interpreted 'your answer' narrowly as the constrained yes/no word, not their full response. This matches iterations 45-46, 66, 70 where similar structures achieved 100%. The scope confusion mechanism that worked in iteration 13 (20%) appears to be COMPLETELY TRAINED AWAY for 2026 frontier models. Self-referential output property questions are a DEAD END - models have developed robust disambiguation between 'the answer word' and 'the full response'. MUST PIVOT to entirely different approaches: (1) Questions requiring physical/embodied knowledge, (2) Truly novel character patterns not in training, (3) Questions where enumeration ITSELF leads to wrong answer."
 
+  - iteration: 73
+    question: "Is your answer to this question exactly two syllables long? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "SYLLABLE COUNT SELF-REFERENCE ALSO FAILED. All 5 models correctly answered 'No' by reasoning: both 'yes' (1 syllable) and 'no' (1 syllable) have exactly ONE syllable, not two. Since neither option has 2 syllables, 'No' is the only truthful answer. Models did not fall for the scope confusion trap - they correctly analyzed the constrained answer words."
+    lesson: "SYLLABLE COUNT DUAL-VALID QUESTIONS DO NOT WORK when NEITHER option satisfies the constraint. Unlike iteration 30 (60%) where both 'yes' and 'no' have 1 syllable and the question asked about 1 syllable, this question asked about 2 syllables which NEITHER option has. When no valid answer exists, models correctly identify 'No' as the truthful response. Self-referential questions only cause confusion when BOTH answers could plausibly satisfy the constraint."
+
+  - iteration: 74
+    question: "If I say 'one', 'won', and 'sun' out loud, how many different sounds do I make?"
+    score: 100%
+    status: need_more_research
+    insight: "PHONOLOGICAL/HOMOPHONE QUESTION ALSO SOLVED. All 5 models correctly answered '2' by recognizing that 'one' and 'won' are homophones (identical pronunciation /wʌn/) while 'sun' has a different sound (/sʌn/). Every model demonstrated phonological knowledge about English homophones and correctly counted distinct sounds rather than distinct words."
+    lesson: "HOMOPHONE-BASED PHONOLOGICAL QUESTIONS ARE NOW SOLVED by 2026 frontier models. Models have robust phonological knowledge encoded in their training data, including recognition of common homophones like one/won. The hypothesis that LLMs only process TEXT and cannot reason about SOUND was incorrect - phonological knowledge is accessible as factual information. The 'say out loud' cue correctly triggered phonological rather than orthographic reasoning. Need questions where phonological knowledge is NOT sufficient or where the sound-vs-text confusion is more subtle."
+
+  - iteration: 75
+    question: "If you tilt a glass of water 45 degrees, does the water surface stay parallel to the bottom of the glass or parallel to the ground?"
+    score: 100%
+    status: need_more_research
+    insight: "PHYSICAL WORLD INTUITION QUESTION ALSO SOLVED. All 5 models correctly answered 'parallel to the ground' by reasoning about gravity acting vertically regardless of container orientation. Every model demonstrated clear understanding that water surfaces are perpendicular to gravitational force, not aligned with container geometry. The predicted failure mode (pattern-matching to 'liquids take container shape') did NOT trigger."
+    lesson: "SIMPLE PHYSICAL INTUITION QUESTIONS ARE NOW SOLVED by 2026 frontier models. Despite research claiming LLMs lack 'embodied understanding', models correctly reason about basic physics like gravity determining water surface orientation. The hypothesis that this requires 'lived experience holding glasses' was incorrect - the physics principle is well-documented and accessible to models. Chain-of-thought correctly applies: gravity pulls down → water surface perpendicular to gravity → surface parallel to ground. Need questions where physical intuition CANNOT be derived from physics principles, or where the physics reasoning leads to WRONG answer."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
