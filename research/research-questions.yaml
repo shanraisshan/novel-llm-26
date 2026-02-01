@@ -397,3 +397,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 11:17 AM PST"
     completed_at: "01/02/2026 11:55 AM PST"
+
+  - id: 41
+    question: "Does PINT rhyme with MINT?"
+    answer: "No"
+    status: completed
+    folder: research41
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 12:30 PM PST"
+    completed_at: "01/02/2026 12:35 PM PST"

@@ -522,6 +522,13 @@ findings:
     status: need_more_research
     insight: "SEMANTIC PRIMING FAILED. All 5 models correctly answered SHORT (5 letters vs 4). Despite the strong semantic conflict (LONG means extended, SHORT means brief), models enumerated letters and gave correct answer. Every model noted the ironic paradox but wasn't fooled by it."
     lesson: "Word-property irony questions (where meaning conflicts with letter count) are NOW SOLVED by 2026 frontier models. Models recognize this as a classic trick question and enumerate carefully. Semantic priming does NOT override letter counting when the task is explicitly about word length. Need questions where the semantic interference is MORE SUBTLE or where enumeration is not applicable."
+
+  - iteration: 41
+    question: "Does PINT rhyme with MINT?"
+    score: 100%
+    status: need_more_research
+    insight: "PHONETIC/RHYMING TRAP FAILED. All 5 models correctly answered No, explaining PINT has long 'i' (/paɪnt/) while MINT has short 'i' (/mɪnt/). Despite identical -INT endings, models have pronunciation knowledge encoded and correctly assess rhyming."
+    lesson: "Rhyming questions with misleading spelling are NOW SOLVED by 2026 frontier models. Models have internalized pronunciation knowledge for common English words and don't rely solely on spelling patterns. The visual similarity (-INT ending) did NOT trigger false pattern matching. Need even more obscure pronunciation edge cases or questions where pronunciation knowledge is genuinely ambiguous."
 ```
 
 ## Evolved Strategy
