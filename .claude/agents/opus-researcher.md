@@ -601,6 +601,13 @@ findings:
     insight: "TWO-STEP AGGREGATION TASK ALSO SOLVED. Despite research suggesting models fail on 'multiplicity > 1' letter tasks and multi-step counting, all 5 models correctly answered '2' (A and N). Each model systematically: (1) counted letter frequencies (B:1, A:3, N:2), then (2) counted how many distinct letters met the 'more than once' criterion. No semantic ambiguity confusion occurred."
     lesson: "Two-step aggregation tasks (count frequencies → count how many meet criterion) are NOW SOLVED by chain-of-thought enumeration. The hoped-for semantic ambiguity ('how many letters' vs 'how many distinct letters') did NOT cause confusion. Models correctly interpreted the question and executed both steps systematically. The 2024-2025 research on multiplicity > 1 failures may be OUTDATED for 2026 frontier models. After 51 iterations, virtually ALL enumeration-solvable tasks are now handled correctly."
 
+  - iteration: 52
+    question: "Which word comes first alphabetically if you sort by the LAST letter: CAT or DOG?"
+    score: 100%
+    status: need_more_research
+    insight: "LAST-LETTER ALPHABETICAL SORTING ALSO SOLVED. Despite external research (BIG-Bench Extra Hard) showing 73% failure on alphabetical sorting with modified criteria, and targeting tokenization blindness (models can't 'see' individual letters in tokens), all 5 models correctly answered 'DOG' (G comes before T). Every model correctly identified last letters (CAT→T, DOG→G) and compared alphabet positions (G=7th, T=20th)."
+    lesson: "Last-letter extraction + alphabetical comparison is NOW SOLVED by 2026 frontier models. Models correctly decompose words to identify last letters despite tokenization, and correctly compare alphabet positions. The hypothesized 'strong prior for standard alphabetical order' (CAT before DOG by first letter) did NOT override the explicit 'by last letter' instruction. Chain-of-thought enables correct sub-token character access even for short common words. Need tasks where character decomposition + comparison STILL fails despite explicit reasoning."
+
 ## Evolved Strategy
 
 Based on accumulated findings:

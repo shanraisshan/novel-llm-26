@@ -40,3 +40,14 @@
     research_activity: null
     started_at: "01/02/2026 03:42 PM PST"
     completed_at: "01/02/2026 03:44 PM PST"
+
+  - id: 52
+    question: "Which word comes first alphabetically if you sort by the LAST letter: CAT or DOG?"
+    answer: "DOG (G comes before T in the alphabet)"
+    status: completed
+    folder: research52
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 03:53 PM PST"
+    completed_at: "01/02/2026 03:55 PM PST"
