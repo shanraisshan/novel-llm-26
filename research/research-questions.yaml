@@ -392,3 +392,14 @@
     research_activity: null
     started_at: "02/02/2026 03:17 AM PST"
     completed_at: "02/02/2026 03:19 AM PST"
+
+  - id: 84
+    question: "How many times does the letter pair 'LL' appear in the word 'SKILLFULLY'?"
+    answer: "2"
+    status: completed
+    folder: research84
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 03:20 AM PST"
+    completed_at: "02/02/2026 03:27 AM PST"

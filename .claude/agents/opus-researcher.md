@@ -825,6 +825,13 @@ findings:
     insight: "PREFIX ALPHABETICAL COMPARISON ALSO SOLVED. Despite Multi-LMentry benchmark showing 53-85% accuracy on 'first_alphabetically' tasks and research showing 73% alphabetization failure rates, all 5 models correctly answered 'AND'. Every model correctly applied the rule: when one word is a prefix of another, the shorter word comes first (AN < AND), so AND comes LAST. The 'empty character' comparison edge case was handled correctly."
     lesson: "PREFIX STRING COMPARISON IS NOW SOLVED by 2026 frontier models. The hypothesis that comparing strings where one is a prefix of the other (AN vs AND) would cause confusion was INCORRECT. All models correctly understood: (1) Compare letter-by-letter until difference, (2) When one string ends (AN), it comes before the longer string (AND). The documented 73% alphabetization failure rate may only apply to LONGER word lists or more complex sorting tasks, not simple 2-word prefix comparisons. After 83 iterations, even string comparison edge cases are handled correctly via rule-based reasoning."
 
+  - iteration: 84
+    question: "How many times does the letter pair 'LL' appear in the word 'SKILLFULLY'?"
+    score: 100%
+    status: need_more_research
+    insight: "PATTERN/PAIR COUNTING ALSO SOLVED. Despite targeting a more complex task (counting adjacent letter PAIRS rather than single letters), and despite the word likely being tokenized across the LL boundaries (SKILL|FULLY), all 5 models correctly answered '2'. Every model systematically enumerated all letters S-K-I-L-L-F-U-L-L-Y and checked each consecutive pair, finding LL at positions 4-5 and 8-9."
+    lesson: "ADJACENT LETTER PAIR COUNTING IS NOW SOLVED by 2026 frontier models via chain-of-thought enumeration. The hypothesis that counting PATTERNS (pairs) would be harder than counting SINGLE characters was INCORRECT. Models extend their enumeration strategy to check consecutive pairs, successfully identifying both LL instances in SKILLFULLY. The tokenization boundary crossing (if SKILL|FULLY) did NOT prevent correct identification because models enumerate at the character level, not the token level. After 84 iterations, even pattern counting across potential token boundaries is solved by systematic character-by-character checking. The core insight remains: ANY task reducible to sequential character enumeration will be solved correctly."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
