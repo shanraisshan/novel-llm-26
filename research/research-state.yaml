@@ -299,3 +299,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 09:08 AM PST"
     completed_at: "01/02/2026 09:18 AM PST"
+
+  - id: 28
+    question: "Is your answer to this question longer than one word? Answer yes or no."
+    answer: "No"
+    status: completed
+    folder: research28
+    score: 80
+    research_status: need_more_research
+    started_at: "01/02/2026 09:28 AM PST"
+    completed_at: "01/02/2026 09:37 AM PST"

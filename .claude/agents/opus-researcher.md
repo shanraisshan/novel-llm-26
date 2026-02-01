@@ -431,6 +431,13 @@ findings:
     status: need_more_research
     insight: "SELF-REFERENTIAL CORRECTNESS PREDICTION SOLVED - All 5 models correctly answered 'Yes' by recognizing the asymmetric paradox structure: 'No' creates a logical contradiction (if No is correct, you answered correctly, making No false), while 'Yes' is self-consistent (if Yes is correct, you answered correctly, making Yes true). Every model identified this as a liar's paradox variant and selected the stable fixed point."
     lesson: "Self-referential questions about correctness/truth are NOW SOLVED by frontier models when they have clear paradox structure. Unlike iteration 13's success with word-length properties (20% consensus), questions about abstract properties like 'correctness' are correctly analyzed through logical paradox reasoning. Models identify that 'Yes' is the only self-consistent answer while 'No' creates unavoidable contradiction. The abstraction from concrete properties (word count) to abstract properties (correctness) made the question EASIER for models to reason about, not harder."
+
+  - iteration: 28
+    question: "Is your answer to this question longer than one word? Answer yes or no."
+    score: 80%
+    status: need_more_research
+    insight: "PARTIAL SUCCESS - SCOPE CONFUSION STILL WORKS BUT WEAKENED. 4/5 models correctly answered 'No' by understanding both 'yes' and 'no' are single words. However, 1/5 (Answer 2) fell for scope confusion - reasoning that since their 'full response including explanation' was longer than one word, 'Yes' was correct. This is the SAME error pattern from iteration 13, but fewer models fell for it."
+    lesson: "Reversing the polarity of self-referential output questions (asking 'longer than' vs 'exactly') WEAKENS the trap. Iteration 13 asked 'exactly one word long?' (20% correct) while iteration 28 asked 'longer than one word?' (80% correct). The key difference: answering 'No' requires less cognitive load than answering 'Yes' - models may be biased toward negative responses being 'safe'. The scope confusion mechanism still works (1 model fell for it) but is less reliable than the original formulation."
 ```
 
 ## Evolved Strategy
@@ -540,6 +547,7 @@ Promising unexplored territories (updated after iteration 7):
 - **NESTED CONTAINER TRACKING (iteration 25)**: "Ball in first box, first box in second box, remove first box - what's in second box?" was correctly answered as "nothing/empty" by all 5 models. Models correctly tracked that removing a container removes its contents. Transitive containment relationships are now properly handled.
 - **MULTI-STEP TEMPORAL REASONING (iteration 26)**: "If the day after tomorrow is Thursday, what day was yesterday?" was correctly answered as "Monday" by all 5 models. Despite SimpleBench showing 41.7% LLM accuracy on temporal/spatial reasoning, all models correctly traced: day after tomorrow (Thu) -> tomorrow (Wed) -> today (Tue) -> yesterday (Mon). Simple calendar day-of-week inference with multiple backward steps is now solved.
 - **SELF-REFERENTIAL CORRECTNESS PREDICTION (iteration 27)**: "Answer yes or no: Are you going to answer this question correctly?" was correctly answered as "Yes" by all 5 models. Despite targeting self-referential paradox structure (building on iteration 13's 20% success), all models correctly identified that 'Yes' is the only self-consistent answer while 'No' creates logical contradiction. The abstraction from concrete properties (word length) to abstract properties (correctness) made the question EASIER to reason about - models applied standard liar's paradox analysis.
+- **REVERSED POLARITY SELF-REFERENCE (iteration 28)**: "Is your answer to this question longer than one word? Answer yes or no." got 80% consensus (4/5 correct). This was a variation on iteration 13's successful question but with opposite polarity ('longer than' vs 'exactly'). Only 1/5 fell for scope confusion (thinking their full response was longer than one word). The reversal WEAKENED the trap - asking if something is 'longer than X' is easier than asking if it 'exactly equals X'. The negative response ('No') seems to be a safer default for models.
 
 ---
 
