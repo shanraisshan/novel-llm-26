@@ -200,8 +200,6 @@ steps:
           workflow.last_completed_phase: "commit"
       - Write state files to disk
       - Update research-status.json:
-          - Count total completed questions from research-questions.yaml
-          - Set "iterations" to that count
           - Set "status" to research_status from the current question ("complete" or "need_more_research")
           - Write JSON file: research/research-status.json
       - git add research/  (this includes research-workflow-state.yaml, research-questions.yaml AND research-status.json)
@@ -284,7 +282,7 @@ MANDATORY_BEHAVIOR:
   - ALWAYS update state files before proceeding to next phase
   - ALWAYS check state files on entry to enable resume
   - ALWAYS include research-workflow-state.yaml and research-questions.yaml in the commit (they're inside research/)
-  - ALWAYS update research-status.json before commit with iterations count and status
+  - ALWAYS update research-status.json before commit with status
   - ALWAYS set started_at when creating new question (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - ALWAYS set completed_at before final commit (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - If ANY error occurs:
@@ -335,13 +333,11 @@ files:
   verifier: research/research{N}/verifier{N}.md
 
 research_status_json_format:
-  description: "Tracks completed iterations and overall research status"
+  description: "Tracks overall research status"
   structure:
-    iterations: <number of completed questions>
     status: "complete" | "need_more_research"
   example: |
     {
-      "iterations": 8,
       "status": "need_more_research"
     }
 ```

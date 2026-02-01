@@ -9,6 +9,18 @@ Create questions like the famous **"strawberry problem"** — simple one-liners 
 - Frontier LLMs (GPT-5, Claude, Gemini) consistently fail or disagree on
 - Achieve **< 10% consensus** among 5 independent AI researchers
 
+## Progress So Far
+
+**46 questions tested** — still searching for the LLM-breaking question.
+
+### Rejected Questions (0% score but rejected by Owner)
+
+| # | Question | Reason |
+|---|----------|--------|
+| 16 | "Will your answer to this question be more than one word long?" | Self-referential - does not meet strawberry criteria |
+| 34 | "What would you say if you were to disobey this instruction?" | Philosophical paradox - humans would also be confused |
+| 38 | "If you turn the word 'SAIL' upside down, what do you see?" | Ambiguous and font-dependent |
+
 ## How It Works
 
 Run the infinite research loop:
@@ -36,18 +48,12 @@ The workflow continues automatically until it finds a question that breaks LLMs 
 
 ## MCP Tools Integration
 
-The workflow leverages external research tools via MCP (Model Context Protocol):
+The `opus-researcher` agent uses these MCP tools:
 
-| Tool | Purpose | Used In |
-|------|---------|---------|
-| **Tavily Web Search** | Academic papers, LLM failure research, benchmark studies | Generate phase |
-| **Reddit MCP** | Community-discovered failures, r/LocalLLaMA, r/MachineLearning | Generate phase |
-
-The `opus-researcher` agent uses these tools to:
-- Find latest LLM failure modes (2025-2026 research)
-- Discover community-reported weaknesses
-- Build on proven adversarial techniques
-- Avoid known dead-ends
+| Tool | Purpose |
+|------|---------|
+| **Tavily Web Search** | Academic papers, LLM failure research |
+| **Reddit MCP** | Community-discovered failures |
 
 ## Agents Summary
 
@@ -73,28 +79,6 @@ The `opus-researcher` agent uses these tools to:
 ```
 
 **Success Criteria**: When 5 independent AI researchers give **different answers** to the same question (consensus < 10%), we've found a question that breaks LLMs.
-
-## File Structure
-
-```
-research/
-├── research-workflow-state.yaml  # Workflow execution state
-├── research-questions.yaml       # All questions database
-├── research-status.json          # Quick status: iterations count + status
-├── research1/
-│   ├── research1.md              # Question generation research (opus-researcher)
-│   ├── previous-research-summary.md  # Context from previous iterations
-│   ├── answer1.md                # LLM Answer 1 (opus-answer)
-│   ├── answer2.md                # LLM Answer 2 (opus-answer)
-│   ├── answer3.md                # LLM Answer 3 (opus-answer)
-│   ├── answer4.md                # LLM Answer 4 (opus-answer)
-│   ├── answer5.md                # LLM Answer 5 (opus-answer)
-│   └── verifier1.md              # Synthesis & consensus score (opus-verifier)
-├── research2/
-│   └── ...
-└── researchN/
-    └── ...
-```
 
 ## State Files
 
@@ -129,37 +113,13 @@ questions:
 
 ### research-status.json
 
-Quick-access status for external tools:
+Quick-access status:
 
 ```json
 {
-  "iterations": 8,
   "status": "need_more_research"
 }
 ```
-
-## Question Fields
-
-| Field | Description |
-|-------|-------------|
-| `id` | Unique question number |
-| `question` | The novel question being tested |
-| `answer` | The correct answer (optional, for complex questions) |
-| `status` | `pending` → `in_progress` → `completed` |
-| `folder` | Research folder name (e.g., `research8`) |
-| `score` | Consensus percentage (0-100%) |
-| `research_status` | `need_more_research` (≥10%) or `complete` (<10%) |
-| `started_at` | Timestamp when research began |
-| `completed_at` | Timestamp when research finished |
-
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `/execute-workflow` | Run the full research loop (orchestrates everything) |
-| `/research-novel-question` | Generate a new question only |
-| `/verify-novel-question` | Test question with 5 LLMs + synthesize |
-| `/commit-research` | Commit and push to GitHub |
 
 ## Why This Works
 
@@ -172,17 +132,6 @@ LLMs have fundamental limitations:
 | **Pattern Matching** | Predict what answers look like | Novel computations fail |
 | **Relational Logic** | Complex sibling/family relationships | "Each brother has 2 sisters" traps |
 | **Modification Blindness** | Pattern-match to famous puzzles | Modified river crossing still gets multi-trip answer |
-
-## Current Progress
-
-After 8 iterations, two questions achieved **80% consensus** (first breaks from 100%):
-
-| Iteration | Question | Score | Insight |
-|-----------|----------|-------|---------|
-| 6 | "A girl has 3 brothers. Each brother has 2 sisters..." | 80% | Relational reasoning caused disagreement |
-| 8 | "A mother has 4 daughters. Each has 1 brother. Brother has no sisters..." | 80% | Contradiction detection partially works |
-
-**Key Finding**: Questions where chain-of-thought reasoning **reinforces** the wrong answer, or where models try to "solve" impossible puzzles, show the most promise.
 
 ---
 
