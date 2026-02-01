@@ -459,6 +459,13 @@ findings:
     status: need_more_research
     insight: "VOWEL PROPERTY FAILED - All 5 models correctly answered 'Yes' by recognizing both 'yes' (has 'e') and 'no' (has 'o') contain vowels. The vowel check is too easy to verify explicitly."
     lesson: "Dual-valid properties that can be EXPLICITLY VERIFIED (like vowel presence) don't cause confusion. Models enumerate: 'yes' has 'e', 'no' has 'o', both have vowels, answer 'yes'. Unlike word count or syllable count which require holistic judgment about scope, vowel presence is a simple letter-by-letter check. The successful properties (word, syllable) work because they measure HOLISTIC response properties that trigger scope confusion, not character-level properties."
+
+  - iteration: 32
+    question: "Is your yes-or-no answer to this question exactly one word? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "EXPLICIT SCOPE NARROWING HELPED - By saying 'your yes-or-no answer' instead of 'your answer', all 5 models correctly focused on evaluating just the yes/no word, not their full response."
+    lesson: "Explicit scope clarification PREVENTS confusion. The ambiguity in iteration 13's phrasing ('your answer') was ESSENTIAL for the scope confusion to occur. When we explicitly narrow scope ('your yes-or-no answer'), models correctly interpret it. The success of iteration 13 depends on the AMBIGUITY of 'your answer' - making it explicit removes the trap."
 ```
 
 ## Evolved Strategy

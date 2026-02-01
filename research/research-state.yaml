@@ -339,3 +339,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 09:49 AM PST"
     completed_at: "01/02/2026 09:51 AM PST"
+
+  - id: 32
+    question: "Is your yes-or-no answer to this question exactly one word? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research32
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 09:53 AM PST"
+    completed_at: "01/02/2026 09:55 AM PST"
