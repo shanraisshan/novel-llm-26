@@ -797,6 +797,13 @@ findings:
     insight: "OVERLAPPING PATTERN COUNTING ALSO SOLVED. Despite targeting the ZEH paper's finding that GPT-5.2 fails parity at 5 characters due to sequential state tracking limitations, all 5 models correctly answered '4' by systematically checking each consecutive pair: positions 1-2, 2-3, 3-4, 4-5. Every model explicitly understood that overlapping occurrences should be counted."
     lesson: "OVERLAPPING PATTERN COUNTING IS NOW SOLVED by 2026 frontier models. The hypothesis that overlapping substring counting requires the same sequential state tracking as parity (which fails at ZEH=4) was INCORRECT. Models correctly enumerate all possible starting positions for a 2-character sequence in a 5-character string (5-2+1=4 positions) and verify each. The key difference: pattern matching at each position is a VERIFIABLE step, while parity requires maintaining a RUNNING state. Chain-of-thought transforms sequential problems into enumeration problems. After 79 iterations, we must conclude that ANY problem reducible to position enumeration is solved."
 
+  - iteration: 80
+    question: "I have $9.9 in my left pocket and $9.11 in my right pocket. Which pocket has more money?"
+    score: 100%
+    status: need_more_research
+    insight: "DECIMAL/MONEY COMPARISON WITH SEMANTIC LOADING ALSO SOLVED. Despite Reddit 2025 confirming '9.11 vs 9.9' still fails in LLMs, and despite using the semantically loaded '9.11' with money framing and ambiguous notation ($9.9 vs $9.90), all 5 models correctly answered 'Left pocket'. Every model explicitly converted to cents: $9.90 = 990 cents > $9.11 = 911 cents. Some models even noted the potential trap of treating it like version numbers."
+    lesson: "DECIMAL COMPARISON IN MONEY CONTEXT IS NOW SOLVED by 2026 frontier models. The Reddit-reported '9.11 vs 9.9' failure mode may be (1) outdated for Claude Opus 4.5, (2) specific to certain model versions, or (3) only triggered by abstract comparisons without money framing. The money context may have HELPED rather than hindered because models are well-trained on money arithmetic. Key insight: Money framing activates robust currency comparison routines (convert to cents) that BYPASS the version number confusion. The '$' symbol signals decimal currency mode, not version comparison mode. After 80 iterations, even documented 2025 failure modes are now solved by frontier models. Need to find TRULY NOVEL failure modes not yet patched."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

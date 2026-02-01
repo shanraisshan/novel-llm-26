@@ -348,3 +348,14 @@
     research_activity: null
     started_at: "02/02/2026 02:41 AM PST"
     completed_at: "02/02/2026 02:47 AM PST"
+
+  - id: 80
+    question: "I have $9.9 in my left pocket and $9.11 in my right pocket. Which pocket has more money?"
+    answer: "Left pocket"
+    status: completed
+    folder: research80
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 02:52 AM PST"
+    completed_at: "02/02/2026 02:54 AM PST"
