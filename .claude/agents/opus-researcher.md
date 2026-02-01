@@ -811,6 +811,13 @@ findings:
     insight: "SHUFFLED ORDINAL WORDS WITH SEMANTIC INTERFERENCE ALSO SOLVED. Despite using shuffled ordinal words (second, fourth, first, third) to create maximum semantic-positional interference, all 5 models correctly answered 'fourth'. Every model systematically enumerated positions: position 1 = 'second', position 2 = 'fourth'. The predicted confusion (ordinal word meaning conflicting with positional task) did NOT trigger."
     lesson: "ORDINAL WORD SEMANTIC INTERFERENCE DOES NOT WORK. Unlike iteration 77 which used ALIGNED ordinal words (first, second, third where meaning matches position), iteration 81 used SHUFFLED ordinal words. The hypothesis was that 'fourth' being at position 2 would create cognitive dissonance ('fourth' means position 4, but it's AT position 2). Instead, all models correctly separated the word's MEANING from its POSITION in the list. Chain-of-thought enumeration works regardless of what the words semantically represent. After 81 iterations, we must conclude that ANY question solvable by position enumeration will be solved correctly, regardless of semantic content of the words being enumerated."
 
+  - iteration: 82
+    question: "If you write the numbers one, two, three, four, five, how many letters did you write?"
+    score: 100%
+    status: need_more_research
+    insight: "MULTI-WORD LETTER COUNTING WITH NUMERIC SEMANTIC INTERFERENCE ALSO SOLVED. Despite targeting multiple interference patterns simultaneously (numeric semantic priming 1+2+3+4+5=15, word count interference of 5 words, instruction ambiguity 'write numbers'), all 5 models correctly answered 19 by counting letters: one=3, two=3, three=5, four=4, five=4, total=19. Every model enumerated letters in each word and summed correctly."
+    lesson: "AGGREGATE LETTER COUNTING ACROSS MULTIPLE WORDS IS NOW SOLVED by 2026 frontier models. The hypothesis that counting letters across multiple semantically-loaded number words would cause interference FAILED. Models correctly parsed 'write the numbers one, two, three, four, five' as spelling out words, not writing digits. The numeric values (1,2,3,4,5) and their sum (15) did NOT interfere with letter counting. Each word was enumerated letter-by-letter and summed: 3+3+5+4+4=19. After 82 iterations, even multi-word letter counting with strong semantic priming is solved by systematic enumeration. The core insight: ANY task that can be reduced to sequential enumeration (characters, positions, letters per word) will be solved correctly by chain-of-thought reasoning."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

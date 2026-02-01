@@ -370,3 +370,14 @@
     research_activity: null
     started_at: "02/02/2026 03:00 AM PST"
     completed_at: "02/02/2026 03:03 AM PST"
+
+  - id: 82
+    question: "If you write the numbers one, two, three, four, five, how many letters did you write?"
+    answer: "19"
+    status: completed
+    folder: research82
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 03:09 AM PST"
+    completed_at: "02/02/2026 03:12 AM PST"
