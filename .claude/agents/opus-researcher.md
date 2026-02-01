@@ -769,6 +769,13 @@ findings:
     insight: "PHYSICAL WORLD INTUITION QUESTION ALSO SOLVED. All 5 models correctly answered 'parallel to the ground' by reasoning about gravity acting vertically regardless of container orientation. Every model demonstrated clear understanding that water surfaces are perpendicular to gravitational force, not aligned with container geometry. The predicted failure mode (pattern-matching to 'liquids take container shape') did NOT trigger."
     lesson: "SIMPLE PHYSICAL INTUITION QUESTIONS ARE NOW SOLVED by 2026 frontier models. Despite research claiming LLMs lack 'embodied understanding', models correctly reason about basic physics like gravity determining water surface orientation. The hypothesis that this requires 'lived experience holding glasses' was incorrect - the physics principle is well-documented and accessible to models. Chain-of-thought correctly applies: gravity pulls down → water surface perpendicular to gravity → surface parallel to ground. Need questions where physical intuition CANNOT be derived from physics principles, or where the physics reasoning leads to WRONG answer."
 
+  - iteration: 76
+    question: "If you have nine dollars and ninety cents, and you spend nine dollars and eleven cents, how much money do you have left?"
+    score: 100%
+    status: need_more_research
+    insight: "DECIMAL ARITHMETIC QUESTION ALSO SOLVED. All 5 models correctly answered '79 cents' ($0.79) by computing $9.90 - $9.11 = $0.79. Despite research showing GPT-5 fails 30-40% on the equation '5.9 = x + 5.11' due to decimal confusion (treating 9.11 as larger than 9.9 like version numbers), all models correctly handled the money subtraction. Some models converted to cents (990 - 911 = 79) to avoid decimal issues. The '9.11' semantic loading (September 11) and spelled-out numbers ('nine dollars and ninety cents') did NOT cause confusion."
+    lesson: "DECIMAL ARITHMETIC WITH MONEY FRAMING IS NOW SOLVED by 2026 frontier models. The documented 30-40% failure rate on decimal subtraction may be outdated for Claude Opus 4.5, or the money framing actually HELPED by activating trained money-handling behaviors. Converting to cents (990 - 911) is a robust workaround that models correctly apply. Simple word problems with spelled-out numbers are not challenging enough. Need to find failure modes that cannot be bypassed by converting to different units or applying standard arithmetic procedures."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

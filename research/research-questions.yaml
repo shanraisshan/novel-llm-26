@@ -304,3 +304,14 @@
     research_activity: null
     started_at: "02/02/2026 02:09 AM PST"
     completed_at: "02/02/2026 02:16 AM PST"
+
+  - id: 76
+    question: "If you have nine dollars and ninety cents, and you spend nine dollars and eleven cents, how much money do you have left?"
+    answer: "79 cents (or $0.79)"
+    status: completed
+    folder: research76
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 02:17 AM PST"
+    completed_at: "02/02/2026 02:25 AM PST"
