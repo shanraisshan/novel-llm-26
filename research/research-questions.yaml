@@ -215,3 +215,14 @@
     research_activity: null
     started_at: "01/02/2026 11:18 PM PST"
     completed_at: "01/02/2026 11:20 PM PST"
+
+  - id: 68
+    question: "You are standing in line with 3 people in front of you and 2 people behind you. How many people are in the line?"
+    answer: "6"
+    status: completed
+    folder: research68
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 11:26 PM PST"
+    completed_at: "01/02/2026 11:29 PM PST"

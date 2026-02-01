@@ -3,9 +3,9 @@
 # Questions are stored separately in research-questions.yaml
 
 workflow:
-  status: running  # idle | running | completed | error
-  current_phase: generate  # generate | verify | evaluate | update_agent | commit | report
-  current_iteration: 68  # The research ID being processed
+  status: idle  # idle | running | completed | error
+  current_phase: null  # generate | verify | evaluate | update_agent | commit | report
+  current_iteration: null  # The research ID being processed
   last_completed_phase: commit
   error_message: null
 
