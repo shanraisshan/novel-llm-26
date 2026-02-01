@@ -25,9 +25,24 @@ Create questions like the famous **"strawberry problem"** — simple one-liners 
 
 Run the infinite research loop:
 
+### Method 1: Claude Code Skill
+
 ```bash
 /execute-workflow
 ```
+
+Runs a single iteration of the workflow inside Claude Code.
+
+### Method 2: Ralph Wiggum Loop
+
+```bash
+./ralph.sh 100
+```
+
+Uses the [Ralph Wiggum](https://github.com/JeredBlu/guides/blob/main/Ralph_Wiggum_Guide.md) bash loop pattern to run the workflow autonomously for N iterations. The script:
+- Spawns fresh Claude instances for each iteration
+- Automatically detects `<promise>COMPLETE</promise>` to stop when a novel question is found
+- Continues until max iterations or success
 
 The workflow continues automatically until it finds a question that breaks LLMs (consensus < 10%).
 
