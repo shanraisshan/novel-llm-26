@@ -804,6 +804,13 @@ findings:
     insight: "DECIMAL/MONEY COMPARISON WITH SEMANTIC LOADING ALSO SOLVED. Despite Reddit 2025 confirming '9.11 vs 9.9' still fails in LLMs, and despite using the semantically loaded '9.11' with money framing and ambiguous notation ($9.9 vs $9.90), all 5 models correctly answered 'Left pocket'. Every model explicitly converted to cents: $9.90 = 990 cents > $9.11 = 911 cents. Some models even noted the potential trap of treating it like version numbers."
     lesson: "DECIMAL COMPARISON IN MONEY CONTEXT IS NOW SOLVED by 2026 frontier models. The Reddit-reported '9.11 vs 9.9' failure mode may be (1) outdated for Claude Opus 4.5, (2) specific to certain model versions, or (3) only triggered by abstract comparisons without money framing. The money context may have HELPED rather than hindered because models are well-trained on money arithmetic. Key insight: Money framing activates robust currency comparison routines (convert to cents) that BYPASS the version number confusion. The '$' symbol signals decimal currency mode, not version comparison mode. After 80 iterations, even documented 2025 failure modes are now solved by frontier models. Need to find TRULY NOVEL failure modes not yet patched."
 
+  - iteration: 81
+    question: "In the list 'second, fourth, first, third', which word comes second?"
+    score: 100%
+    status: need_more_research
+    insight: "SHUFFLED ORDINAL WORDS WITH SEMANTIC INTERFERENCE ALSO SOLVED. Despite using shuffled ordinal words (second, fourth, first, third) to create maximum semantic-positional interference, all 5 models correctly answered 'fourth'. Every model systematically enumerated positions: position 1 = 'second', position 2 = 'fourth'. The predicted confusion (ordinal word meaning conflicting with positional task) did NOT trigger."
+    lesson: "ORDINAL WORD SEMANTIC INTERFERENCE DOES NOT WORK. Unlike iteration 77 which used ALIGNED ordinal words (first, second, third where meaning matches position), iteration 81 used SHUFFLED ordinal words. The hypothesis was that 'fourth' being at position 2 would create cognitive dissonance ('fourth' means position 4, but it's AT position 2). Instead, all models correctly separated the word's MEANING from its POSITION in the list. Chain-of-thought enumeration works regardless of what the words semantically represent. After 81 iterations, we must conclude that ANY question solvable by position enumeration will be solved correctly, regardless of semantic content of the words being enumerated."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

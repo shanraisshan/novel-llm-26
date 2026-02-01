@@ -359,3 +359,14 @@
     research_activity: null
     started_at: "02/02/2026 02:52 AM PST"
     completed_at: "02/02/2026 02:54 AM PST"
+
+  - id: 81
+    question: "In the list 'second, fourth, first, third', which word comes second?"
+    answer: "fourth"
+    status: completed
+    folder: research81
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 03:00 AM PST"
+    completed_at: "02/02/2026 03:03 AM PST"
