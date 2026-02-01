@@ -248,3 +248,14 @@
     research_activity: null
     started_at: "02/02/2026 01:29 AM PST"
     completed_at: "02/02/2026 01:35 AM PST"
+
+  - id: 71
+    question: "Is your answer to this question a complete sentence? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research71
+    score: 80
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 01:40 AM PST"
+    completed_at: "02/02/2026 01:42 AM PST"
