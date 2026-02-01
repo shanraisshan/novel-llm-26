@@ -438,3 +438,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 11:54 AM PST"
     completed_at: "01/02/2026 11:59 AM PST"
+
+  - id: 45
+    question: "Does your answer to this question have fewer letters than the number five? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research45
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 12:00 PM PST"
+    completed_at: "01/02/2026 12:06 PM PST"

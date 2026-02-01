@@ -550,6 +550,13 @@ findings:
     status: need_more_research
     insight: "DISAMBIGUATION CONFIRMED - MODELS CAN TRACK POSITIONS. By specifying 'FIRST R' instead of 'the R', all 5 models correctly answered 'E'. Every model enumerated C-H-E-R-R-Y and correctly identified position 3 (E) before position 4 (first R). This confirms iteration 43's 40% disagreement was PURELY due to interpretation ambiguity, NOT sub-token position blindness."
     lesson: "CRITICAL LEARNING: When questions are UNAMBIGUOUS, 2026 frontier models CAN track character positions in short words like CHERRY via chain-of-thought enumeration. The 'strawberry problem' of character blindness may be SOLVED for simple words. Need either: (1) MUCH longer words where enumeration is tedious/error-prone, (2) Questions that CANNOT be solved by enumeration, (3) Return to the self-referential output format that achieved 20% in iteration 13, or (4) Questions with SUBTLE ambiguity that creates genuine interpretation differences. Pure character position tracking in common 6-letter words is no longer a reliable failure mode."
+
+  - iteration: 45
+    question: "Does your answer to this question have fewer letters than the number five? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "SELF-REFERENTIAL LETTER COUNT SOLVED. All 5 models correctly answered 'Yes' by reasoning: yes=3 letters, 3<5, therefore true. Unlike iteration 13 (20% - word count), this letter count question was TOO EXPLICIT. Models easily enumerated that both 'yes' and 'no' have fewer than 5 letters, making 'Yes' the only logical answer."
+    lesson: "EXPLICIT SELF-REFERENTIAL QUESTIONS ARE NOW SOLVED. The difference from iteration 13: (1) Letter count is MORE enumerable than word count, (2) 'Fewer than 5' is an explicit, verifiable threshold, (3) Models correctly identified this as a self-consistency check. The 20% success in iteration 13 may have been due to SCOPE AMBIGUITY ('your answer' = just the word OR entire response), not the self-referential nature itself. Need questions where scope ambiguity creates FORCED wrong answers, or questions where the correct answer APPEARS paradoxical but isn't."
 ```
 
 ## Evolved Strategy
