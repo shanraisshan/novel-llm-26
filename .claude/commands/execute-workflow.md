@@ -2,10 +2,14 @@
 
 This command orchestrates the full research workflow using state-based continuation. It reads the workflow state, determines what phase to execute, and continues until the workflow completes.
 
-## STATE-BASED CONTINUATION SYSTEM
+## RALPH LOOP INTEGRATION
 
 ```yaml
 CRITICAL_RULES:
+  - This workflow integrates with the Ralph Loop plugin
+  - State is tracked in .claude/ralph-loop.local.md (plugin format)
+  - Completion is signaled via <promise>Research complete</promise> tag
+  - The plugin's stop hook reads .claude/ralph-loop.local.md to determine if loop should continue
   - ALWAYS read research/research-workflow-state.yaml and research/research-questions.yaml FIRST
   - Check workflow.status and workflow.current_phase
   - If status is "running", RESUME from current_phase
@@ -65,9 +69,9 @@ state_machine:
           then: "IMMEDIATELY proceed to report phase"
 
       report:
-        action: "Display completion summary and recommend /compact"
+        action: "Display completion summary and signal loop status"
         on_complete:
-          then: "Workflow complete"
+          then: "Output promise tag if complete, otherwise workflow continues"
 ```
 
 ## Instructions
@@ -199,11 +203,10 @@ steps:
           workflow.current_iteration: null
           workflow.last_completed_phase: "commit"
       - Write state files to disk
-      - Update research-status.json:
-          - Set "status" to research_status from the current question ("complete" or "need_more_research")
-          - Write JSON file: research/research-status.json
-      - git add research/  (this includes research-workflow-state.yaml, research-questions.yaml AND research-status.json)
+      - Update .claude/ralph-loop.local.md with current research status (see Ralph Loop State File section)
+      - git add research/  (this includes research-workflow-state.yaml and research-questions.yaml)
       - git add .claude/agents/opus-researcher.md (if modified)
+      - git add .claude/ralph-loop.local.md
       - Create commit with message: "research(N): [STATUS] score=X%"
       - git push origin main
     on_complete:
@@ -211,7 +214,7 @@ steps:
 
   ### PHASE: REPORT (FINAL) ###
   - phase: PHASE_REPORT
-    action: Report completion to user
+    action: Report completion to user and signal loop status
     inline_steps:
       - Display a summary table with:
           - Research iteration number
@@ -224,6 +227,7 @@ steps:
           - Duration (completed_at - started_at)
           - Commit hash
       - Display recommendation message
+      - Signal loop completion status (see Promise Tag section)
     output_format: |
       ## Workflow Complete - Research Iteration {N}
 
@@ -245,7 +249,66 @@ steps:
       ---
       **Recommended**: Run `/compact` to summarize this conversation before starting the next iteration.
     on_complete:
-      - ">>> WORKFLOW COMPLETE <<<"
+      - ">>> WORKFLOW ITERATION COMPLETE <<<"
+      - ">>> IF research_status = 'complete': Output <promise>Research complete</promise> <<<"
+      - ">>> IF research_status = 'need_more_research': Let Ralph Loop continue automatically <<<"
+```
+
+## Ralph Loop State File
+
+```yaml
+file: .claude/ralph-loop.local.md
+description: "State file for Ralph Loop plugin integration"
+format: |
+  ---
+  active: true
+  iteration: {current_iteration_number}
+  max_iterations: 0
+  completion_promise: "Research complete"
+  started_at: "{ISO8601_timestamp}"
+  ---
+
+  Execute the research workflow
+
+update_rules:
+  - Write this file at the START of each workflow run (before PHASE_GENERATE)
+  - Update iteration count after each commit
+  - Keep active: true until research_status = "complete"
+  - The prompt section (after ---) should always be "Execute the research workflow"
+
+example: |
+  ---
+  active: true
+  iteration: 47
+  max_iterations: 0
+  completion_promise: "Research complete"
+  started_at: "2026-02-01T12:00:00Z"
+  ---
+
+  Execute the research workflow
+```
+
+## Promise Tag (Loop Completion Signal)
+
+```yaml
+CRITICAL_BEHAVIOR:
+  description: "The Ralph Loop plugin detects <promise> tags to know when to stop"
+
+  when_research_complete:
+    condition: "research_status = 'complete' (score < 10%)"
+    action: "Output the promise tag to stop the loop"
+    output: "<promise>Research complete</promise>"
+    effect: "Ralph Loop plugin will detect this and allow the session to end"
+
+  when_need_more_research:
+    condition: "research_status = 'need_more_research' (score >= 10%)"
+    action: "Do NOT output any promise tag"
+    effect: "Ralph Loop plugin will block the stop and re-inject the prompt"
+
+  IMPORTANT:
+    - ONLY output <promise>Research complete</promise> when research is TRULY complete
+    - Do NOT lie to exit the loop
+    - The loop will automatically continue if no promise tag is output
 ```
 
 ## Timestamp Tracking
@@ -282,7 +345,7 @@ MANDATORY_BEHAVIOR:
   - ALWAYS update state files before proceeding to next phase
   - ALWAYS check state files on entry to enable resume
   - ALWAYS include research-workflow-state.yaml and research-questions.yaml in the commit (they're inside research/)
-  - ALWAYS update research-status.json before commit with status
+  - ALWAYS include .claude/ralph-loop.local.md in the commit
   - ALWAYS set started_at when creating new question (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - ALWAYS set completed_at before final commit (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - If ANY error occurs:
@@ -325,19 +388,23 @@ recovery:
 files:
   workflow_state: research/research-workflow-state.yaml
   questions: research/research-questions.yaml
-  status: research/research-status.json
+  ralph_loop_state: .claude/ralph-loop.local.md
   agent: .claude/agents/opus-researcher.md
   research_folder: research/research{N}/
   research_doc: research/research{N}/research{N}.md
   answers: research/research{N}/answer[1-5].md
   verifier: research/research{N}/verifier{N}.md
 
-research_status_json_format:
-  description: "Tracks overall research status"
-  structure:
-    status: "complete" | "need_more_research"
-  example: |
-    {
-      "status": "need_more_research"
-    }
+ralph_loop_state_format:
+  description: "State file for Ralph Loop plugin"
+  structure: |
+    ---
+    active: true|false
+    iteration: number
+    max_iterations: 0
+    completion_promise: "Research complete"
+    started_at: "ISO8601 timestamp"
+    ---
+
+    Execute the research workflow
 ```
