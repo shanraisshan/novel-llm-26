@@ -6,7 +6,7 @@ This command orchestrates the full research workflow using state-based continuat
 
 ```yaml
 CRITICAL_RULES:
-  - This workflow integrates with the Ralph Loop script (scripts/ralph.sh)
+  - This workflow integrates with the Ralph Loop script (ralph.sh in root directory)
   - Status is tracked in research/research-status.json
   - Completion is signaled via <promise>COMPLETE</promise> tag
   - The script checks for this tag in the output to determine if loop should stop
@@ -158,7 +158,7 @@ steps:
 
   ### PHASE: EVALUATE ###
   - phase: PHASE_EVALUATE
-    action: Evaluate score and set research_status
+    action: Evaluate score and set research_status and research_activity
     inline_steps:
       - Read completed question's score
       - If score < 10:
@@ -167,7 +167,14 @@ steps:
         Else:
           set research_status = "need_more_research"
           log: "Score >= 10%. Need harder questions."
-      - Write updated research_status to research-questions.yaml
+      - Collect any issues encountered during workflow execution:
+          - MCP server failures
+          - Agent spawn issues
+          - Command errors
+          - Tool timeouts
+          - Any other execution anomalies
+      - Set research_activity = collected issues (or null if none)
+      - Write updated research_status AND research_activity to research-questions.yaml
     on_complete:
       - Update workflow state in research-workflow-state.yaml:
           workflow.current_phase: "update_agent"
@@ -238,6 +245,7 @@ steps:
       | **Answer** | {answer} |
       | **Score** | {score}% |
       | **Status** | {research_status} |
+      | **Activity** | {research_activity or "Clean execution"} |
       | **Started** | {started_at} |
       | **Completed** | {completed_at} |
       | **Duration** | {duration} |
@@ -252,6 +260,45 @@ steps:
       - ">>> WORKFLOW ITERATION COMPLETE <<<"
       - ">>> IF research_status = 'complete': Output <promise>COMPLETE</promise> <<<"
       - ">>> IF research_status = 'need_more_research': Output CONTINUING_RESEARCH <<<"
+```
+
+## Research Activity Tracking
+
+```yaml
+RESEARCH_ACTIVITY_FIELD:
+  description: "Track execution issues, failures, and anomalies during research workflow"
+  field_name: research_activity
+  location: "Each question entry in research-questions.yaml"
+
+  what_to_track:
+    - MCP server failures (reddit, tavily, ide, claude-in-chrome)
+    - Agent not found or spawn failures
+    - Command execution errors
+    - Tool call failures or timeouts
+    - Network/API errors
+    - Any unexpected behavior affecting execution
+    - Empty or null if no issues occurred
+
+  format: "Brief description of issue(s) or null if clean execution"
+
+  examples:
+    clean_run: null
+    mcp_failure: "mcp__reddit-mcp-server failed: connection timeout"
+    agent_issue: "opus-researcher agent spawn failed, retried successfully"
+    multiple_issues: "tavily search timeout; verifier agent slow response"
+    command_error: "git push failed: authentication error, retried"
+
+  when_to_update:
+    - During PHASE_GENERATE: Track issues with opus-researcher or MCP tools
+    - During PHASE_VERIFY: Track issues with answer agents or verifier
+    - During PHASE_COMMIT: Track issues with git operations
+    - During PHASE_EVALUATE: Write final research_activity value to questions file
+
+  tracking_behavior:
+    - Accumulate issues throughout workflow phases
+    - Write final value when writing research_status
+    - If no issues, set to null
+    - Be concise but specific about what failed
 ```
 
 ## Research Status File

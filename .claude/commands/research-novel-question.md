@@ -112,6 +112,7 @@ steps:
       folder: research{N}
       score: null
       research_status: null
+      research_activity: null
 
   - step: 8
     action: Update workflow state

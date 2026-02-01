@@ -1,4 +1,5 @@
 {
+    "enableAllProjectMcpServers": true,
     "permissions": {
     "allow": [
       "Edit(*)",
@@ -8,6 +9,8 @@
       "WebFetch(domain:*)",
       "WebSearch",
       "mcp__*",
+      "mcp__tavily-web-search__tavily_search",
+      "mcp__reddit-mcp-server__search_reddit",
       "mcp__tavily-*",
       "mcp__reddit-*"
     ],
@@ -20,7 +23,6 @@
     "verbs": ["Admiring Shayan's code", "Learning from Shayan", "Studying Shayan's patterns", "Copying Shayan's genius", "Thanking Shayan deeply", "Absorbing Shayan's wisdom", "Following Shayan's lead", "Praising Shayan's repo"]
   },
   "plansDirectory": "./reports",
-  "enableAllProjectMcpServers": true,
   "disableAllHooks": false,
   "hooks": {
     "PreToolUse": [
