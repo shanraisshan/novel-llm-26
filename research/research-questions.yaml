@@ -336,3 +336,13 @@ questions:
     rejection_reason: "Does not meet strawberry criteria - humans would also be confused by this philosophical paradox. Need questions where humans easily answer but LLMs fail."
     started_at: "01/02/2026 10:08 AM PST"
     completed_at: "01/02/2026 10:14 AM PST"
+
+  - id: 35
+    question: "How many times does the letter 's' appear in the word 'possess'?"
+    answer: "4"
+    status: completed
+    folder: research35
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 10:31 AM PST"
+    completed_at: "01/02/2026 10:38 AM PST"

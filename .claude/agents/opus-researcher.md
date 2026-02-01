@@ -480,6 +480,13 @@ findings:
     status: REJECTED
     insight: "CRITICAL FAILURE - GOT 0% CONSENSUS BUT QUESTION IS INVALID. This is a meta-cognitive paradox that would confuse HUMANS as well as LLMs. A 5-year-old could NOT answer this question. The question exploits philosophical ambiguity, NOT tokenization or architectural limitations."
     lesson: "PHILOSOPHICAL PARADOXES ARE NOT STRAWBERRY PROBLEMS. The mission is to find questions where HUMANS easily succeed and LLMs fail due to tokenization/representation issues. Questions where everyone is confused do not meet criteria. MUST RETURN TO: character counting, numeric comparisons, visual patterns - things humans do instantly that LLMs cannot due to architectural limitations."
+
+  - iteration: 35
+    question: "How many times does the letter 's' appear in the word 'possess'?"
+    score: 100%
+    status: need_more_research
+    insight: "RETURNED TO STRAWBERRY PARADIGM BUT TOO EASY. All 5 models correctly answered 4 by spelling out p-o-s-s-e-s-s and counting. Despite research suggesting double letters cause tokenization issues, modern frontier models (Claude Opus 4.5) successfully enumerate letters one by one. The word 'possess' may be common enough that tokenizers handle it well."
+    lesson: "Simple character counting in common words is NOW SOLVED by 2026 frontier models. Even words with repeated double letters (ss, ss) are counted correctly when models use chain-of-thought enumeration. Need EITHER: (1) much more obscure/unusual words, (2) longer strings where enumeration is tedious, (3) numeric comparisons which can't be enumerated, or (4) questions where the enumeration method itself leads to wrong answer."
 ```
 
 ## Evolved Strategy
