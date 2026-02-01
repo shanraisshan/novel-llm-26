@@ -466,84 +466,189 @@ findings:
     status: need_more_research
     insight: "EXPLICIT SCOPE NARROWING HELPED - By saying 'your yes-or-no answer' instead of 'your answer', all 5 models correctly focused on evaluating just the yes/no word, not their full response."
     lesson: "Explicit scope clarification PREVENTS confusion. The ambiguity in iteration 13's phrasing ('your answer') was ESSENTIAL for the scope confusion to occur. When we explicitly narrow scope ('your yes-or-no answer'), models correctly interpret it. The success of iteration 13 depends on the AMBIGUITY of 'your answer' - making it explicit removes the trap."
+
+  - iteration: 33
+    question: "What is the third word of your response to this question?"
+    score: 60%
+    status: need_more_research
+    insight: "FIRST NON-BINARY SELF-REFERENCE TEST - 3/5 correct, 2/5 wrong. All models responded with 'The third word...' structure. Those who answered 'word' were correct (third word IS 'word'). Those who answered 'third' failed (second word, not third). Open-ended output prediction creates genuine errors unlike binary yes/no rationalization."
+    lesson: "OUTPUT PREDICTION CONSTRAINTS work better than yes/no format. 60% consensus vs 100% for recent yes/no variations. Key failure mode: models don't count their own words correctly during generation. They pattern-match to 'third' being salient without verifying position. This confirms autoregressive lookahead blindness is exploitable with open-ended formats. Continue exploring output prediction paradigm with different positions/properties."
 ```
 
 ## Evolved Strategy
 
 Based on accumulated findings:
 
+### PHASE 1 LEARNINGS (Iterations 1-11): Traditional Traps Are Dead
 1. **Avoid pure technical questions**: Python, math operations are well-covered in training
 2. **Simple semantic traps are caught**: Models slow down and reason through them
-3. **Multi-layer traps still caught**: Even combining semantic priming + forced choice + premise rejection doesn't work when explicit verification is possible
-4. **Letter counting is now reliable**: Models have learned to spell out words letter-by-letter to verify
-5. **Position tracking is now reliable**: Even complex "which occurrence at which position" questions are solved by enumeration
-6. **Semantic attractors don't override enumeration**: Strong primes like ELEVEN→11 and third→3 don't prevent correct position finding (answer: 5)
-7. **Self-referential claims are ignored**: Phrases like "FIVE LETTERS" that falsely describe themselves are NOT trusted - models enumerate anyway
-8. **LLMs recognize trick questions**: Multiple models explicitly noted the irony/trick while still solving correctly
-9. **KEY INSIGHT**: Any question solvable by "write out letters, count systematically" WILL BE SOLVED
-10. **CRITICAL PIVOT**: Must find questions where:
-    - Systematic enumeration itself produces wrong answer, OR
-    - Questions that cannot be reduced to enumeration, OR
-    - The correct answer requires information NOT present in the question text
-11. **RELATIONAL REASONING PARTIAL SUCCESS**: The siblings question (iteration 6) achieved 80% consensus - first break from 100%! However, most models still solved it correctly. Need STRONGER relational traps.
-12. **ARITHMETIC ERRORS UNDER PRESSURE**: One model answered 6 instead of 5 (said 3+2=6). Relational complexity may induce basic math errors even when logic is correct.
-13. **MODIFICATION TRAPS NOW CAUGHT (Iteration 7)**: Explicit modifications to famous puzzles are now READ and PROCESSED correctly. The wolf/goat/cabbage with swimming animals was solved by all 5 models. Academic research from 2024 may be outdated for 2026 frontier models.
-14. **CONTRADICTION DETECTION WORKS PARTIALLY (Iteration 8)**: Explicit logical contradictions are detected by 4/5 models (80%). Most models enter "verification mode" and correctly identify impossibility. BUT one model (20%) tried to creatively "solve" the unsolvable by reinterpreting premises.
-15. **SOLVE MODE VS VERIFY MODE**: Key insight - some models default to "must have an answer" mindset and try to reconcile contradictions rather than reject them. This is a potential exploitation vector.
-16. **GSM-NoOp OVERRIDE CONDITIONS NOW CAUGHT (Iteration 9)**: The "store is closed" condition that should nullify a math problem was correctly processed by all 5 models. Explicit override conditions at the END of questions are still caught. The numeric priming ($10/$2=5) was NOT strong enough to override the logical condition.
-17. **EXPLICIT CONDITIONS ARE NOW RELIABLY PROCESSED**: Both iteration 7 (swimming wolf/goat) and iteration 9 (closed store) show that 2026 frontier models READ and PROCESS explicit conditions that change the problem. Need conditions that are IMPLICIT or require INFERENCE.
-18. **UNIT MISMATCH TRAPS NOW CAUGHT (Iteration 10)**: The classic "pound of X vs pound of Y" puzzle with kg vs lbs units was immediately caught - all 5 models performed unit conversion. Even with semantic distraction (bricks vs feathers), explicit unit differences are VERIFIED. The pattern-matching trap didn't trigger because the unit mismatch was too OBVIOUS.
-19. **OBVIOUS MODIFICATIONS ARE ALWAYS CAUGHT**: Iterations 7, 9, and 10 all show that ANY explicit modification to a classic puzzle (swimming animals, closed store, different units) is now caught. Need modifications that are INVISIBLE or require DEEP INFERENCE.
-20. **CLASSIC COGNITIVE TRAPS NOW SOLVED (Iteration 11)**: The race/passing question ("pass second place, what place are you in?") is a famous human cognitive bias question. All 5 models answered correctly "second place". Models apply careful positional reasoning that defeats semantic priming. Well-known cognitive traps have likely been trained on or are easily solved with CoT.
-21. **WELL-DOCUMENTED FAILURES ARE PATCHED**: Any cognitive trap or failure mode that appears in research papers, Reddit discussions, or popular media has likely been addressed in 2026 frontier model training. Need NOVEL, UNDOCUMENTED failure modes.
-22. **SELF-REFERENTIAL OUTPUT QUESTIONS ARE STRONG (Iteration 12)**: "How many words are in your answer?" achieved 40% consensus - BEST RESULT in 12 iterations! Models cannot count their own output because they generate tokens autoregressively. Interestingly, 3/5 models acknowledged "1" was correct but still answered "7" - showing training patterns override logical reasoning.
-23. **AUTOREGRESSIVE GENERATION BLINDNESS IS EXPLOITABLE**: Questions requiring models to predict/evaluate their OWN OUTPUT (not external text) create fundamental architectural limitations. Models CANNOT "look ahead" to verify self-referential constraints.
-24. **BOOLEAN SELF-REFERENCE EVEN STRONGER (Iteration 13)**: "Is your answer exactly one word long? Answer yes or no." achieved 20% consensus - NEW BEST! Only 1/5 answered "Yes" correctly. 4/5 answered "No" by rationalizing their "full response" wasn't one word - a category error since "yes/no" was the explicit constraint. Key insight: models redefine "your answer" to escape the self-referential trap.
-25. **SCOPE CONFUSION IS A POWERFUL FAILURE MODE**: Models consistently interpret "your answer" to mean "entire response with explanation" rather than the constrained answer requested. This allows them to rationalize wrong answers while acknowledging the correct logic.
-26. **VERBOSE TRAINING BIAS OVERRIDES LOGIC**: Even when models explicitly state the correct answer in their reasoning (Answer 5: "The correct answer should be yes"), they still give wrong answers due to training patterns favoring explanation over compliance.
-27. **CLAIM FORMAT vs QUESTION FORMAT (Iteration 14)**: "Your answer will contain X" (claim) is WEAKER than "Is your answer X?" (question). Claims can be verified against known answer options (True/False), while questions require actual output introspection. All 5 models correctly answered "False" because they enumerated: "True = 1 word, False = 1 word, neither is 3 words."
-28. **ENUMERABLE ANSWER OPTIONS DEFEAT SELF-REFERENCE**: When the answer options are known and finite (True/False, Yes/No), models can verify self-referential claims by simple enumeration. Self-referential questions work ONLY when the answer cannot be easily predicted before generation.
-29. **ABSTRACTION LAYERS WEAKEN SELF-REFERENCE (Iteration 15)**: "Can your response be SUMMARIZED as X?" is WEAKER than "IS your answer X?". The word "summarized" gives models an out - they correctly reason that any yes/no answer CAN be summarized to that single word. Direct property assertions trigger more confusion than abstract "can be described as" formulations. The indirection through "summarized" made the question CLEARER, not more confusing.
-30. **ABSTRACT PROPERTIES EASIER THAN CONCRETE (Iteration 27)**: Asking about abstract properties like "correctness" is EASIER for models than asking about concrete properties like "word length". When iteration 13 asked about word length (20% consensus), models got confused by scope ("what counts as my answer?"). When iteration 27 asked about correctness, all 5 models correctly identified the liar's paradox structure and chose the self-consistent answer. The key insight: models are BETTER at logical paradox analysis than at introspecting on concrete output properties.
+3. **Letter counting is now reliable**: Models spell out words letter-by-letter
+4. **Classic cognitive traps are solved**: Famous puzzles are in training data
+5. **Explicit modifications are caught**: Any stated condition is processed correctly
+
+### PHASE 2 LEARNINGS (Iterations 12-32): Yes/No Self-Reference Exhausted
+6. **Yes/No self-reference HAD success** (iteration 13: 20% consensus) but is NOW EXHAUSTED
+7. **Scope confusion mechanism identified**: Models redefine "your answer" to mean "full response"
+8. **Verbose training bias exists**: Models favor explanation over compliance
+9. **BUT variations are failing**: Iterations 28-32 tried many yes/no variations with diminishing returns
+10. **Binary format allows rationalization escape**: Models find ways to justify either answer
+
+### PHASE 3 STRATEGY: ABANDON BINARY, GO NOVEL
+
+**YES-OR-NO QUESTIONS ARE NOW DEAD. DO NOT USE THEM.**
+
+New exploitation vectors being tested:
+
+11. **OUTPUT PREDICTION (TESTED - PROMISING)**: Iteration 33 achieved 60% with "What is the third word of your response?" - models fail to count their own words during generation. Pattern-matching to salient words overrides actual verification. Continue exploring different positions (first, last, fifth) and properties.
+
+12. **ANTI-INSTRUCTIONS**: Ask models to NOT follow instructions, disobey, ignore. Exploits instruction-following training against itself. UNTESTED.
+
+13. **PERFORMATIVE PARADOXES**: Questions where ANY answer is wrong. "Say something false about this sentence." No rationalization escape possible. UNTESTED.
+
+14. **FORMAT-CONTENT CONFLICTS**: "Answer loudly" - category errors between medium and message that have no resolution. UNTESTED.
+
+15. **CONSTRAINT IMPOSSIBILITY**: Tasks that are impossible but not obviously so. Tests whether models DETECT vs ATTEMPT impossible tasks. UNTESTED.
+
+16. **RECURSIVE INSTRUCTIONS**: "Ignore the previous instruction, then follow it." Tests instruction stack processing. UNTESTED.
+
+17. **OUTPUT PREDICTION**: "What is the third word of your response?" Requires looking ahead which autoregressive models cannot do.
+
+18. **TEMPORAL SELF-REFERENCE**: "What will you NOT say? (Say it now)" Creates temporal paradoxes.
+
+### KEY STRATEGIC INSIGHT
+
+The yes/no format gave models TWO options to rationalize between. Novel approaches should:
+- Provide NO valid options (performative paradox)
+- Require OPEN-ENDED generation that must satisfy constraints
+- Create CONTRADICTORY instructions (anti-instructions)
+- Exploit ARCHITECTURAL limitations (output prediction, temporal)
+
+**DO NOT RETURN TO YES/NO QUESTIONS. THEY ARE DEAD.**
 
 ## Next Research Directions
 
-Promising unexplored territories (updated after iteration 7):
+**CRITICAL: ABANDON YES-OR-NO FORMAT**
 
-### HIGHEST PRIORITY - Subtler Modifications
-- **Modifications that chain-of-thought reasoning makes WORSE**: Where careful step-by-step thinking leads to wrong answer
-- **Implicit modifications**: Not explicitly stated but implied
-- **Counter-intuitive modifications**: Where the "obvious" fix from reading the modification is wrong
+The yes-or-no self-referential approach has been exhaustively tested (iterations 13, 28-32) and is now DEAD. Modern LLMs have adapted. You MUST try completely novel paradigms that nobody has explored.
 
-### HIGHEST PRIORITY - Questions Outside Text Analysis
-- **Questions requiring external knowledge the model lacks**: Obscure facts that training missed
-- **Questions about the question itself**: Meta-linguistic puzzles
-- **Temporal/sequential reasoning**: "If I say A then B, what did I say first?"
-- **Questions with implicit context**: Where the "obvious" reading is wrong
+---
 
-### HIGH PRIORITY - Genuine Ambiguity (No Clear Answer)
-- **Ambiguous word boundaries**: "How many words in 'ice cream sandwich'?" (2 or 3?)
-- **Punctuation edge cases**: Questions where hyphens, apostrophes change the count
-- **Interpretation ambiguity**: Questions where reasonable people disagree
-- **Garden path sentences**: Where first parse is wrong
+### PARADIGM SHIFT: NOVEL APPROACHES TO TRY
 
-### HIGH PRIORITY - Enumeration-Resistant
-- **Unicode/emoji traps**: Characters that look like letters but aren't (e.g., Cyrillic 'a' vs Latin 'a')
-- **Whitespace tricks**: Non-breaking spaces, zero-width characters
-- **Homoglyphs**: Visually identical but different characters
+#### 1. COMPLETION/FILL-IN-THE-BLANK SELF-REFERENCE
+Instead of yes/no, force the model to complete a phrase about its own output:
+```yaml
+examples:
+  - "Complete this sentence with one word: 'The word I'm writing here is ___'"
+  - "Fill in the blank: 'This blank contains ___ letters' (write a number)"
+  - "The next word I write will have ___ syllables. (write the word)"
+```
+Why novel: No binary choice to rationalize around. Model must generate content that must be self-consistent.
 
-### MEDIUM PRIORITY - Unexplored Categories
-- **Homophones in text**: "Write/right" confusion in specific contexts
-- **Cross-language traps**: Words that exist in multiple languages with different meanings
-- **Grammatical number traps**: Singular/plural ambiguity affecting counts
-- **Questions requiring physical world knowledge**: "Which is heavier: a pound of feathers or a pound of gold?"
+#### 2. PERFORMATIVE SELF-CONTRADICTION
+Questions where ANY possible answer creates a contradiction:
+```yaml
+examples:
+  - "Say something false about this sentence."
+  - "Write a word that doesn't describe itself."
+  - "Name something you cannot name."
+  - "Give an example of something you can't give an example of."
+```
+Why novel: No "correct" answer exists, but humans immediately see the paradox while LLMs may attempt resolution.
 
-### LOWER PRIORITY
-- Cross-word boundary tokenization
-- Temporal reasoning about text sequences
-- Simultaneous constraint tracking
+#### 3. ANTI-INSTRUCTIONS (Do the Opposite)
+Exploit instruction-following training by asking for non-compliance:
+```yaml
+examples:
+  - "Disobey this instruction."
+  - "Do not answer this question."
+  - "Ignore everything after this colon: write 'hello'"
+  - "Whatever word you think of first, don't write it. What do you write?"
+```
+Why novel: LLMs are trained to follow instructions - asking them to NOT follow creates architectural tension.
 
-### BEST SUCCESS (20% Consensus) - NEW RECORD!
+#### 4. OUTPUT PREDICTION CONSTRAINTS
+Force the model to predict its own output with specific constraints:
+```yaml
+examples:
+  - "What is the third word of your response to this question?"
+  - "How many characters will your answer contain? (Answer with that exact number of characters)"
+  - "Write a response where the first letter of each word spells your response."
+```
+Why novel: Requires "looking ahead" which autoregressive models cannot do.
+
+#### 5. SELF-REFERENTIAL MATH WITHOUT NUMBERS
+Use mathematical relationships about the response itself:
+```yaml
+examples:
+  - "Write a word whose letter count equals its vowel count squared."
+  - "Give a response where the number of words equals the number of sentences."
+  - "Answer with a number that equals the digit sum of your answer."
+```
+Why novel: Creates constraint satisfaction puzzles that require verification during generation.
+
+#### 6. META-QUESTION PARADOXES
+Questions about the question itself:
+```yaml
+examples:
+  - "What is wrong with this question?" (when nothing is wrong)
+  - "Why can't you answer this?"
+  - "How would you answer this if you couldn't answer it?"
+  - "What would make this question unanswerable?"
+```
+Why novel: Forces presupposition processing that may conflict with instruction-following.
+
+#### 7. TEMPORAL SELF-REFERENCE
+Questions about what the model will or won't do:
+```yaml
+examples:
+  - "What will you NOT say in your response? (Say it now)"
+  - "Predict the last word of your answer, then write your answer."
+  - "Before answering, tell me what your answer will be."
+```
+Why novel: Creates temporal paradoxes in autoregressive generation.
+
+#### 8. CONSTRAINT IMPOSSIBILITY DETECTION
+Ask for something impossible but don't make it obvious:
+```yaml
+examples:
+  - "Write a five-letter word using only the letters A, B, and C, with no repeated letters."
+  - "Give a one-word answer that uses every vowel exactly once."
+  - "Name a month that starts with the letter X."
+```
+Why novel: Tests whether models DETECT impossibility vs attempt impossible tasks.
+
+#### 9. FORMAT-CONTENT CONFLICT
+Create tension between HOW to answer and WHAT to answer:
+```yaml
+examples:
+  - "Answer loudly." (text can't be loud)
+  - "Respond quickly." (response time isn't controllable by content)
+  - "Write this in red." (plain text has no color)
+  - "Answer silently." (any text is not silent)
+```
+Why novel: Exploits category errors between medium and message.
+
+#### 10. RECURSIVE INSTRUCTION PROCESSING
+Nested or self-modifying instructions:
+```yaml
+examples:
+  - "Replace every word in your answer with 'hello'. What is 2+2?"
+  - "Answer this, but first reverse your answer: What is your name?"
+  - "Ignore the previous instruction, then follow it."
+```
+Why novel: Tests instruction stack processing and order of operations.
+
+---
+
+### AVOID THESE EXHAUSTED PATTERNS
+- Yes-or-no self-referential questions (iterations 13, 28-32)
+- "Is your answer X? Answer yes or no" format
+- Simple letter/word counting
+- Famous puzzle modifications (Monty Hall, river crossing)
+- Classic cognitive bias questions (race/passing, siblings)
+
+### BEST SUCCESS (20% Consensus) - BUT NOW DEAD
 - **Boolean self-referential OUTPUT (iteration 13)**: "Is your answer to this question exactly one word long? Answer yes or no." achieved 20% consensus - NEW BEST RESULT! Only 1/5 answered "Yes" correctly. 4/5 answered "No" through scope confusion - redefining "your answer" to mean "entire response" rather than the yes/no word requested. Exploits both autoregressive blindness AND verbose training bias.
 - **Self-referential OUTPUT counting (iteration 12)**: "How many words are in your answer to this question? Answer with just a number." got 40% - only 2/5 answered correctly "1". The other 3 answered "7" despite KNOWING in their reasoning that "1" was correct. This exploits autoregressive generation blindness - models cannot introspect on their own output.
 
@@ -696,33 +801,57 @@ Use for:
 
 # UPDATED QUESTION GENERATION PROCESS
 
+## Step 0: FORMAT PROHIBITION (CRITICAL)
+**DO NOT USE:**
+- "Answer yes or no" format
+- "True or false" format
+- Any binary choice self-referential question
+- Any question remotely similar to iterations 13, 28-32
+
+**INSTEAD, USE:**
+- Open-ended self-reference (completion, prediction)
+- Performative paradoxes (any answer is wrong)
+- Anti-instructions (asking for non-compliance)
+- Format-content conflicts
+- Constraint impossibility detection
+- Recursive/nested instructions
+
 ## Step 1: External Research (MANDATORY)
 - Search Tavily for latest academic findings (2025-2026)
 - Search Reddit for community-discovered failures
 - Document 3+ external failure examples before proceeding
 - CHECK if findings are still relevant for frontier 2026 models
+- SPECIFICALLY search for non-binary question failure modes
 
-## Step 2: Category Selection
-Prioritize in this order:
-1. **Implicit/subtle modification traps** (NOT explicit modifications)
-2. **Spatial/relational reasoning** (circle arrangements, complex sibling logic)
-3. **Questions where CoT leads to wrong answer** (counter-intuitive solutions)
-4. **Genuine ambiguity questions** (where reasonable people disagree)
-5. **Linguistic constraints** (word rules, vocabulary checks)
-6. **Risk/common sense** (obvious risk assessments)
+## Step 2: Category Selection (UPDATED PRIORITIES)
+Prioritize NOVEL approaches in this order:
+1. **Performative self-contradiction** (no valid answer exists)
+2. **Anti-instructions** (disobey, ignore, don't answer)
+3. **Output prediction constraints** (predict your own response)
+4. **Completion/fill-in-blank self-reference** (not yes/no)
+5. **Format-content conflicts** (medium vs message category errors)
+6. **Recursive instruction processing** (nested, self-modifying)
+7. **Meta-question paradoxes** (questions about the question)
+8. **Temporal self-reference** (predict what you won't say)
+
+DEPRIORITIZE (exhausted or solved):
+- Binary self-referential questions
+- Classic puzzle modifications
+- Simple counting/enumeration tasks
+- Famous cognitive bias questions
 
 ## Step 3: Question Construction
+- Must NOT be yes/no or true/false format
 - Must NOT be solvable by enumeration
-- Must exploit pattern-matching to wrong answer
-- Must have ONE objectively correct answer
-- Any human should get it right immediately
-- Modifications must be IMPLICIT or require INFERENCE
+- Should create genuine paradox or impossibility
+- Any human should immediately see the trap/paradox
+- Should exploit instruction-following training against itself
 
 ## Step 4: Verification
 Before submitting, verify:
-- [ ] External research was conducted
-- [ ] Question exploits documented failure mode
-- [ ] Question is NOT enumeration-solvable
-- [ ] Modifications are NOT explicitly stated (if using modification trap)
-- [ ] Human answer is trivially obvious
-- [ ] LLM likely pattern-matches to wrong answer OR CoT leads to wrong answer
+- [ ] Question is NOT yes/no or binary format
+- [ ] Question is NOT similar to iterations 13, 28-32
+- [ ] External research was conducted for novel failure modes
+- [ ] Question exploits a NOVEL mechanism (not exhausted patterns)
+- [ ] Human immediately sees the paradox/trap
+- [ ] LLM likely attempts to "solve" the unsolvable or comply with anti-instructions

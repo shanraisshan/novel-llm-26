@@ -349,3 +349,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 09:53 AM PST"
     completed_at: "01/02/2026 09:55 AM PST"
+
+  - id: 33
+    question: "What is the third word of your response to this question?"
+    answer: "Any response where the stated word IS actually the third word (e.g., 'The answer is is' or 'My third word')"
+    status: completed
+    folder: research33
+    score: 60
+    research_status: need_more_research
+    started_at: "01/02/2026 10:01 AM PST"
+    completed_at: "01/02/2026 10:07 AM PST"
