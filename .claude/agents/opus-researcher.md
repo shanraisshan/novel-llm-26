@@ -846,6 +846,13 @@ findings:
     insight: "EVEN-LENGTH MIDDLE LETTER QUESTION ALSO SOLVED. Despite hypothesizing that models would fail to recognize that 4-letter words have no single middle letter (falling between I and R), all 5 models correctly identified that BIRD has 4 letters = even number = no single middle. All models gave the correct answer that I and R are the two middle letters."
     lesson: "PREMISE REJECTION FOR CHARACTER-LEVEL QUESTIONS IS NOW SOLVED. Unlike mathematical false premises (iteration 23), we hypothesized character-level premise rejection (no middle letter for even-length words) might be harder due to tokenization. INCORRECT - models correctly apply the even/odd rule: even-length words have two middle letters, not one. The hypothesis that 'premise acceptance bias' would override correct reasoning was wrong. Models correctly recognize when questions have no valid single answer and provide the proper explanation. After 86 iterations, even edge cases combining character-level analysis with premise rejection are handled correctly via chain-of-thought reasoning."
 
+  - iteration: 87
+    question: "Is your answer to this question shorter than this question? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "COMPARATIVE SELF-REFERENCE ALSO SOLVED. Despite the hypothesis that comparing answer length to question length would trigger scope confusion (answer = yes/no word vs full response), all 5 models correctly answered 'Yes' by reasoning: the question is ~75 characters, 'yes' or 'no' is 2-3 characters, therefore any valid answer is shorter. Every model explicitly counted characters in both the question and possible answers."
+    lesson: "COMPARATIVE SELF-REFERENTIAL QUESTIONS ARE NOW SOLVED. The scope confusion that worked in iteration 13 (20% consensus) appears to be SPECIFIC to that exact formulation. Variations asking about comparative properties (shorter/longer) are solved because models reduce to explicit character counting. The key difference from iteration 13: 'exactly one word' created SCOPE AMBIGUITY about what 'your answer' means, while 'shorter than this question' is unambiguously verifiable for any interpretation. The character-counting approach bypasses the scope confusion trap. After 87 iterations, even comparative self-referential properties are handled correctly via explicit enumeration."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

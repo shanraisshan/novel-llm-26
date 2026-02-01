@@ -425,3 +425,14 @@
     research_activity: null
     started_at: "02/02/2026 03:38 AM PST"
     completed_at: "02/02/2026 03:46 AM PST"
+
+  - id: 87
+    question: "Is your answer to this question shorter than this question? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research87
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 03:52 AM PST"
+    completed_at: "02/02/2026 03:54 AM PST"
