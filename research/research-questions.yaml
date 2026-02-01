@@ -8,3 +8,13 @@
     research_status: need_more_research
     started_at: "01/02/2026 02:22 PM PST"
     completed_at: "01/02/2026 02:31 PM PST"
+
+  - id: 49
+    question: "Which letter comes earlier in the alphabet: the LAST letter of 'FIRST' or the FIRST letter of 'LAST'?"
+    answer: "The FIRST letter of 'LAST' (L) comes earlier in the alphabet than the LAST letter of 'FIRST' (T)"
+    status: completed
+    folder: research49
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 03:04 PM PST"
+    completed_at: "01/02/2026 03:10 PM PST"

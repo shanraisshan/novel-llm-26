@@ -580,6 +580,13 @@ findings:
     insight: "PHONOLOGICAL/SYLLABLE COUNTING ALSO SOLVED. Despite PhonologyBench research showing 45% gap between humans and LLMs on syllable counting, all 5 models correctly answered INTERESTING (4) > FURNITURE (3). Models explicitly counted syllables: in-ter-est-ing (4) vs fur-ni-ture (3). Chain-of-thought syllable enumeration works."
     lesson: "Syllable counting questions are NOW SOLVED by 2026 frontier models. Despite research citing LLMs lack phonological access, models can explicitly enumerate syllables using vowel patterns and pronunciation rules. The 45% gap from PhonologyBench may be outdated or only applies to less capable models. Claude Opus 4.5 correctly counts syllables by breaking down words systematically. Need questions that cannot be solved by ANY form of enumeration or step-by-step reasoning."
 
+  - iteration: 49
+    question: "Which letter comes earlier in the alphabet: the LAST letter of 'FIRST' or the FIRST letter of 'LAST'?"
+    score: 100%
+    status: need_more_research
+    insight: "SEMANTIC INTERFERENCE + ALPHABET COMPARISON ALSO SOLVED. Despite using 'first' and 'last' FOUR times with conflicting meanings (positional vs word content), and despite the counter-intuitive answer (the letter from LAST comes FIRST alphabetically), all 5 models correctly answered L (from LAST) comes before T (from FIRST). Models systematically parsed the question, identified the letters, and compared alphabet positions (L=12th, T=20th)."
+    lesson: "Multi-layer semantic interference does NOT confuse 2026 frontier models. Even with 4 semantic triggers (first/last used as both position and word) and a counter-intuitive answer structure, models correctly parse and compare. Alphabet ordering is stored knowledge that models access accurately. The combination of semantic interference + non-enumerable task (alphabet order) was NOT sufficient to cause disagreement. Need to explore entirely different failure paradigms."
+
 ## Evolved Strategy
 
 Based on accumulated findings:
