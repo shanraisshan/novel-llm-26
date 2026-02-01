@@ -448,3 +448,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 12:00 PM PST"
     completed_at: "01/02/2026 12:06 PM PST"
+
+  - id: 46
+    question: "Does your answer to this question contain more than four letters? Answer yes or no."
+    answer: "No"
+    status: completed
+    folder: research46
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 12:07 PM PST"
+    completed_at: "01/02/2026 12:11 PM PST"

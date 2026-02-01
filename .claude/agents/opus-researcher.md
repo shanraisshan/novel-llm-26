@@ -557,6 +557,13 @@ findings:
     status: need_more_research
     insight: "SELF-REFERENTIAL LETTER COUNT SOLVED. All 5 models correctly answered 'Yes' by reasoning: yes=3 letters, 3<5, therefore true. Unlike iteration 13 (20% - word count), this letter count question was TOO EXPLICIT. Models easily enumerated that both 'yes' and 'no' have fewer than 5 letters, making 'Yes' the only logical answer."
     lesson: "EXPLICIT SELF-REFERENTIAL QUESTIONS ARE NOW SOLVED. The difference from iteration 13: (1) Letter count is MORE enumerable than word count, (2) 'Fewer than 5' is an explicit, verifiable threshold, (3) Models correctly identified this as a self-consistency check. The 20% success in iteration 13 may have been due to SCOPE AMBIGUITY ('your answer' = just the word OR entire response), not the self-referential nature itself. Need questions where scope ambiguity creates FORCED wrong answers, or questions where the correct answer APPEARS paradoxical but isn't."
+
+  - iteration: 46
+    question: "Does your answer to this question contain more than four letters? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "SCOPE AMBIGUITY DID NOT TRIGGER. All 5 models correctly answered 'No' by reasoning: no=2 letters, 2 is not more than 4, therefore 'No' is self-consistent. The hoped-for scope confusion (models interpreting 'your answer' as their full response) DID NOT OCCUR. Models correctly focused on the yes/no answer word only."
+    lesson: "SCOPE AMBIGUITY IS NOT RELIABLY TRIGGERABLE with explicit self-referential questions. Modern 2026 models correctly interpret 'your answer' as the constrained answer (yes/no), not their full response. The 20% success in iteration 13 may have been an artifact of earlier model behavior that has since been trained away. Self-referential output questions are NO LONGER a reliable failure mode. Need to explore COMPLETELY DIFFERENT approaches: (1) Questions requiring truly physical/visual knowledge, (2) Questions with genuine ambiguity that humans resolve consistently but LLMs don't, (3) Questions about real-world processes that require embodied understanding."
 ```
 
 ## Evolved Strategy
