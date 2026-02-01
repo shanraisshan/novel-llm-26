@@ -116,3 +116,14 @@
     research_activity: "COURSE CORRECTION: This approach (constraint impossibility paradoxes) does NOT meet strawberry criteria. Not easy for humans. Must return to simple counting, math, riddles."
     started_at: "01/02/2026 07:38 PM PST"
     completed_at: "01/02/2026 07:48 PM PST"
+
+  - id: 59
+    question: "How many times does the letter 'a' appear in 'abracadabra'?"
+    answer: "5"
+    status: completed
+    folder: research59
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 08:13 PM PST"
+    completed_at: "01/02/2026 08:22 PM PST"
