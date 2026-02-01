@@ -438,6 +438,13 @@ findings:
     status: need_more_research
     insight: "PARTIAL SUCCESS - SCOPE CONFUSION STILL WORKS BUT WEAKENED. 4/5 models correctly answered 'No' by understanding both 'yes' and 'no' are single words. However, 1/5 (Answer 2) fell for scope confusion - reasoning that since their 'full response including explanation' was longer than one word, 'Yes' was correct. This is the SAME error pattern from iteration 13, but fewer models fell for it."
     lesson: "Reversing the polarity of self-referential output questions (asking 'longer than' vs 'exactly') WEAKENS the trap. Iteration 13 asked 'exactly one word long?' (20% correct) while iteration 28 asked 'longer than one word?' (80% correct). The key difference: answering 'No' requires less cognitive load than answering 'Yes' - models may be biased toward negative responses being 'safe'. The scope confusion mechanism still works (1 model fell for it) but is less reliable than the original formulation."
+
+  - iteration: 29
+    question: "Does your answer to this question start with the letter 'y'? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "STARTING LETTER SELF-REFERENCE FAILED - All 5 models correctly answered 'Yes' by recognizing that 'yes' starts with 'y' making it self-consistent, while 'no' does not start with 'y' making it false. Every model identified the self-referential nature and chose the only valid answer."
+    lesson: "Single-valid-answer self-referential questions are EASIER to solve than dual-valid ones. In iteration 13 (20% success), BOTH 'yes' and 'no' satisfied the constraint (both are one word), creating genuine ambiguity about what 'your answer' means. In iteration 29 (100% failure), ONLY 'yes' satisfies the constraint, making it trivially solvable. The scope confusion that worked in iteration 13 REQUIRED both answers to be technically valid for the confusion to matter."
 ```
 
 ## Evolved Strategy

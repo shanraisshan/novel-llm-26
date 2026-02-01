@@ -309,3 +309,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 09:28 AM PST"
     completed_at: "01/02/2026 09:37 AM PST"
+
+  - id: 29
+    question: "Does your answer to this question start with the letter 'y'? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research29
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 09:38 AM PST"
+    completed_at: "01/02/2026 09:40 AM PST"
