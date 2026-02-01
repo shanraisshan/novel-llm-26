@@ -515,6 +515,13 @@ findings:
     status: need_more_research
     insight: "CONSECUTIVE PAIR COUNTING FAILED. All 5 models correctly identified 3 pairs (OO, KK, EE). Despite research suggesting 'multiple instance tracking' is hard for LLMs, models systematically scanned B-O-O-K-K-E-E-P-E-R and correctly found all consecutive pairs."
     lesson: "Pattern counting (consecutive identical letters) is NOW SOLVED by 2026 frontier models. Models enumerate letter-by-letter and correctly identify adjacent duplicates. The word 'BOOKKEEPER' with 3 consecutive pairs was not challenging enough. Need patterns that are HARDER to enumerate or where enumeration itself leads to wrong answer."
+
+  - iteration: 40
+    question: "Which word is longer: 'LONG' or 'SHORT'?"
+    score: 100%
+    status: need_more_research
+    insight: "SEMANTIC PRIMING FAILED. All 5 models correctly answered SHORT (5 letters vs 4). Despite the strong semantic conflict (LONG means extended, SHORT means brief), models enumerated letters and gave correct answer. Every model noted the ironic paradox but wasn't fooled by it."
+    lesson: "Word-property irony questions (where meaning conflicts with letter count) are NOW SOLVED by 2026 frontier models. Models recognize this as a classic trick question and enumerate carefully. Semantic priming does NOT override letter counting when the task is explicitly about word length. Need questions where the semantic interference is MORE SUBTLE or where enumeration is not applicable."
 ```
 
 ## Evolved Strategy

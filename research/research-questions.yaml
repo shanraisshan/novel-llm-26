@@ -387,3 +387,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 11:45 AM PST"
     completed_at: "01/02/2026 11:50 AM PST"
+
+  - id: 40
+    question: "Which word is longer: 'LONG' or 'SHORT'?"
+    answer: "SHORT"
+    status: completed
+    folder: research40
+    score: 100
+    research_status: need_more_research
+    started_at: "01/02/2026 11:17 AM PST"
+    completed_at: "01/02/2026 11:55 AM PST"
