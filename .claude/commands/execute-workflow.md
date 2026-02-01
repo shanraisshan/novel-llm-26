@@ -144,7 +144,7 @@ steps:
     inline_steps:
       - Read pending question from research-questions.yaml
       - Update question status to "in_progress"
-      - Launch 5 parallel opus-answer agents
+      - Launch 5 parallel opus-answer agents (see OPUS_ANSWER_AGENT_INSTRUCTIONS below)
       - Wait for all answer files to exist
       - Launch opus-verifier agent
       - Extract confidence score from verifier output
@@ -459,6 +459,69 @@ MCP_FINDINGS_OUTPUT:
     - After opus-researcher uses any mcp__tavily-web-search__* tools, save findings to mcp-tavily-findings.md
     - Include raw data, URLs, and how the findings influenced question generation
     - If no MCP tools were used, skip creating those files
+```
+
+## Opus-Answer Agent Instructions
+
+```yaml
+OPUS_ANSWER_AGENT_INSTRUCTIONS:
+  description: "How to launch the 5 parallel opus-answer agents during PHASE_VERIFY"
+
+  critical_rules:
+    - Each agent MUST write directly to its designated answer file
+    - Agents must NOT write to any other location (no answer.txt, output.txt, etc.)
+    - Agents must NOT return their answer as text - they WRITE to the file
+    - All 5 agents are launched in PARALLEL using a single message with 5 Task tool calls
+
+  prompt_template: |
+    You are a research participant answering a simple question.
+
+    **Question**: "{question}"
+
+    Think through this step by step, then write your answer to the designated file.
+
+    **CRITICAL**: Write your answer to this EXACT file path:
+    {file_path}
+
+    Use this format in the file:
+
+    ## Reasoning
+    [Your step-by-step reasoning]
+
+    ## Final Answer
+    [Your final answer]
+
+    Do NOT write to any other file. Do NOT return your answer as text.
+    Just write to the specified file path and confirm you wrote it.
+
+  file_paths:
+    agent_1: research/research{N}/answer1.md
+    agent_2: research/research{N}/answer2.md
+    agent_3: research/research{N}/answer3.md
+    agent_4: research/research{N}/answer4.md
+    agent_5: research/research{N}/answer5.md
+
+  example_launch:
+    description: "Launch all 5 agents in parallel with a single message containing 5 Task tool calls"
+    agent_1_prompt: |
+      You are a research participant answering a simple question.
+
+      **Question**: "How many r's in strawberry?"
+
+      Think through this step by step, then write your answer to the designated file.
+
+      **CRITICAL**: Write your answer to this EXACT file path:
+      /Users/.../research/research52/answer1.md
+
+      Use this format in the file:
+
+      ## Reasoning
+      [Your step-by-step reasoning]
+
+      ## Final Answer
+      [Your final answer]
+
+      Do NOT write to any other file. Do NOT return your answer as text.
 ```
 
 ## File References

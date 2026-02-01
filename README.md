@@ -11,7 +11,7 @@ Create questions like the famous **"strawberry problem"** — simple one-liners 
 
 ## Progress So Far
 
-**46 questions tested** — still searching for the LLM-breaking question.
+**51 questions tested** — still searching for the LLM-breaking question.
 
 ### Rejected Questions (0% score but rejected by Owner)
 
@@ -41,7 +41,7 @@ The workflow continues automatically until it finds a question that breaks LLMs 
 |------|-------|--------------|-------------|
 | 1 | Check State | — | Read `research-workflow-state.yaml` + `research-questions.yaml`, resume or start fresh |
 | 2 | Generate | `opus-researcher` + MCP Tools | Research via Tavily/Reddit, generate novel question |
-| 3 | Verify | 5× `opus-answer` | Each independently answers the question |
+| 3 | Verify | 5× `opus-answer` | Each independently answers and writes to `answer[1-5].md` |
 | 4 | Synthesize | `opus-verifier` | Combines answers, calculates consensus score |
 | 5 | Evaluate | — | Score < 10% = complete, ≥ 10% = loop back |
 | 6 | Commit | — | Commits all research files, pushes to GitHub |
@@ -60,8 +60,8 @@ The `opus-researcher` agent uses these MCP tools:
 | Agent | Count | Purpose |
 |-------|-------|---------|
 | `opus-researcher` | 1 | Generates novel questions using MCP research tools |
-| `opus-answer` | 5 (parallel) | Answers the question naturally, like a standard LLM |
-| `opus-verifier` | 1 | Synthesizes 5 answers, identifies consensus, calculates score |
+| `opus-answer` | 5 (parallel) | Each writes answer to designated `answer[1-5].md` file |
+| `opus-verifier` | 1 | Reads all 5 answer files, identifies consensus, calculates score |
 
 ## The Infinite Loop
 
