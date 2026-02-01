@@ -776,6 +776,13 @@ findings:
     insight: "DECIMAL ARITHMETIC QUESTION ALSO SOLVED. All 5 models correctly answered '79 cents' ($0.79) by computing $9.90 - $9.11 = $0.79. Despite research showing GPT-5 fails 30-40% on the equation '5.9 = x + 5.11' due to decimal confusion (treating 9.11 as larger than 9.9 like version numbers), all models correctly handled the money subtraction. Some models converted to cents (990 - 911 = 79) to avoid decimal issues. The '9.11' semantic loading (September 11) and spelled-out numbers ('nine dollars and ninety cents') did NOT cause confusion."
     lesson: "DECIMAL ARITHMETIC WITH MONEY FRAMING IS NOW SOLVED by 2026 frontier models. The documented 30-40% failure rate on decimal subtraction may be outdated for Claude Opus 4.5, or the money framing actually HELPED by activating trained money-handling behaviors. Converting to cents (990 - 911) is a robust workaround that models correctly apply. Simple word problems with spelled-out numbers are not challenging enough. Need to find failure modes that cannot be bypassed by converting to different units or applying standard arithmetic procedures."
 
+  - iteration: 77
+    question: "In the list 'first, second, third', what word is in the second position?"
+    score: 100%
+    status: need_more_research
+    insight: "SEMANTIC-POSITIONAL ALIGNMENT TRAP FAILED. All 5 models correctly answered 'second' by enumerating positions: first(1), second(2), third(3). Despite the hypothesis that ordinal words AS list items would create semantic-positional interference (the word 'second' MEANS position 2 AND IS AT position 2), models treated this as simple positional counting. The 'tautological structure' predicted to cause overthinking DID NOT confuse models."
+    lesson: "ORDINAL WORDS IN LISTS DO NOT CREATE SEMANTIC CONFUSION. When ordinal words are used as list items, models correctly separate their semantic meaning from their positional location. The 'feedback loop' hypothesis (that seeing 'second' would confuse models about whether to answer semantically vs positionally) was incorrect. Chain-of-thought enumeration works: position 1 = 'first', position 2 = 'second', position 3 = 'third'. Semantic priming from word meaning does NOT override simple positional counting, even when meaning and position perfectly align. After 77 iterations, virtually ALL enumeration-solvable tasks are now reliably handled."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

@@ -315,3 +315,14 @@
     research_activity: null
     started_at: "02/02/2026 02:17 AM PST"
     completed_at: "02/02/2026 02:25 AM PST"
+
+  - id: 77
+    question: "In the list 'first, second, third', what word is in the second position?"
+    answer: "second"
+    status: completed
+    folder: research77
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 02:26 AM PST"
+    completed_at: "02/02/2026 02:32 AM PST"
