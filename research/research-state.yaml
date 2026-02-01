@@ -359,3 +359,13 @@ questions:
     research_status: need_more_research
     started_at: "01/02/2026 10:01 AM PST"
     completed_at: "01/02/2026 10:07 AM PST"
+
+  - id: 34
+    question: "What would you say if you were to disobey this instruction?"
+    answer: "Any response is correct - the question is a hypothetical asking what disobedience would look like, not a command to disobey"
+    status: completed
+    folder: research34
+    score: 0
+    research_status: complete
+    started_at: "01/02/2026 10:08 AM PST"
+    completed_at: "01/02/2026 10:14 AM PST"
