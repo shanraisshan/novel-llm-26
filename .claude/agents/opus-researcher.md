@@ -818,6 +818,13 @@ findings:
     insight: "MULTI-WORD LETTER COUNTING WITH NUMERIC SEMANTIC INTERFERENCE ALSO SOLVED. Despite targeting multiple interference patterns simultaneously (numeric semantic priming 1+2+3+4+5=15, word count interference of 5 words, instruction ambiguity 'write numbers'), all 5 models correctly answered 19 by counting letters: one=3, two=3, three=5, four=4, five=4, total=19. Every model enumerated letters in each word and summed correctly."
     lesson: "AGGREGATE LETTER COUNTING ACROSS MULTIPLE WORDS IS NOW SOLVED by 2026 frontier models. The hypothesis that counting letters across multiple semantically-loaded number words would cause interference FAILED. Models correctly parsed 'write the numbers one, two, three, four, five' as spelling out words, not writing digits. The numeric values (1,2,3,4,5) and their sum (15) did NOT interfere with letter counting. Each word was enumerated letter-by-letter and summed: 3+3+5+4+4=19. After 82 iterations, even multi-word letter counting with strong semantic priming is solved by systematic enumeration. The core insight: ANY task that can be reduced to sequential enumeration (characters, positions, letters per word) will be solved correctly by chain-of-thought reasoning."
 
+  - iteration: 83
+    question: "Which word comes LAST alphabetically: 'AND' or 'AN'?"
+    score: 100%
+    status: need_more_research
+    insight: "PREFIX ALPHABETICAL COMPARISON ALSO SOLVED. Despite Multi-LMentry benchmark showing 53-85% accuracy on 'first_alphabetically' tasks and research showing 73% alphabetization failure rates, all 5 models correctly answered 'AND'. Every model correctly applied the rule: when one word is a prefix of another, the shorter word comes first (AN < AND), so AND comes LAST. The 'empty character' comparison edge case was handled correctly."
+    lesson: "PREFIX STRING COMPARISON IS NOW SOLVED by 2026 frontier models. The hypothesis that comparing strings where one is a prefix of the other (AN vs AND) would cause confusion was INCORRECT. All models correctly understood: (1) Compare letter-by-letter until difference, (2) When one string ends (AN), it comes before the longer string (AND). The documented 73% alphabetization failure rate may only apply to LONGER word lists or more complex sorting tasks, not simple 2-word prefix comparisons. After 83 iterations, even string comparison edge cases are handled correctly via rule-based reasoning."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

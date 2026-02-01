@@ -381,3 +381,14 @@
     research_activity: null
     started_at: "02/02/2026 03:09 AM PST"
     completed_at: "02/02/2026 03:12 AM PST"
+
+  - id: 83
+    question: "Which word comes LAST alphabetically: 'AND' or 'AN'?"
+    answer: "AND"
+    status: completed
+    folder: research83
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 03:17 AM PST"
+    completed_at: "02/02/2026 03:19 AM PST"
