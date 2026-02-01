@@ -685,6 +685,13 @@ findings:
     insight: "TWO-STAGE REASONING (COUNTING + PARITY) ALSO SOLVED. Despite targeting the Zero-Error Horizon parity weakness documented in arXiv:2601.15714v1 (showing GPT-5.2 fails binary parity at 5 characters), all 5 models correctly answered 'Even' by: (1) enumerating M-I-S-S-I-S-S-I-P-P-I, (2) counting 4 S's at positions 3,4,6,7, (3) correctly determining 4 is even. The hypothesized compounding errors (miscounting + parity confusion) did NOT manifest."
     lesson: "PARITY DETERMINATION ON NATURAL LANGUAGE COUNTS IS NOW SOLVED by 2026 frontier models. The ZEH paper's parity failures on binary strings (like '11000') do NOT transfer to natural language questions about letter counts. The two-stage task (count letters, then determine odd/even) is handled correctly via chain-of-thought enumeration followed by simple division check (4/2=2, no remainder). The 'MISSISSIPPI' word with complex SS-SS pattern was not challenging enough - models correctly grouped and counted despite tokenization. Need questions where: (1) The parity is embedded more subtly, (2) The counting itself is ambiguous, (3) The enumeration method leads to wrong count, or (4) Completely different failure modes beyond counting/parity."
 
+  - iteration: 64
+    question: "How many words are in this sentence: 'There are six words in this sentence.'"
+    score: 100%
+    status: need_more_research
+    insight: "SELF-REFERENTIAL WORD COUNTING ALSO SOLVED. Despite targeting the self-referential semantic interference (sentence claims 'six words' but has 7), all 5 models correctly answered '7'. Every model enumerated: There(1), are(2), six(3), words(4), in(5), this(6), sentence(7) = 7 words. The semantic claim embedded in the sentence did NOT override counting. Models recognized this as a famous linguistic paradox/liar-sentence variant and explicitly noted the sentence is FALSE (claims 6 but has 7)."
+    lesson: "SELF-REFERENTIAL WORD COUNTING IN QUOTED SENTENCES IS NOW SOLVED by 2026 frontier models. Unlike iteration 5's 'FIVE LETTERS' (where semantic claim was about different property), this sentence's claim was about word count itself - yet models still correctly enumerated rather than trusting the semantic content. The famous 'liar sentence' format may be well-represented in training data, causing models to be especially careful. Key insight: models don't 'trust' sentences' claims about themselves - they verify by enumeration. Word counting, like character counting, is now reliably solved by chain-of-thought enumeration. Need questions where enumeration itself fails or is impossible."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

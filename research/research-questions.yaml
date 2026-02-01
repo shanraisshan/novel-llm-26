@@ -171,3 +171,14 @@
     research_activity: null
     started_at: "01/02/2026 08:52 PM PST"
     completed_at: "01/02/2026 08:55 PM PST"
+
+  - id: 64
+    question: "How many words are in this sentence: 'There are six words in this sentence.'"
+    answer: "7"
+    status: completed
+    folder: research64
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 10:54 PM PST"
+    completed_at: "01/02/2026 10:56 PM PST"
