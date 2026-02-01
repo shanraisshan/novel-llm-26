@@ -8,11 +8,10 @@
       "Bash",
       "WebFetch(domain:*)",
       "WebSearch",
-      "mcp__*",
-      "mcp__tavily-web-search__tavily_search",
-      "mcp__reddit-mcp-server__search_reddit",
-      "mcp__tavily-*",
-      "mcp__reddit-*"
+      "mcp__tavily-web-search__*",
+      "mcp__reddit-mcp-server__*",
+      "mcp__claude-in-chrome__*",
+      "mcp__ide__*"
     ],
     "deny": [],
     "ask": [],
