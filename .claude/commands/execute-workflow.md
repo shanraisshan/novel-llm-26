@@ -6,10 +6,10 @@ This command orchestrates the full research workflow using state-based continuat
 
 ```yaml
 CRITICAL_RULES:
-  - This workflow integrates with the Ralph Loop plugin
-  - State is tracked in .claude/ralph-loop.local.md (plugin format)
-  - Completion is signaled via <promise>Research complete</promise> tag
-  - The plugin's stop hook reads .claude/ralph-loop.local.md to determine if loop should continue
+  - This workflow integrates with the Ralph Loop script (scripts/ralph.sh)
+  - Status is tracked in research/research-status.json
+  - Completion is signaled via <promise>COMPLETE</promise> tag
+  - The script checks for this tag in the output to determine if loop should stop
   - ALWAYS read research/research-workflow-state.yaml and research/research-questions.yaml FIRST
   - Check workflow.status and workflow.current_phase
   - If status is "running", RESUME from current_phase
@@ -126,6 +126,7 @@ steps:
       - Create previous-research-summary.md in that folder
       - Launch opus-researcher agent to generate question
       - Write research documentation to research{N}/research{N}.md
+      - Save MCP tool findings to research folder (see MCP_FINDINGS_OUTPUT below)
       - Append new question to research-questions.yaml with:
           status: pending
           started_at: current timestamp in format "DD/MM/YYYY HH:MM AM/PM PST"
@@ -203,10 +204,9 @@ steps:
           workflow.current_iteration: null
           workflow.last_completed_phase: "commit"
       - Write state files to disk
-      - Update .claude/ralph-loop.local.md with current research status (see Ralph Loop State File section)
-      - git add research/  (this includes research-workflow-state.yaml and research-questions.yaml)
+      - Write research/research-status.json with: {"status": "complete"} or {"status": "need_more_research"}
+      - git add research/  (this includes research-workflow-state.yaml, research-questions.yaml, and research-status.json)
       - git add .claude/agents/opus-researcher.md (if modified)
-      - git add .claude/ralph-loop.local.md
       - Create commit with message: "research(N): [STATUS] score=X%"
       - git push origin main
     on_complete:
@@ -250,65 +250,54 @@ steps:
       **Recommended**: Run `/compact` to summarize this conversation before starting the next iteration.
     on_complete:
       - ">>> WORKFLOW ITERATION COMPLETE <<<"
-      - ">>> IF research_status = 'complete': Output <promise>Research complete</promise> <<<"
-      - ">>> IF research_status = 'need_more_research': Let Ralph Loop continue automatically <<<"
+      - ">>> IF research_status = 'complete': Output <promise>COMPLETE</promise> <<<"
+      - ">>> IF research_status = 'need_more_research': Output CONTINUING_RESEARCH <<<"
 ```
 
-## Ralph Loop State File
+## Research Status File
 
 ```yaml
-file: .claude/ralph-loop.local.md
-description: "State file for Ralph Loop plugin integration"
+file: research/research-status.json
+description: "Simple status file for Ralph Loop script"
 format: |
-  ---
-  active: true
-  iteration: {current_iteration_number}
-  max_iterations: 0
-  completion_promise: "Research complete"
-  started_at: "{ISO8601_timestamp}"
-  ---
-
-  Execute the research workflow
+  {"status": "need_more_research"}
+  OR
+  {"status": "complete"}
 
 update_rules:
-  - Write this file at the START of each workflow run (before PHASE_GENERATE)
-  - Update iteration count after each commit
-  - Keep active: true until research_status = "complete"
-  - The prompt section (after ---) should always be "Execute the research workflow"
+  - Write this file during PHASE_COMMIT
+  - Only one key: "status"
+  - Values: "need_more_research" (score >= 10%) or "complete" (score < 10%)
 
-example: |
-  ---
-  active: true
-  iteration: 47
-  max_iterations: 0
-  completion_promise: "Research complete"
-  started_at: "2026-02-01T12:00:00Z"
-  ---
-
-  Execute the research workflow
+examples:
+  need_more_research: |
+    {"status": "need_more_research"}
+  complete: |
+    {"status": "complete"}
 ```
 
 ## Promise Tag (Loop Completion Signal)
 
 ```yaml
 CRITICAL_BEHAVIOR:
-  description: "The Ralph Loop plugin detects <promise> tags to know when to stop"
+  description: "The Ralph Loop script detects <promise>COMPLETE</promise> tag to know when to stop"
 
   when_research_complete:
     condition: "research_status = 'complete' (score < 10%)"
     action: "Output the promise tag to stop the loop"
-    output: "<promise>Research complete</promise>"
-    effect: "Ralph Loop plugin will detect this and allow the session to end"
+    output: "<promise>COMPLETE</promise>"
+    effect: "Ralph Loop script will detect this and exit successfully"
 
   when_need_more_research:
     condition: "research_status = 'need_more_research' (score >= 10%)"
-    action: "Do NOT output any promise tag"
-    effect: "Ralph Loop plugin will block the stop and re-inject the prompt"
+    action: "Do NOT output the COMPLETE promise tag"
+    output: "CONTINUING_RESEARCH"
+    effect: "Ralph Loop script will continue to next iteration"
 
   IMPORTANT:
-    - ONLY output <promise>Research complete</promise> when research is TRULY complete
+    - ONLY output <promise>COMPLETE</promise> when research is TRULY complete
     - Do NOT lie to exit the loop
-    - The loop will automatically continue if no promise tag is output
+    - Output CONTINUING_RESEARCH when more iterations are needed
 ```
 
 ## Timestamp Tracking
@@ -344,8 +333,8 @@ MANDATORY_BEHAVIOR:
   - NEVER wait for user input
   - ALWAYS update state files before proceeding to next phase
   - ALWAYS check state files on entry to enable resume
-  - ALWAYS include research-workflow-state.yaml and research-questions.yaml in the commit (they're inside research/)
-  - ALWAYS include .claude/ralph-loop.local.md in the commit
+  - ALWAYS include research/ folder in the commit (contains research-workflow-state.yaml, research-questions.yaml, research-status.json)
+  - ALWAYS write research-status.json with {"status": "..."} before committing
   - ALWAYS set started_at when creating new question (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - ALWAYS set completed_at before final commit (format: "DD/MM/YYYY HH:MM AM/PM PST")
   - If ANY error occurs:
@@ -382,29 +371,68 @@ recovery:
     - Do NOT silently fail
 ```
 
+## MCP Findings Output
+
+```yaml
+MCP_FINDINGS_OUTPUT:
+  description: "Save all MCP tool research findings to the research folder"
+  when: "During PHASE_GENERATE, after opus-researcher completes"
+
+  files_to_create:
+    reddit_findings:
+      path: research/research{N}/mcp-reddit-findings.md
+      content: |
+        # Reddit Research Findings
+
+        ## Subreddits Searched
+        {list of subreddits browsed or searched}
+
+        ## Key Posts Found
+        {titles, URLs, and summaries of relevant posts}
+
+        ## Insights Extracted
+        {what was learned from Reddit that informed the question}
+
+    tavily_findings:
+      path: research/research{N}/mcp-tavily-findings.md
+      content: |
+        # Tavily Web Search Findings
+
+        ## Search Queries Used
+        {list of search queries executed}
+
+        ## Sources Found
+        {URLs and summaries of relevant sources}
+
+        ## Key Information Extracted
+        {facts, data, or insights that informed the question}
+
+  instructions:
+    - After opus-researcher uses any mcp__reddit-mcp-server__* tools, save findings to mcp-reddit-findings.md
+    - After opus-researcher uses any mcp__tavily-web-search__* tools, save findings to mcp-tavily-findings.md
+    - Include raw data, URLs, and how the findings influenced question generation
+    - If no MCP tools were used, skip creating those files
+```
+
 ## File References
 
 ```yaml
 files:
   workflow_state: research/research-workflow-state.yaml
   questions: research/research-questions.yaml
-  ralph_loop_state: .claude/ralph-loop.local.md
+  research_status: research/research-status.json
   agent: .claude/agents/opus-researcher.md
   research_folder: research/research{N}/
   research_doc: research/research{N}/research{N}.md
+  mcp_reddit: research/research{N}/mcp-reddit-findings.md
+  mcp_tavily: research/research{N}/mcp-tavily-findings.md
   answers: research/research{N}/answer[1-5].md
   verifier: research/research{N}/verifier{N}.md
 
-ralph_loop_state_format:
-  description: "State file for Ralph Loop plugin"
+research_status_format:
+  description: "Simple JSON status file for Ralph Loop script"
   structure: |
-    ---
-    active: true|false
-    iteration: number
-    max_iterations: 0
-    completion_promise: "Research complete"
-    started_at: "ISO8601 timestamp"
-    ---
-
-    Execute the research workflow
+    {"status": "need_more_research"}
+    OR
+    {"status": "complete"}
 ```

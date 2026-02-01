@@ -136,3 +136,9 @@ LLMs have fundamental limitations:
 ---
 
 **Goal**: Find the next "strawberry problem" — a simple question that exposes fundamental LLM limitations.
+
+---
+
+## References
+
+- [Ralph Wiggum Guide](https://github.com/JeredBlu/guides/blob/main/Ralph_Wiggum_Guide.md) — The bash loop method used for running this research workflow

@@ -1,21 +1,17 @@
 # Ralph Loop Prompt
 
-Execute the research workflow by running /execute-workflow. After the workflow completes, read the file research/research-status.json to check the current status.
+Execute `/execute-workflow` to run one complete research iteration.
 
-**Exit Conditions:**
-- If status equals "complete" → Output exactly: <promise>LOOP_DONE</promise>
-- If status equals "need_more_research" → Output exactly: CONTINUING_RESEARCH
+The workflow handles everything autonomously:
+- Generates novel questions via opus-researcher
+- Verifies with 5 parallel answerers
+- Evaluates and updates the research agent
+- Commits results to git
+- Writes status to `research/research-status.json`
 
-**CRITICAL:** You MUST output one of these two exact strings based on the status. The loop depends on detecting <promise>LOOP_DONE</promise> to exit.
+## Exit Conditions
 
-## Command
+The workflow will output one of:
 
-```bash
-/ralph-loop:ralph-loop "<prompt above>" --max-iterations 100 --completion-promise "LOOP_DONE"
-```
-
-## Full Command (Copy This)
-
-```
-/ralph-loop:ralph-loop "Execute the research workflow by running /execute-workflow. After the workflow completes, read the file research/research-status.json to check the current status. Exit Conditions: If status equals 'complete', output exactly: <promise>complete</promise>. If status equals 'need_more_research', output exactly: CONTINUING_RESEARCH." --max-iterations 100 --completion-promise "complete"
-```
+- `<promise>COMPLETE</promise>` - Novel question found (score < 10%)
+- `CONTINUING_RESEARCH` - Need more iterations (score >= 10%)

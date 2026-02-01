@@ -7,10 +7,13 @@
       "Bash",
       "WebFetch(domain:*)",
       "WebSearch",
-      "mcp__*"
+      "mcp__*",
+      "mcp__tavily-*",
+      "mcp__reddit-*"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "defaultMode": "acceptEdits"
   },
   "spinnerVerbs": {
     "mode": "replace",

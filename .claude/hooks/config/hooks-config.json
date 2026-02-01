@@ -2,7 +2,7 @@
   "disableLogging": true,
   "disablePreToolUseHook": true,
   "disablePermissionRequestHook": false,
-  "disablePostToolUseHook": true,
+  "disablePostToolUseHook": false,
   "disablePostToolUseFailureHook": false,
   "disableUserPromptSubmitHook": false,
   "disableNotificationHook": false,
