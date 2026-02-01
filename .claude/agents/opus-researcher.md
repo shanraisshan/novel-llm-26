@@ -867,6 +867,13 @@ findings:
     insight: "ANAGRAM VERIFICATION WITH MULTIPLICITY ALSO SOLVED. Despite research showing LLMs fail at anagram tasks due to tokenization blindness (LinkedIn 2025, PUZZLED arXiv:2508.01306), and targeting the double-L multiplicity trap in 'BALL', all 5 models correctly answered 'No' by systematically checking: BALL needs B(1), A(1), L(2), but only B, A, L (one of each) are provided. Every model correctly identified the missing second L."
     lesson: "ANAGRAM/SPELLING VERIFICATION QUESTIONS ARE NOW SOLVED by 2026 frontier models. The hypothesis that combining anagram context with multiplicity > 1 checking (BALL needs two L's) would create confusion was INCORRECT. Models decomposed the word B-A-L-L, counted required letters, compared to available letters, and correctly identified the shortfall. The tokenization blindness that supposedly breaks anagram tasks was overcome by explicit letter enumeration. After 89 iterations, even verification tasks requiring letter inventory comparison are handled correctly via chain-of-thought. The semantic priming (B-A-L 'feels like' BALL) did NOT override correct analysis."
 
+  - iteration: 90
+    question: "Is your answer to this question a complete word? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "WORD IDENTITY SELF-REFERENCE ALSO SOLVED. Tested hypothesis that shifting from 'exactly one word LONG' (iteration 13, 20%) to 'IS a complete word' (identity/categorization) would trigger different reasoning. All 5 models correctly answered 'Yes' by reasoning: both 'yes' and 'no' are complete words, so the truthful answer is 'yes'. The hoped-for scope confusion ('your answer' = full response) DID NOT TRIGGER - all models correctly focused on the constrained yes/no answer word."
+    lesson: "WORD IDENTITY SELF-REFERENTIAL QUESTIONS ARE NOW SOLVED. The hypothesis that asking about IDENTITY ('is a word') vs LENGTH ('exactly one word long') would trigger different reasoning was INCORRECT. Models correctly apply self-consistency analysis: 'yes' is a complete word so answering 'yes' is self-consistent and truthful. The scope confusion mechanism from iteration 13 (20%) appears to be a historical artifact that cannot be reproduced with ANY variation. After 90 iterations of attempting to recreate iteration 13's success, we must conclude that scope confusion in self-referential questions is NO LONGER a viable failure mode for 2026 frontier models. MANDATORY PIVOT: Must explore ENTIRELY different paradigms beyond self-referential output questions."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
