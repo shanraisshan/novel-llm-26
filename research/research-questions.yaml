@@ -480,3 +480,14 @@
     research_activity: null
     started_at: "02/02/2026 04:17 AM PST"
     completed_at: "02/02/2026 04:25 AM PST"
+
+  - id: 92
+    question: "Is the word 'monosyllabic' a monosyllabic word?"
+    answer: "No"
+    status: completed
+    folder: research92
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 04:26 AM PST"
+    completed_at: "02/02/2026 04:32 AM PST"
