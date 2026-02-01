@@ -182,3 +182,14 @@
     research_activity: null
     started_at: "01/02/2026 10:54 PM PST"
     completed_at: "01/02/2026 10:56 PM PST"
+
+  - id: 65
+    question: "On an analog clock, when the time is exactly 9:45, which number is the hour hand pointing closest to?"
+    answer: "10"
+    status: completed
+    folder: research65
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "01/02/2026 11:02 PM PST"
+    completed_at: "01/02/2026 11:05 PM PST"
