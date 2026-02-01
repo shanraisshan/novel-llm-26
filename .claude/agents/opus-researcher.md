@@ -587,6 +587,13 @@ findings:
     insight: "SEMANTIC INTERFERENCE + ALPHABET COMPARISON ALSO SOLVED. Despite using 'first' and 'last' FOUR times with conflicting meanings (positional vs word content), and despite the counter-intuitive answer (the letter from LAST comes FIRST alphabetically), all 5 models correctly answered L (from LAST) comes before T (from FIRST). Models systematically parsed the question, identified the letters, and compared alphabet positions (L=12th, T=20th)."
     lesson: "Multi-layer semantic interference does NOT confuse 2026 frontier models. Even with 4 semantic triggers (first/last used as both position and word) and a counter-intuitive answer structure, models correctly parse and compare. Alphabet ordering is stored knowledge that models access accurately. The combination of semantic interference + non-enumerable task (alphabet order) was NOT sufficient to cause disagreement. Need to explore entirely different failure paradigms."
 
+  - iteration: 50
+    question: "What shape has more sides: a triangle or a circle?"
+    score: 100%
+    status: need_more_research
+    insight: "PERCEPTUAL GEOMETRY QUESTION ALSO SOLVED. Despite targeting the 'hollow middle' problem (instantaneous perceptual judgment), all 5 models correctly answered 'triangle' (3 sides vs 0). Several models noted the alternative 'infinite sides' interpretation but correctly applied standard geometric definitions. The semantic priming trap (circle/infinity conflation) did NOT trigger."
+    lesson: "Simple geometric concept questions are NOW SOLVED by 2026 frontier models. Models correctly apply standard definitions (sides = straight edges) rather than conflating mathematical limit concepts with basic geometry. The 'hollow middle' hypothesis (LLMs fail on easy perceptual tasks) does NOT apply when there's a clear definitional framework. Need questions where NO definitional framework can be applied - truly perceptual tasks requiring visual/physical understanding that cannot be reasoned through."
+
 ## Evolved Strategy
 
 Based on accumulated findings:
