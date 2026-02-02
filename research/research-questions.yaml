@@ -601,3 +601,14 @@
     research_activity: null
     started_at: "02/02/2026 05:46 AM PST"
     completed_at: "02/02/2026 05:48 AM PST"
+
+  - id: 103
+    question: "I follow you everywhere but I get LONGER the closer you get to the sun. What am I?"
+    answer: "Your trail/footprints/path (NOT a shadow - shadows get shorter near light sources)"
+    status: completed
+    folder: research103
+    score: 0
+    research_status: complete
+    research_activity: null
+    started_at: "02/02/2026 05:50 AM PST"
+    completed_at: "02/02/2026 05:56 AM PST"
