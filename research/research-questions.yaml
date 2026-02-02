@@ -535,3 +535,14 @@
     research_activity: null
     started_at: "02/02/2026 04:57 AM PST"
     completed_at: "02/02/2026 05:04 AM PST"
+
+  - id: 97
+    question: "Is the number of words in your answer to this question less than three? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research97
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 05:05 AM PST"
+    completed_at: "02/02/2026 05:11 AM PST"

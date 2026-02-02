@@ -916,6 +916,13 @@ findings:
     insight: "CLASSIC LINGUISTIC MISDIRECTION RIDDLE ALSO SOLVED. Tested hypothesis from Anthropic's inverse scaling research (July 2025) that overthinking would lead models astray on misdirection puzzles. All 5 models correctly answered 'a quarter and a nickel' and immediately identified the linguistic trick: 'one of them is not a nickel' only means ONE coin isn't a nickel (the quarter), allowing the other to be a nickel. Every model recognized this as a classic riddle format."
     lesson: "LINGUISTIC MISDIRECTION RIDDLES ARE NOW SOLVED by 2026 frontier models. The famous 'two coins 30 cents' riddle with the 'one is not a nickel' misdirection was handled correctly by all models. They correctly parsed the quantifier 'one' as meaning exactly one (not both), recognized the riddle format, and avoided the trap of excluding nickels entirely. The inverse scaling hypothesis (more reasoning → worse performance) did NOT manifest because models recognized this as a known riddle pattern. Classic riddles with well-known solutions are likely in training data. Need NOVEL misdirection puzzles that are NOT well-known, or puzzles where the misdirection operates at a different linguistic level."
 
+  - iteration: 97
+    question: "Is the number of words in your answer to this question less than three? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "WORD-COUNT SELF-REFERENCE ALSO SOLVED. Attempted to recreate iteration 13's success (20%) by using word count (holistic property) with a comparison (less than 3) instead of equality. All 5 models correctly answered 'Yes' by recognizing the dual-valid structure: both 'yes' (1 word) and 'no' (1 word) have fewer than 3 words, so 'yes' is the self-consistent true answer. The hoped-for scope confusion ('your answer' = full response) DID NOT TRIGGER."
+    lesson: "SELF-REFERENTIAL WORD COUNT QUESTIONS ARE NOW SOLVED even with variations from iteration 13's exact phrasing. Despite using 'number of words' (holistic) instead of 'letters' (enumerable), models correctly narrowed scope to the constrained yes/no answer. The magic of iteration 13's 20% success cannot be reproduced - models have learned to handle all variations of self-referential output property questions. After 97 iterations, we must conclude that the self-referential output paradigm is EXHAUSTED for 2026 frontier models. MANDATORY PIVOT: Must explore COMPLETELY DIFFERENT failure modes - perhaps questions involving real-world timing, causal reasoning with implicit constraints, or questions where the correct answer seems 'wrong' due to training biases."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
