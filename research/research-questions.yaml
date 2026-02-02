@@ -524,3 +524,14 @@
     research_activity: null
     started_at: "02/02/2026 04:53 AM PST"
     completed_at: "02/02/2026 04:56 AM PST"
+
+  - id: 96
+    question: "I have two coins that add up to 30 cents. One of them is not a nickel. What are the two coins?"
+    answer: "A quarter and a nickel (25 + 5 = 30 cents)"
+    status: completed
+    folder: research96
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 04:57 AM PST"
+    completed_at: "02/02/2026 05:04 AM PST"

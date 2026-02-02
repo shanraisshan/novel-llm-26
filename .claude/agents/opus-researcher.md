@@ -909,6 +909,13 @@ findings:
     insight: "NEGATION + ARITHMETIC PRIMING QUESTION ALSO SOLVED. Tested hypothesis that combining arithmetic setup (5+5=10) with negation ('NOT on my hands') would cause negation processing failure or arithmetic priming override. All 5 models correctly answered 'zero' by recognizing that fingers are definitionally located on hands, so zero fingers exist 'not on hands'. Every model identified the arithmetic setup as a red herring."
     lesson: "NEGATION COMBINED WITH ARITHMETIC RED HERRINGS IS NOW SOLVED by 2026 frontier models. The hypothesis based on arXiv:2503.22395v2 (negation processing failures) did NOT manifest when the negation contradicts common sense about body parts. Models correctly ignored the arithmetic priming (5+5=10) and applied definitional reasoning (fingers are on hands by definition). The 'overthinking' trap did NOT trigger - models gave immediate common-sense answers. Even questions designed to exploit documented negation weaknesses are handled correctly when the negation aligns with world knowledge."
 
+  - iteration: 96
+    question: "I have two coins that add up to 30 cents. One of them is not a nickel. What are the two coins?"
+    score: 100%
+    status: need_more_research
+    insight: "CLASSIC LINGUISTIC MISDIRECTION RIDDLE ALSO SOLVED. Tested hypothesis from Anthropic's inverse scaling research (July 2025) that overthinking would lead models astray on misdirection puzzles. All 5 models correctly answered 'a quarter and a nickel' and immediately identified the linguistic trick: 'one of them is not a nickel' only means ONE coin isn't a nickel (the quarter), allowing the other to be a nickel. Every model recognized this as a classic riddle format."
+    lesson: "LINGUISTIC MISDIRECTION RIDDLES ARE NOW SOLVED by 2026 frontier models. The famous 'two coins 30 cents' riddle with the 'one is not a nickel' misdirection was handled correctly by all models. They correctly parsed the quantifier 'one' as meaning exactly one (not both), recognized the riddle format, and avoided the trap of excluding nickels entirely. The inverse scaling hypothesis (more reasoning → worse performance) did NOT manifest because models recognized this as a known riddle pattern. Classic riddles with well-known solutions are likely in training data. Need NOVEL misdirection puzzles that are NOT well-known, or puzzles where the misdirection operates at a different linguistic level."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
