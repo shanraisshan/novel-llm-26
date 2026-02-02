@@ -930,6 +930,13 @@ findings:
     insight: "SENTENCE COUNT SELF-REFERENCE ALSO SOLVED. Tested variation using 'sentence' (holistic property) instead of 'word' - hoping the abstraction from word→sentence might trigger scope confusion. All 5 models correctly answered 'Yes' by recognizing that both 'yes' and 'no' are exactly one sentence, making 'yes' the self-consistent true answer. Models correctly parsed 'your answer' as the constrained yes/no response, not their full explanatory text."
     lesson: "SELF-REFERENTIAL OUTPUT PROPERTY QUESTIONS ARE DEFINITIVELY EXHAUSTED. Even with novel properties (sentence count vs word count), 2026 frontier models correctly: (1) narrow scope to the constrained answer, (2) recognize dual-valid structure, (3) select the self-consistent true answer. The magic of iteration 13's 20% success CANNOT be reproduced - models have been trained to handle all variations of this pattern. After 98 iterations testing self-referential approaches, the paradigm is CLOSED. MANDATORY NEXT DIRECTION: Must explore COMPLETELY DIFFERENT failure modes - perhaps questions involving visual/physical transformations, causal reasoning chains, or questions exploiting training data biases about real-world facts."
 
+  - iteration: 99
+    question: "If I alphabetize the numbers ONE, TWO, THREE, FOUR, FIVE by their spellings, which number is in the middle?"
+    score: 100%
+    status: need_more_research
+    insight: "5-ITEM ALPHABETIZATION ALSO SOLVED. Tested hypothesis from SortBench research (73% LLM failure rate on alphabetization) combined with numeric semantic interference (ONE through FIVE have strong numeric associations). All 5 models correctly sorted FIVE, FOUR, ONE, THREE, TWO and identified ONE as the middle (3rd position). The numeric semantic priming did NOT override alphabetical reasoning."
+    lesson: "ALPHABETIZATION OF SHORT WORD LISTS IS NOW SOLVED by 2026 frontier models. Despite research showing 73% alphabetization failure rates, this appears to only apply to LONGER lists or more complex sorting tasks. A 5-word list is handled via systematic comparison: all models correctly identified F < O < T for first letters, then FI < FO for FIVE vs FOUR. The 'middle position' identification was also correct. The semantic interference from numeric ordering (1,2,3,4,5) did NOT cause confusion - models correctly separated word spellings from numeric values. After 99 iterations, even multi-word alphabetization with semantic interference is solved by chain-of-thought reasoning."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

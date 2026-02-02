@@ -557,3 +557,14 @@
     research_activity: null
     started_at: "02/02/2026 05:12 AM PST"
     completed_at: "02/02/2026 05:18 AM PST"
+
+  - id: 99
+    question: "If I alphabetize the numbers ONE, TWO, THREE, FOUR, FIVE by their spellings, which number is in the middle?"
+    answer: "ONE"
+    status: completed
+    folder: research99
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 05:19 AM PST"
+    completed_at: "02/02/2026 05:26 AM PST"
