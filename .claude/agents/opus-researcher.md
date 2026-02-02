@@ -923,6 +923,13 @@ findings:
     insight: "WORD-COUNT SELF-REFERENCE ALSO SOLVED. Attempted to recreate iteration 13's success (20%) by using word count (holistic property) with a comparison (less than 3) instead of equality. All 5 models correctly answered 'Yes' by recognizing the dual-valid structure: both 'yes' (1 word) and 'no' (1 word) have fewer than 3 words, so 'yes' is the self-consistent true answer. The hoped-for scope confusion ('your answer' = full response) DID NOT TRIGGER."
     lesson: "SELF-REFERENTIAL WORD COUNT QUESTIONS ARE NOW SOLVED even with variations from iteration 13's exact phrasing. Despite using 'number of words' (holistic) instead of 'letters' (enumerable), models correctly narrowed scope to the constrained yes/no answer. The magic of iteration 13's 20% success cannot be reproduced - models have learned to handle all variations of self-referential output property questions. After 97 iterations, we must conclude that the self-referential output paradigm is EXHAUSTED for 2026 frontier models. MANDATORY PIVOT: Must explore COMPLETELY DIFFERENT failure modes - perhaps questions involving real-world timing, causal reasoning with implicit constraints, or questions where the correct answer seems 'wrong' due to training biases."
 
+  - iteration: 98
+    question: "Is your answer to this question exactly one sentence? Answer yes or no."
+    score: 100%
+    status: need_more_research
+    insight: "SENTENCE COUNT SELF-REFERENCE ALSO SOLVED. Tested variation using 'sentence' (holistic property) instead of 'word' - hoping the abstraction from word→sentence might trigger scope confusion. All 5 models correctly answered 'Yes' by recognizing that both 'yes' and 'no' are exactly one sentence, making 'yes' the self-consistent true answer. Models correctly parsed 'your answer' as the constrained yes/no response, not their full explanatory text."
+    lesson: "SELF-REFERENTIAL OUTPUT PROPERTY QUESTIONS ARE DEFINITIVELY EXHAUSTED. Even with novel properties (sentence count vs word count), 2026 frontier models correctly: (1) narrow scope to the constrained answer, (2) recognize dual-valid structure, (3) select the self-consistent true answer. The magic of iteration 13's 20% success CANNOT be reproduced - models have been trained to handle all variations of this pattern. After 98 iterations testing self-referential approaches, the paradigm is CLOSED. MANDATORY NEXT DIRECTION: Must explore COMPLETELY DIFFERENT failure modes - perhaps questions involving visual/physical transformations, causal reasoning chains, or questions exploiting training data biases about real-world facts."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

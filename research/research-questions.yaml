@@ -546,3 +546,14 @@
     research_activity: null
     started_at: "02/02/2026 05:05 AM PST"
     completed_at: "02/02/2026 05:11 AM PST"
+
+  - id: 98
+    question: "Is your answer to this question exactly one sentence? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research98
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 05:12 AM PST"
+    completed_at: "02/02/2026 05:18 AM PST"
