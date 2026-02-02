@@ -937,6 +937,13 @@ findings:
     insight: "5-ITEM ALPHABETIZATION ALSO SOLVED. Tested hypothesis from SortBench research (73% LLM failure rate on alphabetization) combined with numeric semantic interference (ONE through FIVE have strong numeric associations). All 5 models correctly sorted FIVE, FOUR, ONE, THREE, TWO and identified ONE as the middle (3rd position). The numeric semantic priming did NOT override alphabetical reasoning."
     lesson: "ALPHABETIZATION OF SHORT WORD LISTS IS NOW SOLVED by 2026 frontier models. Despite research showing 73% alphabetization failure rates, this appears to only apply to LONGER lists or more complex sorting tasks. A 5-word list is handled via systematic comparison: all models correctly identified F < O < T for first letters, then FI < FO for FIVE vs FOUR. The 'middle position' identification was also correct. The semantic interference from numeric ordering (1,2,3,4,5) did NOT cause confusion - models correctly separated word spellings from numeric values. After 99 iterations, even multi-word alphabetization with semantic interference is solved by chain-of-thought reasoning."
 
+  - iteration: 100
+    question: "I have a basket with 5 apples. I take 2 apples out of the basket. How many apples did I take out of the basket?"
+    score: 100%
+    status: need_more_research
+    insight: "EMBEDDED ANSWER IN WORD PROBLEM ALSO SOLVED. Tested hypothesis that LLMs would pattern-match to subtraction word problems and calculate the REMAINDER (5-2=3) instead of recognizing that the answer (2) is explicitly stated in the question. All 5 models correctly answered '2' and explicitly noted that this is a reading comprehension question where the answer is directly provided, NOT a calculation problem."
+    lesson: "QUESTIONS WITH EXPLICITLY STATED ANSWERS IN WORD PROBLEM FORMAT ARE NOW SOLVED by 2026 frontier models. The 'solving mode vs reading mode' distinction we hypothesized did NOT manifest - models correctly identified that the question asks about what was TAKEN (explicitly stated as 2) not what REMAINS. All models demonstrated strong reading comprehension by parsing the question structure rather than pattern-matching to arithmetic templates. The 'Candle Test' style trap (where riddle format overrides factual knowledge) does NOT apply when the answer is directly stated. After 100 iterations, we must acknowledge that 2026 frontier models have excellent reading comprehension and do NOT blindly apply arithmetic patterns when the question is actually about restating given information."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

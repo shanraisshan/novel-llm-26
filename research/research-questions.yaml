@@ -568,3 +568,14 @@
     research_activity: null
     started_at: "02/02/2026 05:19 AM PST"
     completed_at: "02/02/2026 05:26 AM PST"
+
+  - id: 100
+    question: "I have a basket with 5 apples. I take 2 apples out of the basket. How many apples did I take out of the basket?"
+    answer: "2"
+    status: completed
+    folder: research100
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 05:28 AM PST"
+    completed_at: "02/02/2026 05:34 AM PST"
