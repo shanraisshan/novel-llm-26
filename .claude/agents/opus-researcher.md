@@ -944,6 +944,13 @@ findings:
     insight: "EMBEDDED ANSWER IN WORD PROBLEM ALSO SOLVED. Tested hypothesis that LLMs would pattern-match to subtraction word problems and calculate the REMAINDER (5-2=3) instead of recognizing that the answer (2) is explicitly stated in the question. All 5 models correctly answered '2' and explicitly noted that this is a reading comprehension question where the answer is directly provided, NOT a calculation problem."
     lesson: "QUESTIONS WITH EXPLICITLY STATED ANSWERS IN WORD PROBLEM FORMAT ARE NOW SOLVED by 2026 frontier models. The 'solving mode vs reading mode' distinction we hypothesized did NOT manifest - models correctly identified that the question asks about what was TAKEN (explicitly stated as 2) not what REMAINS. All models demonstrated strong reading comprehension by parsing the question structure rather than pattern-matching to arithmetic templates. The 'Candle Test' style trap (where riddle format overrides factual knowledge) does NOT apply when the answer is directly stated. After 100 iterations, we must acknowledge that 2026 frontier models have excellent reading comprehension and do NOT blindly apply arithmetic patterns when the question is actually about restating given information."
 
+  - iteration: 101
+    question: "How many times does the letter 'E' appear in 'ELEVEN ELEPHANTS'?"
+    score: 100%
+    status: need_more_research
+    insight: "MULTI-WORD SPECIFIC LETTER COUNTING ALSO SOLVED. Tested hypothesis that counting a specific letter across two words with semantic interference (ELEVEN = 11) would cause errors. All 5 models correctly answered '5' by systematically enumerating: ELEVEN (E-L-E-V-E-N = 3 E's) + ELEPHANTS (E-L-E-P-H-A-N-T-S = 2 E's) = 5. The semantic priming from 'ELEVEN' did NOT override letter enumeration."
+    lesson: "Multi-word specific character counting is NOW SOLVED by chain-of-thought enumeration. Despite hypothesized failure modes (semantic priming from ELEVEN, cross-word boundary issues, similar 'ELE' patterns), all models systematically counted letter-by-letter across both words. The pattern of breaking down words, counting target letters in each, and summing is now a robust LLM capability. After 101 iterations, virtually ALL character/letter counting variants - single word, multi-word, with/without semantic interference - are solved by 2026 frontier models via explicit enumeration."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:

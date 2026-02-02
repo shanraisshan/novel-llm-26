@@ -579,3 +579,14 @@
     research_activity: null
     started_at: "02/02/2026 05:28 AM PST"
     completed_at: "02/02/2026 05:34 AM PST"
+
+  - id: 101
+    question: "How many times does the letter 'E' appear in 'ELEVEN ELEPHANTS'?"
+    answer: "5"
+    status: completed
+    folder: research101
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "02/02/2026 05:35 AM PST"
+    completed_at: "02/02/2026 05:41 AM PST"
