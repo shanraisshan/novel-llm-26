@@ -38,6 +38,12 @@ This exploits the **modification blindness** limitation — LLMs recognize the f
 
 ---
 
+## ⚠️ WARNING
+
+The obvious flaw: I'm asking an LLM to do novel research, then asking 5 copies of the same LLM to QA that research. It's pure Ralph Wiggum energy - "I'm helping!" They share the same knowledge cutoff, same
+
+---
+
 ## Progress So Far
 
 **103 questions tested** — LLM-breaking question found.
