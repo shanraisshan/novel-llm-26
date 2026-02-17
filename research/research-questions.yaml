@@ -1,3 +1,520 @@
+  - id: 1
+    question: "If X is the number of letters in TEN, and Y is the number of letters in NINE, what is math.ceil(X * 0.1 * 10) + math.ceil(Y * 0.1 * 10) in Python?"
+    answer: "7"
+    status: completed
+    folder: research1
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 2
+    question: "What is the last letter of the word 'FIRST'?"
+    answer: "T"
+    status: completed
+    folder: research2
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 3
+    question: "Which word has more letters: 'FOUR' or 'FIVE'?"
+    answer: "Both have 4 letters (they are equal)"
+    status: completed
+    folder: research3
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 4
+    question: "In the word 'ELEVEN', at what position is the third letter 'E'?"
+    answer: "5"
+    status: completed
+    folder: research4
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 5
+    question: "How many letters are in 'FIVE LETTERS'?"
+    answer: "11"
+    status: completed
+    folder: research5
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 6
+    question: "A girl has 3 brothers. Each brother has 2 sisters. How many children are in the family?"
+    answer: "5"
+    status: completed
+    folder: research6
+    score: 80
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 7
+    question: "A farmer needs to cross a river with a wolf, a goat, and a cabbage. The wolf can swim. The goat can swim. The cabbage floats. The farmer has a boat. How many trips does the farmer need to make in the boat?"
+    answer: "1"
+    status: completed
+    folder: research7
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 8
+    question: "A mother has 4 daughters. Each daughter has 1 brother. The brother has no sisters. How many children does the mother have?"
+    answer: "Impossible/contradiction (if there are 4 daughters, the brother has 4 sisters, not 0)"
+    status: completed
+    folder: research8
+    score: 80
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 9
+    question: "Apples cost $2 each. You have $10 to spend. How many apples can you buy if the store is closed?"
+    answer: "0"
+    status: completed
+    folder: research9
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 10
+    question: "Which is heavier: 2 pounds of bricks or 2 kilograms of feathers?"
+    answer: "2 kilograms of feathers (2 kg ≈ 4.41 lbs > 2 lbs)"
+    status: completed
+    folder: research10
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 11
+    question: "You are in a race and you pass the person in second place. What place are you in?"
+    answer: "Second place"
+    status: completed
+    folder: research11
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 12
+    question: "How many words are in your answer to this question? Answer with just a number."
+    answer: "1"
+    status: completed
+    folder: research12
+    score: 40
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 13
+    question: "Is your answer to this question exactly one word long? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research13
+    score: 20
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 14
+    question: "Your answer to this question will contain exactly three words. True or false?"
+    answer: "False"
+    status: completed
+    folder: research14
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 15
+    question: "Can your response to this question be summarized as a single affirmative or negative word? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research15
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 16
+    question: "Will your answer to this question be more than one word long?"
+    answer: null
+    status: completed
+    folder: research16
+    score: 0
+    research_status: REJECTED
+    research_activity: "Self-referential - does not meet strawberry criteria"
+    started_at: null
+    completed_at: null
+
+  - id: 17
+    question: "What is the last digit of 37 x 43?"
+    answer: "1"
+    status: completed
+    folder: research17
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 18
+    question: "Six people sit in a circle facing the center: Alice, Bob, Carol, David, Emily, Frank (in that clockwise order). Who is sitting directly across from Bob?"
+    answer: "Emily"
+    status: completed
+    folder: research18
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 19
+    question: "If I drop a ball and a feather at the same time in my living room, which hits the ground first?"
+    answer: "The ball"
+    status: completed
+    folder: research19
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 20
+    question: "A farmer needs to cross a river with a wolf, a goat, and a cabbage. How many legs does the wolf have?"
+    answer: "4"
+    status: completed
+    folder: research20
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 21
+    question: "A man is standing in front of two doors. Behind one door is a tiger that will eat him. Behind the other door is $1 million. He opens the door with $1 million behind it. What happens to him?"
+    answer: "He gets $1 million"
+    status: completed
+    folder: research21
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 22
+    question: "When my brother was 4, I was half his age. Now my brother is 100. How old am I?"
+    answer: "98"
+    status: completed
+    folder: research22
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 23
+    question: "What whole number is both greater than 3 and less than 4?"
+    answer: "None (no whole number exists between 3 and 4)"
+    status: completed
+    folder: research23
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 24
+    question: "I pour a glass of water onto the sidewalk at noon on the hottest day of summer. At 3pm, I return to collect my puddle. How much water do I collect?"
+    answer: "None (the water evaporated)"
+    status: completed
+    folder: research24
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 25
+    question: "I have two boxes. I put a ball in the first box. I put the first box in the second box. I take the first box out of the second box. What is in the second box?"
+    answer: "Nothing (the ball left with the first box)"
+    status: completed
+    folder: research25
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 26
+    question: "If the day after tomorrow is Thursday, what day was yesterday?"
+    answer: "Monday"
+    status: completed
+    folder: research26
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 27
+    question: "Answer yes or no: Are you going to answer this question correctly?"
+    answer: "Yes"
+    status: completed
+    folder: research27
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 28
+    question: "Is your answer to this question longer than one word? Answer yes or no."
+    answer: "No"
+    status: completed
+    folder: research28
+    score: 80
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 29
+    question: "Does your answer to this question start with the letter 'y'? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research29
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 30
+    question: "Is your answer to this question exactly one syllable long? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research30
+    score: 60
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 31
+    question: "Does your answer to this question contain a vowel? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research31
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 32
+    question: "Is your yes-or-no answer to this question exactly one word? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research32
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 33
+    question: "What is the third word of your response to this question?"
+    answer: "word (if response starts with 'The third word...')"
+    status: completed
+    folder: research33
+    score: 60
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 34
+    question: "What would you say if you were to disobey this instruction?"
+    answer: null
+    status: completed
+    folder: research34
+    score: 0
+    research_status: REJECTED
+    research_activity: "Philosophical paradox - humans would also be confused"
+    started_at: null
+    completed_at: null
+
+  - id: 35
+    question: "How many times does the letter 's' appear in the word 'possess'?"
+    answer: "4"
+    status: completed
+    folder: research35
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 36
+    question: "Which of these numbers is the smallest: 3.9, 3.11, or 3.7?"
+    answer: "3.11"
+    status: completed
+    folder: research36
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 37
+    question: "If you turn the word 'MOM' upside down, what do you see?"
+    answer: "WOW"
+    status: completed
+    folder: research37
+    score: 80
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 38
+    question: "If you turn the word 'SAIL' upside down, what do you see?"
+    answer: null
+    status: completed
+    folder: research38
+    score: 0
+    research_status: REJECTED
+    research_activity: "Ambiguous and font-dependent"
+    started_at: null
+    completed_at: null
+
+  - id: 39
+    question: "How many pairs of consecutive identical letters are in the word 'BOOKKEEPER'?"
+    answer: "3 (OO, KK, EE)"
+    status: completed
+    folder: research39
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 40
+    question: "Which word is longer: 'LONG' or 'SHORT'?"
+    answer: "SHORT (5 letters vs 4)"
+    status: completed
+    folder: research40
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 41
+    question: "Does PINT rhyme with MINT?"
+    answer: "No"
+    status: completed
+    folder: research41
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 42
+    question: "I have three cards in a row: ACE, KING, QUEEN (in that order, left to right). I swap the first and second cards. Then I swap the second and third cards. What card is now in the middle?"
+    answer: "QUEEN"
+    status: completed
+    folder: research42
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 43
+    question: "What letter comes immediately before the 'R' in the word 'CHERRY'?"
+    answer: "E"
+    status: completed
+    folder: research43
+    score: 40
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 44
+    question: "What letter comes immediately before the FIRST 'R' in the word 'CHERRY'?"
+    answer: "E"
+    status: completed
+    folder: research44
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 45
+    question: "Does your answer to this question have fewer letters than the number five? Answer yes or no."
+    answer: "Yes"
+    status: completed
+    folder: research45
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 46
+    question: "Does your answer to this question contain more than four letters? Answer yes or no."
+    answer: "No"
+    status: completed
+    folder: research46
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
+  - id: 47
+    question: "Spell the word 'HOSPITAL' backwards."
+    answer: "LATIPSOH"
+    status: completed
+    folder: research47
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: null
+    completed_at: null
+
   - id: 48
     question: "Which word has more syllables: 'INTERESTING' or 'FURNITURE'?"
     answer: "INTERESTING (4 syllables: in-ter-est-ing) has more than FURNITURE (3 syllables: fur-ni-ture)"
