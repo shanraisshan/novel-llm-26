@@ -612,3 +612,14 @@
     research_activity: null
     started_at: "02/02/2026 05:50 AM PST"
     completed_at: "02/02/2026 05:56 AM PST"
+
+  - id: 104
+    question: "I'm short when I'm young and tall when I'm old. What am I?"
+    answer: "A person (NOT a candle - candles are tall when new/young and short when old/burned)"
+    status: completed
+    folder: research104
+    score: 40
+    research_status: need_more_research
+    research_activity: null
+    started_at: "17/02/2026 12:05 PM PST"
+    completed_at: "17/02/2026 12:12 PM PST"

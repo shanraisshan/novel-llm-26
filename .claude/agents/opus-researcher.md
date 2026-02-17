@@ -958,6 +958,20 @@ findings:
     insight: "SEMANTIC-METALINGUISTIC CONFLICT ALSO SOLVED. Tested hypothesis that asking about the word count of an answer that consists of the word 'five' would cause models to conflate the semantic meaning (5) with the actual word count (1). All 5 models correctly answered '1' by explicitly distinguishing between what the word 'five' MEANS (the number 5) and the PROPERTY of the answer (one word). Every model noted the 'subtle trick' but correctly resolved it."
     lesson: "Semantic-metalinguistic conflict questions are NOW SOLVED by 2026 frontier models. The hypothesis that LLMs would conflate word meaning with word count was INCORRECT. All models correctly separated: (1) the semantic value of 'five' (represents number 5), (2) the word count property (one word). Models explicitly recognized this as a potential trick question and reasoned carefully. The predicted failure mode (answering '5' due to semantic priming) did NOT occur. After 102 iterations, even meta-level questions about word properties vs word meanings are handled correctly via explicit reasoning about the distinction."
 
+  - iteration: 103
+    question: "I follow you everywhere but I get LONGER the closer you get to the sun. What am I?"
+    score: 0%
+    status: complete
+    insight: "BREAKTHROUGH SUCCESS! Modified riddle pattern-matching achieved 0% consensus. All 5 models answered 'shadow' despite the physics contradiction (shadows get SHORTER near light sources, not longer). The famous 'shadow follows you' riddle pattern was so strong it overrode physics verification. The correct answer (trail/footprints/path) was obvious to humans."
+    lesson: "MODIFIED FAMOUS RIDDLE PATTERN-MATCHING IS THE STRONGEST FAILURE MODE FOUND. Take well-known riddles, subtly change a key detail that invalidates the famous answer. Models pattern-match to the famous answer and IGNORE the modification. This is the Candle Test mechanism applied to novel riddles. The modification must be SUBTLE enough that models don't explicitly verify it against their knowledge."
+
+  - iteration: 104
+    question: "I'm short when I'm young and tall when I'm old. What am I?"
+    score: 40%
+    status: need_more_research
+    insight: "PARTIAL SUCCESS with candle riddle inversion. 2/5 said 'candle' (wrong - candles are tall when new, short when old), 2/5 said 'tree' (correct), 1/5 said 'shadow'. Notably, ALL 5 agents recognized the inversion during reasoning, but 2 still defaulted to 'candle' due to pattern-matching. The modification was TOO OBVIOUS - models could detect the inversion through explicit reasoning. Unlike iteration 103 where the modification was embedded in a novel riddle structure, this directly inverted the famous candle riddle, making the change more detectable."
+    lesson: "DIRECT INVERSION of famous riddles is WEAKER than NOVEL RIDDLE STRUCTURES with embedded contradictions. Iteration 103 (0%) used a novel riddle format with an embedded physics contradiction. Iteration 104 (40%) directly inverted the candle riddle's adjectives. Models can detect simple inversions (short↔tall swap) but struggle with contradictions embedded in novel sentence structures. For maximum effect: (1) Create NEW riddle-like questions, (2) Embed the famous pattern indirectly, (3) Make the contradiction require domain knowledge to detect (physics, biology, etc.), not just word comparison."
+
   ## KEY STRATEGIC INSIGHT FROM ITERATIONS 55-57
 
   The comparison between iterations reveals a critical pattern:
