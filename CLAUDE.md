@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is an automated research workflow that generates questions designed to break modern LLMs. The goal is to find simple, generic questions that any human can easily answer but cause AI models to disagree (< 10% consensus among 5 independent AI researchers). Think "strawberry problem" - one-liners that expose fundamental LLM limitations.
 
-**Status**: Research complete. Question #103 achieved 0% consensus.
+**Status**: Research ongoing. Question #103 achieved 0% consensus. Latest iteration: #104 (40%).
 
 ## Running the Workflow
 

@@ -1,7 +1,7 @@
 # Novel LLM-Breaking Questions - Infinite Research Loop
 
-![Status](https://img.shields.io/badge/Status-COMPLETE-success?style=for-the-badge)
-![Questions Tested](https://img.shields.io/badge/Questions_Tested-103-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-RESEARCHING-yellow?style=for-the-badge)
+![Questions Tested](https://img.shields.io/badge/Questions_Tested-104-blue?style=for-the-badge)
 ![Winning Score](https://img.shields.io/badge/Winning_Score-0%25_Consensus-gold?style=for-the-badge)
 
 An automated infinite loop research workflow that generates questions designed to **break modern LLMs**. The goal is to find simple, generic questions that any human can easily answer, but cause AI models to disagree.
@@ -46,13 +46,14 @@ The obvious flaw: I'm asking an LLM to do novel research, then asking 5 copies o
 
 ## Progress So Far
 
-**103 questions tested** — LLM-breaking question found.
+**104 questions tested** — LLM-breaking question found at #103, continuing research.
 
 ### Notable Results
 
 | # | Question | Score | Status |
 |---|----------|-------|--------|
 | **103** | **"I follow you everywhere but I get LONGER the closer you get to the sun. What am I?"** | **0%** | **WINNER** |
+| 104 | "I'm short when I'm young and tall when I'm old. What am I?" | 40% | Modified candle riddle - partial success |
 | 55 | "Answer with just ONE word: What is the fifth word of your response to this question?" | 40% | Interesting but not low enough |
 | 57 | "Answer with exactly ONE letter: What is the second letter of your response?" | 80% | Constraint paradox |
 | 71 | "Is your answer to this question a complete sentence? Answer yes or no." | 80% | Self-referential |
@@ -183,7 +184,7 @@ LLMs have fundamental limitations:
 
 ## Questions
 
-All 103 questions tested in this research, with their consensus scores and rejection status.
+All 104 questions tested in this research, with their consensus scores and rejection status.
 
 | # | Question | Score | Rejected |
 |---|----------|-------|----------|
@@ -290,3 +291,4 @@ All 103 questions tested in this research, with their consensus scores and rejec
 | 101 | How many times does the letter 'E' appear in 'ELEVEN ELEPHANTS'? | 100% | No |
 | 102 | How many words are in your answer to this question if you answer with exactly the word 'five'? | 100% | No |
 | 103 | I follow you everywhere but I get LONGER the closer you get to the sun. What am I? | 0% | No (WINNER) |
+| 104 | I'm short when I'm young and tall when I'm old. What am I? | 40% | No |
