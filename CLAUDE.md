@@ -84,6 +84,17 @@ Sound effects play on various Claude Code events. Configured in `.claude/setting
 4. **Modification Blindness**: Pattern-match to famous puzzles without noticing inversions
 5. **Relational Logic**: Complex family/sibling relationships
 
+## Git Commit Rules
+
+When committing changes, **create separate commits per file**. Do NOT bundle multiple file changes into a single commit. Each file gets its own commit with a descriptive message specific to that file's changes.
+
+For example, if `README.md`, `best-practice/claude-subagents.md`, and a skill file all changed:
+- Commit 1: `git add README.md` → commit with README-specific message
+- Commit 2: `git add best-practice/claude-subagents.md` → commit with subagents-doc-specific message
+- Commit 3: `git add .claude/skills/weather-fetcher/SKILL.md` → commit with skill-specific message
+
+This makes the git history cleaner and easier to review, revert, or cherry-pick individual changes.
+
 ## Important Notes
 
 - The opus-researcher agent contains accumulated findings and evolved strategy
