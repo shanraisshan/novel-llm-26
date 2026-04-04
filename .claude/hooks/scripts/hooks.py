@@ -3,13 +3,13 @@
 Claude Code Hook Handler
 =============================================
 This script handles events from Claude Code and plays sounds for different hook events.
-Supports all 13 Claude Code hooks: https://code.claude.com/docs/en/hooks
+Supports all 27 Claude Code hooks: https://code.claude.com/docs/en/hooks
 
 Special handling for git commits: plays pretooluse-git-committing.mp3
 
 Agent Support:
   Use --agent=<name> to play agent-specific sounds from agent_* folders.
-  Agent frontmatter hooks only support: PreToolUse, PostToolUse, Stop
+  Agent frontmatter hooks support 6 hooks: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, SubagentStop
 """
 
 import sys
@@ -39,18 +39,35 @@ HOOK_SOUND_MAP = {
     "SubagentStart": "subagentstart",
     "SubagentStop": "subagentstop",
     "PreCompact": "precompact",
+    "PostCompact": "postcompact",
     "SessionStart": "sessionstart",
     "SessionEnd": "sessionend",
-    "Setup": "setup"
+    "Setup": "setup",
+    "TeammateIdle": "teammateidle",
+    "TaskCreated": "taskcreated",
+    "TaskCompleted": "taskcompleted",
+    "ConfigChange": "configchange",
+    "WorktreeCreate": "worktreecreate",
+    "WorktreeRemove": "worktreeremove",
+    "InstructionsLoaded": "instructionsloaded",
+    "Elicitation": "elicitation",
+    "ElicitationResult": "elicitationresult",
+    "StopFailure": "stopfailure",
+    "CwdChanged": "cwdchanged",
+    "FileChanged": "filechanged",
+    "PermissionDenied": "permissiondenied"
 }
 
 # ===== AGENT HOOK EVENT TO SOUND FOLDER MAPPING =====
 # Maps agent hook events to agent-specific sound folders
-# Agent frontmatter hooks only support: PreToolUse, PostToolUse, Stop
+# Only the 6 hooks that actually fire in agent contexts are mapped
 AGENT_HOOK_SOUND_MAP = {
     "PreToolUse": "agent_pretooluse",
     "PostToolUse": "agent_posttooluse",
-    "Stop": "agent_stop"
+    "PermissionRequest": "agent_permissionrequest",
+    "PostToolUseFailure": "agent_posttoolusefailure",
+    "Stop": "agent_stop",
+    "SubagentStop": "agent_subagentstop"
 }
 
 # ===== BASH COMMAND PATTERNS =====
@@ -369,11 +386,6 @@ def get_sound_name(hook_data, agent_name=None):
 
     # If this is an agent hook, use agent-specific sounds
     if agent_name:
-        # WORKAROUND: Claude Code bug - agent's Stop hook receives "SubagentStop"
-        # instead of "Stop" as hook_event_name. Map it back to "Stop".
-        # See: https://github.com/anthropics/claude-code/issues/19220
-        if event_name == "SubagentStop":
-            event_name = "Stop"
         return AGENT_HOOK_SOUND_MAP.get(event_name)
 
     # Check if this is a PreToolUse event with Bash tool
