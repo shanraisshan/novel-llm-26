@@ -312,4 +312,6 @@ Tokenization-blind letter counting and reflexive negation.
 - `how many p in the word strawperrry`
 - `is 2027 next year?`
 
-<img src="!/opus4.7/opus-strawperry.jpg" alt="Opus 4.7 miscounts the letter 'p' in 'strawperrry'" width="48%"> <img src="!/opus4.7/opus-year.jpg" alt="Opus 4.7 says 'No' then confirms 2027 is next year" width="48%">
+<img src="!/opus4.7/opus-strawperry.jpg" alt="Opus 4.7 miscounts the letter 'p' in 'strawperrry'" width="100%">
+
+<img src="!/opus4.7/opus-year.jpg" alt="Opus 4.7 says 'No' then confirms 2027 is next year" width="100%">
