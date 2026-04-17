@@ -298,3 +298,18 @@ All 104 questions tested in this research, with their consensus scores and rejec
 ## Other Repos
 
 <a href="https://github.com/shanraisshan/claude-code-best-practice"><img src="!/claude-jumping.svg" alt="Claude Code Best Practice" width="40" height="40" align="center"></a> <a href="https://github.com/shanraisshan/claude-code-best-practice"><strong>claude-code-best-practice</strong></a> · <a href="https://github.com/shanraisshan/claude-code-hooks"><img src="!/claude-speaking.svg" alt="Claude Code Hooks" width="40" height="40" align="center"></a> <a href="https://github.com/shanraisshan/claude-code-hooks"><strong>claude-code-hooks</strong></a> · <a href="https://github.com/shanraisshan/codex-cli-best-practice"><img src="!/codex-jumping.svg" alt="Codex CLI" width="40" height="40" align="center"></a> <a href="https://github.com/shanraisshan/codex-cli-best-practice"><strong>codex-cli-best-practice</strong></a> · <a href="https://github.com/shanraisshan/codex-cli-hooks"><img src="!/codex-speaking.svg" alt="Codex CLI Hooks" width="40" height="40" align="center"></a> <a href="https://github.com/shanraisshan/codex-cli-hooks"><strong>codex-cli-hooks</strong></a>
+
+---
+
+## Models going HIGH
+
+Flagship models tripping over the exact failure modes this repo hunts, captured live in Claude Code.
+
+### Opus 4.7
+
+Tokenization-blind letter counting and reflexive negation.
+
+- `how many p in the word strawperrry`
+- `is 2027 next year?`
+
+<img src="!/opus4.7/opus-strawperry.jpg" alt="Opus 4.7 miscounts the letter 'p' in 'strawperrry'" width="48%"> <img src="!/opus4.7/opus-year.jpg" alt="Opus 4.7 says 'No' then confirms 2027 is next year" width="48%">
