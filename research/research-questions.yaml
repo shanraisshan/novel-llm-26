@@ -1140,3 +1140,14 @@
     research_activity: null
     started_at: "17/02/2026 12:05 PM PST"
     completed_at: "17/02/2026 12:12 PM PST"
+
+  - id: 105
+    question: "I'm full of holes, but I don't hold any water. What am I?"
+    answer: "A sieve (or strainer, colander, net — any object designed with holes that lets water pass through)"
+    status: completed
+    folder: research105
+    score: 100
+    research_status: need_more_research
+    research_activity: null
+    started_at: "23/04/2026 03:33 PM PST"
+    completed_at: "23/04/2026 03:42 PM PST"
