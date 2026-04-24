@@ -77,30 +77,8 @@ cd ralph-lite
 
 Use this to bump the counter once and inspect the result — great for debugging the command itself without looping.
 
-**Option A — Interactive Claude Code session:**
-
-```bash
-claude
-```
-
-Then at the prompt, type:
-
 ```
 /execute-ralph-lite
-```
-
-**Option B — One-shot (non-interactive) via `claude -p`:**
-
-```bash
-claude -p "/execute-ralph-lite" --output-format text
-```
-
-**Option C — Inspect the state file directly:**
-
-```bash
-cat research.json        # before
-claude -p "/execute-ralph-lite" --output-format text
-cat research.json        # after — sum should be +1
 ```
 
 ### Run the Full Loop (Automated Until Completion)
@@ -111,7 +89,7 @@ Use this to let the loop drive itself until `sum` reaches 5 (or the max iteratio
 ./ralph.sh 10
 ```
 
-- The argument (`10`) is the **maximum** number of iterations — a safety cap.
+- The argument (`5`) is the **maximum** number of iterations — a safety cap.
 - The loop exits **early** (exit code `0`) as soon as `<promise>COMPLETE</promise>` is emitted, which happens when `sum` hits 5.
 - If the cap is reached first, the loop exits with code `1`.
 
@@ -121,16 +99,4 @@ Use this to let the loop drive itself until `sum` reaches 5 (or the max iteratio
 
 ```bash
 echo '{"sum": 0}' > research.json
-```
-
-### Common Workflows
-
-```bash
-# Full clean run
-echo '{"sum": 0}' > research.json && ./ralph.sh 10
-
-# Step through a few iterations manually, then let the loop finish
-claude -p "/execute-ralph-lite" --output-format text   # sum → 1
-claude -p "/execute-ralph-lite" --output-format text   # sum → 2
-./ralph.sh 10                                          # runs 3 more, then stops
 ```
